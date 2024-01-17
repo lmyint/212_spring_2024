@@ -1,0 +1,244 @@
+---
+title: "Advanced Data Visualization in ggplot2"
+sidebar: false
+---
+
+```{r echo=FALSE, message=FALSE}
+library(tidyverse)
+knitr::opts_chunk$set(fig.align="center")
+```
+
+# Learning goals
+
+After this lesson, you should be able to:
+
+- Navigate the [ggplot2 reference page](https://ggplot2.tidyverse.org/reference/) to find the functions needed to create a desired visualization
+- Use the information on a function help page to construct desired plot features
+    - Scan the information in the **Usage** section to identify function arguments that must be set
+    - Understand how the function arguments work by using information in the **Arguments** section
+    - Use the information in the the **Aesthetics** and **Examples** sections to control plot appearance
+- Identify when it would be necessary to use different `data` arguments within the `ggplot()` and `geom_()` layers
+
+
+<br><br><br>
+
+
+# Setting up your class journal
+
+To facilitate the reflection practice that we are trying to cultivate in this course, you will be setting up a Google Doc as your class journal. You'll use this single Google Doc throughout the semester to record:
+
+- Responses to reflection prompts posed at the beginning and/or end of class
+- Errors and warnings in R that you run into when working on exercises (both in and out of class)
+- Where did you get stuck during an exercise? Why do you think you got stuck? Try to dig deep to find the root cause(s) of getting stuck. Doing so will help you improve your understanding in an efficient way.
+- What did you learn about creating a fruitful collaborative learning environment from our class activity today?
+
+By writing in and reviewing this journal regularly, my hope is for reflection to be a **constant backdrop** for our learning activities. This journal will give you a wealth of observations to draw from when writing the 3 monthly reflections over this semester.
+
+Directions:
+
+- Navigate to this [course journal template](https://docs.google.com/document/d/1zUeqyrZc9JzszzSmSTCayWxpCw7aXXxPi0c-Qge75vw/edit?usp=sharing).
+- Follow the directions in the document to make your own copy and share it with me.
+- Leave this document open during class to record observations.
+
+
+<br><br><br>
+
+
+# Case study: recreating a NYT visualization
+
+You can download a template Quarto file to start from [here](activity_templates/02-adv-ggplot.qmd). Put this file in an `activities` folder within a folder for this course.
+
+We are going to recreate [this NYT visualization](https://www.nytimes.com/interactive/2016/02/19/us/2015-year-in-weather-temperature-precipitation.html) on record setting temperatures by expanding our `ggplot2` toolbox using data from San Francisco (SFO) in 2011.
+
+![Screenshot of NYTimes visualization from 2015](images/sfo_nytimes.jpg)
+
+First load the `tidyverse` package, and read in the San Francisco weather [data](data/sfo_weather.csv).
+
+```{r eval=FALSE}
+library(tidyverse)
+weather <- read_csv("https://lmyint.github.io/212_fall_2023/data/sfo_weather.csv")
+```
+
+**Class exercise 1:** Examine the temperature visualization. What variables underlie the visualization, and how do they map to visual elements (e.g., position, size, shape, and color of the glyphs)?
+
+------------------------------------------------------------------------
+
+We can explore the "Geoms" section of the [ggplot2 reference page](https://ggplot2.tidyverse.org/reference/) to find a `geom` that corresponds to the visual elements in the temperature plot. Refer to the variable codebook below for the next exercise.
+
+- `Month`: Month of the year (1-12)
+- `Day`: Day within the month (1-31)
+- `Low`/`High`: Low/high temperature this day
+- `NormalLow`/`NormalHigh`: Typical low/high temperature for this day of the year
+- `RecordLow`/`RecordHigh`: Record low/high temperature for this day of the year
+- `LowYr`/`HighYr`: Year in which the record low/high was observed
+- `Precip`: Amount of precipitation (inches) this day
+- `RecordPrecip`: Record amount of precipitation for this day of the year
+- `PrecipYr`: Year in which the record precipitation was observed
+- `date`: The actual date in 2011 for this day in YYYY-MM-DD format
+- `dateInYear`: What day of the year is it? (1-365)
+- `Record`: Logical (TRUE/FALSE) indicating whether this day had a high temperature record
+- `RecordText`: Text that displays the record high for this day (`"Record high: ##"`)
+- `RecordP`: Logical (TRUE/FALSE) indicating whether this day had a precipitation record
+- `CulmPrec`: Cumulative precipitation for the month up to this day
+
+**Class exercise 2:** Using both the small example visuals on the right and the names of the `geom`'s, brainstorm some possibilities for `geom`'s we might use to recreate the temperature visualization.
+
+------------------------------------------------------------------------
+
+We need to explore further by opening up the `geom` reference pages to understand if a particular `geom` is suitable for our task. We'll look at the `geom_point` [documentation page](https://ggplot2.tidyverse.org/reference/geom_point.html) to learn the process for reading a documentation page.
+
+When looking at a help page, it is useful to first look at the **Usage** and **Arguments** sections. 
+
+The **Usage** section shows all of the possible inputs (arguments) to the geom--these are all of the ways that a `geom` can be customized. Just looking at the argument names can help give a hint as to what arguments might fit our needs.
+
+The **Arguments** section explains in detail what each argument does and the possible values the argument can take. The `mapping`, `data`, and `...` arguments will be the most commonly used by far.
+
+- `mapping`: This is the argument that is being used when you specify a plots `aes`thetics (the code inside `aes()`).
+- `data`: This is where you specify the dataset containing the variables that the `geom` is using.
+- `...`: You will tend to use this for fixed aesthetics (ones that don't correspond to a variable). For example, this is where you can set the color of all points (e.g., with `color = "red"`) or the size of all points (e.g., with `size = 3`).
+
+**A note about the `data` argument:** Previously you have used one dataset per plot by specifying that as the first argument of `ggplot()`. For example, the code below makes a scatterplot of price vs. carat in the `diamonds` dataset, and the only `data` argument is in `ggplot()` (none in `geom_point()`).
+
+```{r}
+data(diamonds)
+head(diamonds)
+
+ggplot(diamonds, aes(x = carat, y = price)) +
+    geom_point() +
+    theme_classic()
+```
+
+```{r eval=FALSE}
+# Note that we can make the same plot by specifying the argument names explicitly:
+ggplot(data = diamonds, mapping = aes(x = carat, y = price)) +
+    geom_point() +
+    theme_classic()
+```
+
+Sometimes we may want to use more than one dataset in a plot. For example, we have a separate dataset that contains average prices of diamonds by carat:
+
+```{r echo=FALSE}
+diamonds_avg_price <- diamonds %>%
+    group_by(carat) %>%
+    summarize(avg_price = mean(price)) %>%
+    arrange(carat)
+diamonds_avg_price <- diamonds_avg_price[seq(1,nrow(diamonds_avg_price),3),]
+```
+
+```{r}
+head(diamonds_avg_price)
+```
+
+We can use this separate `diamonds_avg_price` dataset in the `geom_point()` layer to add average price information to our scatterplot:
+
+```{r}
+ggplot(diamonds, aes(x = carat, y = price)) +
+    geom_point() +
+    geom_point(data = diamonds_avg_price, aes(x = carat, y = avg_price), color = "deepskyblue", size = 3)
+```
+
+The **Aesthetics** section of a `geom` documentation page gives information on how the visual elements of the `geom` correspond to data. For example, the `geom_point` [documentation page](https://ggplot2.tidyverse.org/reference/geom_point.html) shows that the familiar `x` and `y` aesthetics are available. It also shows some new aesthetics like `stroke`.
+
+```{r echo=FALSE, message=FALSE}
+weather <- read_csv("data/sfo_weather.csv")
+```
+
+We can use the same process to look at the `geom_linerange` [documentation page](https://ggplot2.tidyverse.org/reference/geom_linerange.html) and start off our temperature visualization with the record lows and highs:
+
+```{r}
+ggplot(weather) +
+    geom_linerange(aes(x = dateInYear, ymin = RecordLow, ymax = RecordHigh), color = "#ECEBE3", linewidth = 1.5) +
+    theme_classic()
+```
+
+**Class exercise 3:** Add to your temperature visualization to also display the usual temperatures (`NormalLow` and `NormalHigh`), and actual 2011 temperatures (`Low` and `High`). Your plot should look like the one below. The tan color for the usual temperatures is `"#C8B8BA"`, and the red color for the actual temperatures is `"#A90248"`.
+
+```{r echo=FALSE}
+ggplot(weather, aes(x = dateInYear)) +
+    geom_linerange(aes(ymin = RecordLow, ymax = RecordHigh), color = "#ECEBE3", linewidth = 1.5) +
+    geom_linerange(aes(ymin = NormalLow, ymax = NormalHigh), color = "#C8B8BA", linewidth = 1.5) +
+    geom_linerange(aes(ymin = Low, ymax = High), color = "#A90248", linewidth = 1.5) +
+    theme_classic()
+```
+
+------------------------------------------------------------------------
+
+Let's now try to recreate the visual demarcations of the months by adding vertical lines separating the months.
+
+**Class exercise 4:** Brainstorm with your groups how we might draw those vertical lines. What `geom` might we use? What subset of the data might we use in that `geom` layer to draw lines only at the month divisions? One person from your group should write your ideas on the board.
+
+Once ideas are up on the board, we'll work through this together as a class.
+
+------------------------------------------------------------------------
+
+Now let's change the x-axis labels so that the month names display in the center of each month's slice of the plot. (Note that R has built-in variables called `month.abb` and `month.name` that contain abbreviated and full month names.)
+
+**Class exercise 5:** We will explore two different approaches to figuring out this new challenge: Google search and AI.
+
+- **Google:** Start by just using Google search queries. Collaborate with your group to try to word your search queries as carefully as possible (using the jargon that is most likely to return the most relevant results). Record search queries and your thought process in selecting which search results to look at first.
+
+- **AI group:** Next use [ChatGPT](https://chat.openai.com/). Collaborate with your group to brainstorm a series of prompts that will most efficiently get you the desired results. Record the chat prompts used and output given. Evaluate the output. Do you fully understand the code generated? How can you tell that the generated code is correct?
+
+After we debrief on these approaches, we'll finalize this part of the plot together.
+
+
+<br><br><br>
+
+
+# Practice
+
+In pairs (randomly formed), you will go through the same steps as above for the precipitation data. Here, and throughout the course, we will be using the **pair programming** technique.
+
+## Pair programming background
+
+In **pair programming**, two individuals use one computer and work together to solve the problem at hand. Each individual takes turns in one of two roles:
+
+- **Driver**: The Driver is at the computer typing and speaking their thought process out loud.
+- **Navigator**: The Navigator reviews all code that the Driver writes as it's typed, guides the overall direction of the code (keeps the instructions in mind), and pulls up references.
+
+**Why are we using pair programming?** Pair programming is [used effectively in industry](https://hackernoon.com/the-ultimate-guide-to-pair-programming-b606625bc784) to speed up individual employee's learning of a company's codebase and reduce time wasted on fixing bugs.
+
+## Your task
+
+**Before diving in to plot creation,** get to know your partner by telling each other about the general themes in your 12 favorite problems (FPs). Try to find some overlap in your themes and share one of your FPs that relates to that overlapping theme.
+
+Work together until your precipitation plot looks as below.
+
+- The `culmPrec` variable contains cumulative precipitation for the month up to the given day.
+- The `recordP` variable is a TRUE/FALSE indicator of whether a day was a precipitation record. These are marked by the downward pointing triangles.
+- The numbers on the plot indicate the total precipitation for the month. Do some searching about the `hjust` and `vjust` options to adjust the alignment of the numbers.
+- The blue and tan colors are `"#32a3d8"` and `"#ebeae2"`.
+
+```{r echo=FALSE}
+month_end_rain <- weather %>% group_by(Month) %>% filter(Day==max(Day))
+
+ggplot(weather) +
+    geom_line(mapping = aes(x = dateInYear,y = CulmPrec, group = Month), color = "#32a3d8") +
+    geom_area(mapping = aes(x = dateInYear,y = CulmPrec, group = Month), fill = "#ebeae2") +
+    geom_point(data = weather %>% filter(RecordP), mapping = aes(x = dateInYear, y = CulmPrec + .2), shape = "triangle down filled", fill = "black") + 
+    geom_text(data = month_end_rain, mapping = aes(x = dateInYear, y = CulmPrec, label = CulmPrec), vjust = 0, hjust = 1, size = 2.5) +
+    theme_classic()
+```
+
+**When should the Driver and Navigator switch roles?** For this exercise, you will switch roles once a particular plot layer (one `geom`) has been implemented correctly. You can send code back and forth via email or a direct message on Slack.
+
+::: {.callout-tip collapse="false"}
+## Stop to Reflect
+
+As you pair program, be aware of your comforts and discomforts in the roles of driver and navigator. Pay attention to the comforts and discomforts of your partner. What could you do to support them in becoming more comfortable and confident in both roles?
+:::
+
+::: {.callout-tip collapse="false"}
+## Record Errors
+Every time you run into a new error, record the error message and your process for fixing the error in the "Error Log" section of the Quarto file for these exercises.
+:::
+
+
+<br><br><br>
+
+
+# Challenge 1
+
+Navigate to [Challenge 1](https://classroom.github.com/a/u96MWDm2) on GitHub to clone the repository for this challenge. Challenge 1 involves finishing this NYT visualization recreation and is part of [Homework 1](homework1.qmd).
+
+

@@ -1,0 +1,44 @@
+---
+title: "Homework 1"
+sidebar: false
+---
+
+# Required parts
+
+**Getting acquainted with Git and GitHub**
+
+Nothing to turn in for this section, but please do the following:
+
+- Watch [this video](https://youtu.be/QLFc9gw_Hfs?si=Ww--upiZ7hM2e1id) and follow along with the tutorial linked in the description.
+- Read [this tutorial](https://github.com/education/github-starter-course) to get more familiar with version control terminology.
+
+<br>
+
+**Asynchronous skills challenges**
+
+- **Advanced visualization with ggplot2 - Challenge 1:** Navigate to the challenge on [GitHub](https://classroom.github.com/a/u96MWDm2). This challenge involves finishing the plot that we started in our [Advanced Data Visualization in ggplot2](02-adv-ggplot.qmd#homework) class activity.
+
+<br>
+
+**Preparing for Skills Session 1**
+
+- Skills Session 1 is coming up the week of 2/5. The topic of this session is **keyboard shortcuts**. It's a good idea to prepare for this session as soon as possible because the benefits of being fluent with keyboard shortcuts will be immediately useful, and it will take time to practice these shortcuts.
+- Start preparing for this session by visiting the [Skills Session 1 page](skills_session1.qmd).
+
+<br>
+
+**Setting up your personal website**
+
+Nothing to turn in for this section, but please do the following:
+
+- Follow [this guide](https://docs.google.com/document/d/1nNxCn8dGELeACHyRYQ0-IwT5QXd0XN0uEaBfhYR2ktM/edit#heading=h.64lpc8txu1x2) written by Professor Brianna Heggeseth to set up your personal website (your digital portfolio) using Quarto.
+
+
+<br><br>
+
+
+# Optional
+
+If you are aiming for an A in the course, recall from our [syllabus](syllabus.qmd#requirements-for-an-a) that participating in 5 Tidy Tuesday challenges can move you toward this goal.
+
+- For further all-around practice, I encourage you to participate in the most recent [Tidy Tuesday](https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-01-23/readme.md) challenge.

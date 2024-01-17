@@ -1,0 +1,402 @@
+---
+title: "Schedule"
+sidebar: false
+---
+
+# Course Calendar
+
+Readings in the schedule below will sometimes be marked with abbreviations:
+
+- **R4DS** refers to the online book [R for Data Science (2e)](https://r4ds.hadley.nz/) by Wickham, Cetinkaya-Rundel, and Grolemund.
+- **IDSNotes** refers to [Intermediate Data Science Notes](https://lmyint.github.io/IntermediateDataSciNotes/), a set of notes that I have written for this course.
+
+Guiding questions for pre-class readings and videos are available at the bottom of this page.
+
+```{=html}
+<table class="tg" data-quarto-disable-processing="true">
+<thead>
+  <tr>
+    <th class="topleft" style="width: 8%"><b>Week</b></th>
+    <th class="topleft" style="width: 34%"><b>Tuesday</b></th>
+    <th class="topleft" style="width: 34%"><b>Thursday</b></th>
+    <th class="topleft" style="width: 24%"><b>Announcements</b></th>
+  </tr>
+</thead>
+
+<tbody>
+  <tr>
+    <td class="topleft">1</td>
+    
+    <td class="topleft"></td>
+    
+    <td class="topleft">
+      <b>1/18: Welcome! Getting to know each other, brainstorming project ideas</b> <br>
+      <span class="b4">Before class:</span>
+      <ul>
+        <li>Review the <a href="https://lmyint.github.io/212_spring_2024/syllabus.html">syllabus</a>, and write down any questions you have.</li>
+        <li>Follow the <a href="https://lmyint.github.io/212_spring_2024/tech_setup.html">Tech Setup directions</a>.</li>
+      </ul>
+    </td>
+    
+    <td class="topleft">
+    </td>
+  </tr>
+  <!----------------------------------------------------------->
+  
+  
+  <tr>
+    <td class="topleft">2</td>
+    
+    <td class="topleft">
+      <b>1/23: Advanced visualization in ggplot2</b> <br>
+      <span class="b4">Before class:</span>
+      <ul>
+        <li>Review the construction of plots from STAT 112 and STAT 155 by answering the Guiding Questions at the bottom of this page.</li>
+      </ul>
+    </td>
+    
+    <td class="topleft">
+      <b>1/25: File organization and paths, Git & GitHub</b> <br>
+      <span class="b4">Before class:</span>
+      <ul>
+        <li>Read <a href="https://lmyint.github.io/IntermediateDataSciNotes/files_directories_paths.html">File organization, directory structure, and navigation</a> in IDSNotes.</li>
+        <li>Work on the following parts of <a href="https://lmyint.github.io/212_spring_2024/homework1.html">HW1</a>: Getting acquainted with Git and GitHub, Preparing for Skills Session 1.</li>
+      </ul>
+    </td>
+    
+    <td class="topleft">
+      Turn in <a href="https://lmyint.github.io/212_spring_2024/homework1.html">HW1</a> by midnight on Monday 1/29.
+    </td>
+  </tr>
+  <!----------------------------------------------------------->
+  
+  
+  <tr>
+    <td class="topleft">3</td>
+    
+    <td class="topleft">
+      <b>1/30: Advanced map visualization</b> <br>
+      <span class="b4">Before class:</span>
+      <ul>
+        <li>Install the following R packages: ___</li>
+        <li>Watch <a href="https://youtu.be/xJyJlKbZFlc?si=pc7ThQPO-v8ur-qx">this video</a> on Coordinate Reference Systems, and answer the Guiding Questions at the bottom of this page.</li>
+      </ul>
+    </td>
+    
+    <td class="topleft">
+      <b>2/1: Advanced map visualization (continued)</b> <br>
+      <span class="b4">Before class:</span>
+    </td>
+    
+    <td class="topleft">
+      Turn in <a href="https://lmyint.github.io/212_spring_2024/homework2.html">HW2</a> by midnight on Monday 2/5. Prepare for <b>Skills Demonstration #1</b> next week (2/5-2/9).
+    </td>
+  </tr>
+  <!----------------------------------------------------------->
+  
+  
+  <tr>
+    <td class="topleft">4</td>
+    
+    <td class="topleft">
+      <b>2/6: Interactive visualization</b> <br>
+      <span class="b4">Before class:</span> Install the <span style="font-family: Courier New;">shiny</span> and <span style="font-family: Courier New;">plotly</span> R packages.
+    </td>
+    
+    <td class="topleft">
+      <b>2/8: Interactive visualization (continued)</b> <br>
+      <span class="b4">Before class:</span> 
+    </td>
+    
+    <td class="topleft">
+      <b>Skills Demonstration #1</b> will be happening this week. Turn in <a href="https://lmyint.github.io/212_spring 2024/homework3.html">HW3</a> (includes Project Milestone 1) by midnight on Monday 2/12.
+    </td>
+  </tr>
+  <!----------------------------------------------------------->
+  
+  
+  <tr>
+    <td class="topleft">5</td>
+    
+    <td class="topleft">
+      <b>2/13: Data wrangling</b> <br>
+      <span class="b4">Before class:</span> Read Chapters 13-18 in <a href="https://r4ds.hadley.nz/">R4DS</a>.
+    </td>
+    
+    <td class="topleft">
+      <b>2/15: Data wrangling and project work time</b> <br>
+      <span class="b4">Before class:</span> 
+    </td>
+    
+    <td class="topleft">
+      Turn in <a href="https://lmyint.github.io/212_spring 2024/homework4.html">HW4</a> and <a href="https://lmyint.github.io/212_spring_2024/reflection1.html">Reflection 1</a> by midnight on Monday 2/19.
+    </td>
+  </tr>
+  <!----------------------------------------------------------->
+  
+  
+  <tr>
+    <td class="topleft">6</td>
+    
+    <td class="topleft">
+      <b>2/20: Statistical modeling and missing data</b> <br>
+      <span class="b4">Before class:</span> 
+    </td>
+    
+    <td class="topleft">
+      <b>2/22: Writing functions</b> <br>
+      <span class="b4">Before class:</span> Read <a href="https://r4ds.hadley.nz/functions.html">R4DS Chapter 26 (Functions)</a> and <a href="https://bookdown.org/rdpeng/rprogdatascience/control-structures.html#if-else">RPDS Section 13.1 (if-else)</a>.
+    </td>
+    
+    <td class="topleft">
+      Turn in <a href="https://lmyint.github.io/212_spring 2024/homework5.html">HW5</a> (includes Project Milestone 2) by midnight on Monday 2/19.
+    </td>
+  </tr>
+  <!----------------------------------------------------------->
+  
+  
+  <tr>
+    <td class="topleft">7</td>
+    
+    <td class="topleft">
+      <b>2/27: Functions (continued)</b> <br>
+      <span class="b4">Before class:</span> 
+    </td>
+    
+    <td class="topleft">
+      <b>2/29-3/1: Capstone Days! (No class but please attend talks to support your peers!)</b>
+    </td>
+    
+    <td class="topleft">
+      Schedule <b>Skills Demonstration #2</b> for next week (3/4-3/8) via <a href="https://calendly.com/lmyint">Calendly</a>.
+    </td>
+  </tr>
+  <!----------------------------------------------------------->
+  
+  
+  <tr>
+    <td class="topleft">8</td>
+    
+    <td class="topleft">
+      <b>3/5: Loops and iteration</b> <br>
+      <span class="b4">Before class:</span> Read <a href="https://r4ds.hadley.nz/iteration.html">R4DS Chapter 27 (Iteration)</a> and <a href="https://www.rebeccabarter.com/blog/2019-08-19_purrr">this tutorial</a>.
+    </td>
+    
+    <td class="topleft">
+      <b>3/7: Loops and iteration (continued)</b> <br>
+      <span class="b4">Before class:</span> 
+    </td>
+    
+    <td class="topleft">
+      <b>Skills Demonstration #2</b> will be happening this week. Turn in <a href="https://lmyint.github.io/212_spring 2024/homework6.html">HW6</a> (includes Project Milestone 3) by midnight on <b>FRIDAY</b> 3/8.
+    </td>
+  </tr>
+  <!----------------------------------------------------------->
+  
+  
+  <tr>
+    <td class="topleft">9</td>
+    <td class="center" colspan=3>
+      <b>3/9-3/17: Spring Break!</b>
+    </td>
+  </tr>
+  <!----------------------------------------------------------->
+  
+  
+  <tr>
+    <td class="topleft">10</td>
+    
+    <td class="topleft">
+      <b>3/19: Data acquisition: APIs</b> <br>
+      <span class="b4">Before class:</span> 
+    </td>
+    
+    <td class="topleft">
+      <b>3/21: Data acquisition: APIs (continued)</b> <br>
+      <span class="b4">Before class:</span> 
+    </td>
+    
+    <td class="topleft">
+      Turn in <a href="https://lmyint.github.io/212_spring 2024/homework7.html">HW7</a> and <a href="https://lmyint.github.io/212_spring_2024/reflection2.html">Reflection 2</a> by midnight on Monday 3/25.
+    </td>
+  </tr>
+  <!----------------------------------------------------------->
+  
+  
+  <tr>
+    <td class="topleft">11</td>
+    
+    <td class="topleft">
+      <b>3/26: Data acquisition: Scraping</b> <br>
+      <span class="b4">Before class:</span> Read the <a href="https://cran.r-project.org/web/packages/rvest/vignettes/rvest.html">rvest vignette</a>.
+    </td>
+    
+    <td class="topleft">
+      <b>3/28: Project work day</b> <br>
+      <span class="b4">Before class:</span> 
+    </td>
+    
+    <td class="topleft">
+      Turn in <a href="https://lmyint.github.io/212_spring 2024/homework8.html">HW8</a> (includes Project Milestone 4) by midnight on Monday 4/1.
+    </td>
+  </tr>
+  <!----------------------------------------------------------->
+  
+  
+  <tr>
+    <td class="topleft">12</td>
+    
+    <td class="topleft">
+      <b>4/2: Data acquisition: databases</b> <br>
+      <span class="b4">Before class:</span> Read <a href="https://r4ds.hadley.nz/databases.html">R4DS Chapter 22 (Databases)</a>.
+    </td>
+    
+    <td class="topleft">
+      <b>4/4: Data acquisition: databases (continued)</b>
+    </td>
+    
+    <td class="topleft">
+      Turn in <a href="https://lmyint.github.io/212_spring 2024/homework9.html">HW9</a> by midnight on Monday 4/8.
+    </td>
+  </tr>
+  <!----------------------------------------------------------->
+  
+  
+  <tr>
+    <td class="topleft">13</td>
+    
+    <td class="topleft">
+      <b>4/9: Project work time</b>
+    </td>
+    
+    <td class="topleft">
+      <b>4/11: Project work time</b>
+    </td>
+    
+    <td class="topleft">
+      Schedule <b>Skills Demonstration #3</b> for next week (4/15-4/19) via <a href="https://calendly.com/lmyint">Calendly</a>.
+    </td>
+  </tr>
+  <!----------------------------------------------------------->
+  
+  
+  <tr>
+    <td class="topleft">14</td>
+    
+    <td class="topleft">
+      <b>4/16: Project work time</b>
+    </td>
+    
+    <td class="topleft">
+      <b>4/18: Project work time</b>
+    </td>
+    
+    <td class="topleft">
+      <b>Skills Demonstration #3</b> will be happening this week.
+    </td>
+  </tr>
+  <!----------------------------------------------------------->
+  
+  
+  <tr>
+    <td class="topleft">15</td>
+    <td class="topleft">
+      <b>4/23: </b>
+    </td>
+    
+    <td class="topleft">
+      <b>4/25: Last day of class</b>
+    </td>
+    
+    <td class="topleft">
+      Turn in <a href="https://lmyint.github.io/212_spring_2024/reflection3.html">Reflection 3</a> by midnight on <b>Friday</b> 4/26.
+    </td>
+  </tr>
+  
+</tbody>
+</table>
+```
+
+
+# Guiding Questions
+
+Use the guiding questions/exercises below to focus your pre-class preparations.
+
+<!--
+## 11/7: Databases
+
+Before class on Tuesday, install the `DBI` and `duckdb` packages. Post in the #questions channel on Slack if you run into issues.
+
+As you read the [Databases](https://r4ds.hadley.nz/databases.html) chapter of R4DS, answer the following questions:
+
+- What are the differences between client-server, cloud, and in-process database management systems (DBMSs)?
+- Make note of how the following functions are used in a database workflow. What does each function do? What inputs/arguments does each function require? Create a set of notes that shows the sequence of these functions in a database workflow.
+    - `DBI::dbConnect()`
+    - `DBI::dbReadTable()`
+    - `DBI::dbGetQuery()`
+    - `tbl()`
+    - `collect()`
+- Make note of how the `showQuery()` function can help you learn SQL (structured query language) by translating `dplyr` code into SQL.
+    - As you read Section 22.5 (SQL), create notes that relate parts of SQL queries to `dplyr` functions.
+
+
+## 10/19: Web scraping
+
+As you read the `rvest` package [vignette](https://cran.r-project.org/web/packages/rvest/vignettes/rvest.html), answer the following questions:
+
+- The first step of getting (scraping) data from an arbitrary web page is to read in the webpage. What `rvest` function(s) are relevant for this step?
+- Next we need to select the HTML elements that contain the information that we want. What function(s) are relevant here?
+    - How would we select all elements that have the class "author"?
+    - How would we select all level 1 headers (tag `<h1>`)?
+- Next we extract information from the selected HTML elements.
+    - What is the difference between selecting the text contents of an HTML element and selecting an attribute of the HTML element? What functions are used for these two tasks?
+    - How would we get all URLs for links that appear on a webpage?
+
+## 9/19: Interactive visualization
+
+After listening to [this podcast](https://datastori.es/127-storytelling-with-data-with-cole-nussbaumer-knaflic/) from Chapter 7 (timestamp 18:09) through Chapter 8 (ending at timestamp 25:27), reflect on the following question:
+
+- What was new, unexpected, or interesting in the discussion about animations, interactivity, and dashboards?
+
+Consider this post for another week: https://www.storytellingwithdata.com/blog/2014/04/exploratory-vs-explanatory-analysis -->
+
+## 1/23: Advanced visualization in `ggplot2`
+
+To review plot creation skills from STAT/COMP 112 and STAT 155, use the `diamonds` dataset in the `ggplot2` package to recreate the following visualizations:
+
+```{r message=FALSE}
+library(ggplot2)
+data(diamonds)
+```
+
+```{r echo=FALSE, message=FALSE, fig.align="center", fig.width=12}
+library(gridExtra)
+p1 <- ggplot(diamonds, aes(x = cut)) + geom_bar() + theme_classic()
+p2 <- ggplot(diamonds, aes(x = price)) + geom_histogram() + theme_classic()
+p3 <- ggplot(diamonds, aes(x = price)) + geom_density() + theme_classic()
+grid.arrange(p1, p2, p3, nrow = 1)
+
+p4 <- ggplot(diamonds, aes(x = cut, y = price)) + geom_boxplot() + theme_classic()
+p5 <- ggplot(diamonds, aes(x = price, color = cut)) + geom_density() + theme_classic()
+grid.arrange(p4, p5, nrow = 1)
+
+p6 <- ggplot(diamonds, aes(x = cut, fill = color)) + geom_bar() + theme_classic()
+p7 <- ggplot(diamonds, aes(x = cut, fill = color)) + geom_bar(position = "dodge") + theme_classic()
+p8 <- ggplot(diamonds, aes(x = cut, fill = color)) + geom_bar(position = "fill") + theme_classic()
+grid.arrange(p6, p7, p8, nrow = 1)
+
+p9 <- ggplot(diamonds, aes(x = carat, y = price)) + geom_point() + theme_classic()
+p10 <- ggplot(diamonds, aes(x = carat, y = price, color = cut)) + geom_point() + geom_smooth(method = "lm") + theme_classic()
+grid.arrange(p9, p10, nrow = 1)
+```
+
+## 1/30: Advanced map visualization
+
+After/while watching [this video](https://youtu.be/xJyJlKbZFlc?si=pc7ThQPO-v8ur-qx) on Coordinate Reference Systems (CRS), answer the following questions:
+
+- What is the shape of the Earth?
+- Why is GDA94 a great datum name?
+- What are the two components of a CRS/GCS?
+- Why do we use many different local CRSs rather than just one CRS for the whole earth?
+- Why is it insufficient to identify a location by its latitude and longitude?
+- Why do we need to be mindful about CRSs when working with different spatial datasets?

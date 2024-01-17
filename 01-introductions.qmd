@@ -1,0 +1,203 @@
+---
+title: "Welcome to the course!"
+sidebar: false
+---
+
+Welcome to Intermediate Data Science! Last semester was the first offering of this course--I really enjoyed it. I am even more thrilled to have made improvements that will make it a better learning experience for you!
+
+
+## Plan for today
+
+- What is this course about?
+- Get to know your classmates
+- Shaping our syllabus together
+- Brainstorming project ideas and connecting with potential project partners via the 12 Favorite Problems framework
+- Warming up our wrangling and visualization skills with Tidy Tuesday!
+
+
+<br><br>
+
+
+## What is this course about?
+
+- Expanding your abilities for self-reflection in service of:
+    - Your lifelong independent learning
+    - Our course community
+- Expanding your data science toolbox:
+    - Visualization
+    - Wrangling
+    - Data acquisition
+    - Data storytelling
+
+I've intentionally put reflection first and data science skills second not necessarily in order of importance but because cultivating data science skills will come automatically---reflection and community-building won't.
+
+
+<br><br>
+
+
+## Get to know your classmates
+
+In groups, introduce yourselves with the following prompts: (~2 minutes/person)
+
+- Name, preferred pronouns
+- Macalester connections (e.g., majors/minors/concentrations, clubs, teams, events regularly attended)
+- How are you feeling about the coming semester?
+- What is one thing you are excited to talk about in conversation?
+- If you could use data to investigate anything, what would it be and why?
+
+
+<br><br>
+
+
+## Syllabus shaping: learning goals
+
+Navigate to the [Course learning goals](syllabus.qmd#course-learning-goals) section of our syllabus.
+
+**Part 1: Reflect** (~3 min)
+
+Write a few sentences responding to the following questions:
+
+- What are your goals in taking this class?
+- Do you see your goals reflected in the course learning goals? If not, how would you like to see the course goals amended to see your goals reflected in them?
+
+**Part 2: Share** (~5 min)
+
+At your tables, take turns sharing your responses to the above questions. As a group, summarize your discussion in [this Google Doc](https://docs.google.com/document/d/1yeGAInJx9U_VLNqKlUkPACkHcpzJ0qi_evqHC7wn0lk/edit?usp=sharing).
+
+Before we meet again next Tuesday, I will look over your comments in the Google Doc and add my own responses. I'll address your comments in class next Tuesday.
+
+
+<br><br>
+
+
+## Course project: brainstorming
+
+In a data science course, a course project is essential for synthesizing our tools in a meaningful context.
+
+Our course project will be a semester-long experience because I believe that this longer time span will improve the quality of the projects.
+
+We will start brainstorming ideas today using a framework called the **12 Favorite Problems (12FP)**.
+
+
+<br><br>
+
+
+## 12 Favorite Problems: context
+
+Richard Feynman was a Nobel prize-winning physicist whose contributions fundamentally reshaped our understanding of the physical world.
+
+A major part of his success was a *method* for viewing the world: a mindset of viewing the world through the lens of several open-ended questions. Feynman called these his "favorite problems." He said of these problems:
+
+> You have to keep a dozen of your favorite problems constantly present in your mind, although by and large they will lay in a dormant state. Every time you hear or read a new trick or a new result, test it against each of your twelve problems to see whether it helps. Every once in a while there will be a hit, and people will say, "How did [they] do it? [They] must be a genius!"
+> 
+> Quote source: [Forte Labs](https://fortelabs.com/blog/12-favorite-problems-how-to-spark-genius-with-the-power-of-open-questions/)
+
+
+<br><br>
+
+
+## The 12 Favorite Problems framework
+
+A favorite problem is a meaningful, open-ended question that allows you to learn, explore, and act with intention on your biggest interests in life. Here are two of mine:
+
+- How can I be the kind of mother I can feel proud of without losing myself?
+- How can I have a fulfilling career without burning out?
+
+Formulating several of these favorite problems can lead to several benefits:
+
+> 
+> - Dedicate your time and attention to ideas that truly spark your curiosity
+> - See how a piece of information might be useful and why it’s worth keeping
+> - See insightful patterns across multiple subjects that seem unrelated, but might share a common thread
+> - Focus the impact of your work on problems where you can make a real difference
+> - Prime your subconscious to notice helpful solutions to your biggest challenges in the world around you
+> - Attract like-minded people who have the same interests and goals as you
+> 
+> Source: [Forte Labs](https://fortelabs.com/blog/12-favorite-problems-how-to-spark-genius-with-the-power-of-open-questions/)
+
+**Relevance to our course:** Brainstorming 12 favorite problems can help us determine some questions that the course project can address.
+
+
+<br><br>
+
+
+## Brainstorming our 12 favorite problems (FPs)
+
+- Open up a blank file in which to type.
+- Navigate to [this article](https://fortelabs.com/blog/how-to-generate-your-own-favorite-problems-a-4-step-guide/) by Tiago Forte, and scroll down to the first step "Get started with these prompts."
+- Using these prompts, take about 15 minutes to brainstorm your own 12 favorite problems.
+    - Tiago Forte provides examples of his 12 FPs in his post. Feel free to also look at [my own](https://www.lesliemyint.org/12-favorite-problems) for more examples. (I'm working on updating my 12 FPs today alongside you!)
+    
+**Save your 12FP file in a place you'll be able to find easily.**
+
+
+<br><br>
+
+
+## Sharing and refining our 12 FPs
+
+In groups, each person will have ~2 minutes to share their top 2 FPs and get some feedback from the group. The group should give feedback to help make the FPs more specific, counterintuitive, and interdiscipinary:
+
+- **Specific:**
+    - Original: "How can I be a better leader?" is a little broad.
+    - Possible improvement: "How can I be a better leader *as an introvert*?"
+- **Counterintuitive:**
+    - Original: "How can I improve the standard of living in the global south?"
+    - Possible improvement: "How can I improve the standard of living in the global south *without further contributing to the climate change that threatens those regions the most*?"
+- **Interdisciplinary:**
+    - Original: How can I improve education?"
+    - Possible improvement: "How can I improve education *by borrowing ideas from video games*?"
+
+(Examples from [Forte Labs](https://fortelabs.com/blog/how-to-generate-your-own-favorite-problems-a-4-step-guide/))
+
+
+<br><br>
+
+
+## Broadcast your signal to start finding your people
+
+- Join our course Slack workspace via [this invite link](https://join.slack.com/t/slack-pkg2674/shared_invite/zt-2anlsakl1-jsi2X98qrYwVXPWa_3O2TQ).
+    - If you've already joined, navigate to our Slack workspace [here](https://statcomp212spring2024.slack.com).
+- In the `#general` channel, write a very brief post in which you:
+    - Introduce yourself however you see fit.
+    - Describe the general areas that your 12 favorite problems tend to cover.
+    - If you already feel a pull towards a project area, share that too.
+
+
+<br><br>
+
+
+## Project opportunity: collaborating with a community partner
+
+[Ignite Afterschool](https://igniteafterschool.org/) is looking to partner with data science students on a few fronts:
+
+- They are looking to update the [data briefs](https://igniteafterschool.org/afterschool-access) that they use to communicate with families about the impact of afterschool programming.
+    - This will involve looking at data from the [Minnesota Student Survey](https://www.health.state.mn.us/data/mchs/surveys/mss/index.html). (I already have access to this data.)
+    - There is opportunity for creative input from students on how best to display this information.
+- They are also looking for help with a data-driven policy analysis surrounding the impact of the recent cannabis legalization laws on youth outcomes. There is potential to explore this with the MN Student Survey data as well as other data.
+
+If you are interested in this opportunity, please reach out to me by **Tuesday, January 23**.
+
+
+<br><br>
+
+
+## Tidy Tuesday!
+
+For the remainder of the class period, we'll work on the most recent [Tidy Tuesday challenge](https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-01-16/readme.md).
+
+Feel free to clarify anything about the course with me during this time!
+
+
+<br><br>
+
+
+## Announcements
+
+Before class on Tuesday, please do the following:
+
+- Set up R and RStudio using [these instructions](tech_setup.qmd).
+- Update your Slack profile with preferred name, pronouns, name pronunciation. (To find your profile, click on your name under Direct Messages on the left menu, and click "Edit Profile".)
+- Complete the [pre-course survey](https://docs.google.com/forms/d/e/1FAIpQLSeCcC_B3-2jjuzHGReIwBlcVUgoGaFwWsdLlf4kqVPLd8mNYw/viewform?usp=sf_link).
+- Look at the [Guiding Questions](schedule.qmd#guiding-questions) for next Tuesday's class on advanced visualization with `ggplot2`.
+- Take a look at [Homework 1](homework1.qmd).

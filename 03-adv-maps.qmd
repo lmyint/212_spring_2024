@@ -1,0 +1,953 @@
+---
+title: "Advanced Spatial Visualizations"
+author: "Brianna Heggeseth and Leslie Myint (with contributions from Erin Franke and Vivian Powell)"
+sidebar: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, error = TRUE, message = FALSE, warning = FALSE)
+
+library(tidyverse)
+library(janitor) # tools for initial data cleaning
+
+library(geojsonio) # tools for importing/working with GeoJSON files in R
+library(sf) # tools for working with spatial vector data (GIS functionality, mapping)
+
+# install.packages("remotes")
+# remotes::install_github("ropensci/USAboundariesData")
+# install.packages("USAboundariesData", repos = "http://packages.ropensci.org", type = "source")
+# remotes::install_github("ropensci/USAboundaries")
+
+library(rnaturalearth) # access to map data from Natural Earth
+library(rnaturalearthdata)
+library(USAboundaries) # access to boundaries for US states, counties, zip codes, and congressional districts 
+library(elevatr) # access to raster elevation maps
+library(tidycensus)
+```
+
+# Learning goals
+
+After this lesson, you should be able to:
+
+- Understand the basics of a CRS (coordinate reference system)
+- Understand and recognize different spatial file types and data types in R
+- Implement some of the basic plotting with the `sf` package
+- Understand foundational ideas in working with spatial data (aggregating spatial point data to a spatial region, joining spatial data sets)
+
+<br>
+
+Slides for today are available [here](slides/03-adv-maps.qmd). (For our main activity, we will be using the rest of the webpage below.)
+
+<br>
+
+You can download a template Quarto file to start from [here](activity_templates/03-adv-maps.qmd). Put this file in an `activities` folder within a folder for this course.
+
+
+<br><br><br>
+
+
+# Spatial Visualization Review
+
+In STAT/COMP 112, you learned about basic spatial visualizations. To review,
+
+- **Background Maps in ggplot**. The `ggmap` package includes tools to create a plot with a map background. In particular, `get_stamenmap()` accesses map image tiles from Stamen Maps (<http://maps.stamen.com/>) based on a provided bounding box (bbox) and `ggmap()` can be used instead of `ggplot()` to use a background map image as the plotting frame. 
+  - <http://Openstreetmap.org> is an excellent tool to find longitude/latitude values for a desired bbox. 
+  - *Technical note: The bounding box of the ggmap object has a CRS of WGS84 (EPSG:4326), but the actual raster is in EPSG:3857. We'll talk about CRS in this activity*
+- **Contour Plots**. The `geom_density_2d()` function in `ggplot2` package displays contours of intensity of points in a spatial area.
+- **Choropleth**. The `geom_map(data, map, aes(map_id))` function in `ggplot2` package displays choropleth maps (filled polygons/regions) based on a data frame of coordinates (long/x,lat/y,region/id) and an attribute data frame with properties for each region or id.
+- **Leaflet**. The `leaflet` package in R provides access to the Leaflet javascript library (<https://leafletjs.com/>) to create interactive maps. A basic map can be created with a data frame of coordinates and attributes (more advanced topics can be found at <https://rstudio.github.io/leaflet/>):
+```{r eval=FALSE}
+leaflet(data) %>%
+    addTiles() %>%
+    addMarkers()
+```
+
+
+<br><br><br>
+
+
+# What's next?
+
+We used based mapping tools without thinking too much about the details of the maps. In order to create more advanced spatial visualizations, we need a foundation in spatial coordinate reference systems and how spatial data is often recorded and stored!
+
+
+<br><br><br>
+
+
+# Coordinate Reference System
+
+At the heart of every spatial visualization is a set of locations. One way to describe a location is in terms of coordinates and a coordinate reference system (CRS).
+
+There are three main components to a CRS: ellipsoid, datum, and a projection. (The projection is a part of *projected* CRSs.)
+
+## Ellipsoid
+
+While you might have learned that the Earth is a sphere, it is actually closer to an ellipsoid with a bulge at the equator. Additionally, the surface is irregular and not smooth. To define a CRS, we first need to choose a mathematical model represent a smooth approximation to the shape of the Earth. The common ellipsoid models are known as WGS84 and GRS80. See the illustration below of one ellipsoid model (shown in black) as compared to Earth's true irregular surface (shown in red). 
+
+![Illustration of ellipsoid model and Earth's irregular surface, centered to have an overall best fit. Source: www.icsm.gov.au](https://www.icsm.gov.au/sites/default/files/inline-images/geocentric_0.jpg)
+
+## Datum
+
+Each ellipsoid model has different ways to position it self relative to Earth depending on the center or origin. Each potential position and reference frame for representing the position of locations on Earth is called a **datum**.
+
+For example, two different datum for the same ellipsoid model can provide a more accurate fit or approximation of the Earth's surface depending on the region of interest (South America v. North America). For example, the NAD83 datum is a good fit for the GRS80 ellipsoid in North America, but SIRGAS2000 is a better fit for the GRS80 ellipsoid in South America. The illustration below shows one datum in which the center of the ellipsoid does not coincide with the center of Earth's mass. With this position of the ellipsoid, we gain a better fit for the southern half of the Earth.
+
+![Illustration of ellipsoid model and Earth's irregular surface for a datum that better fits southern part (bottom right) of the Earth. Source: www.icsm.gov.au](https://www.icsm.gov.au/sites/default/files/inline-images/regional_0.jpg)
+
+It is useful to know that the Global Positioning System (GPS) uses the WGS84 ellipsoid model and a datum by the same name, which provides an overall best fit of the Earth.
+
+If you have longitude and latitude coordinates for a location, it is important to know what datum and ellipsoid were used to define those positions. 
+
+*Note: In practice, the horizontal distance between WGS84 and NAD83 coordinates is about 3-4 feet in the US, which may not be significant for most applications.*
+
+### Exercise 1
+
+Go to <https://epsg.io/>. Search for a location important to you (state, country, etc.). Filter based on Datum (Geodetic) on the right. Click on one geodetic datum option for your region of interest. Make sure your location is listed under the "Area of use" attribute.
+
+Provide the region of interest (e.g. United States), the full datum name (e.g. North American Datum 1983), the shorthand name (e.g. NAD83, EPSG: 6269), and the ellipsoid (e.g. GRS 1980). 
+
+> Location:
+
+<details>
+  <summary>Example Solution</summary>
+
+> Location 1: South Africa, Cape, EPSG:6222, Ellipsoid: Clarke 1880 (Arc)
+
+> Location 2: Thailand, Indian 1975, EPSG:6240, Ellipsoid: Everest 1830 (1937 Adjustment)
+
+> Location 3: Colombia, Marco Geocentrico Nacional de Referencia, EPSG:6686,  Ellipsoid: GRS 1980
+  
+</details>
+
+### Exercise 2
+
+Let's now practice specifying coordinates in a CRS. 
+
+For *geographic coordinate reference systems*, the coordinates of locations are specified by latitude (degrees, minutes, and seconds north or south of the equator), longitude (degrees, minutes, and seconds west or east of a prime meridian), and sometimes height.
+
+Use the "Get position on a map" feature of <https://epsg.io/> to locate the Olin-Rice Science Center at Macalester. The two boxes at the top allow you to specify a longitude (left box) and latitude (right box) in degrees. Enter the following to focus OLRI:
+
+> Longitude: -93.168855
+> 
+> Latitude: 44.936611
+
+For *projected coordinate reference systems*, the coordinates of locations are typically specified by easting (x) and northing (y).
+
+Click the "Transform" button at the top to find the location of OLRI in northing and easting coordinates (in meters) for the CRS EPSG:26993.
+
+> Easting:
+> 
+> Northing:
+
+
+<details>
+  <summary>Solution</summary>
+
+> Easting: 865601.0163401571
+> 
+> Northing: 315516.10931633075
+
+</details>
+
+## Projection
+
+Lastly, the Earth lives in a 3 dimensional (3D) world and most visualizations are on a 2 dimensional (2D) surface. We must choose a projection method to represent points, regions, and lines on Earth on a 2D map with distance units (typically meter, international foot, US survey foot). In that projection process, a 3D element will lose angle, area, and/or distance when projected onto a 2D surface, no matter which method is chosen.
+
+For a good overview of common projection methods, see <https://pubs.usgs.gov/gip/70047422/report.pdf>.
+
+One of the most commonly used projection is the Mercator projection which is a cylindrical map projection from the 1500's. It became popular for navigation because it represented north as up and south as down everywhere and preserves local directions and shape. However, it inflates the size of regions far from the equator. Thus, Greenland, Antarctica, Canada, and Russia appear large relative to their actual land mass as compared to Central Africa. See the illustration below to compare the area/shape of the countries with the Mercator projection of the world (light blue) with the true areas/shapes (dark blue).
+
+![[Source](https://www.reddit.com/r/dataisbeautiful/comments/9nkg7k/map_projections_can_be_deceptive_oc/): @neilrkaye](images/mercator.png)
+
+Below you can see four different world projections. Take note of what is lost in terms of angle, area, or distance in these projections.
+
+```{r}
+world <- ne_countries(scale = "medium", returnclass = "sf")
+
+# Basic Map w/ labels
+ggplot(data = world) + 
+    geom_sf(color = "black", fill = "#bada55") +
+    labs(x = "Longitude", y = "Latitude", title = "World Map - Mercator Projection", subtitle = paste0("(", length(unique(world$name)), " countries)")) +
+    theme_bw() 
+
+ggplot(data = world) +
+    geom_sf(color = "black", fill = "#bada55") +
+    coord_sf(crs = "+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +units=m +no_defs") + 
+    labs(title = "Lambert Azimuthal Equal-Area Projection", subtitle = "Correctly represents area but not angles") + 
+    theme_bw()
+
+ggplot(data = world) +
+    geom_sf(color = "black", fill = "#bada55") +
+    coord_sf(crs = "+proj=fouc") + 
+    labs(title = "Foucaut Projection", subtitle = "Correctly represents area, lots of shape distortion in high latitudes") + 
+    theme_bw() 
+
+ggplot(data = world) +
+    geom_sf(color = "black", fill = "#bada55") +
+    coord_sf(crs = "+proj=natearth2") + 
+    labs(title = "Natural Earth II Projection", subtitle = "Represents globe shape, distorted at high latitudes") + 
+    theme_bw()
+```
+
+### Exercise 3
+
+Create a world map with a different projection (beyond the four above). Go to <https://proj.org/en/9.2/operations/projections/index.html> and find another projection. Look for the `proj-string` and copy that to the `crs =` argument in `coord_sf()`. 
+
+```{r eval=FALSE}
+ggplot(data = world) +
+    geom_sf(color = "black", fill = "#bada55") +
+    coord_sf(crs = "??") + 
+    labs(title = "?? Projection", subtitle = "??") + 
+  theme_bw() 
+```
+
+What is interesting, surprising, or different to you about the map of the Earth based on this projection?
+
+> ANSWER:
+
+Talk with a neighbor about the projection they tried. What projection did they use and how is it different from the one you chose?
+
+> ANSWER:
+
+::: {.callout-tip collapse="false"}
+## Stop to Reflect
+
+If coordinate reference systems are new to you, how do you feel about all of this new information? What are the most important points to take away? What are the documents and sites you can refer back to when you need more details?
+
+When you learn about a new area of study, it can feel overwhelming. Pick out the 3-5 priority ideas to help you organize all of the details. 
+:::
+
+# Spatial Data 
+
+With a CRS (including a projection method) to collect and record location data in terms of longitude or easting (x) and latitude or northing (y) coordinates, we can now consider common models for storing spatial data on the computer. There are two main data models: vector and raster.
+
+## Data Models
+
+### Vector 
+
+Vector data represents the world as a set of spatial geometries that are defined in terms of location coordinates (with a specified CRS) with non-spatial attributes or properties.
+
+The three basic vector geometries are
+
+- Points: Locations defined based on a (x, y) coordinates. 
+- Lines: A set of ordered points connected by straight lines.
+- Polygons: A set of ordered points connected by straight lines, first and last point are the same.
+
+For example, city locations can be represented with points, roads and rivers can be represented by lines, and geo-political boundaries and lakes can be represented by polygons. 
+
+Hundreds of file formats exist to store spatial vector data. A text file (such as .csv) can store the coordinates in two columns (x,y) in addition to a group id (needed for lines and polygons) plus attributes or properties in additional columns. Note that text files do not store the CRS. However, shapefiles (.shp) developed by ESRI is one of the most widely supported spatial vector file format (that includes the CRS). Additionally, GeoJSON (.geojson) and KML (.kml) are additional popular formats.
+
+### Exercise 4
+
+To create maps, we'll need to have access to some spatial data. 
+
+Go to the following websites and download the vector data files indicated. Put all of the downloaded files/folders in same folder as this Rmd file.
+
+- URL: <https://team.carto.com/u/andrew/tables/andrew.us_states_hexgrid/public/map>
+  - Download File Type: GeoJSON
+  - Name of File: `us_states_hexgrid.geojson`
+  
+- URL: <https://www2.census.gov/programs-surveys/decennial/2020/data/apportionment/apportionment.csv>
+  - Download File Type: csv
+  - Name of File: `apportionment.csv`
+  
+- URL: <https://gisdata.mn.gov/dataset/loc-pop-centers>
+  - Download File Type: shapefile (.shp)
+  - Name of File: `shp_loc_pop_centers.zip` (unzip this file to get a folder with the name `shp_loc_pop_centers`)
+  
+- URL: <https://gisdata.mn.gov/dataset/us-mn-state-metc-water-lakes-rivers>
+  - Download File Type: shapefile (.shp)
+  - Name of File: `shp_water_lakes_rivers.zip` (unzip this file to get a folder with the name `shp_water_lakes_rivers`)
+
+### Raster
+
+Raster data represents the world using a continuous grid of cells where each cell has a single value. These values could be continuous (e.g., elevation, precipitation) or categorical (e.g., land cover type, soil type).
+
+Typically regular cells are square in shape but they can be rotated and sheared. Rectilinear and curvilinear shapes are also possible, depending on the spatial region of interest and CRS.
+
+![Difference between vector and raster formats. Source: gis.stackexchange.com](https://i.stack.imgur.com/r2wim.png)
+
+*Be aware that high resolution raster data involves a large number of small cells. This can slow down the computations and visualizations.* 
+
+Many raster file formats exist. One of the most popular is GeoTIFF (.tif or .tiff). More complex raster formats include NetCDF (.nc) and HDF (.hdf). To work with raster data in R, you'll use the `raster`, `terra`, and the `stars` packages. If you are interested in learning more, check out <https://r-spatial.github.io/stars/>.
+
+## Working with Spatial Data in R
+
+### Read data into R
+
+For each file format, we need to use a different function to read in the data. See the examples below for reading in GeoJSON, CSV, and shapefiles.
+
+```{r}
+# Read in GeoJSON file
+hex_spatial <- geojsonio::geojson_read("data/us_states_hexgrid.geojson", what = "sp") 
+
+# Read in CSV File
+pop_growth <- readr::read_csv("data/apportionment.csv") %>% janitor::clean_names()
+
+# Read in Shapefiles
+mn_cities <- sf::read_sf("data/shp_loc_pop_centers") #shp file/folder
+mn_water <- sf::read_sf("data/shp_water_lakes_rivers") #shp file/folder
+```
+
+### Data classes in R
+
+When data is read in, an R data object is created of a default class. Notice the classes of the R objects we read in. Also, notice that an object may have multiple classes, which indicate the type of structure it has and how functions may interact with the object.
+
+```{r}
+class(hex_spatial)
+
+class(pop_growth)
+
+class(mn_cities)
+
+class(mn_water)
+```
+
+**Older R Spatial classes**
+
+In the `sp` package,  there are many spatial classes that hold slightly different data. All `Spatial*` classes have a bounding box (bbox) and a CRS.
+
+- `SpatialPoints`, `SpatialLines`, and `SpatialPolygons` provide structure to hold the basic spatial geometries of points, lines, and polygons. 
+- `Spatial*DataFrame` extends the geometry classes to a data.frame-like object with non-spatial attribute data.
+
+### Exercise 5
+
+We can look at the first bit of the `hex_spatial` object to get a sense for how information in the object is organized:
+
+```{r}
+head(hex_spatial,1)
+```
+
+Based on this information, fill in the following:
+
+- CRS:
+- BBOX (extent):
+- Geometry type: 
+
+<details>
+  <summary>Solution</summary>
+
+- CRS: EPSG:4326 (+proj=longlat +datum=WGS84 +no_defs) (From `Slot "proj4string": Coordinate Reference System:`)
+- BBOX:  x -75.34861 -69.90; y 51.57  55.31 (From `Slot "bbox"`)
+- Geometry type: Polygons (Inferred from `An object of class "SpatialPolygonsDataFrame"` and `class "Polygon"`)
+
+</details>
+
+
+**Newer R Spatial classes**
+
+The community is moving away from using older `sp` classes to `sf` classes. It is useful for you to know that the older versions exist, but we will stick with the `sf` classes.
+
+- `sfc` objects are modern, general versions of the spatial geometries from the `sp` package with a bbox, CRS, and many geometries available.
+- `sf` objects are `data.frame`-like objects with a geometry column of class `sfc`.
+
+```{r}
+mn_cities
+```
+
+### Exercise 6
+
+Based on the summary of `mn_cities`, what are the following:
+
+- CRS:
+- BBOX:
+- Geometry type: 
+
+<details>
+  <summary>Solution</summary>
+
+- CRS: NAD83 / UTM zone 15N
+- BBOX: xmin: 190832.6 ymin: 4816672 xmax: 747463.4 ymax: 5468045
+- Geometry type: Points
+
+</details>
+
+
+**Putting spatial data into a `data.frame` with `fortify()`**
+
+The `data.frame` and `tbl` (tibble) classes are standard data formats that are not specific to spatial data but are really nice for working with because of `tidyverse`. Our `pop_growth` data doesn't include any coordinate information, so it can be stored simply as a `data.frame` (`tbl`, `tbl_df`, and `spec_tbl_df` are all subclasses of `data.frame`).
+
+You may come across `data.frames` that contain spatial coordinate information, so let's see what that might look like. We can `fortify()` our `sp` object (`hex_spatial`) to make it a data frame.
+
+```{r}
+# Convert Spatial*DataFrame to Data Frame
+hex_spatial_df <- fortify(hex_spatial)
+class(hex_spatial_df)
+```
+
+### Exercise 7
+
+Whenever we come across a new function (`fortify`), it is helpful to explore the structure of information contained within the object that it creates.
+
+What are the variables in `hex_spatial_df`? Compare the first seven rows with the first spatial polygon of `hex_spatial`. Using this comparison describe the meaning of the variables in `hex_spatial_df`. (`piece`, `id`, and `group` are trickier. We'll talk about this together.)
+
+```{r}
+# Display the first 7 rows of hex_spatial_df
+head(hex_spatial_df,7)
+
+# Look at the first polygon in the hex_spatial object (Maine)
+hex_spatial@polygons[[1]]
+```
+
+> ANSWER:
+
+<details>
+  <summary>Solution</summary>
+
+> Variables: long, lat, order, hole, piece, id, group
+
+> `long` and `lat` provide the x and y coordinates of the polygon for a particlar region or area `id`. 
+
+> The `order` is the order in which you connect the coordinate points to make a polygon. 
+
+> `hole` indicates whether or not it should be included or excluded in the region as a hole.
+
+> `piece` indicates the number of the polygon for an individual area
+
+> `id` is a unique identifier for each polygon and allows linking to the original spatial object (`hex_spatial`). (There is a `Slot "ID"` part of the object.)
+
+> `group` indicates which pieces belong to the same group or should be plotted together as a single entity. This can be useful when you want to apply different aesthetics (e.g., colors, linetypes) to different groups of polygons within your spatial object. It helps in specifying how to group and style the different pieces when creating plots.
+
+</details>
+
+
+### Converting between data classes
+
+Sometimes functions for working with spatial data will only work on an object that is of a particular class (e.g., only works on `sf` objects). If we have an object of a different class, we need to know how to convert it to the right class.
+
+We can convert objects between these data classes with the following functions:
+
+- `fortify(x)`: `sp` object x to `data.frame`
+- `st_as_sf(x)`: `sp` object x to `sf`
+- `st_as_sf(x, coords = c("long", "lat"))`: `data.frame` x to `sf` as points
+- To convert a `data.frame` with columns of `long`, `lat`, and `group` containing polygon geometry information, you can use:
+
+```{r eval=FALSE}
+st_as_sf(x, coords = c("long", "lat")) %>%
+    group_by(group) %>%
+    summarise(geometry = st_combine(geometry)) %>%
+    st_cast("POLYGON")
+```
+
+(Note: We won't often want to convert our data to a `Spatial*` class from `sp` package, so we'll exclude that in this activity.)
+
+### Exercise 8
+
+Convert the `hex_spatial` data to an `sf` object called `hex_spatial_sf`. Complete these two ways 
+
+1. `hex_spatial` directly to `hex_spatial_sf` AND 
+2. `hex_spatial_df` to `hex_spatial_sf`.
+
+```{r eval=FALSE}
+# Convert to SF from hex_spatial_df  
+hex_spatial_sf <- hex_spatial_df %>% ???  
+  
+# Convert to SF from hex_spatial
+hex_spatial_sf <- hex_spatial %>% ???
+```
+
+<details>
+  <summary>Solution</summary>
+  
+```{r}
+# Convert to SF from hex_spatial_df  
+hex_spatial_sf <- hex_spatial_df %>%
+    st_as_sf(coords = c("long", "lat")) %>%
+    group_by(group) %>%
+    summarise(geometry = st_combine(geometry)) %>%
+    st_cast("POLYGON") 
+  
+# Convert to SF from hex_spatial
+hex_spatial_sf <- hex_spatial %>% st_as_sf()
+```  
+  
+</details>
+
+::: {.callout-tip collapse="false"}
+## Stop to Reflect
+
+We've now talked about CRSs and how spatial data is stored in R. Thinking on the lesson so far as a whole...
+
+- What's making sense? What's not?
+- What would help connect everything we've talked about?
+
+Record observations in your Process and Reflection Log.
+
+Share your observations with your partner. Together try to figure out what **themes** emerge in what you're still working on. Then try to come up with strategies that can help you move forward.
+
+Example themes: What is the "why" behind this? What is the full picture/pipeline/how this is used in practice?
+
+Example strategies: writing condensed summaries, drawing concept maps
+:::
+
+
+
+
+# Spatial Maps
+
+## Hexbin Choropleth
+
+Data Source: <https://r-graph-gallery.com/328-hexbin-map-of-the-usa.html> 
+
+In this example, we'll create an alternative choropleth map. Instead of using the actual geo-political boundaries, we will use hexagons to represent the U.S. states and maintain their relative directional position to each together. This approach results in each state having the same area in the graphic so that large regions don't dominate the visual story. 
+
+### Exercise 9
+
+Describe what the following code chunks are doing. Be sure to consider the class of the data object, what the data object looks like to start, and what it looks like at the end of the chunk.
+
+```{r eval=FALSE}
+# Chunk A
+hex_spatial_df  <- hex_spatial_df %>% 
+  left_join(
+        data.frame(id = as.character(1:nrow(hex_spatial)) , 
+        name = str_replace(hex_spatial$google_name,' \\(United States\\)',''), 
+        abbr = hex_spatial$iso3166_2))
+```
+
+> ANSWER (Chunk A):
+
+<details>
+  <summary>Solution</summary>
+
+```{r}
+# Chunk A
+head(hex_spatial_df) # Start with data frame of 357 rows and 7 columns
+
+hex_spatial_df  <- hex_spatial_df %>% 
+  left_join( # Left join, a mutating join, a dataset with information from hex_spatial
+        data.frame(id = as.character(1:nrow(hex_spatial)) , # Create a data frame with variables id (1,2,3...), name (defined as the google_name from hex_spatial after removing "(United States)"), and abbr (the state abbreviation in hex_spatial as variable iso3166_2)
+        name = str_replace(hex_spatial$google_name,' \\(United States\\)',''), 
+        abbr = hex_spatial$iso3166_2))
+
+head(hex_spatial_df) # End with data frame of 357 rows and 9 columns (new: name and abbr)
+```
+  
+</details>
+
+```{r eval=FALSE}
+# Chunk B
+hex_spatial_sf <- hex_spatial_sf %>% 
+    mutate(
+        name = str_replace(google_name,' \\(United States\\)',''),
+        abbr = iso3166_2
+    )
+```
+
+> ANSWER (Chunk B):
+
+
+<details>
+  <summary>Solution</summary>
+
+```{r}
+# Chunk B
+
+head(hex_spatial_sf) # Start with sf object with 51 regions and 7 variables/features
+
+hex_spatial_sf <- hex_spatial_sf %>% # Create new variables: name (defined as the google_name after removing "(United States)"), and abbr (the state abbreviation from variable iso3166_2)
+    mutate(
+        name = str_replace(google_name,' \\(United States\\)',''),
+        abbr = iso3166_2
+    )
+
+head(hex_spatial_sf) # Ends with sf object with 51 regions and 9 variables/features
+```
+
+</details>
+
+```{r eval=FALSE}
+# Chunk C
+hex_growth_df <- left_join(hex_spatial_df, pop_growth, by = 'name')
+hex_growth_sf <- left_join(hex_spatial_sf, pop_growth, by = 'name')
+```
+
+> ANSWER (Chunk C):
+
+<details>
+  <summary>Solution</summary>
+
+
+```{r }
+# Chunk C
+
+hex_growth_df <- left_join(hex_spatial_df, pop_growth, by = 'name') # Add in pop_growth variables to data frame using left_join; in the process duplicate the geometry for each region for each year
+head(hex_growth_df)
+dim(hex_growth_df) # end with data frame of 4284 rows and 18 variables
+
+hex_growth_sf <- left_join(hex_spatial_sf, pop_growth, by = 'name') # add in pop_growth variables to sf object using left join; in the process duplicate the geometry for each region for each year 
+head(hex_growth_sf)
+dim(hex_growth_sf) #end with sf object of 612 region/year combinations and 19 variables
+```
+
+</details>
+
+
+```{r eval=FALSE}
+# Chunk D
+centers <- data.frame(
+    rgeos::gCentroid(hex_spatial,byid = TRUE), 
+    abbr = hex_spatial$iso3166_2
+)
+  
+hex_growth_df %>% 
+    filter(year == 2020) %>%
+    ggplot(aes(x = long, y = lat)) +
+        geom_polygon(aes(group = group, fill = percent_change_in_resident_population)) + 
+        geom_text(data = centers, aes( x = x, y = y, label = abbr), color = 'white') +
+        labs(fill = 'Population Change (%)') + 
+        ggthemes::theme_map() + theme(legend.position = 'bottom', legend.justification = 'right')
+```
+
+> ANSWER (Chunk D):
+
+
+<details>
+  <summary>Solution</summary>
+
+```{r}
+# Chunk D
+centers <- data.frame(
+    rgeos::gCentroid(hex_spatial,byid = TRUE), # Create data frame of the center of each region and the state abbreviation
+    abbr = hex_spatial$iso3166_2
+)
+  
+hex_growth_df %>% 
+    filter(year == 2020) %>% # focus only on the data from 2020
+    ggplot(aes(x = long, y = lat)) + # create frame of longitude and latitude
+        geom_polygon(aes(group = group, fill = percent_change_in_resident_population)) +  # add hex polygons defined by x and y but grouped according to group and color filled by the percent_change in resident population
+        geom_text(data = centers, aes( x = x, y = y, label = abbr), color = 'white') + # add text at the centers of the polygons and add text labels from the abbr variable in the centers data we created
+        labs(fill = 'Population Change (%)') +  # change legend label
+        ggthemes::theme_map() + theme(legend.position = 'bottom', legend.justification = 'right') # remove the background theme and move the legend to the bottom right
+```
+
+</details>
+
+```{r eval=FALSE}
+# Chunk E
+hex_growth_sf %>% 
+    filter(year == 2020) %>%
+    ggplot() +
+        geom_sf(aes(fill = percent_change_in_resident_population)) + 
+        geom_sf_text( aes(label = abbr), color = 'white') +
+        labs(fill = 'Population Change (%)') + 
+        ggthemes::theme_map() + theme(legend.position = 'bottom', legend.justification = 'right')
+```
+
+> ANSWER (Chunk E):
+
+<details>
+  <summary>Solution</summary>
+
+```{r}
+# Chunk E
+hex_growth_sf %>%  # start with sf object
+    filter(year == 2020) %>% #filter to focus on data from 2020
+    ggplot() +
+        geom_sf(aes(fill = percent_change_in_resident_population)) + # plot the sf geometry (polygons) and fill color according to percent change in population
+        geom_sf_text( aes(label = abbr), color = 'white') + # add text labels to the sf geometry regions using abbr for the text
+        labs(fill = 'Population Change (%)') + # Change legend label
+        ggthemes::theme_map() + theme(legend.position = 'bottom', legend.justification = 'right') # remove the background theme and move the legend to the bottom right 
+```
+
+</details>
+
+
+
+### Exercise 10
+
+Using the hexbin spatial boundaries and the `pop_growth` data, make the following updates to the choropleth graphic:
+
+- Change the outcome variable (different year or variable). 
+- Change the fill scale to be more meaningful and effective.
+- Make one more update beyond the fill color to improve the effectiveness of the graphic.
+
+Make the graphic twice, once with `geom_polygon()` and once
+with `geom_sf()`.
+
+<details>
+  <summary>Example Solution</summary>
+  
+```{r}
+hex_growth_df %>% 
+    ggplot(aes(x = long, y = lat)) + # create frame of longitude and latitude
+        geom_polygon(aes(group = group, fill = change_in_number_of_representatives)) +  # add hex polygons defined by x and y but grouped according to group and color by change in number of representatives
+        # geom_text(data = centers, aes( x = x, y = y, label = abbr), color = 'white') + # add text at the centers of the polygons and add text labels from the abbr variable in the centers data we created
+        facet_wrap(~ year, ncol = 3) +
+        labs(fill = 'Population Change (%)') +  # change legend label
+        ggthemes::theme_map() + theme(legend.position = 'bottom', legend.justification = 'right') # remove the background theme and move the legend to the bottom right
+
+hex_growth_sf %>%  # start with sf object
+    ggplot() +
+        geom_sf(aes(fill = change_in_number_of_representatives)) + # plot the sf geometry (polygons) and fill color according to change in number of representatives
+        # geom_sf_text( aes(label = abbr), color = 'white') + # add text labels to the sf geometry regions using abbr for the text
+        facet_wrap(~ year, ncol = 3) +
+        labs(fill = 'Population Change (%)') + # Change legend label
+        ggthemes::theme_map() + theme(legend.position = 'bottom', legend.justification = 'right') # remove the background theme and move the legend to the bottom right
+```
+
+</details>
+
+### Bonus Challenge 
+
+Find external state-level data online, read it into R, join it, and create a U.S. state hexbin map displaying that new state-level outcome.
+
+
+## MN City/County example
+
+::: {.callout-tip collapse="false"}
+## Stop to Reflect
+
+When looking through code examples, notice familiar functions and syntax patterns. Also, notice new functions and try figure out what they are doing.
+
+Add comments to the code so that you can come back to the examples when you need them.
+:::
+
+### Unifying CRSs across different spatial datasets
+
+To demonstrate other spatial geometries beyond polygons (the hexagons in the last example were spatial polygons), we'll walk through create a map of MN with different layers of information (city point locations, county polygon boundaries, rivers as lines and polygons, and a raster elevation map). To add all of this information on one map, we need to ensure that the CRS is the same for all spatial datasets. 
+
+```{r}
+# Check CRS
+st_crs(mn_cities)
+
+# Check CRS
+st_crs(mn_water)
+# (They're both NAD83 / UTM zone 15N but we'll transform anyway)
+
+# Transform CRS of water to the same of the cities
+mn_water <- mn_water %>%
+    st_transform(crs = st_crs(mn_cities))
+```
+
+```{r}
+# Load country boundaries data as sf object
+mn_counties <- us_counties(resolution = "high", states = "Minnesota")
+
+# Remove duplicate column names
+names_counties <- names(mn_counties)
+names(mn_counties)[names_counties == 'state_name'] <- c("state_name1", "state_name2")
+
+# Check CRS
+st_crs(mn_counties)
+# (They're different!)
+
+# Transform the CRS of county data to the more local CRS of the cities
+mn_counties <- mn_counties %>%
+  st_transform(crs = st_crs(mn_cities))
+
+st_crs(mn_counties)
+```
+
+### Initial map: counties and cities
+
+```{r}
+ggplot() + # plot frame
+    geom_sf(data = mn_counties, fill = NA) + # county boundary layer
+    geom_sf(data = mn_cities, size = 0.5) + # city point layer
+    ggthemes::theme_map()
+```
+
+```{r}
+ggplot() +
+    geom_sf(data = mn_counties, fill = "wheat", color = "tan") + 
+    geom_sf(data = mn_cities %>% filter(Population >= 10000), mapping = aes(color = Population, size = Population), alpha = 0.8)+ #cities layer
+    scale_color_viridis_c() + # continuous (gradient) color scale
+    labs(title = "Minnesota Cities with Population >= 10,000") + 
+    ggthemes::theme_map() + theme(legend.position = "bottom")  #move legend
+```
+
+### Updated map: counties and cities plus elevation
+
+```{r}
+elevation <- elevatr::get_elev_raster(mn_counties, z = 5, clip = 'bbox')
+raster::crs(elevation) <- sf::st_crs(mn_counties)
+
+# Convert to Data Frame for plotting
+elev_df <- elevation %>% terra::as.data.frame(xy = TRUE)
+names(elev_df) <-c('x','y','value')
+
+ggplot() +
+    geom_raster(data = elev_df, aes(x = x,y = y,fill = value)) + # adding the elevation as first (bottom) layer
+    geom_sf(data = mn_counties, fill = NA, color = "black") + 
+    geom_sf(data = mn_cities %>% filter(Population >= 10000), mapping = aes(color = Population,size = Population), alpha = 0.8)+ #cities layer
+    scale_color_viridis_c() + #continuous (gradient) color scale
+    scale_fill_gradient(low = 'darkgreen',high = 'white', guide = FALSE) + 
+    labs(title = "Minnesota Cities with Population >= 10,000") + 
+    ggthemes::theme_map() + theme(legend.position = "bottom")  #move legend
+```
+
+### Updated map: zoom in to Twin Cities
+
+```{r}
+seven_countyarea <- st_bbox(mn_counties %>% filter(name %in% c("Anoka", "Hennepin", "Ramsey", "Dakota", "Carver", "Washington", "Scott")))
+
+
+elevation <- elevatr::get_elev_raster(mn_counties %>% st_crop(seven_countyarea), z = 9, clip = 'bbox')
+raster::crs(elevation) <- sf::st_crs(mn_counties)
+
+# Convert to data frame for plotting
+elev_df <- elevation %>% terra::as.data.frame(xy = TRUE)
+names(elev_df) <-c('x','y','value')
+
+ggplot() +
+    geom_raster(data = elev_df, aes(x = x,y = y,fill = value)) + 
+    geom_sf(data = mn_counties, fill = NA, color = "black") + # county boundary layer
+    geom_sf(data = mn_water, fill = 'lightsteelblue1',color = 'lightsteelblue1') + # added a river/lake layer
+    geom_sf(data = mn_cities %>% filter(Population >= 10000), mapping = aes(color = Population,size = Population)) + # cities layer
+    coord_sf(xlim = seven_countyarea[c(1,3)], ylim = seven_countyarea[c(2,4)]) + # crop map to coordinates of seven county area
+    scale_color_viridis_c(option = 'magma') + # continuous (gradient) color scale
+    scale_fill_gradient(low = 'darkgreen',high = 'white') + # continuous (gradient) fill scale
+    labs(title = "Twin Cities with Population >= 10,000") + 
+    ggthemes::theme_map() + theme(legend.position = "none")  # remove legend
+```
+
+
+### Twin Cities Leaflet
+
+Below we show how to make the MN counties map in the `leaflet` package.
+
+```{r eval=FALSE}
+library(leaflet)
+
+mn_counties_leaf <- mn_counties %>% st_transform(4326) # Leaflet expects this CRS for vectors
+mn_cities_leaf <- mn_cities %>% st_transform(4326) # Leaflet expects this CRS for vectors
+
+Cities_per_County <- st_join(mn_cities_leaf, mn_counties_leaf) %>%
+  st_drop_geometry() %>% #removes geometry - makes the following calculation more efficient 
+  count(name) 
+
+mn_counties_leaf %>% 
+    filter(name %in% c("Anoka", "Hennepin", "Ramsey", "Dakota", "Carver", "Washington", "Scott")) %>%
+    left_join(Cities_per_County) %>%
+    leaflet() %>% 
+    addProviderTiles("CartoDB.Positron") %>% 
+    addPolygons(color = "#444444", weight = 1, smoothFactor = 0.5,
+    opacity = 1.0, fillOpacity = 0.5, fillColor = ~colorQuantile("YlOrRd", n)(n), highlightOptions = highlightOptions(color = "white", weight = 2,
+      bringToFront = TRUE)) %>%
+    addCircles(data = mn_cities_leaf %>% filter(County %in% paste(c("Anoka", "Hennepin", "Ramsey", "Dakota", "Carver", "Washington", "Scott"),'County')), color = "#444444")
+```
+
+
+## Open-ended Exercise (Homework)
+
+The following exercises will use census tract `tidycensus` data for Ramsey and Hennepin county and [Crash.csv](data/Crash.csv) (2019-2022) from the [pedestrian/bike crash database](https://information.stpaul.gov/datasets/stpaul::pedestrian-and-bike-crash-dataset-/about) for St. Paul within Ramsey county in the Twin Cities. We provide several variables that you can choose from in order to create maps that best fit your interest.
+
+Load the data with the following code:
+
+```{r, message=FALSE, warning=FALSE, results="hide"}
+census2020 <- tidycensus::get_acs(year = 2020, state = "MN", geography = "tract", variables = c(	
+"B01003_001", "B19013_001", "B23006_023", "B25058_001", "B25107_001", "B25003_001", "B25003_002", "B25003_003", "B25077_001"), output = 'wide', geometry = TRUE) %>%
+  filter(word(NAME, 4) %in% c("Ramsey","Hennepin"))%>%
+               mutate(tract = word(NAME, 3),
+                      tract = str_remove(tract, ","),
+                      county = word(NAME, 4)) %>%
+               select(-NAME) %>%
+               rename("population" = "B01003_001E", 
+                      "medianIncome" = "B19013_001E", 
+                      "bachelors" = "B23006_023E",
+                      "medContractRent" = "B25058_001E", 
+                      "tenureTotal" = "B25003_001E", 
+                      "tenureOwned" = "B25003_002E", 
+                      "tenureRented" = "B25003_003E",
+                      "medianHomeValue"= "B25077_001E") %>%
+  select(-contains("_"))
+
+crashes <- read_csv("https://lmyint.github.io/212_fall_2023/data/Crash.csv") %>%
+    filter(!is.na(Latitude), !is.na(Longitude))
+```
+
+### Exercise: Joining and aggregation
+
+**Create a map of crashes per census tract in Ramsey county.** 
+
+First, transform the `crashes` data frame to a `sf` object have a point geometry using the code below. 
+
+```{r}
+crashes <- st_as_sf(crashes, coords = c("Longitude", "Latitude"), crs = "NAD83")
+```
+
+Check the CRS are the same for `census2020` and `crashes` using `st_crs()` and transform if needed.
+
+```{r}
+# code here
+
+
+```
+
+Join the crashes and census dataset together and count the number of crashes per census tract. The function `st_join` can join to spatial data sets according to whether the spatial geometries of the right table intersect with the spatial geometries of the left table. 
+
+```{r eval=FALSE}
+crashes_per_tract <- st_join(??,??) %>%
+    st_drop_geometry() %>% # removes geometry - makes the following calculation more efficient 
+    filter(!is.na(Accident_Datetime)) %>%
+    count(??) 
+```
+
+Join the census data with `crashes_per_tract` and then use a filter of `n > 0` to only keep the census tracts where crashes were recorded instead of all of Ramsey and Hennepin County. 
+
+```{r eval=FALSE}
+crashes_per_tract_geo <- ??? %>% # sf object with census geometry goes first
+    left_join(??, by = ??) %>%
+    filter(n > 0)
+```
+
+Create the plot!! 
+
+```{r eval=FALSE}
+ggplot() +
+    geom_sf(???) +
+    scale_fill_gradientn(colours = c("lightcyan", "lightcyan2", "lightskyblue3", "lightskyblue4"))+
+    labs(fill = "Crashes", color = "", title = "Number of pedestrian/bike crashes per census tract") +
+    ggthemes::theme_map() + theme(legend.position = "bottom")
+```
+
+
+### Exercise: Adding layers
+
+**Plot a variable of your choice for census tracts in Hennepin and Ramsey County and add roads to the map.**
+
+Start by downloading a shape file. For example, you could search for "Minnesota roads shape file". For this example, visit [this site](https://catalog.data.gov/dataset/tiger-line-shapefile-2019-state-minnesota-primary-and-secondary-roads-state-based-shapefile) and download the Shapefile Zip File. Unzip the file and put the folder in the same location as this Rmd file.
+
+Load in the shapefile using `st_read()` and transform `roads` to have the same CRS as `census2020` if necessary.
+
+```{r eval=FALSE}
+roads <- sf::st_read("tl_2019_27_prisecroads")
+
+# Check CRS of roads and transform if necessary
+
+```
+
+Start by using `st_crop()` to crop the roads map to the area we are interested in (Hennepin and Ramsey County).
+
+```{r eval=FALSE}
+roads_sub <- st_crop(roads,st_bbox(census2020))
+```
+
+Create the map!!
+
+```{r eval=FALSE}
+ggplot() +
+    geom_sf(??)+ #put census tracts on map and fill by your variable of interest
+    geom_sf(?? ,fill = "gray", color = "gray", lwd = 0.2)+ #roads data here
+    labs(??)+ # add labels to fit your variables 
+    scale_fill_gradientn(colours = c("lightcyan", "lightcyan2", "lightskyblue3", "lightskyblue4"))+ # change to preferred color palette
+    theme_classic()+
+    theme(axis.line = element_blank(), 
+        axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        legend.position = "bottom", 
+        plot.title.position = "plot", 
+        plot.title = element_text(size = 8), 
+        plot.subtitle = element_text(size = 8))
+```
+
+
+**How to cite AI and other resources:** If you use AI tools like ChatGPT or Google Bard, please copy and paste all prompts and output into an "Appendix" section of this assignment. If you use an AI tool, also list one environmentally-friendly action you could adopt (that you don't already do) to offset the energy usage. Also list any websites used in this Appendix.
+
+**Submission details:** Click the "Render" button to create an HTML report from your Quarto file. Open the HTML in your web browser and save the webpage as a PDF (Ctrl-P/Command P, choose "Save as PDF" as the Destination). Submit this PDF on [Moodle](https://moodle.macalester.edu/mod/assign/view.php?id=37543) AND the `.qmd` file by midnight on Wednesday, 9/20.
+
+## Additional Resources
+
+- Spatial Data Science <https://r-spatial.org/book/>
+- Leaflet in R <https://rstudio.github.io/leaflet/>
+

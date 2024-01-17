@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>STAT/COMP 212 - Advanced Data Visualization in ggplot2</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">STAT/COMP 212</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./schedule.html" rel="" target="">
+ <span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./syllabus.html" rel="" target="">
+ <span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-activities" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Activities</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-activities">    
+        <li>
+    <a class="dropdown-item" href="./01-introductions.html" rel="" target="">
+ <span class="dropdown-text">Welcome to the course!</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-homework" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Homework</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-homework">    
+        <li>
+    <a class="dropdown-item" href="./homework1.html" rel="" target="">
+ <span class="dropdown-text">Homework 1</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-skills-sessions" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Skills Sessions</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-skills-sessions">    
+        <li>
+    <a class="dropdown-item" href="./skills_session1.html" rel="" target="">
+ <span class="dropdown-text">Skills Session 1</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./project.html" rel="" target="">
+ <span class="menu-text">Project</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./tech_setup.html" rel="" target="">
+ <span class="menu-text">Tech Setup</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#learning-goals" id="toc-learning-goals" class="nav-link active" data-scroll-target="#learning-goals">Learning goals</a></li>
+  <li><a href="#setting-up-your-class-journal" id="toc-setting-up-your-class-journal" class="nav-link" data-scroll-target="#setting-up-your-class-journal">Setting up your class journal</a></li>
+  <li><a href="#case-study-recreating-a-nyt-visualization" id="toc-case-study-recreating-a-nyt-visualization" class="nav-link" data-scroll-target="#case-study-recreating-a-nyt-visualization">Case study: recreating a NYT visualization</a></li>
+  <li><a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice">Practice</a>
+  <ul class="collapse">
+  <li><a href="#pair-programming-background" id="toc-pair-programming-background" class="nav-link" data-scroll-target="#pair-programming-background">Pair programming background</a></li>
+  <li><a href="#your-task" id="toc-your-task" class="nav-link" data-scroll-target="#your-task">Your task</a></li>
+  </ul></li>
+  <li><a href="#challenge-1" id="toc-challenge-1" class="nav-link" data-scroll-target="#challenge-1">Challenge 1</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Advanced Data Visualization in ggplot2</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="learning-goals" class="level1">
+<h1>Learning goals</h1>
+<p>After this lesson, you should be able to:</p>
+<ul>
+<li>Navigate the <a href="https://ggplot2.tidyverse.org/reference/">ggplot2 reference page</a> to find the functions needed to create a desired visualization</li>
+<li>Use the information on a function help page to construct desired plot features
+<ul>
+<li>Scan the information in the <strong>Usage</strong> section to identify function arguments that must be set</li>
+<li>Understand how the function arguments work by using information in the <strong>Arguments</strong> section</li>
+<li>Use the information in the the <strong>Aesthetics</strong> and <strong>Examples</strong> sections to control plot appearance</li>
+</ul></li>
+<li>Identify when it would be necessary to use different <code>data</code> arguments within the <code>ggplot()</code> and <code>geom_()</code> layers</li>
+</ul>
+<p><br><br><br></p>
+</section>
+<section id="setting-up-your-class-journal" class="level1">
+<h1>Setting up your class journal</h1>
+<p>To facilitate the reflection practice that we are trying to cultivate in this course, you will be setting up a Google Doc as your class journal. You’ll use this single Google Doc throughout the semester to record:</p>
+<ul>
+<li>Responses to reflection prompts posed at the beginning and/or end of class</li>
+<li>Errors and warnings in R that you run into when working on exercises (both in and out of class)</li>
+<li>Where did you get stuck during an exercise? Why do you think you got stuck? Try to dig deep to find the root cause(s) of getting stuck. Doing so will help you improve your understanding in an efficient way.</li>
+<li>What did you learn about creating a fruitful collaborative learning environment from our class activity today?</li>
+</ul>
+<p>By writing in and reviewing this journal regularly, my hope is for reflection to be a <strong>constant backdrop</strong> for our learning activities. This journal will give you a wealth of observations to draw from when writing the 3 monthly reflections over this semester.</p>
+<p>Directions:</p>
+<ul>
+<li>Navigate to this <a href="https://docs.google.com/document/d/1zUeqyrZc9JzszzSmSTCayWxpCw7aXXxPi0c-Qge75vw/edit?usp=sharing">course journal template</a>.</li>
+<li>Follow the directions in the document to make your own copy and share it with me.</li>
+<li>Leave this document open during class to record observations.</li>
+</ul>
+<p><br><br><br></p>
+</section>
+<section id="case-study-recreating-a-nyt-visualization" class="level1">
+<h1>Case study: recreating a NYT visualization</h1>
+<p>You can download a template Quarto file to start from <a href="activity_templates/02-adv-ggplot.qmd">here</a>. Put this file in an <code>activities</code> folder within a folder for this course.</p>
+<p>We are going to recreate <a href="https://www.nytimes.com/interactive/2016/02/19/us/2015-year-in-weather-temperature-precipitation.html">this NYT visualization</a> on record setting temperatures by expanding our <code>ggplot2</code> toolbox using data from San Francisco (SFO) in 2011.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/sfo_nytimes.jpg" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Screenshot of NYTimes visualization from 2015</figcaption>
+</figure>
+</div>
+<p>First load the <code>tidyverse</code> package, and read in the San Francisco weather <a href="data/sfo_weather.csv">data</a>.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>weather <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://lmyint.github.io/212_fall_2023/data/sfo_weather.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Class exercise 1:</strong> Examine the temperature visualization. What variables underlie the visualization, and how do they map to visual elements (e.g., position, size, shape, and color of the glyphs)?</p>
+<hr>
+<p>We can explore the “Geoms” section of the <a href="https://ggplot2.tidyverse.org/reference/">ggplot2 reference page</a> to find a <code>geom</code> that corresponds to the visual elements in the temperature plot. Refer to the variable codebook below for the next exercise.</p>
+<ul>
+<li><code>Month</code>: Month of the year (1-12)</li>
+<li><code>Day</code>: Day within the month (1-31)</li>
+<li><code>Low</code>/<code>High</code>: Low/high temperature this day</li>
+<li><code>NormalLow</code>/<code>NormalHigh</code>: Typical low/high temperature for this day of the year</li>
+<li><code>RecordLow</code>/<code>RecordHigh</code>: Record low/high temperature for this day of the year</li>
+<li><code>LowYr</code>/<code>HighYr</code>: Year in which the record low/high was observed</li>
+<li><code>Precip</code>: Amount of precipitation (inches) this day</li>
+<li><code>RecordPrecip</code>: Record amount of precipitation for this day of the year</li>
+<li><code>PrecipYr</code>: Year in which the record precipitation was observed</li>
+<li><code>date</code>: The actual date in 2011 for this day in YYYY-MM-DD format</li>
+<li><code>dateInYear</code>: What day of the year is it? (1-365)</li>
+<li><code>Record</code>: Logical (TRUE/FALSE) indicating whether this day had a high temperature record</li>
+<li><code>RecordText</code>: Text that displays the record high for this day (<code>"Record high: ##"</code>)</li>
+<li><code>RecordP</code>: Logical (TRUE/FALSE) indicating whether this day had a precipitation record</li>
+<li><code>CulmPrec</code>: Cumulative precipitation for the month up to this day</li>
+</ul>
+<p><strong>Class exercise 2:</strong> Using both the small example visuals on the right and the names of the <code>geom</code>’s, brainstorm some possibilities for <code>geom</code>’s we might use to recreate the temperature visualization.</p>
+<hr>
+<p>We need to explore further by opening up the <code>geom</code> reference pages to understand if a particular <code>geom</code> is suitable for our task. We’ll look at the <code>geom_point</code> <a href="https://ggplot2.tidyverse.org/reference/geom_point.html">documentation page</a> to learn the process for reading a documentation page.</p>
+<p>When looking at a help page, it is useful to first look at the <strong>Usage</strong> and <strong>Arguments</strong> sections.</p>
+<p>The <strong>Usage</strong> section shows all of the possible inputs (arguments) to the geom–these are all of the ways that a <code>geom</code> can be customized. Just looking at the argument names can help give a hint as to what arguments might fit our needs.</p>
+<p>The <strong>Arguments</strong> section explains in detail what each argument does and the possible values the argument can take. The <code>mapping</code>, <code>data</code>, and <code>...</code> arguments will be the most commonly used by far.</p>
+<ul>
+<li><code>mapping</code>: This is the argument that is being used when you specify a plots <code>aes</code>thetics (the code inside <code>aes()</code>).</li>
+<li><code>data</code>: This is where you specify the dataset containing the variables that the <code>geom</code> is using.</li>
+<li><code>...</code>: You will tend to use this for fixed aesthetics (ones that don’t correspond to a variable). For example, this is where you can set the color of all points (e.g., with <code>color = "red"</code>) or the size of all points (e.g., with <code>size = 3</code>).</li>
+</ul>
+<p><strong>A note about the <code>data</code> argument:</strong> Previously you have used one dataset per plot by specifying that as the first argument of <code>ggplot()</code>. For example, the code below makes a scatterplot of price vs.&nbsp;carat in the <code>diamonds</code> dataset, and the only <code>data</code> argument is in <code>ggplot()</code> (none in <code>geom_point()</code>).</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(diamonds)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(diamonds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 10
+  carat cut       color clarity depth table price     x     y     z
+  &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1  0.23 Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43
+2  0.21 Premium   E     SI1      59.8    61   326  3.89  3.84  2.31
+3  0.23 Good      E     VS1      56.9    65   327  4.05  4.07  2.31
+4  0.29 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63
+5  0.31 Good      J     SI2      63.3    58   335  4.34  4.35  2.75
+6  0.24 Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="02-adv-ggplot_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Note that we can make the same plot by specifying the argument names explicitly:</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Sometimes we may want to use more than one dataset in a plot. For example, we have a separate dataset that contains average prices of diamonds by carat:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(diamonds_avg_price)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+  carat avg_price
+  &lt;dbl&gt;     &lt;dbl&gt;
+1  0.2       365.
+2  0.23      486.
+3  0.26      551.
+4  0.29      601.
+5  0.32      720.
+6  0.35      801.</code></pre>
+</div>
+</div>
+<p>We can use this separate <code>diamonds_avg_price</code> dataset in the <code>geom_point()</code> layer to add average price information to our scatterplot:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">data =</span> diamonds_avg_price, <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> avg_price), <span class="at">color =</span> <span class="st">"deepskyblue"</span>, <span class="at">size =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="02-adv-ggplot_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The <strong>Aesthetics</strong> section of a <code>geom</code> documentation page gives information on how the visual elements of the <code>geom</code> correspond to data. For example, the <code>geom_point</code> <a href="https://ggplot2.tidyverse.org/reference/geom_point.html">documentation page</a> shows that the familiar <code>x</code> and <code>y</code> aesthetics are available. It also shows some new aesthetics like <code>stroke</code>.</p>
+<p>We can use the same process to look at the <code>geom_linerange</code> <a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html">documentation page</a> and start off our temperature visualization with the record lows and highs:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(weather) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_linerange</span>(<span class="fu">aes</span>(<span class="at">x =</span> dateInYear, <span class="at">ymin =</span> RecordLow, <span class="at">ymax =</span> RecordHigh), <span class="at">color =</span> <span class="st">"#ECEBE3"</span>, <span class="at">linewidth =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="02-adv-ggplot_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Class exercise 3:</strong> Add to your temperature visualization to also display the usual temperatures (<code>NormalLow</code> and <code>NormalHigh</code>), and actual 2011 temperatures (<code>Low</code> and <code>High</code>). Your plot should look like the one below. The tan color for the usual temperatures is <code>"#C8B8BA"</code>, and the red color for the actual temperatures is <code>"#A90248"</code>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="02-adv-ggplot_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+<p>Let’s now try to recreate the visual demarcations of the months by adding vertical lines separating the months.</p>
+<p><strong>Class exercise 4:</strong> Brainstorm with your groups how we might draw those vertical lines. What <code>geom</code> might we use? What subset of the data might we use in that <code>geom</code> layer to draw lines only at the month divisions? One person from your group should write your ideas on the board.</p>
+<p>Once ideas are up on the board, we’ll work through this together as a class.</p>
+<hr>
+<p>Now let’s change the x-axis labels so that the month names display in the center of each month’s slice of the plot. (Note that R has built-in variables called <code>month.abb</code> and <code>month.name</code> that contain abbreviated and full month names.)</p>
+<p><strong>Class exercise 5:</strong> We will explore two different approaches to figuring out this new challenge: Google search and AI.</p>
+<ul>
+<li><p><strong>Google:</strong> Start by just using Google search queries. Collaborate with your group to try to word your search queries as carefully as possible (using the jargon that is most likely to return the most relevant results). Record search queries and your thought process in selecting which search results to look at first.</p></li>
+<li><p><strong>AI group:</strong> Next use <a href="https://chat.openai.com/">ChatGPT</a>. Collaborate with your group to brainstorm a series of prompts that will most efficiently get you the desired results. Record the chat prompts used and output given. Evaluate the output. Do you fully understand the code generated? How can you tell that the generated code is correct?</p></li>
+</ul>
+<p>After we debrief on these approaches, we’ll finalize this part of the plot together.</p>
+<p><br><br><br></p>
+</section>
+<section id="practice" class="level1">
+<h1>Practice</h1>
+<p>In pairs (randomly formed), you will go through the same steps as above for the precipitation data. Here, and throughout the course, we will be using the <strong>pair programming</strong> technique.</p>
+<section id="pair-programming-background" class="level2">
+<h2 class="anchored" data-anchor-id="pair-programming-background">Pair programming background</h2>
+<p>In <strong>pair programming</strong>, two individuals use one computer and work together to solve the problem at hand. Each individual takes turns in one of two roles:</p>
+<ul>
+<li><strong>Driver</strong>: The Driver is at the computer typing and speaking their thought process out loud.</li>
+<li><strong>Navigator</strong>: The Navigator reviews all code that the Driver writes as it’s typed, guides the overall direction of the code (keeps the instructions in mind), and pulls up references.</li>
+</ul>
+<p><strong>Why are we using pair programming?</strong> Pair programming is <a href="https://hackernoon.com/the-ultimate-guide-to-pair-programming-b606625bc784">used effectively in industry</a> to speed up individual employee’s learning of a company’s codebase and reduce time wasted on fixing bugs.</p>
+</section>
+<section id="your-task" class="level2">
+<h2 class="anchored" data-anchor-id="your-task">Your task</h2>
+<p><strong>Before diving in to plot creation,</strong> get to know your partner by telling each other about the general themes in your 12 favorite problems (FPs). Try to find some overlap in your themes and share one of your FPs that relates to that overlapping theme.</p>
+<p>Work together until your precipitation plot looks as below.</p>
+<ul>
+<li>The <code>culmPrec</code> variable contains cumulative precipitation for the month up to the given day.</li>
+<li>The <code>recordP</code> variable is a TRUE/FALSE indicator of whether a day was a precipitation record. These are marked by the downward pointing triangles.</li>
+<li>The numbers on the plot indicate the total precipitation for the month. Do some searching about the <code>hjust</code> and <code>vjust</code> options to adjust the alignment of the numbers.</li>
+<li>The blue and tan colors are <code>"#32a3d8"</code> and <code>"#ebeae2"</code>.</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="02-adv-ggplot_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>When should the Driver and Navigator switch roles?</strong> For this exercise, you will switch roles once a particular plot layer (one <code>geom</code>) has been implemented correctly. You can send code back and forth via email or a direct message on Slack.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Stop to Reflect
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>As you pair program, be aware of your comforts and discomforts in the roles of driver and navigator. Pay attention to the comforts and discomforts of your partner. What could you do to support them in becoming more comfortable and confident in both roles?</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Record Errors
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Every time you run into a new error, record the error message and your process for fixing the error in the “Error Log” section of the Quarto file for these exercises.</p>
+</div>
+</div>
+</div>
+<p><br><br><br></p>
+</section>
+</section>
+<section id="challenge-1" class="level1">
+<h1>Challenge 1</h1>
+<p>Navigate to <a href="https://classroom.github.com/a/u96MWDm2">Challenge 1</a> on GitHub to clone the repository for this challenge. Challenge 1 involves finishing this NYT visualization recreation and is part of <a href="./homework1.html">Homework 1</a>.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">© Leslie Myint, 2024<br> All content licensed under <img src="https://static.thenounproject.com/png/70967-200.png" height="20"> (<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>)</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">Site built with <a href="https://quarto.org/">Quarto</a></div>
+  </div>
+</footer>
+
+
+
+</body></html>

@@ -1,0 +1,110 @@
+---
+title: "Project"
+sidebar: false
+---
+
+# Goal
+
+The goal of the project is to **build something awesome** that you are proud to showcase on your personal website.
+
+
+<br><br>
+
+
+# Project requirements
+
+**Team size:** You will be working on this project over the course of the semester in teams of 2 or 3. **Individual teams are not allowed because one goal of the project is to practice collaboration via GitHub.**
+
+**Aligning with other classes:** You may choose a project topic that is the same or similar to a topic that you're exploring in another course. This is encouraged! Combining multiple course perspectives can significantly increase the quality of your work.
+
+**Data sources:** 
+
+- You are required to use at least 2 different data sources for this project.
+- I *encourage* (but am not requiring) you to use one of the new data acquisition tools covered in our course (APIs, web scraping, SQL) for one of these data sources.
+
+**Overview of quality expectations:**
+
+- Write high quality code that is documented well
+    - Code duplication is minimal to nonexistent with the use of **functions** and **loops**
+    - Use comments appropriately to document what is happening in different parts of code
+    - Text space before and after code chunks is used for longer form (paragraph) documentation
+
+- Use good file organization practices
+    - Separate files for cleaning, plotting, and modeling
+    - Clean datasets are saved at the end of code files devoted to cleaning and loaded in at the start of code files devoted to plotting and modeling
+
+- Engage in effective version control practices
+    - As seen through GitHub commits and file diffs, each team member should contribute equally to the codebase. Note that contributions include both writing new lines of code AND modifying/deleting code (e.g., perhaps to reduce code duplication).
+
+- Engage thoughtfully with the contexts of your data sources
+    - Careful consideration of the who, what, when, where, why, and how of your datasets and how that affects results and interpretation
+    - Careful consideration of how the data context relates to ethical considerations of how you investigate your data and how your results should be used/interpreted
+
+- Effective data storytelling with clear and concise communication. The final digital artifact should:
+    - Motivate the importance of the topic
+    - Lead the reader through the rationale for the narrowing/focusing of the scope via the main 2-3 broad questions
+    - Tie results (plots and modeling output) to the broad questions and explain how all results fit together
+    - End with main takeaways, limitations, and future directions
+
+**Deliverables:** You will create a digital artifact that can be hosted on your personal website or linked to from your personal website.
+
+- Blog post (single `.qmd` file)
+- Standalone Shiny app (e.g., dashboard style with an `app.R` file)
+- Blog post with Shiny features. This is like a blog post where you scroll through text and plots, but with this format, the plots can be interactive (mini Shiny apps). (In RStudio, when you choose File > New File > Quarto Document, you can choose the "Interactive" option to generate this format.)
+
+
+<br><br>
+
+
+# Project milestones
+
+## Milestone 1
+
+Due date: Monday, February 12
+
+**Purpose:** The goal of Milestone 1 is to get the project moving early on in the semester to have time to make the final product as high quality as possible. You will form teams, lay the vision for your project, and make progress on that vision with one dataset.
+
+**Task (requirements for passing this Milestone):**
+
+- Form project groups and pick a topic/scope
+- Describe 2-3 broad questions that you wish to explore within this topic. (Not all of them might be able to be investigated with the data source you find for this Milestone---that's fine.)
+- Find one data source, and read that data into R
+- Thoroughly describe the data context (who, what, when, where, why, and how? questions related to the dataset)
+- Write up a data codebook. That is, describe the type and meaning of the variables in your dataset. Group your variables into categories (e.g., demographic variables, neighborhood variables).
+    - If you have a lot of variables, it may not be necessary/feasible to describe every variable individually. Rather, you can describe groups of similar variables.
+- Based on the data context writeup and your codebook, describe which of your 2-3 broad questions can be addressed with your dataset and how.
+    - Write a plan for addressing these questions. Make sure that the steps in this plan are reasonable to complete in 2 weeks for Milestone 2. You will receive feedback on this plan and will be expected to integrate this feedback for Milestone 2.
+
+
+
+## Milestone 2
+
+Due date: Monday, February 26
+
+**Purpose:** The goal of Milestone 2 is to make progress on the goals you set out earlier and get tailored feedback on next steps to make the final product as high quality as possible.
+
+**Task (requirements for passing this Milestone):**
+
+- Complete the steps in your plan from Milestone 1 (the plan with feedback from the instructional team)
+- Write a plan for further pursuing your 2-3 broad questions. Make sure that the steps in this plan are reasonable to complete in 2 weeks for Milestone 3. You will receive feedback on this plan and will be expected to integrate this feedback for Milestone 3. Questions to think about as you develop this plan:
+    - Do your 2-3 original broad questions need to be revised?
+    - Is it time to start looking for additional datasets?
+
+
+
+## Milestone 3
+
+Due date: Friday, March 8 (day before Spring Break)
+
+**Purpose:** The goal of Milestone 3 is to make progress on the goals you set out earlier and get tailored feedback on next steps to make the final product as high quality as possible.
+
+**Task (requirements for passing this Milestone):**
+
+- Complete the steps in your plan from Milestone 2 (the plan with feedback from the instructional team)
+- Write a short blog post (no more than 1000 words) about your results so far. In this post, you should:
+    - Motivate the importance of the topic
+    - Lead the reader through the rationale for the narrowing/focusing of the scope via the main 2-3 broad questions
+    - Tie results (plots and modeling output) to the broad questions and explain how all results fit together
+    - End with main takeaways, limitations with regard to the data context and ethical considerations, and future directions
+
+

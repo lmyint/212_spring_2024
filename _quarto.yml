@@ -1,0 +1,74 @@
+project:
+  type: website
+  output-dir: docs
+  render:
+    - "*.qmd"
+    - "!activity_templates/"
+  resources:
+    - "data/*.csv"
+
+website:
+  title: "STAT/COMP 212"
+  navbar:
+    background: primary
+    search: true
+    left:
+      - file: index.qmd
+        text: "Home"
+      - file: schedule.qmd
+        text: "Schedule"
+      - file: syllabus.qmd
+        text: "Syllabus"
+      - sidebar:activities
+      - sidebar:homework
+      - sidebar:skills_sessions
+      - file: project.qmd
+        text: "Project"
+      - file: tech_setup.qmd
+        text: "Tech Setup"
+
+  sidebar:
+    - id: activities
+      title: "Activities"
+      contents:
+        - 01-introductions.qmd
+        # - 02-adv-ggplot.qmd
+
+    - id: homework
+      title: "Homework"
+      contents:
+        - homework1.qmd
+        # - homework2.qmd
+        # - homework3.qmd
+        # - homework4.qmd
+        # - reflection1.qmd
+        # - homework5.qmd
+        # - homework6.qmd
+        # - homework7.qmd
+        # - reflection2.qmd
+        # - homework8.qmd
+        # - homework9.qmd
+        # - reflection3.qmd
+    
+    - id: skills_sessions
+      title: "Skills Sessions"
+      contents:
+        - skills_session1.qmd
+        # - skills_session2.qmd
+        # - skills_session3.qmd
+  
+  page-footer:
+    left: |
+      &copy; Leslie Myint, 2024<br>
+      All content licensed under ![](https://static.thenounproject.com/png/70967-200.png){height=20px} ([CC BY-NC-SA 4.0](http://creativecommons.org/licenses/by-nc-sa/4.0/))
+    right: |
+      Site built with [Quarto](https://quarto.org/)
+
+format:
+  html:
+    theme: minty
+    css: styles.css
+    toc: true
+    code-overflow: wrap
+
+editor: source

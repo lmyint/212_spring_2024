@@ -1,0 +1,22 @@
+---
+title: "Skills Session 1"
+sidebar: false
+---
+
+# Purpose
+
+Get really good with keyboard shortcuts for two main reasons:
+
+- Using shortcuts saves a ton of time
+- It feels really cool!
+
+# Task
+
+- Review and practice all shortcuts described [here](https://lmyint.github.io/IntermediateDataSciNotes/keyboard.html).
+- During our in-person skills session (week of 2/5-2/9), I will ask you to demonstrate your ability to use most of these shortcuts within a roughly 5 minute span.
+
+# Requirements for passing
+
+You will Pass this Skills Session if you can do all of the commands I ask without using your mouse.
+
+If you forget a few shortcuts, it's ok! Just write down the ones you missed and show them to me the next day.

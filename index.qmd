@@ -1,0 +1,30 @@
+---
+title: "STAT/COMP 212: Intermediate Data Science (Spring 2024)"
+sidebar: false
+---
+
+This is the course website for STAT/COMP 212: Intermediate Data Science at Macalester College for the Spring 2024 semester taught by Professor [Leslie Myint](https://www.lesliemyint.org). Materials were developed by Leslie Myint and multiple faculty members in the [Macalester MSCS department](https://www.macalester.edu/mscs/facultystaff/).
+
+# Drop-in (office) hours
+
+**Leslie**
+
+- **Where?** OLRI 232
+- **When?** TBD
+
+I'm also happy to meet one-on-one if my normal drop-in hours don't work. You can schedule a time to meet with me via [Calendly](https://calendly.com/lmyint).
+
+**Kyle**
+
+- **Where?** TBD
+- **When?** TBD
+
+**Na**
+
+- **Where?** TBD
+- **When?** TBD
+
+**Graham**
+
+- **Where?** TBD
+- **When?** TBD

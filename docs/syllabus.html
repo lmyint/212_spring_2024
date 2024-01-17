@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>STAT/COMP 212 - Syllabus</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">STAT/COMP 212</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./schedule.html" rel="" target="">
+ <span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./syllabus.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-activities" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Activities</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-activities">    
+        <li>
+    <a class="dropdown-item" href="./01-introductions.html" rel="" target="">
+ <span class="dropdown-text">Welcome to the course!</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-homework" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Homework</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-homework">    
+        <li>
+    <a class="dropdown-item" href="./homework1.html" rel="" target="">
+ <span class="dropdown-text">Homework 1</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-skills-sessions" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Skills Sessions</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-skills-sessions">    
+        <li>
+    <a class="dropdown-item" href="./skills_session1.html" rel="" target="">
+ <span class="dropdown-text">Skills Session 1</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./project.html" rel="" target="">
+ <span class="menu-text">Project</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./tech_setup.html" rel="" target="">
+ <span class="menu-text">Tech Setup</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#what-is-this-course-about" id="toc-what-is-this-course-about" class="nav-link active" data-scroll-target="#what-is-this-course-about">What is this course about?</a>
+  <ul class="collapse">
+  <li><a href="#course-learning-goals" id="toc-course-learning-goals" class="nav-link" data-scroll-target="#course-learning-goals">Course learning goals</a></li>
+  </ul></li>
+  <li><a href="#course-communication" id="toc-course-communication" class="nav-link" data-scroll-target="#course-communication">Course communication</a>
+  <ul class="collapse">
+  <li><a href="#meet-the-instructional-team" id="toc-meet-the-instructional-team" class="nav-link" data-scroll-target="#meet-the-instructional-team">Meet the instructional team</a></li>
+  <li><a href="#how-to-contact-me" id="toc-how-to-contact-me" class="nav-link" data-scroll-target="#how-to-contact-me">How to contact me</a></li>
+  <li><a href="#discussion-board-slack" id="toc-discussion-board-slack" class="nav-link" data-scroll-target="#discussion-board-slack">Discussion board (Slack)</a></li>
+  </ul></li>
+  <li><a href="#guiding-values" id="toc-guiding-values" class="nav-link" data-scroll-target="#guiding-values">Guiding values</a>
+  <ul class="collapse">
+  <li><a href="#community-is-key" id="toc-community-is-key" class="nav-link" data-scroll-target="#community-is-key">Community is key</a></li>
+  <li><a href="#reflection-is-paramount" id="toc-reflection-is-paramount" class="nav-link" data-scroll-target="#reflection-is-paramount">Reflection is paramount</a></li>
+  <li><a href="#mistakes-are-essential" id="toc-mistakes-are-essential" class="nav-link" data-scroll-target="#mistakes-are-essential">Mistakes are essential</a></li>
+  <li><a href="#communication-is-a-superpower" id="toc-communication-is-a-superpower" class="nav-link" data-scroll-target="#communication-is-a-superpower">Communication is a superpower</a></li>
+  </ul></li>
+  <li><a href="#how-to-thrive-and-what-to-expect" id="toc-how-to-thrive-and-what-to-expect" class="nav-link" data-scroll-target="#how-to-thrive-and-what-to-expect">How to thrive and what to expect</a>
+  <ul class="collapse">
+  <li><a href="#outside-of-class" id="toc-outside-of-class" class="nav-link" data-scroll-target="#outside-of-class">Outside of class</a></li>
+  <li><a href="#during-class" id="toc-during-class" class="nav-link" data-scroll-target="#during-class">During class</a></li>
+  </ul></li>
+  <li><a href="#grading-and-feedback" id="toc-grading-and-feedback" class="nav-link" data-scroll-target="#grading-and-feedback">Grading and feedback</a>
+  <ul class="collapse">
+  <li><a href="#my-philosophy" id="toc-my-philosophy" class="nav-link" data-scroll-target="#my-philosophy">My philosophy</a></li>
+  <li><a href="#assignments-and-assessments" id="toc-assignments-and-assessments" class="nav-link" data-scroll-target="#assignments-and-assessments">Assignments and assessments</a>
+  <ul class="collapse">
+  <li><a href="#asynchronous-skills-demonstrations" id="toc-asynchronous-skills-demonstrations" class="nav-link" data-scroll-target="#asynchronous-skills-demonstrations">Asynchronous skills demonstrations</a></li>
+  <li><a href="#in-person-skills-sessions" id="toc-in-person-skills-sessions" class="nav-link" data-scroll-target="#in-person-skills-sessions">In-person skills sessions</a></li>
+  <li><a href="#reflections" id="toc-reflections" class="nav-link" data-scroll-target="#reflections">Reflections</a></li>
+  <li><a href="#project" id="toc-project" class="nav-link" data-scroll-target="#project">Project</a></li>
+  </ul></li>
+  <li><a href="#course-grading-system" id="toc-course-grading-system" class="nav-link" data-scroll-target="#course-grading-system">Course grading system</a>
+  <ul class="collapse">
+  <li><a href="#requirements-for-a-b" id="toc-requirements-for-a-b" class="nav-link" data-scroll-target="#requirements-for-a-b">Requirements for a B</a></li>
+  <li><a href="#requirements-for-an-a" id="toc-requirements-for-an-a" class="nav-link" data-scroll-target="#requirements-for-an-a">Requirements for an A</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#textbooks" id="toc-textbooks" class="nav-link" data-scroll-target="#textbooks">Textbooks</a></li>
+  <li><a href="#other-policies" id="toc-other-policies" class="nav-link" data-scroll-target="#other-policies">Other policies</a>
+  <ul class="collapse">
+  <li><a href="#late-work" id="toc-late-work" class="nav-link" data-scroll-target="#late-work">Late work</a></li>
+  <li><a href="#academic-integrity" id="toc-academic-integrity" class="nav-link" data-scroll-target="#academic-integrity">Academic integrity</a></li>
+  <li><a href="#artificial-intelligence-ai-use" id="toc-artificial-intelligence-ai-use" class="nav-link" data-scroll-target="#artificial-intelligence-ai-use">Artificial intelligence (AI) use</a></li>
+  </ul></li>
+  <li><a href="#the-environment-you-deserve" id="toc-the-environment-you-deserve" class="nav-link" data-scroll-target="#the-environment-you-deserve">The environment you deserve</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Syllabus</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="what-is-this-course-about" class="level1">
+<h1>What is this course about?</h1>
+<blockquote class="blockquote">
+<p>Nature doesn’t reveal its secrets easily.<br> - <em>Thomas Kempa</em></p>
+</blockquote>
+<p>Nor do data.</p>
+<p>But that is exactly what can make data science so thrilling!</p>
+<p>This course is about empowering you with the <strong>wisdom</strong> to ask the best questions of data–ones that are meaningful, adaptive, and equity-minded–and the <strong>technical savvy</strong> to answer them.</p>
+<p>Because your careers (whether in data science or not), will all involve further learning and working with others, my other primary goal is for you to cultivate <strong>self-reflection skills</strong> with regards to your own learning and your collaboration with others. In this way, I hope that you feel confident learning new skills on your own in the future and contributing to a welcoming work community.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Course catalog description">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Course catalog description
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>This second course in the data science curriculum emphasizes advanced data wrangling and manipulation, interactive visualization, writing functions, working with data in databases, version control, and data ethics. Through open-ended and interdisciplinary projects, students practice the constant feedback loop of asking questions of the data, manipulating the data to help answer the question, and then returning to more questions. Prerequisite(s): COMP 112 and COMP 123 and STAT 155; STAT 253 recommended but not required.</p>
+</div>
+</div>
+</div>
+<section id="course-learning-goals" class="level2">
+<h2 class="anchored" data-anchor-id="course-learning-goals">Course learning goals</h2>
+<p>By the end of this course you should be able to:</p>
+<ul>
+<li><strong>Sustain a reflection practice</strong>
+<ul>
+<li>Reflect on your learning process so that you are equipped for independent learning</li>
+<li>Reflect on your collaborative work so that you can form community no matter where you go</li>
+</ul></li>
+<li><strong>Create effective visualizations and interactive applications</strong>
+<ul>
+<li>Create a variety of visualizations in ggplot2 that go beyond the plot types that you learned in STAT/COMP 112</li>
+<li>Wrangle and visualize spatial data</li>
+<li>Create interactive web applications and visualizations that adapt to user input</li>
+</ul></li>
+<li><strong>Wrangle arbitrarily messy data</strong>
+<ul>
+<li>Use appropriate R tools to manage numeric, logical, date, strings, and factors</li>
+<li>Use appropriate R tools to write functions and loops</li>
+<li>Use appropriate methods when working with missing data</li>
+<li>Double check your data cleaning steps to ensure accuracy</li>
+</ul></li>
+<li><strong>Acquire data from a variety of sources</strong>
+<ul>
+<li>Write queries in structured query language (SQL) to access data from databases</li>
+<li>Write code to access data from application programming interfaces (APIs)</li>
+<li>Write code to scrape data from websites and evaluate the ethics of collecting such data</li>
+</ul></li>
+<li><strong>Craft high quality data stories</strong>
+<ul>
+<li>Iterate on the question-explore-question cycle to craft compelling data stories with attention to data context and ethical considerations</li>
+<li>Use a combination of data acquisition, data wrangling, static and interactive visualization, and statistical modeling to further a data science investigation</li>
+</ul></li>
+<li><strong>Use AI and search tools to figure out difficult tasks</strong>
+<ul>
+<li>Use appropriate coding jargon to construct effective search queries (e.g., Google) and evaluate the accuracy of results that you find</li>
+<li>Construct effective AI prompts (e.g., Chat GPT, Google Bard) and evaluate the accuracy of generated results</li>
+<li>Articulate the ethical and environmental considerations in using AI and search tools</li>
+</ul></li>
+<li><strong>Use professional data science tools</strong>
+<ul>
+<li>Use Git as a version control system</li>
+<li>Maintain a digital portfolio of your data science projects on your personal website</li>
+</ul></li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled" title="Reflect">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Reflect
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Which of the learning goals above do you disagree with or want more clarity on?</li>
+<li>Do you have any goals that you’d like to include on this list?</li>
+</ul>
+</div>
+</div>
+<p><br><br><br><br></p>
+</section>
+</section>
+<section id="course-communication" class="level1">
+<h1>Course communication</h1>
+<section id="meet-the-instructional-team" class="level2">
+<h2 class="anchored" data-anchor-id="meet-the-instructional-team">Meet the instructional team</h2>
+<p><img src="https://www.lesliemyint.org/portrait.png" width="200" style="float: left; padding-right: 20px; padding-bottom: 20px;"></p>
+<p><strong>Leslie Myint (instructor)</strong></p>
+<p><strong>About me:</strong> One of my greatest joys is sharing the beauty of data-driven thinking, so I’m thrilled to be teaching this course! I also get very excited talking about all things games! I love playing board games, Dungeons and Dragons (D&amp;D), and Nintendo console games. I also love staying active with weightlifting and rock climbing and hoping to learn cross-country skiing this winter!</p>
+<p><strong>Kyle Suelflow (preceptor)</strong></p>
+<ul>
+<li><strong>About me:</strong></li>
+</ul>
+<p><strong>Na Nguyen (preceptor)</strong></p>
+<ul>
+<li><strong>About me:</strong></li>
+</ul>
+<p><strong>Graham Elliot (preceptor)</strong></p>
+<ul>
+<li><strong>About me:</strong></li>
+</ul>
+</section>
+<section id="how-to-contact-me" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-contact-me">How to contact me</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Call me &quot;Leslie&quot;">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Call me “Leslie”
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Students sometimes wonder what to call their professors. I prefer to be called Leslie (lez-lee), but if you prefer to be more formal, I am also ok with Professor Myint (pronounced “mee-int”). My preferred gender pronouns are she/her/hers.</p>
+<p>Please help me make sure that I call you by your preferred name and pronouns too!</p>
+</div>
+</div>
+<p>I love getting to talk to students outside of class time—whether about class-related topics or anything else. Come chat with me!</p>
+<p>I’ll be setting times for drop-in hours based on feedback from the <a href="https://docs.google.com/forms/d/e/1FAIpQLSeCcC_B3-2jjuzHGReIwBlcVUgoGaFwWsdLlf4kqVPLd8mNYw/viewform?usp=sf_link">pre-course survey</a>. I’ll update my drop-in hours on our <a href="./index.html">course homepage</a> and Moodle when they’re finalized.</p>
+<p>I’m also happy to meet one-on-one if my normal drop-in hours don’t work. You can schedule a time to meet with me via <a href="https://calendly.com/lmyint">Calendly</a>.</p>
+</section>
+<section id="discussion-board-slack" class="level2">
+<h2 class="anchored" data-anchor-id="discussion-board-slack">Discussion board (Slack)</h2>
+<p>Slack is a commonly used communication tool in industry and is useful to be familiar with, so we’ll be using it as our discussion board.</p>
+<ul>
+<li>If you’re new to Slack, <a href="https://youtu.be/6wjmH5qL3Ms?si=tIg_gAAxbDh6qQ3-">this video</a> provides a quick overview.</li>
+<li>First join our STAT/COMP 212: Spring 2024 workspace <a href="https://join.slack.com/t/slack-pkg2674/shared_invite/zt-2anlsakl1-jsi2X98qrYwVXPWa_3O2TQ">here</a>.</li>
+<li>After joining, you can access our workspace <a href="https://statcomp212spring2024.slack.com">here</a>. (You might want to bookmark this if you have Slack open in your web broswer.)</li>
+</ul>
+<p><br><br><br><br></p>
+</section>
+</section>
+<section id="guiding-values" class="level1">
+<h1>Guiding values</h1>
+<section id="community-is-key" class="level2">
+<h2 class="anchored" data-anchor-id="community-is-key">Community is key</h2>
+<p>A sense of <a href="https://www.educause.edu/research-and-publications/books/learning-spaces/chapter-4-community-hidden-context-learning">community</a> and connectedness can provide a powerful environment for learning: Research shows that learning is maximized when students feel a sense of belonging in the educational environment (e.g., Booker, 2016). A negative climate may create barriers to learning, while a positive climate can energize students’ learning (e.g., Pascarella &amp; Terenzini, cited in How Learning Works, 2012).</p>
+<p>For these reasons, I will be designing our in-class group activities to intentionally foster commmunity and connectedness. You can help cultivate our classroom community by being thoughtful about the way you engage with others in class.</p>
+</section>
+<section id="reflection-is-paramount" class="level2">
+<h2 class="anchored" data-anchor-id="reflection-is-paramount">Reflection is paramount</h2>
+<p>The <em>content</em> you learn will be cool (unbiased opinion!), but it is a <strong>guarantee</strong> that as technology evolves, some part of it will become out of date during your careers. What you will need to rely on when you leave Macalester is what I want to ensure you cultivate now: a good learning process. And the cornerstone of a good learning process is <strong>reflection</strong>.</p>
+<p>Reflection is not just fundamental to learning content–it’s fundamental to learning any sort of intellectual, emotional, or physical skill. For this reason, I will be prioritizing reflection as a goal for our course in both content learning and collaborative activities. (Note that these reflection goals are the first two course learning goals.)</p>
+</section>
+<section id="mistakes-are-essential" class="level2">
+<h2 class="anchored" data-anchor-id="mistakes-are-essential">Mistakes are essential</h2>
+<blockquote class="blockquote">
+<p>An expert is a person who has made all the mistakes which can be made in a narrow field.<br> - <em>Niels Bohr, Nobel Prize-winning physicist</em></p>
+</blockquote>
+<p>I don’t feel comfortable working with a new R package until I’ve seen the same errors over and over again. Seeing new errors helps me understand the constraints of the code and the assumptions that I was making about my data.</p>
+</section>
+<section id="communication-is-a-superpower" class="level2">
+<h2 class="anchored" data-anchor-id="communication-is-a-superpower">Communication is a superpower</h2>
+<p>Every time I go to a conference talk on a technical topic, it is striking how quickly laptops or phones come out because of the inability to follow. Academics notoriously struggle to make ideas accessible to others.</p>
+<p>I want communication to be very different for you.</p>
+<p>Every time you communicate ideas–whether through writing, visuals, or oral presentation–I want you to be a total boss. The end product of strong communication is a better experience for all those who have given you their attention. What’s more, the <em>process</em> of crafting effective communication is invaluable for deepening your own understanding:</p>
+<center>
+<blockquote class="twitter-tweet blockquote">
+<p lang="en" dir="ltr">
+Read to collect the dots, write to connect them <a href="https://t.co/YbgnKKFUNn">pic.twitter.com/YbgnKKFUNn</a>
+</p>
+— David Perell (<span class="citation" data-cites="david_perell">@david_perell</span>) <a href="https://twitter.com/david_perell/status/1411871612702543872?ref_src=twsrc%5Etfw">July 5, 2021</a>
+</blockquote>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</center>
+<p><br><br><br><br></p>
+</section>
+</section>
+<section id="how-to-thrive-and-what-to-expect" class="level1">
+<h1>How to thrive and what to expect</h1>
+<p>When taking a new course, figuring out the right workflow/cadence of effort throughout the week can be a big adjustment. And most of you are doing this for 4 different courses! Below are some suggestions for what to expect in the course and how to focus your time and attention during and outside of class.</p>
+<section id="outside-of-class" class="level2">
+<h2 class="anchored" data-anchor-id="outside-of-class">Outside of class</h2>
+<p><strong>Pre-class videos/readings:</strong> Most class periods will have a required video or reading to review ideas from previous courses or to familiarize yourself with new concepts before seeing them again in class. My goal for these videos and readings is for you to get the most out of class time by being able to more easily follow explanations in class and to engage most fully in class activities. I will provide <a href="./schedule.html#guiding-questions">Guiding Questions</a> for each video/reading to focus your attention.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Suggestion">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Suggestion
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Scan the <a href="./schedule.html#guiding-questions">Guiding Questions</a> before watching/reading to preview the main ideas. Fill in answers to these questions as you read.</li>
+<li>Ask (and answer!) questions in the <code>#questions</code> channel in our <a href="https://statcomp212spring2024.slack.com">Slack workspace</a>.</li>
+<li>Record any reflections from in-class time about your learning process or interactions with peers while they are still fresh.</li>
+<li>After learning a new topic in class, it is helpful to immediately attempt the related exercises on the upcoming homework assignment.</li>
+<li>Come to instructor drop-in hours to chat about the course or anything else! 😃</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="during-class" class="level2">
+<h2 class="anchored" data-anchor-id="during-class">During class</h2>
+<p>Class time will be a mix of interactive lecture and longer stretches of group work. During the lecture portion, I will pause explanation frequently to prompt a short exercise or ask questions that you’ll reflect on individually or together.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Suggestion">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Suggestion
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Review your learning process and group work reflections just before class to frame how you want to engage in class. (Perhaps you’ve noted a struggle and want to try a new strategy.)</p>
+</div>
+</div>
+<p><br><br><br><br></p>
+</section>
+</section>
+<section id="grading-and-feedback" class="level1">
+<h1>Grading and feedback</h1>
+<section id="my-philosophy" class="level2">
+<h2 class="anchored" data-anchor-id="my-philosophy">My philosophy</h2>
+<p>Grading is thorny issue for many educators because of its <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4041495/">known negative effects on learning and motivation</a>. Nonetheless, it is ever-present in the US education system and at Macalester. Because I am required to submit grades for this course, it’s worth me taking a minute to share my philosophy about grading with you.</p>
+<p>What excites me about being a teacher is your learning. Learning flourishes in an environment where you find <strong>meaning and value</strong> in what we’re exploring, feel <strong>safe engaging with challenging things</strong>, receive <strong>useful feedback</strong>, and <strong>regularly reflect</strong> on your learning.</p>
+<p>If I didn’t have to give grades, I wouldn’t. But because I am required to, it is important to me to create a course structure and grading system that creates an environment for learning to flourish:</p>
+<ul>
+<li><p><strong>Finding meaning and value:</strong> I am striving to achieve this by creating space for authentic connection between you, your peers, and myself and by encouraging you to explore a topic that intrigues you for our course project.</p></li>
+<li><p><strong>Safety in engaging with challenges:</strong> The assignments and activities that we will use to learn are <em>meant to be challenging</em>, and it would be unreasonable for me to expect that you perform perfectly on the first try. For this reason, every assignment and assessment has an opportunity for <strong>unlimited revisions/reattempts without penalty</strong>. I hope that this alleviates stress considerably. If ever you are feeling overwhelmed by this course, please reach out to me. We’ll find a way to make things more manageable.</p>
+<ul>
+<li><strong>Note:</strong> While the number of revisions you can submit is unlimited in theory, in practice, there is a limit to how quickly the preceptors and I can review revisions and give feedback.</li>
+</ul></li>
+<li><p><strong>Receiving useful feedback and reflecting regularly:</strong> In order to learn maximally by pursuing a revision, you need BOTH good feedback and to reflect thoughtfully about misconceptions in your learning. Our preceptors and I will strive to give useful comments and prompts to spur reflection when we see room for improvement. A requirement for submitting a revision is to include a paragraph where you describe and reflect on your prior misconceptions.</p></li>
+</ul>
+</section>
+<section id="assignments-and-assessments" class="level2">
+<h2 class="anchored" data-anchor-id="assignments-and-assessments">Assignments and assessments</h2>
+<section id="asynchronous-skills-demonstrations" class="level3">
+<h3 class="anchored" data-anchor-id="asynchronous-skills-demonstrations">Asynchronous skills demonstrations</h3>
+<p>Our <a href="./syllabus.html#course-learning-goals">course learning goals</a> will have associated challenges for practicing the tools/concepts. During weekly homework assignments, you will work on one challenge from the most recent class topic as well as the prior class topic. A challenge will either receive a grade of Pass (P) or Not Yet (NY). Requirements for passing will be clearly described in each challenge.</p>
+<table class="table">
+<colgroup>
+<col style="width: 44%">
+<col style="width: 28%">
+<col style="width: 28%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Skills category</th>
+<th style="text-align: left;"></th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Advanced ggplot2</td>
+<td style="text-align: left;"><a href="https://classroom.github.com/a/u96MWDm2">Challenge 1</a></td>
+<td style="text-align: left;"><a href="https://classroom.github.com/a/bl30jylw">Challenge 2</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Spatial visualization</td>
+<td style="text-align: left;">Challenge 1</td>
+<td style="text-align: left;">Challenge 2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Shiny</td>
+<td style="text-align: left;">Challenge 1</td>
+<td style="text-align: left;">Challenge 2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Data wrangling</td>
+<td style="text-align: left;">Challenge 1</td>
+<td style="text-align: left;">Challenge 2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Modeling and missing data</td>
+<td style="text-align: left;">Challenge 1</td>
+<td style="text-align: left;">Challenge 2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Writing functions</td>
+<td style="text-align: left;">Challenge 1</td>
+<td style="text-align: left;">Challenge 2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Writing loops</td>
+<td style="text-align: left;">Challenge 1</td>
+<td style="text-align: left;">Challenge 2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">APIs</td>
+<td style="text-align: left;">Challenge 1</td>
+<td style="text-align: left;">Challenge 2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Web scraping</td>
+<td style="text-align: left;">Challenge 1</td>
+<td style="text-align: left;">Challenge 2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SQL</td>
+<td style="text-align: left;">Challenge 1</td>
+<td style="text-align: left;">Challenge 2</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled" title="Purpose">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Purpose
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The purpose of skills challenges is to <em>engage in targeted and repeated practice</em> for core skills. The reason for <em>interleaving</em> different topics within a single homework assignment is to promote skills becoming more deeply ingrained by spacing out practice over time.</p>
+</div>
+</div>
+<p><strong>Revising and resubmitting challenges:</strong> If you receive a grade of NY, you can revise and resubmit your work without penalty as long as you do the following:</p>
+<ul>
+<li>Write a reflection paragraph at the top of your assignment in which you address: What improvements were you asked to make based on feedback on your previous submission? How has reviewing your feedback improved your understanding? (What do you understand better/differently than you did before?)</li>
+<li>Submit your revised work by issuing another pull request on the GitHub Classroom challenge link.</li>
+</ul>
+</section>
+<section id="in-person-skills-sessions" class="level3">
+<h3 class="anchored" data-anchor-id="in-person-skills-sessions">In-person skills sessions</h3>
+<p>A skills session (SS) is a discussion that you and I will have about course content. There will be 3 SS’s in the semester (weeks of 2/5, 3/4, and 4/15).</p>
+<ul>
+<li>Skills session 1: This session will be very short (5 minutes) and will focus on your fluency with keyboard shortcuts. Sometime during the week of 2/5-2/9 come talk to me to demonstrate your keyboard shortcut usage.</li>
+<li>Skills session 2: This session will be 30 minutes. Schedule this during the week of 3/4-3/8 via <a href="https://calendly.com/lmyint">Calendly</a>.</li>
+<li>Skills session 3: This session will be 30 minutes. Schedule this during the week of 4/15-4/19 via <a href="https://calendly.com/lmyint">Calendly</a>.</li>
+</ul>
+<p>One week before the SS, I will provide a set of problems that you can (and should!) work on with peers. During the SS, we will talk through a subset of those problems. I will choose some problems that I’d like you to talk through, and in the time remaining, you will talk through a problem (or part of a problem) of your choosing.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Purpose">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Purpose
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The purpose of a SS is to encourage <em>deep and collaborative study</em> and to give us both a <em>detailed understanding of your learning</em>.</p>
+</div>
+</div>
+<p>Before the SS I will provide a rubric that explains how I will assess your understanding. I will also provide requirements for a grade of Pass (P). If you do not Pass an SS, you will receive a grade of Not Yet (NY).</p>
+<p><strong>Re-attempting a skills session:</strong> If you receive a grade of NY, you can re-attempt the SS without penalty as long as you do the following:</p>
+<ul>
+<li>Schedule another discussion of the same length as the original SS (via <a href="https://calendly.com/lmyint">Calendly</a>).</li>
+<li>Revise how you will talk through the problem (or parts of problems) that you struggled with.</li>
+<li>Reflect on the following: What improvements were you asked to make based on feedback on your previous submission? How has reviewing your feedback improved your understanding? (What do you understand better/differently than you did before?) Be prepared to tell me about this reflection at the next SS.</li>
+</ul>
+</section>
+<section id="reflections" class="level3">
+<h3 class="anchored" data-anchor-id="reflections">Reflections</h3>
+<p>Roughly 1, 2, and 3 months into the semester, you will write reflections in which you think about your goals, progress, and next steps. To provide observations that you can draw from in these reflections, I will be asking you to maintain a personal class journal in which you regularly record insights from working on class activities.</p>
+<p>Reflections that show thoughtfulness with incorporation of concrete observations from the personal class journal will receive a grade of Pass (P).</p>
+<p><strong>Revising and resubmitting reflections:</strong> If your reflection is not yet passing, I will give feedback on some areas for improvement/additional consideration and ask you to resubmit.</p>
+</section>
+<section id="project" class="level3">
+<h3 class="anchored" data-anchor-id="project">Project</h3>
+<p>The best way to learn data science and feel like a data scientist is to work on meaningful data-driven projects. The course project will be a semester-long, collaborative experience in which you investigate a series of meaningful questions using multiple datasets.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Purpose">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Purpose
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The purpose of the project is to engage in a <strong>meaningful and collaborative</strong> data-driven experience and to build something that you would be <strong>proud to showcase</strong> to an employer on your personal website.</p>
+</div>
+</div>
+<p>Through regular milestones (roughly every 2 weeks) throughout the semester you will set goals for future milestones, make progress on the goals you set out in the previous milestone, and integrate feedback from previous milestones. Details about project milestones and deliverables will be housed on the <a href="./project.html">Project page</a>.</p>
+<p>Each project milestone will receive a grade of Pass (P) or Not Yet (NY) based on the progress made relative to the goals that we agree upon.</p>
+<p><strong>Revising and resubmitting milestones:</strong> If you receive a grade of NY, you can revise and resubmit your work without penalty, but it is important that we have a discussion about why goals were not met so that we can plan a reasonable path forward.</p>
+</section>
+</section>
+<section id="course-grading-system" class="level2">
+<h2 class="anchored" data-anchor-id="course-grading-system">Course grading system</h2>
+<section id="requirements-for-a-b" class="level3">
+<h3 class="anchored" data-anchor-id="requirements-for-a-b">Requirements for a B</h3>
+<p>In order to earn a final letter grade of B, you will need to:</p>
+<ul>
+<li><strong>Asynchronous skills demonstrations:</strong> Pass the <strong>first</strong> challenge in each skills category.</li>
+<li><strong>In-person skills sessions:</strong> Pass all 3 in-person skills sessions.</li>
+<li><strong>Reflection:</strong> Pass all 3 monthly reflections.</li>
+<li><strong>Project:</strong> Pass all project checkpoints. Submit a passing code base and a passing digital artifact.</li>
+</ul>
+</section>
+<section id="requirements-for-an-a" class="level3">
+<h3 class="anchored" data-anchor-id="requirements-for-an-a">Requirements for an A</h3>
+<p>In order to earn a final letter grade of A, you will need to meet the requirements for a B and do the following:</p>
+<ul>
+<li><strong>Asynchronous skills demonstrations:</strong> Pass <strong>both challenges</strong> in each skills category.</li>
+<li><strong>Project:</strong> Thoughtfully integrate peer and instructor feedback to create a codebase and digital artifact that go beyond the <em>Passing</em> requirements and meet the <em>Excellent</em> requirements in at least 2 areas.</li>
+<li><strong>Your choice:</strong> One of the following:
+<ul>
+<li>Make a good faith effort at 5 different <a href="https://github.com/rfordatascience/tidytuesday">Tidy Tuesday</a> challenges.</li>
+<li>Learn a new skill or an existing topic more deeply. If you choose this option, talk with me to discuss what this might look like. (Examples: Python, Tableau, writing R packages, a statistical modeling concept)</li>
+</ul></li>
+</ul>
+<p><br><br><br><br></p>
+</section>
+</section>
+</section>
+<section id="textbooks" class="level1">
+<h1>Textbooks</h1>
+<p>We will primarily use the following textbooks (freely available online):</p>
+<ul>
+<li><a href="https://r4ds.hadley.nz/">R for Data Science (2e)</a> by Wickham, Cetinkaya-Rundel, and Grolemund (Abbreviated as <strong>R4DS</strong>)</li>
+<li><a href="https://lmyint.github.io/IntermediateDataSciNotes/">Intermediate Data Science Notes</a> by Leslie Myint (Abbreviated as <strong>IDSNotes</strong>)</li>
+</ul>
+<p>The following textbooks are also good resources (also freely available online):</p>
+<ul>
+<li><a href="https://mdsr-book.github.io/mdsr3e/">Modern Data Science with R (3e)</a> by Baumer, Kaplan, and Horton (Abbreviated as <strong>MDSR</strong>)</li>
+<li><a href="http://rafalab.dfci.harvard.edu/dsbook-part-1/">Introduction to Data Science: Data Wrangling and Visualization with R</a> and <a href="http://rafalab.dfci.harvard.edu/dsbook-part-2/">Advanced Data Science: Statistics and Prediction Algorithms Through Case Studies</a> by Irizarry</li>
+<li><a href="https://jhudatascience.org/tidyversecourse/">Tidyverse Skills for Data Science</a> by Wright, Ellis, Hicks, and Peng</li>
+<li><a href="https://bookdown.org/rdpeng/rprogdatascience/">R Programming for Data Science</a> by Peng</li>
+</ul>
+<p><br><br><br><br></p>
+</section>
+<section id="other-policies" class="level1">
+<h1>Other policies</h1>
+<section id="late-work" class="level2">
+<h2 class="anchored" data-anchor-id="late-work">Late work</h2>
+<p>Homework assignments will generally be due <strong>weekly on Mondays at midnight</strong>. (There are 2 assignments due on Fridays.) If you anticipate needing more time to complete an assignment, please email me ahead of time to discuss. <strong>Limited</strong> extensions will always be granted:</p>
+<ul>
+<li><strong>The ideal extension:</strong> Turn in the homework by the following <strong>Wednesday</strong> morning at 9am (a 1 day, 9 hour extension). The instructional team will often be working to give feedback on Wednesdays, so having an assignment turned in by Wednesday morning is helpful.</li>
+</ul>
+</section>
+<section id="academic-integrity" class="level2">
+<h2 class="anchored" data-anchor-id="academic-integrity">Academic integrity</h2>
+<p>Academic integrity is the cornerstone of our learning community. Students are expected to be familiar with the <a href="http://www.macalester.edu/academicprograms/academicpolicies/academicintegrity/">college’s standards</a> on academic integrity.</p>
+<p>I encourage you to work with your classmates to discuss material and ideas for assignments, but in order for you to receive individualized feedback on your own learning, you must submit your own work. This involves writing your own code and putting explanations into your own words. Always cite any sources you use, including AI (see section below).</p>
+</section>
+<section id="artificial-intelligence-ai-use" class="level2">
+<h2 class="anchored" data-anchor-id="artificial-intelligence-ai-use">Artificial intelligence (AI) use</h2>
+<p>Learning to use AI tools is an emerging skill that we will explore together in this course. I expect you to use AI (ChatGPT, Google Bard)—in fact, some assignments may require it.</p>
+<p>Please be aware of the limits of AI:</p>
+<ul>
+<li>AI does not always generate accurate output. If it gives you a number, fact, or code, assume it is wrong unless you either know the answer or can check in with another source. AI works best for topics you already understand to a sufficient extent.</li>
+<li>If you provide minimum effort prompts, you will get low quality results. You will need to refine your prompts in order to get good outcomes. This will take work.</li>
+<li>Be thoughtful about when this tool is useful. Don’t use it if it isn’t appropriate for the case or circumstance.</li>
+<li>The environmental impact of AI should not be ignored. The building and usage of AI tools consumes a lot of energy (see <a href="https://www.nature.com/articles/s42256-020-0219-9">here</a> and <a href="https://www.cfr.org/blog/artificial-intelligences-environmental-costs-and-promise">here</a>). For this reason, we will be very thoughtful about when we use AI and will discuss other sustainability behaviors that we can incorporate into our lives to offset this usage.</li>
+<li>AI is a tool, but one that you need to acknowledge using. Any ideas, language, or code that is produced by AI must be cited, just like any other resource.
+<ul>
+<li><strong>How to cite AI:</strong> Please include a paragraph at the end of any assignment that uses AI explaining what you used the AI for and what prompts you used to get the results. Failure to do so is in violation of the academic integrity policy at Macalester College.</li>
+</ul></li>
+</ul>
+<p>If you have any questions about your use of AI tools, please contact me to discuss them.</p>
+<p><br><br><br><br></p>
+</section>
+</section>
+<section id="the-environment-you-deserve" class="level1">
+<h1>The environment you deserve</h1>
+<p>I want you to succeed. Both here at Macalester and beyond. To help make this happen, I am committed to the following.</p>
+<p><strong>Respect:</strong> Everyone comes from a different path through life, and it is our moral duty as human beings to listen to each other without judgment and to respect one another. I have no tolerance for discrimination of any kind, in and out of the classroom. If you are seeking campus resources regarding discrimination, the <a href="https://www.macalester.edu/multiculturallife/">Department of Multicultural Life</a> and the <a href="https://www.macalester.edu/religiouslife/">Center for Religious and Spiritual Life</a> are wonderful resources.</p>
+<p><strong>Sensitive Topics:</strong> Data science applications span issues in science, policy, and society. As such, we may sometimes address topics that are sensitive for you. I will try to announce in class if an assignment or activity involves a potentially sensitive topic. If you have reservations about a particular topic, please come talk to me to discuss possible options.</p>
+<p><strong>Accommodations:</strong> If you need accommodations for any reason, please contact <a href="https://www.macalester.edu/studentaffairs/disabilityservices/accommodations/">Disability Services</a> to discuss your needs, and speak with me as soon as possible afterwards so that we can discuss your accommodation plan. If you already have official accommodations, please discuss these with me within the first week of class so that you get off to a great start. Contact me if you have other special circumstances. I will find resources for you.</p>
+<p><strong>Title IX:</strong> You deserve a community free from discrimination, sexual harassment, hostility, sexual assault, domestic violence, dating violence, and stalking. If you or anyone you know has experienced harassment or discrimination, know that you are not alone. Macalester provides staff and resources to help you find support. More information is available on the <a href="https://www.macalester.edu/titleix/">Title IX website</a>.</p>
+<p><strong>General Health and Well-being:</strong> I care that you prioritize your well-being in this semester and beyond. Investing time into taking care of yourself will have profound impacts on all aspects of your life. Remember that beyond being a student, you are a human being carrying your own experiences, thoughts, emotions, and identities. It is important to acknowledge any stressors you may be facing, which can be mental, emotional, physical, cultural, financial, etc., and how they can have an impact on you. I encourage you to remember that you have a body with needs. In the classroom, eat when you are hungry, drink water, use the restroom, and step out if you are upset and need some air. Please do what is necessary so long as it does not impede your or others’ ability to be mentally and emotionally present in the course. Outside of the classroom, sleeping well, moving your body, and connecting with others can be strategies can help nourish you. If you are having difficulties maintaining your well-being, please don’t hesitate to contact me and/or find support from physical and mental health resources <a href="https://docs.google.com/document/d/1lz-ii5yze_OSkQJqz_7pap7fRjG81LJh0_saBniP-zg/edit">here</a> and <a href="https://docs.google.com/document/d/1iC-ykD8QJ-w2BVO1Gb0AobD-00Zq_8mznWR5C2mNiF0/edit?usp=sharing">here</a>.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">© Leslie Myint, 2024<br> All content licensed under <img src="https://static.thenounproject.com/png/70967-200.png" height="20"> (<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>)</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">Site built with <a href="https://quarto.org/">Quarto</a></div>
+  </div>
+</footer>
+
+
+
+</body></html>

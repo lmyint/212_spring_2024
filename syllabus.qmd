@@ -1,0 +1,362 @@
+---
+title: "Syllabus"
+---
+
+# What is this course about?
+
+> Nature doesn't reveal its secrets easily.<br>
+> - *Thomas Kempa*
+
+Nor do data.
+
+But that is exactly what can make data science so thrilling!
+
+This course is about empowering you with the **wisdom** to ask the best questions of data--ones that are meaningful, adaptive, and equity-minded--and the **technical savvy** to answer them. 
+
+Because your careers (whether in data science or not), will all involve further learning and working with others, my other primary goal is for you to cultivate **self-reflection skills** with regards to your own learning and your collaboration with others. In this way, I hope that you feel confident learning new skills on your own in the future and contributing to a welcoming work community.
+
+::: {.callout-note collapse="true" title="Course catalog description"}
+This second course in the data science curriculum emphasizes advanced data wrangling and manipulation, interactive visualization, writing functions, working with data in databases, version control, and data ethics. Through open-ended and interdisciplinary projects, students practice the constant feedback loop of asking questions of the data, manipulating the data to help answer the question, and then returning to more questions. Prerequisite(s): COMP 112 and COMP 123 and STAT 155; STAT 253 recommended but not required.
+:::
+
+## Course learning goals
+
+By the end of this course you should be able to:
+
+- **Sustain a reflection practice**
+    - Reflect on your learning process so that you are equipped for independent learning
+    - Reflect on your collaborative work so that you can form community no matter where you go
+    
+- **Create effective visualizations and interactive applications**
+    - Create a variety of visualizations in ggplot2 that go beyond the plot types that you learned in STAT/COMP 112
+    - Wrangle and visualize spatial data
+    - Create interactive web applications and visualizations that adapt to user input
+
+- **Wrangle arbitrarily messy data**
+    - Use appropriate R tools to manage numeric, logical, date, strings, and factors
+    - Use appropriate R tools to write functions and loops
+    - Use appropriate methods when working with missing data
+    - Double check your data cleaning steps to ensure accuracy
+
+- **Acquire data from a variety of sources**
+    - Write queries in structured query language (SQL) to access data from databases
+    - Write code to access data from application programming interfaces (APIs)
+    - Write code to scrape data from websites and evaluate the ethics of collecting such data
+    
+- **Craft high quality data stories**
+    - Iterate on the question-explore-question cycle to craft compelling data stories with attention to data context and ethical considerations
+    - Use a combination of data acquisition, data wrangling, static and interactive visualization, and statistical modeling to further a data science investigation
+
+- **Use AI and search tools to figure out difficult tasks**
+    - Use appropriate coding jargon to construct effective search queries (e.g., Google) and evaluate the accuracy of results that you find
+    - Construct effective AI prompts (e.g., Chat GPT, Google Bard) and evaluate the accuracy of generated results
+    - Articulate the ethical and environmental considerations in using AI and search tools
+
+- **Use professional data science tools**
+    - Use Git as a version control system
+    - Maintain a digital portfolio of your data science projects on your personal website
+
+::: {.callout-tip title="Reflect"}
+- Which of the learning goals above do you disagree with or want more clarity on?
+- Do you have any goals that you'd like to include on this list?
+:::
+
+
+<br><br><br><br>
+
+
+# Course communication
+
+## Meet the instructional team
+
+<img src="https://www.lesliemyint.org/portrait.png" width=200 style="float: left; padding-right: 20px; padding-bottom: 20px;">
+
+**Leslie Myint (instructor)**
+
+**About me:** One of my greatest joys is sharing the beauty of data-driven thinking, so I'm thrilled to be teaching this course! I also get very excited talking about all things games! I love playing board games, Dungeons and Dragons (D&D), and Nintendo console games. I also love staying active with weightlifting and rock climbing and hoping to learn cross-country skiing this winter!
+
+**Kyle Suelflow (preceptor)**
+
+- **About me:**
+
+**Na Nguyen (preceptor)**
+
+- **About me:**
+
+**Graham Elliot (preceptor)**
+
+- **About me:**
+
+## How to contact me
+
+::: {.callout-note title="Call me \"Leslie\""}
+Students sometimes wonder what to call their professors. I prefer to be called Leslie (lez-lee), but if you prefer to be more formal, I am also ok with Professor Myint (pronounced "mee-int"). My preferred gender pronouns are she/her/hers.
+
+Please help me make sure that I call you by your preferred name and pronouns too!
+:::
+
+I love getting to talk to students outside of class time---whether about class-related topics or anything else. Come chat with me!
+
+I'll be setting times for drop-in hours based on feedback from the [pre-course survey](https://docs.google.com/forms/d/e/1FAIpQLSeCcC_B3-2jjuzHGReIwBlcVUgoGaFwWsdLlf4kqVPLd8mNYw/viewform?usp=sf_link). I'll update my drop-in hours on our [course homepage](index.qmd) and Moodle when they're finalized.
+
+I'm also happy to meet one-on-one if my normal drop-in hours don't work. You can schedule a time to meet with me via [Calendly](https://calendly.com/lmyint).
+
+## Discussion board (Slack)
+
+Slack is a commonly used communication tool in industry and is useful to be familiar with, so we'll be using it as our discussion board.
+
+- If you're new to Slack, [this video](https://youtu.be/6wjmH5qL3Ms?si=tIg_gAAxbDh6qQ3-) provides a quick overview.
+- First join our STAT/COMP 212: Spring 2024 workspace [here](https://join.slack.com/t/slack-pkg2674/shared_invite/zt-2anlsakl1-jsi2X98qrYwVXPWa_3O2TQ).
+- After joining, you can access our workspace [here](https://statcomp212spring2024.slack.com). (You might want to bookmark this if you have Slack open in your web broswer.)
+
+
+<br><br><br><br>
+
+
+# Guiding values
+
+## Community is key
+
+A sense of [community](https://www.educause.edu/research-and-publications/books/learning-spaces/chapter-4-community-hidden-context-learning) and connectedness can provide a powerful environment for learning: Research shows that learning is maximized when students feel a sense of belonging in the educational environment (e.g., Booker, 2016). A negative climate may create barriers to learning, while a positive climate can energize students' learning (e.g., Pascarella & Terenzini, cited in How Learning Works, 2012).
+
+For these reasons, I will be designing our in-class group activities to intentionally foster commmunity and connectedness. You can help cultivate our classroom community by being thoughtful about the way you engage with others in class.
+
+## Reflection is paramount
+
+The *content* you learn will be cool (unbiased opinion!), but it is a **guarantee** that as technology evolves, some part of it will become out of date during your careers. What you will need to rely on when you leave Macalester is what I want to ensure you cultivate now: a good learning process. And the cornerstone of a good learning process is **reflection**.
+
+Reflection is not just fundamental to learning content--it's fundamental to learning any sort of intellectual, emotional, or physical skill. For this reason, I will be prioritizing reflection as a goal for our course in both content learning and collaborative activities. (Note that these reflection goals are the first two course learning goals.)
+
+## Mistakes are essential
+
+> An expert is a person who has made all the mistakes which can be made in a narrow field.<br>
+> - *Niels Bohr, Nobel Prize-winning physicist*
+
+I don't feel comfortable working with a new R package until I've seen the same errors over and over again. Seeing new errors helps me understand the constraints of the code and the assumptions that I was making about my data.
+
+## Communication is a superpower
+
+Every time I go to a conference talk on a technical topic, it is striking how quickly laptops or phones come out because of the inability to follow. Academics notoriously struggle to make ideas accessible to others.
+
+I want communication to be very different for you.
+
+Every time you communicate ideas--whether through writing, visuals, or oral presentation--I want you to be a total boss. The end product of strong communication is a better experience for all those who have given you their attention. What's more, the *process* of crafting effective communication is invaluable for deepening your own understanding:
+
+<center>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Read to collect the dots, write to connect them <a href="https://t.co/YbgnKKFUNn">pic.twitter.com/YbgnKKFUNn</a></p>&mdash; David Perell (@david_perell) <a href="https://twitter.com/david_perell/status/1411871612702543872?ref_src=twsrc%5Etfw">July 5, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</center>
+
+
+<br><br><br><br>
+
+
+# How to thrive and what to expect
+
+When taking a new course, figuring out the right workflow/cadence of effort throughout the week can be a big adjustment. And most of you are doing this for 4 different courses! Below are some suggestions for what to expect in the course and how to focus your time and attention during and outside of class.
+
+## Outside of class
+
+**Pre-class videos/readings:** Most class periods will have a required video or reading to review ideas from previous courses or to familiarize yourself with new concepts before seeing them again in class. My goal for these videos and readings is for you to get the most out of class time by being able to more easily follow explanations in class and to engage most fully in class activities. I will provide [Guiding Questions](schedule.qmd#guiding-questions) for each video/reading to focus your attention.
+
+::: {.callout-tip title="Suggestion"}
+- Scan the [Guiding Questions](schedule.qmd#guiding-questions) before watching/reading to preview the main ideas. Fill in answers to these questions as you read.
+- Ask (and answer!) questions in the `#questions` channel in our [Slack workspace](https://statcomp212spring2024.slack.com).
+- Record any reflections from in-class time about your learning process or interactions with peers while they are still fresh.
+- After learning a new topic in class, it is helpful to immediately attempt the related exercises on the upcoming homework assignment.
+- Come to instructor drop-in hours to chat about the course or anything else! 😃
+:::
+
+
+## During class
+
+Class time will be a mix of interactive lecture and longer stretches of group work. During the lecture portion, I will pause explanation frequently to prompt a short exercise or ask questions that you'll reflect on individually or together.
+
+::: {.callout-tip title="Suggestion"}
+Review your learning process and group work reflections just before class to frame how you want to engage in class. (Perhaps you've noted a struggle and want to try a new strategy.)
+:::
+
+
+<br><br><br><br>
+
+
+# Grading and feedback
+
+## My philosophy
+
+Grading is thorny issue for many educators because of its [known negative effects on learning and motivation](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4041495/). Nonetheless, it is ever-present in the US education system and at Macalester. Because I am required to submit grades for this course, it's worth me taking a minute to share my philosophy about grading with you.
+
+What excites me about being a teacher is your learning. Learning flourishes in an environment where you find **meaning and value** in what we're exploring, feel **safe engaging with challenging things**, receive **useful feedback**, and **regularly reflect** on your learning.
+
+If I didn't have to give grades, I wouldn't. But because I am required to, it is important to me to create a course structure and grading system that creates an environment for learning to flourish:
+
+- **Finding meaning and value:** I am striving to achieve this by creating space for authentic connection between you, your peers, and myself and by encouraging you to explore a topic that intrigues you for our course project.
+
+- **Safety in engaging with challenges:** The assignments and activities that we will use to learn are *meant to be challenging*, and it would be unreasonable for me to expect that you perform perfectly on the first try. For this reason, every assignment and assessment has an opportunity for **unlimited revisions/reattempts without penalty**. I hope that this alleviates stress considerably. If ever you are feeling overwhelmed by this course, please reach out to me. We'll find a way to make things more manageable.
+    - **Note:** While the number of revisions you can submit is unlimited in theory, in practice, there is a limit to how quickly the preceptors and I can review revisions and give feedback.
+
+- **Receiving useful feedback and reflecting regularly:** In order to learn maximally by pursuing a revision, you need BOTH good feedback and to reflect thoughtfully about misconceptions in your learning. Our preceptors and I will strive to give useful comments and prompts to spur reflection when we see room for improvement. A requirement for submitting a revision is to include a paragraph where you describe and reflect on your prior misconceptions.
+
+## Assignments and assessments
+
+### Asynchronous skills demonstrations
+
+Our [course learning goals](syllabus.qmd#course-learning-goals) will have associated challenges for practicing the tools/concepts. During weekly homework assignments, you will work on one challenge from the most recent class topic as well as the prior class topic. A challenge will either receive a grade of Pass (P) or Not Yet (NY). Requirements for passing will be clearly described in each challenge.
+
+| Skills category        |              |              |
+|:-----------------------|:-------------|:-------------|
+| Advanced ggplot2       | [Challenge 1](https://classroom.github.com/a/u96MWDm2) | [Challenge 2](https://classroom.github.com/a/bl30jylw) |
+| Spatial visualization     | Challenge 1 | Challenge 2 |
+| Shiny                     | Challenge 1 | Challenge 2 |
+| Data wrangling            | Challenge 1 | Challenge 2 |
+| Modeling and missing data | Challenge 1 | Challenge 2 |
+| Writing functions         | Challenge 1 | Challenge 2 |
+| Writing loops             | Challenge 1 | Challenge 2 |
+| APIs                      | Challenge 1 | Challenge 2 |
+| Web scraping              | Challenge 1 | Challenge 2 |
+| SQL                       | Challenge 1 | Challenge 2 |
+
+: {tbl-colwidths="[44,28,28]"}
+
+::: {.callout-tip title="Purpose"}
+The purpose of skills challenges is to *engage in targeted and repeated practice* for core skills. The reason for *interleaving* different topics within a single homework assignment is to promote skills becoming more deeply ingrained by spacing out practice over time.
+:::
+
+**Revising and resubmitting challenges:** If you receive a grade of NY, you can revise and resubmit your work without penalty as long as you do the following:
+
+- Write a reflection paragraph at the top of your assignment in which you address: What improvements were you asked to make based on feedback on your previous submission? How has reviewing your feedback improved your understanding? (What do you understand better/differently than you did before?)
+- Submit your revised work by issuing another pull request on the GitHub Classroom challenge link.
+
+### In-person skills sessions
+
+A skills session (SS) is a discussion that you and I will have about course content. There will be 3 SS's in the semester (weeks of 2/5, 3/4, and 4/15). 
+
+- Skills session 1: This session will be very short (5 minutes) and will focus on your fluency with keyboard shortcuts. Sometime during the week of 2/5-2/9 come talk to me to demonstrate your keyboard shortcut usage.
+- Skills session 2: This session will be 30 minutes. Schedule this during the week of 3/4-3/8 via [Calendly](https://calendly.com/lmyint).
+- Skills session 3: This session will be 30 minutes. Schedule this during the week of 4/15-4/19 via [Calendly](https://calendly.com/lmyint).
+
+One week before the SS, I will provide a set of problems that you can (and should!) work on with peers. During the SS, we will talk through a subset of those problems. I will choose some problems that I'd like you to talk through, and in the time remaining, you will talk through a problem (or part of a problem) of your choosing.
+
+::: {.callout-tip title="Purpose"}
+The purpose of a SS is to encourage *deep and collaborative study* and to give us both a *detailed understanding of your learning*.
+:::
+
+Before the SS I will provide a rubric that explains how I will assess your understanding. I will also provide requirements for a grade of Pass (P). If you do not Pass an SS, you will receive a grade of Not Yet (NY).
+
+**Re-attempting a skills session:** If you receive a grade of NY, you can re-attempt the SS without penalty as long as you do the following:
+
+- Schedule another discussion of the same length as the original SS (via [Calendly](https://calendly.com/lmyint)).
+- Revise how you will talk through the problem (or parts of problems) that you struggled with.
+- Reflect on the following: What improvements were you asked to make based on feedback on your previous submission? How has reviewing your feedback improved your understanding? (What do you understand better/differently than you did before?) Be prepared to tell me about this reflection at the next SS.
+
+### Reflections
+
+Roughly 1, 2, and 3 months into the semester, you will write reflections in which you think about your goals, progress, and next steps. To provide observations that you can draw from in these reflections, I will be asking you to maintain a personal class journal in which you regularly record insights from working on class activities.
+
+Reflections that show thoughtfulness with incorporation of concrete observations from the personal class journal will receive a grade of Pass (P).
+
+**Revising and resubmitting reflections:** If your reflection is not yet passing, I will give feedback on some areas for improvement/additional consideration and ask you to resubmit.
+
+### Project
+
+The best way to learn data science and feel like a data scientist is to work on meaningful data-driven projects. The course project will be a semester-long, collaborative experience in which you investigate a series of meaningful questions using multiple datasets.
+
+::: {.callout-tip title="Purpose"}
+The purpose of the project is to engage in a **meaningful and collaborative** data-driven experience and to build something that you would be **proud to showcase** to an employer on your personal website.
+:::
+
+Through regular milestones (roughly every 2 weeks) throughout the semester you will set goals for future milestones, make progress on the goals you set out in the previous milestone, and integrate feedback from previous milestones. Details about project milestones and deliverables will be housed on the [Project page](project.qmd).
+
+Each project milestone will receive a grade of Pass (P) or Not Yet (NY) based on the progress made relative to the goals that we agree upon.
+
+**Revising and resubmitting milestones:** If you receive a grade of NY, you can revise and resubmit your work without penalty, but it is important that we have a discussion about why goals were not met so that we can plan a reasonable path forward.
+
+
+## Course grading system
+
+### Requirements for a B
+
+In order to earn a final letter grade of B, you will need to:
+
+- **Asynchronous skills demonstrations:** Pass the **first** challenge in each skills category.
+- **In-person skills sessions:** Pass all 3 in-person skills sessions.
+- **Reflection:** Pass all 3 monthly reflections.
+- **Project:** Pass all project checkpoints. Submit a passing code base and a passing digital artifact.
+
+### Requirements for an A
+
+In order to earn a final letter grade of A, you will need to meet the requirements for a B and do the following:
+
+- **Asynchronous skills demonstrations:** Pass **both challenges** in each skills category.
+- **Project:** Thoughtfully integrate peer and instructor feedback to create a codebase and digital artifact that go beyond the *Passing* requirements and meet the *Excellent* requirements in at least 2 areas.
+- **Your choice:** One of the following:
+    - Make a good faith effort at 5 different [Tidy Tuesday](https://github.com/rfordatascience/tidytuesday) challenges.
+    - Learn a new skill or an existing topic more deeply. If you choose this option, talk with me to discuss what this might look like. (Examples: Python, Tableau, writing R packages, a statistical modeling concept)
+
+
+<br><br><br><br>
+
+
+# Textbooks
+
+We will primarily use the following textbooks (freely available online):
+
+- [R for Data Science (2e)](https://r4ds.hadley.nz/) by Wickham, Cetinkaya-Rundel, and Grolemund (Abbreviated as **R4DS**)
+- [Intermediate Data Science Notes](https://lmyint.github.io/IntermediateDataSciNotes/) by Leslie Myint (Abbreviated as **IDSNotes**)
+
+The following textbooks are also good resources (also freely available online):
+
+- [Modern Data Science with R (3e)](https://mdsr-book.github.io/mdsr3e/) by Baumer, Kaplan, and Horton (Abbreviated as **MDSR**)
+- [Introduction to Data Science: Data Wrangling and Visualization with R](http://rafalab.dfci.harvard.edu/dsbook-part-1/) and [Advanced Data Science: Statistics and Prediction Algorithms Through Case Studies](http://rafalab.dfci.harvard.edu/dsbook-part-2/) by Irizarry
+- [Tidyverse Skills for Data Science](https://jhudatascience.org/tidyversecourse/) by Wright, Ellis, Hicks, and Peng
+- [R Programming for Data Science](https://bookdown.org/rdpeng/rprogdatascience/) by Peng
+
+
+<br><br><br><br>
+
+
+# Other policies
+
+## Late work
+
+Homework assignments will generally be due **weekly on Mondays at midnight**. (There are 2 assignments due on Fridays.) If you anticipate needing more time to complete an assignment, please email me ahead of time to discuss. **Limited** extensions will always be granted:
+
+- **The ideal extension:** Turn in the homework by the following **Wednesday** morning at 9am (a 1 day, 9 hour extension). The instructional team will often be working to give feedback on Wednesdays, so having an assignment turned in by Wednesday morning is helpful.
+
+## Academic integrity
+
+Academic integrity is the cornerstone of our learning community. Students are expected to be familiar with the [college's standards](http://www.macalester.edu/academicprograms/academicpolicies/academicintegrity/) on academic integrity.
+
+I encourage you to work with your classmates to discuss material and ideas for assignments, but in order for you to receive individualized feedback on your own learning, you must submit your own work. This involves writing your own code and putting explanations into your own words. Always cite any sources you use, including AI (see section below).
+
+## Artificial intelligence (AI) use
+
+Learning to use AI tools is an emerging skill that we will explore together in this course. I expect you to use AI (ChatGPT, Google Bard)---in fact, some assignments may require it.
+
+Please be aware of the limits of AI:
+
+- AI does not always generate accurate output. If it gives you a number, fact, or code, assume it is wrong unless you either know the answer or can check in with another source. AI works best for topics you already understand to a sufficient extent.
+- If you provide minimum effort prompts, you will get low quality results. You will need to refine your prompts in order to get good outcomes. This will take work.
+- Be thoughtful about when this tool is useful. Don’t use it if it isn’t appropriate for the case or circumstance.
+- The environmental impact of AI should not be ignored. The building and usage of AI tools consumes a lot of energy (see [here](https://www.nature.com/articles/s42256-020-0219-9) and [here](https://www.cfr.org/blog/artificial-intelligences-environmental-costs-and-promise)). For this reason, we will be very thoughtful about when we use AI and will discuss other sustainability behaviors that we can incorporate into our lives to offset this usage.
+- AI is a tool, but one that you need to acknowledge using. Any ideas, language, or code that is produced by AI must be cited, just like any other resource.
+    - **How to cite AI:** Please include a paragraph at the end of any assignment that uses AI explaining what you used the AI for and what prompts you used to get the results. Failure to do so is in violation of the academic integrity policy at Macalester College.
+
+If you have any questions about your use of AI tools, please contact me to discuss them.
+
+
+<br><br><br><br>
+
+
+# The environment you deserve
+
+I want you to succeed. Both here at Macalester and beyond. To help make this happen, I am committed to the following.
+
+**Respect:** Everyone comes from a different path through life, and it is our moral duty as human beings to listen to each other without judgment and to respect one another. I have no tolerance for discrimination of any kind, in and out of the classroom. If you are seeking campus resources regarding discrimination, the [Department of Multicultural Life](https://www.macalester.edu/multiculturallife/) and the [Center for Religious and Spiritual Life](https://www.macalester.edu/religiouslife/) are wonderful resources.
+
+**Sensitive Topics:** Data science applications span issues in science, policy, and society. As such, we may sometimes address topics that are sensitive for you. I will try to announce in class if an assignment or activity involves a potentially sensitive topic. If you have reservations about a particular topic, please come talk to me to discuss possible options.
+
+**Accommodations:** If you need accommodations for any reason, please contact [Disability Services](https://www.macalester.edu/studentaffairs/disabilityservices/accommodations/) to discuss your needs, and speak with me as soon as possible afterwards so that we can discuss your accommodation plan. If you already have official accommodations, please discuss these with me within the first week of class so that you get off to a great start. Contact me if you have other special circumstances. I will find resources for you.
+
+**Title IX:** You deserve a community free from discrimination, sexual harassment, hostility, sexual assault, domestic violence, dating violence, and stalking. If you or anyone you know has experienced harassment or discrimination, know that you are not alone. Macalester provides staff and resources to help you find support. More information is available on the [Title IX website](https://www.macalester.edu/titleix/).
+
+**General Health and Well-being:** I care that you prioritize your well-being in this semester and beyond. Investing time into taking care of yourself will have profound impacts on all aspects of your life. Remember that beyond being a student, you are a human being carrying your own experiences, thoughts, emotions, and identities. It is important to acknowledge any stressors you may be facing, which can be mental, emotional, physical, cultural, financial, etc., and how they can have an impact on you. I encourage you to remember that you have a body with needs. In the classroom, eat when you are hungry, drink water, use the restroom, and step out if you are upset and need some air. Please do what is necessary so long as it does not impede your or others' ability to be mentally and emotionally present in the course. Outside of the classroom, sleeping well, moving your body, and connecting with others can be strategies can help nourish you. If you are having difficulties maintaining your well-being, please don't hesitate to contact me and/or find support from physical and mental health resources [here](https://docs.google.com/document/d/1lz-ii5yze_OSkQJqz_7pap7fRjG81LJh0_saBniP-zg/edit) and [here](https://docs.google.com/document/d/1iC-ykD8QJ-w2BVO1Gb0AobD-00Zq_8mznWR5C2mNiF0/edit?usp=sharing).

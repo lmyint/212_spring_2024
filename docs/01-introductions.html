@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>STAT/COMP 212 - Welcome to the course!</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">STAT/COMP 212</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./schedule.html" rel="" target="">
+ <span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./syllabus.html" rel="" target="">
+ <span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-activities" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Activities</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-activities">    
+        <li>
+    <a class="dropdown-item" href="./01-introductions.html" rel="" target="">
+ <span class="dropdown-text">Welcome to the course!</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-homework" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Homework</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-homework">    
+        <li>
+    <a class="dropdown-item" href="./homework1.html" rel="" target="">
+ <span class="dropdown-text">Homework 1</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-skills-sessions" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Skills Sessions</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-skills-sessions">    
+        <li>
+    <a class="dropdown-item" href="./skills_session1.html" rel="" target="">
+ <span class="dropdown-text">Skills Session 1</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./project.html" rel="" target="">
+ <span class="menu-text">Project</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./tech_setup.html" rel="" target="">
+ <span class="menu-text">Tech Setup</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#plan-for-today" id="toc-plan-for-today" class="nav-link active" data-scroll-target="#plan-for-today">Plan for today</a></li>
+  <li><a href="#what-is-this-course-about" id="toc-what-is-this-course-about" class="nav-link" data-scroll-target="#what-is-this-course-about">What is this course about?</a></li>
+  <li><a href="#get-to-know-your-classmates" id="toc-get-to-know-your-classmates" class="nav-link" data-scroll-target="#get-to-know-your-classmates">Get to know your classmates</a></li>
+  <li><a href="#syllabus-shaping-learning-goals" id="toc-syllabus-shaping-learning-goals" class="nav-link" data-scroll-target="#syllabus-shaping-learning-goals">Syllabus shaping: learning goals</a></li>
+  <li><a href="#course-project-brainstorming" id="toc-course-project-brainstorming" class="nav-link" data-scroll-target="#course-project-brainstorming">Course project: brainstorming</a></li>
+  <li><a href="#favorite-problems-context" id="toc-favorite-problems-context" class="nav-link" data-scroll-target="#favorite-problems-context">12 Favorite Problems: context</a></li>
+  <li><a href="#the-12-favorite-problems-framework" id="toc-the-12-favorite-problems-framework" class="nav-link" data-scroll-target="#the-12-favorite-problems-framework">The 12 Favorite Problems framework</a></li>
+  <li><a href="#brainstorming-our-12-favorite-problems-fps" id="toc-brainstorming-our-12-favorite-problems-fps" class="nav-link" data-scroll-target="#brainstorming-our-12-favorite-problems-fps">Brainstorming our 12 favorite problems (FPs)</a></li>
+  <li><a href="#sharing-and-refining-our-12-fps" id="toc-sharing-and-refining-our-12-fps" class="nav-link" data-scroll-target="#sharing-and-refining-our-12-fps">Sharing and refining our 12 FPs</a></li>
+  <li><a href="#broadcast-your-signal-to-start-finding-your-people" id="toc-broadcast-your-signal-to-start-finding-your-people" class="nav-link" data-scroll-target="#broadcast-your-signal-to-start-finding-your-people">Broadcast your signal to start finding your people</a></li>
+  <li><a href="#project-opportunity-collaborating-with-a-community-partner" id="toc-project-opportunity-collaborating-with-a-community-partner" class="nav-link" data-scroll-target="#project-opportunity-collaborating-with-a-community-partner">Project opportunity: collaborating with a community partner</a></li>
+  <li><a href="#tidy-tuesday" id="toc-tidy-tuesday" class="nav-link" data-scroll-target="#tidy-tuesday">Tidy Tuesday!</a></li>
+  <li><a href="#announcements" id="toc-announcements" class="nav-link" data-scroll-target="#announcements">Announcements</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Welcome to the course!</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Welcome to Intermediate Data Science! Last semester was the first offering of this course–I really enjoyed it. I am even more thrilled to have made improvements that will make it a better learning experience for you!</p>
+<section id="plan-for-today" class="level2">
+<h2 class="anchored" data-anchor-id="plan-for-today">Plan for today</h2>
+<ul>
+<li>What is this course about?</li>
+<li>Get to know your classmates</li>
+<li>Shaping our syllabus together</li>
+<li>Brainstorming project ideas and connecting with potential project partners via the 12 Favorite Problems framework</li>
+<li>Warming up our wrangling and visualization skills with Tidy Tuesday!</li>
+</ul>
+<p><br><br></p>
+</section>
+<section id="what-is-this-course-about" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-this-course-about">What is this course about?</h2>
+<ul>
+<li>Expanding your abilities for self-reflection in service of:
+<ul>
+<li>Your lifelong independent learning</li>
+<li>Our course community</li>
+</ul></li>
+<li>Expanding your data science toolbox:
+<ul>
+<li>Visualization</li>
+<li>Wrangling</li>
+<li>Data acquisition</li>
+<li>Data storytelling</li>
+</ul></li>
+</ul>
+<p>I’ve intentionally put reflection first and data science skills second not necessarily in order of importance but because cultivating data science skills will come automatically—reflection and community-building won’t.</p>
+<p><br><br></p>
+</section>
+<section id="get-to-know-your-classmates" class="level2">
+<h2 class="anchored" data-anchor-id="get-to-know-your-classmates">Get to know your classmates</h2>
+<p>In groups, introduce yourselves with the following prompts: (~2 minutes/person)</p>
+<ul>
+<li>Name, preferred pronouns</li>
+<li>Macalester connections (e.g., majors/minors/concentrations, clubs, teams, events regularly attended)</li>
+<li>How are you feeling about the coming semester?</li>
+<li>What is one thing you are excited to talk about in conversation?</li>
+<li>If you could use data to investigate anything, what would it be and why?</li>
+</ul>
+<p><br><br></p>
+</section>
+<section id="syllabus-shaping-learning-goals" class="level2">
+<h2 class="anchored" data-anchor-id="syllabus-shaping-learning-goals">Syllabus shaping: learning goals</h2>
+<p>Navigate to the <a href="./syllabus.html#course-learning-goals">Course learning goals</a> section of our syllabus.</p>
+<p><strong>Part 1: Reflect</strong> (~3 min)</p>
+<p>Write a few sentences responding to the following questions:</p>
+<ul>
+<li>What are your goals in taking this class?</li>
+<li>Do you see your goals reflected in the course learning goals? If not, how would you like to see the course goals amended to see your goals reflected in them?</li>
+</ul>
+<p><strong>Part 2: Share</strong> (~5 min)</p>
+<p>At your tables, take turns sharing your responses to the above questions. As a group, summarize your discussion in <a href="https://docs.google.com/document/d/1yeGAInJx9U_VLNqKlUkPACkHcpzJ0qi_evqHC7wn0lk/edit?usp=sharing">this Google Doc</a>.</p>
+<p>Before we meet again next Tuesday, I will look over your comments in the Google Doc and add my own responses. I’ll address your comments in class next Tuesday.</p>
+<p><br><br></p>
+</section>
+<section id="course-project-brainstorming" class="level2">
+<h2 class="anchored" data-anchor-id="course-project-brainstorming">Course project: brainstorming</h2>
+<p>In a data science course, a course project is essential for synthesizing our tools in a meaningful context.</p>
+<p>Our course project will be a semester-long experience because I believe that this longer time span will improve the quality of the projects.</p>
+<p>We will start brainstorming ideas today using a framework called the <strong>12 Favorite Problems (12FP)</strong>.</p>
+<p><br><br></p>
+</section>
+<section id="favorite-problems-context" class="level2">
+<h2 class="anchored" data-anchor-id="favorite-problems-context">12 Favorite Problems: context</h2>
+<p>Richard Feynman was a Nobel prize-winning physicist whose contributions fundamentally reshaped our understanding of the physical world.</p>
+<p>A major part of his success was a <em>method</em> for viewing the world: a mindset of viewing the world through the lens of several open-ended questions. Feynman called these his “favorite problems.” He said of these problems:</p>
+<blockquote class="blockquote">
+<p>You have to keep a dozen of your favorite problems constantly present in your mind, although by and large they will lay in a dormant state. Every time you hear or read a new trick or a new result, test it against each of your twelve problems to see whether it helps. Every once in a while there will be a hit, and people will say, “How did [they] do it? [They] must be a genius!”</p>
+<p>Quote source: <a href="https://fortelabs.com/blog/12-favorite-problems-how-to-spark-genius-with-the-power-of-open-questions/">Forte Labs</a></p>
+</blockquote>
+<p><br><br></p>
+</section>
+<section id="the-12-favorite-problems-framework" class="level2">
+<h2 class="anchored" data-anchor-id="the-12-favorite-problems-framework">The 12 Favorite Problems framework</h2>
+<p>A favorite problem is a meaningful, open-ended question that allows you to learn, explore, and act with intention on your biggest interests in life. Here are two of mine:</p>
+<ul>
+<li>How can I be the kind of mother I can feel proud of without losing myself?</li>
+<li>How can I have a fulfilling career without burning out?</li>
+</ul>
+<p>Formulating several of these favorite problems can lead to several benefits:</p>
+<blockquote class="blockquote">
+<ul>
+<li>Dedicate your time and attention to ideas that truly spark your curiosity</li>
+<li>See how a piece of information might be useful and why it’s worth keeping</li>
+<li>See insightful patterns across multiple subjects that seem unrelated, but might share a common thread</li>
+<li>Focus the impact of your work on problems where you can make a real difference</li>
+<li>Prime your subconscious to notice helpful solutions to your biggest challenges in the world around you</li>
+<li>Attract like-minded people who have the same interests and goals as you</li>
+</ul>
+<p>Source: <a href="https://fortelabs.com/blog/12-favorite-problems-how-to-spark-genius-with-the-power-of-open-questions/">Forte Labs</a></p>
+</blockquote>
+<p><strong>Relevance to our course:</strong> Brainstorming 12 favorite problems can help us determine some questions that the course project can address.</p>
+<p><br><br></p>
+</section>
+<section id="brainstorming-our-12-favorite-problems-fps" class="level2">
+<h2 class="anchored" data-anchor-id="brainstorming-our-12-favorite-problems-fps">Brainstorming our 12 favorite problems (FPs)</h2>
+<ul>
+<li>Open up a blank file in which to type.</li>
+<li>Navigate to <a href="https://fortelabs.com/blog/how-to-generate-your-own-favorite-problems-a-4-step-guide/">this article</a> by Tiago Forte, and scroll down to the first step “Get started with these prompts.”</li>
+<li>Using these prompts, take about 15 minutes to brainstorm your own 12 favorite problems.
+<ul>
+<li>Tiago Forte provides examples of his 12 FPs in his post. Feel free to also look at <a href="https://www.lesliemyint.org/12-favorite-problems">my own</a> for more examples. (I’m working on updating my 12 FPs today alongside you!)</li>
+</ul></li>
+</ul>
+<p><strong>Save your 12FP file in a place you’ll be able to find easily.</strong></p>
+<p><br><br></p>
+</section>
+<section id="sharing-and-refining-our-12-fps" class="level2">
+<h2 class="anchored" data-anchor-id="sharing-and-refining-our-12-fps">Sharing and refining our 12 FPs</h2>
+<p>In groups, each person will have ~2 minutes to share their top 2 FPs and get some feedback from the group. The group should give feedback to help make the FPs more specific, counterintuitive, and interdiscipinary:</p>
+<ul>
+<li><strong>Specific:</strong>
+<ul>
+<li>Original: “How can I be a better leader?” is a little broad.</li>
+<li>Possible improvement: “How can I be a better leader <em>as an introvert</em>?”</li>
+</ul></li>
+<li><strong>Counterintuitive:</strong>
+<ul>
+<li>Original: “How can I improve the standard of living in the global south?”</li>
+<li>Possible improvement: “How can I improve the standard of living in the global south <em>without further contributing to the climate change that threatens those regions the most</em>?”</li>
+</ul></li>
+<li><strong>Interdisciplinary:</strong>
+<ul>
+<li>Original: How can I improve education?”</li>
+<li>Possible improvement: “How can I improve education <em>by borrowing ideas from video games</em>?”</li>
+</ul></li>
+</ul>
+<p>(Examples from <a href="https://fortelabs.com/blog/how-to-generate-your-own-favorite-problems-a-4-step-guide/">Forte Labs</a>)</p>
+<p><br><br></p>
+</section>
+<section id="broadcast-your-signal-to-start-finding-your-people" class="level2">
+<h2 class="anchored" data-anchor-id="broadcast-your-signal-to-start-finding-your-people">Broadcast your signal to start finding your people</h2>
+<ul>
+<li>Join our course Slack workspace via <a href="https://join.slack.com/t/slack-pkg2674/shared_invite/zt-2anlsakl1-jsi2X98qrYwVXPWa_3O2TQ">this invite link</a>.
+<ul>
+<li>If you’ve already joined, navigate to our Slack workspace <a href="https://statcomp212spring2024.slack.com">here</a>.</li>
+</ul></li>
+<li>In the <code>#general</code> channel, write a very brief post in which you:
+<ul>
+<li>Introduce yourself however you see fit.</li>
+<li>Describe the general areas that your 12 favorite problems tend to cover.</li>
+<li>If you already feel a pull towards a project area, share that too.</li>
+</ul></li>
+</ul>
+<p><br><br></p>
+</section>
+<section id="project-opportunity-collaborating-with-a-community-partner" class="level2">
+<h2 class="anchored" data-anchor-id="project-opportunity-collaborating-with-a-community-partner">Project opportunity: collaborating with a community partner</h2>
+<p><a href="https://igniteafterschool.org/">Ignite Afterschool</a> is looking to partner with data science students on a few fronts:</p>
+<ul>
+<li>They are looking to update the <a href="https://igniteafterschool.org/afterschool-access">data briefs</a> that they use to communicate with families about the impact of afterschool programming.
+<ul>
+<li>This will involve looking at data from the <a href="https://www.health.state.mn.us/data/mchs/surveys/mss/index.html">Minnesota Student Survey</a>. (I already have access to this data.)</li>
+<li>There is opportunity for creative input from students on how best to display this information.</li>
+</ul></li>
+<li>They are also looking for help with a data-driven policy analysis surrounding the impact of the recent cannabis legalization laws on youth outcomes. There is potential to explore this with the MN Student Survey data as well as other data.</li>
+</ul>
+<p>If you are interested in this opportunity, please reach out to me by <strong>Tuesday, January 23</strong>.</p>
+<p><br><br></p>
+</section>
+<section id="tidy-tuesday" class="level2">
+<h2 class="anchored" data-anchor-id="tidy-tuesday">Tidy Tuesday!</h2>
+<p>For the remainder of the class period, we’ll work on the most recent <a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-01-16/readme.md">Tidy Tuesday challenge</a>.</p>
+<p>Feel free to clarify anything about the course with me during this time!</p>
+<p><br><br></p>
+</section>
+<section id="announcements" class="level2">
+<h2 class="anchored" data-anchor-id="announcements">Announcements</h2>
+<p>Before class on Tuesday, please do the following:</p>
+<ul>
+<li>Set up R and RStudio using <a href="./tech_setup.html">these instructions</a>.</li>
+<li>Update your Slack profile with preferred name, pronouns, name pronunciation. (To find your profile, click on your name under Direct Messages on the left menu, and click “Edit Profile”.)</li>
+<li>Complete the <a href="https://docs.google.com/forms/d/e/1FAIpQLSeCcC_B3-2jjuzHGReIwBlcVUgoGaFwWsdLlf4kqVPLd8mNYw/viewform?usp=sf_link">pre-course survey</a>.</li>
+<li>Look at the <a href="./schedule.html#guiding-questions">Guiding Questions</a> for next Tuesday’s class on advanced visualization with <code>ggplot2</code>.</li>
+<li>Take a look at <a href="./homework1.html">Homework 1</a>.</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">© Leslie Myint, 2024<br> All content licensed under <img src="https://static.thenounproject.com/png/70967-200.png" height="20"> (<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>)</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">Site built with <a href="https://quarto.org/">Quarto</a></div>
+  </div>
+</footer>
+
+
+
+</body></html>
