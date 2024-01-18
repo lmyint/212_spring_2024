@@ -14,6 +14,8 @@ Welcome to Intermediate Data Science! Last semester was the first offering of th
 - Brainstorming project ideas and connecting with potential project partners via the 12 Favorite Problems framework
 - Warming up our wrangling and visualization skills with Tidy Tuesday!
 
+(When I go through announcements at the end of class, I'll also go over some syllabus highlights.)
+
 
 <br><br>
 

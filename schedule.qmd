@@ -89,7 +89,7 @@ Guiding questions for pre-class readings and videos are available at the bottom 
     </td>
     
     <td class="topleft">
-      Turn in <a href="https://lmyint.github.io/212_spring_2024/homework2.html">HW2</a> by midnight on Monday 2/5. Prepare for <b>Skills Demonstration #1</b> next week (2/5-2/9).
+      Turn in <a href="https://lmyint.github.io/212_spring_2024/homework2.html">HW2</a> by midnight on Monday 2/5. Prepare for <b>Skills Session 1</b> next week (2/5-2/9).
     </td>
   </tr>
   <!----------------------------------------------------------->
@@ -109,7 +109,7 @@ Guiding questions for pre-class readings and videos are available at the bottom 
     </td>
     
     <td class="topleft">
-      <b>Skills Demonstration #1</b> will be happening this week. Turn in <a href="https://lmyint.github.io/212_spring 2024/homework3.html">HW3</a> (includes Project Milestone 1) by midnight on Monday 2/12.
+      <b>Skills Session 1</b> will be happening this week. Turn in <a href="https://lmyint.github.io/212_spring 2024/homework3.html">HW3</a> (includes Project Milestone 1) by midnight on Monday 2/12.
     </td>
   </tr>
   <!----------------------------------------------------------->
@@ -168,7 +168,7 @@ Guiding questions for pre-class readings and videos are available at the bottom 
     </td>
     
     <td class="topleft">
-      Schedule <b>Skills Demonstration #2</b> for next week (3/4-3/8) via <a href="https://calendly.com/lmyint">Calendly</a>.
+      Schedule <b>Skills Session 2</b> for next week (3/4-3/8) via <a href="https://calendly.com/lmyint">Calendly</a>.
     </td>
   </tr>
   <!----------------------------------------------------------->
@@ -188,7 +188,7 @@ Guiding questions for pre-class readings and videos are available at the bottom 
     </td>
     
     <td class="topleft">
-      <b>Skills Demonstration #2</b> will be happening this week. Turn in <a href="https://lmyint.github.io/212_spring 2024/homework6.html">HW6</a> (includes Project Milestone 3) by midnight on <b>FRIDAY</b> 3/8.
+      <b>Skills Session 2</b> will be happening this week. Turn in <a href="https://lmyint.github.io/212_spring 2024/homework6.html">HW6</a> (includes Project Milestone 3) by midnight on <b>FRIDAY</b> 3/8.
     </td>
   </tr>
   <!----------------------------------------------------------->
@@ -274,7 +274,7 @@ Guiding questions for pre-class readings and videos are available at the bottom 
     </td>
     
     <td class="topleft">
-      Schedule <b>Skills Demonstration #3</b> for next week (4/15-4/19) via <a href="https://calendly.com/lmyint">Calendly</a>.
+      Schedule <b>Skills Session 3</b> for next week (4/15-4/19) via <a href="https://calendly.com/lmyint">Calendly</a>.
     </td>
   </tr>
   <!----------------------------------------------------------->
@@ -292,7 +292,7 @@ Guiding questions for pre-class readings and videos are available at the bottom 
     </td>
     
     <td class="topleft">
-      <b>Skills Demonstration #3</b> will be happening this week.
+      <b>Skills Session 3</b> will be happening this week.
     </td>
   </tr>
   <!----------------------------------------------------------->
