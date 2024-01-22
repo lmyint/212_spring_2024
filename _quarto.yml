@@ -32,7 +32,7 @@ website:
       title: "Activities"
       contents:
         - 01-introductions.qmd
-        # - 02-adv-ggplot.qmd
+        - 02-adv-ggplot.qmd
 
     - id: homework
       title: "Homework"

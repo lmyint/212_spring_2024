@@ -1,5 +1,6 @@
 ---
 title: "Syllabus"
+sidebar: false
 ---
 
 # What is this course about?
@@ -75,17 +76,22 @@ By the end of this course you should be able to:
 
 **About me:** One of my greatest joys is sharing the beauty of data-driven thinking, so I'm thrilled to be teaching this course! I also get very excited talking about all things games! I love playing board games, Dungeons and Dragons (D&D), and Nintendo console games. I also love staying active with weightlifting and rock climbing and hoping to learn cross-country skiing this winter!
 
+![Kyle Suelflow (preceptor)](images/kyle.jpg){width=200 fig-align="left"}
+
 **Kyle Suelflow (preceptor)**
 
-- **About me:**
+- **About me:** I am super excited to be precepting this course! I am a Sophomore Data Science major. We did lots of cool things last semester, and I hope you all will enjoy it as much as I did. I am a captain of the open ultimate frisbee team here at Mac, and I love to go hiking. I am hoping to go abroad and hike somewhere over the summer. Like Leslie, I also really enjoy board games and playing cards.
+
+![Na Nguyen (preceptor)](images/na.jpg){width=200 fig-align="left"}
 
 **Na Nguyen (preceptor)**
 
-- **About me:**
+- **About me:** Class of 2025 | Hanoi, Vietnam | Data Science and International Studies (major), Educational Studies (minor) | An EdTech enthusiast
 
 **Graham Elliot (preceptor)**
 
-- **About me:**
+- **About me:** Hi Everyone! My name is Graham and I am a senior Data Science major here at Mac. I am really excited to help all of you with anything you need this semester, data science or otherwise. I love everything sports and everything movies, and I also do a lot of running. Please feel free to reach out and come to office hours whenever you need help with anything. 
+
 
 ## How to contact me
 

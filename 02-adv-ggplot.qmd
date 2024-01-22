@@ -3,9 +3,11 @@ title: "Advanced Data Visualization in ggplot2"
 sidebar: false
 ---
 
-```{r echo=FALSE, message=FALSE}
+```{r doc_setup, echo=FALSE, message=FALSE}
 library(tidyverse)
 knitr::opts_chunk$set(fig.align="center")
+
+weather <- read_csv("data/sfo_weather.csv")
 ```
 
 # Learning goals
@@ -20,7 +22,23 @@ After this lesson, you should be able to:
 - Identify when it would be necessary to use different `data` arguments within the `ggplot()` and `geom_()` layers
 
 
-<br><br><br>
+<br><br><br><br>
+
+
+# Debrief on course learning goals
+
+In reviewing [your reflections](https://docs.google.com/document/d/1yeGAInJx9U_VLNqKlUkPACkHcpzJ0qi_evqHC7wn0lk/edit?usp=sharing) about our [course learning goals](syllabus.qmd#course-learning-goals), I noted the following:
+
+- An overall desire to integrate more complex wrangling, visualization, and storytelling as part of the project experience to create a great addition to your data science portfolios.
+    - Our project experience does align with this desire.
+    - Regularly doing [Tidy Tuesday](https://github.com/rfordatascience/tidytuesday/) challenges is another way to build up your portfolio. (Doing at least 5 of these is an option for earning an A in this course.) 
+
+- An interest in gaining experience with Python.
+    - I was unable to figure out how to fit Python in well last semester. Most of what we will be doing in this course can be done **very well** in R. (Some tasks like data visualization and wrangling are arguably much better in R than in Python.)
+    - We have about 3 flex weeks at the end of the semester. Let's plan to spend part of this time exploring some tools that are better in Python.
+
+
+<br><br><br><br>
 
 
 # Setting up your class journal
@@ -41,29 +59,31 @@ Directions:
 - Leave this document open during class to record observations.
 
 
-<br><br><br>
+<br><br><br><br>
 
 
 # Case study: recreating a NYT visualization
 
-You can download a template Quarto file to start from [here](activity_templates/02-adv-ggplot.qmd). Put this file in an `activities` folder within a folder for this course.
+You can download a template Quarto file to start from [here](activity_templates/02-adv-ggplot.qmd). Put this file in a folder called `adv_ggplot` within a folder for this course.
+
+## The goal
 
 We are going to recreate [this NYT visualization](https://www.nytimes.com/interactive/2016/02/19/us/2015-year-in-weather-temperature-precipitation.html) on record setting temperatures by expanding our `ggplot2` toolbox using data from San Francisco (SFO) in 2011.
 
 ![Screenshot of NYTimes visualization from 2015](images/sfo_nytimes.jpg)
 
+## Setup
+
 First load the `tidyverse` package, and read in the San Francisco weather [data](data/sfo_weather.csv).
 
-```{r eval=FALSE}
+```{r setup, eval=FALSE}
 library(tidyverse)
-weather <- read_csv("https://lmyint.github.io/212_fall_2023/data/sfo_weather.csv")
+weather <- read_csv("https://lmyint.github.io/212_spring_2024/data/sfo_weather.csv")
 ```
 
-**Class exercise 1:** Examine the temperature visualization. What variables underlie the visualization, and how do they map to visual elements (e.g., position, size, shape, and color of the glyphs)?
+## Codebook
 
-------------------------------------------------------------------------
-
-We can explore the "Geoms" section of the [ggplot2 reference page](https://ggplot2.tidyverse.org/reference/) to find a `geom` that corresponds to the visual elements in the temperature plot. Refer to the variable codebook below for the next exercise.
+You will need to refer to the variable codebook below throughout this activity.
 
 - `Month`: Month of the year (1-12)
 - `Day`: Day within the month (1-31)
@@ -80,6 +100,21 @@ We can explore the "Geoms" section of the [ggplot2 reference page](https://ggplo
 - `RecordText`: Text that displays the record high for this day (`"Record high: ##"`)
 - `RecordP`: Logical (TRUE/FALSE) indicating whether this day had a precipitation record
 - `CulmPrec`: Cumulative precipitation for the month up to this day
+
+
+<br><br>
+
+
+## Class exercises
+
+**Class exercise 1:** Examine the temperature visualization in the [original NYT article](https://www.nytimes.com/interactive/2016/02/19/us/2015-year-in-weather-temperature-precipitation.html).
+
+- **Data storytelling:** Relate the intro paragraph ("Scientists declared that 2015 was Earth’s hottest year on record...") to the *design* of the visualization: Based on the intro paragraph, what key message/claim does NYT want readers to be able to explore? How did this goal inform what information is displayed in the visualization?
+- **Techinical implementation:** What specific variables (from the codebook) underlie the visualization, and how do they map to visual elements (e.g., position, size, shape, and color of the glyphs)?
+
+------------------------------------------------------------------------
+
+We can explore the "Geoms" section of the [ggplot2 reference page](https://ggplot2.tidyverse.org/reference/) to find a `geom` that corresponds to the visual elements in the temperature plot.
 
 **Class exercise 2:** Using both the small example visuals on the right and the names of the `geom`'s, brainstorm some possibilities for `geom`'s we might use to recreate the temperature visualization.
 
@@ -99,7 +134,7 @@ The **Arguments** section explains in detail what each argument does and the pos
 
 **A note about the `data` argument:** Previously you have used one dataset per plot by specifying that as the first argument of `ggplot()`. For example, the code below makes a scatterplot of price vs. carat in the `diamonds` dataset, and the only `data` argument is in `ggplot()` (none in `geom_point()`).
 
-```{r}
+```{r diamonds_scatter}
 data(diamonds)
 head(diamonds)
 
@@ -108,7 +143,7 @@ ggplot(diamonds, aes(x = carat, y = price)) +
     theme_classic()
 ```
 
-```{r eval=FALSE}
+```{r diamonds_scatter_explicit_args, eval=FALSE}
 # Note that we can make the same plot by specifying the argument names explicitly:
 ggplot(data = diamonds, mapping = aes(x = carat, y = price)) +
     geom_point() +
@@ -117,7 +152,7 @@ ggplot(data = diamonds, mapping = aes(x = carat, y = price)) +
 
 Sometimes we may want to use more than one dataset in a plot. For example, we have a separate dataset that contains average prices of diamonds by carat:
 
-```{r echo=FALSE}
+```{r create_diamonds_avg, echo=FALSE}
 diamonds_avg_price <- diamonds %>%
     group_by(carat) %>%
     summarize(avg_price = mean(price)) %>%
@@ -125,13 +160,13 @@ diamonds_avg_price <- diamonds %>%
 diamonds_avg_price <- diamonds_avg_price[seq(1,nrow(diamonds_avg_price),3),]
 ```
 
-```{r}
+```{r display_diamonds_avg}
 head(diamonds_avg_price)
 ```
 
 We can use this separate `diamonds_avg_price` dataset in the `geom_point()` layer to add average price information to our scatterplot:
 
-```{r}
+```{r diamonds_scattter_with_avgs}
 ggplot(diamonds, aes(x = carat, y = price)) +
     geom_point() +
     geom_point(data = diamonds_avg_price, aes(x = carat, y = avg_price), color = "deepskyblue", size = 3)
@@ -139,21 +174,25 @@ ggplot(diamonds, aes(x = carat, y = price)) +
 
 The **Aesthetics** section of a `geom` documentation page gives information on how the visual elements of the `geom` correspond to data. For example, the `geom_point` [documentation page](https://ggplot2.tidyverse.org/reference/geom_point.html) shows that the familiar `x` and `y` aesthetics are available. It also shows some new aesthetics like `stroke`.
 
-```{r echo=FALSE, message=FALSE}
-weather <- read_csv("data/sfo_weather.csv")
-```
-
 We can use the same process to look at the `geom_linerange` [documentation page](https://ggplot2.tidyverse.org/reference/geom_linerange.html) and start off our temperature visualization with the record lows and highs:
 
-```{r}
+```{r weather_plot_temp_records}
 ggplot(weather) +
     geom_linerange(aes(x = dateInYear, ymin = RecordLow, ymax = RecordHigh), color = "#ECEBE3", linewidth = 1.5) +
     theme_classic()
 ```
 
+::: {.callout-tip collapse="false" title="Keyboard shortcuts"}
+As you work on this plot, try to use some new [keyboard shortcuts](https://lmyint.github.io/IntermediateDataSciNotes/keyboard.html). Focus on the following:
+
+- Insert code chunk: `Ctrl+Alt+I` (Windows). `Option+Command+I` (Mac).
+- Run current code chunk: `Ctrl+Shift+Enter` (Windows). `Command+Shift+Return` (Mac).
+- Run current line/currently selected lines: `Ctrl+Enter` (Windows). `Command+Return` (Mac).
+:::
+
 **Class exercise 3:** Add to your temperature visualization to also display the usual temperatures (`NormalLow` and `NormalHigh`), and actual 2011 temperatures (`Low` and `High`). Your plot should look like the one below. The tan color for the usual temperatures is `"#C8B8BA"`, and the red color for the actual temperatures is `"#A90248"`.
 
-```{r echo=FALSE}
+```{r weather_plot_temp_all, echo=FALSE}
 ggplot(weather, aes(x = dateInYear)) +
     geom_linerange(aes(ymin = RecordLow, ymax = RecordHigh), color = "#ECEBE3", linewidth = 1.5) +
     geom_linerange(aes(ymin = NormalLow, ymax = NormalHigh), color = "#C8B8BA", linewidth = 1.5) +
@@ -177,39 +216,22 @@ Now let's change the x-axis labels so that the month names display in the center
 
 - **Google:** Start by just using Google search queries. Collaborate with your group to try to word your search queries as carefully as possible (using the jargon that is most likely to return the most relevant results). Record search queries and your thought process in selecting which search results to look at first.
 
-- **AI group:** Next use [ChatGPT](https://chat.openai.com/). Collaborate with your group to brainstorm a series of prompts that will most efficiently get you the desired results. Record the chat prompts used and output given. Evaluate the output. Do you fully understand the code generated? How can you tell that the generated code is correct?
+- **AI:** Next use [ChatGPT](https://chat.openai.com/). Collaborate with your group to brainstorm a series of prompts that will most efficiently get you the desired results. Record the chat prompts used and output given. Evaluate the output. Do you fully understand the code generated? How can you tell that the generated code is correct?
 
 After we debrief on these approaches, we'll finalize this part of the plot together.
 
 
-<br><br><br>
+<br><br>
 
 
-# Practice
-
-In pairs (randomly formed), you will go through the same steps as above for the precipitation data. Here, and throughout the course, we will be using the **pair programming** technique.
-
-## Pair programming background
-
-In **pair programming**, two individuals use one computer and work together to solve the problem at hand. Each individual takes turns in one of two roles:
-
-- **Driver**: The Driver is at the computer typing and speaking their thought process out loud.
-- **Navigator**: The Navigator reviews all code that the Driver writes as it's typed, guides the overall direction of the code (keeps the instructions in mind), and pulls up references.
-
-**Why are we using pair programming?** Pair programming is [used effectively in industry](https://hackernoon.com/the-ultimate-guide-to-pair-programming-b606625bc784) to speed up individual employee's learning of a company's codebase and reduce time wasted on fixing bugs.
-
-## Your task
-
-**Before diving in to plot creation,** get to know your partner by telling each other about the general themes in your 12 favorite problems (FPs). Try to find some overlap in your themes and share one of your FPs that relates to that overlapping theme.
+## Group work
 
 Work together until your precipitation plot looks as below.
 
-- The `culmPrec` variable contains cumulative precipitation for the month up to the given day.
-- The `recordP` variable is a TRUE/FALSE indicator of whether a day was a precipitation record. These are marked by the downward pointing triangles.
 - The numbers on the plot indicate the total precipitation for the month. Do some searching about the `hjust` and `vjust` options to adjust the alignment of the numbers.
 - The blue and tan colors are `"#32a3d8"` and `"#ebeae2"`.
 
-```{r echo=FALSE}
+```{r weather_plot_precip, echo=FALSE}
 month_end_rain <- weather %>% group_by(Month) %>% filter(Day==max(Day))
 
 ggplot(weather) +
@@ -220,21 +242,32 @@ ggplot(weather) +
     theme_classic()
 ```
 
-**When should the Driver and Navigator switch roles?** For this exercise, you will switch roles once a particular plot layer (one `geom`) has been implemented correctly. You can send code back and forth via email or a direct message on Slack.
+::: {.callout-tip collapse="false" title="Reminder: Record and observe"}
+As you work through this new phase of the plot, makes notes in your personal class journal about anything that you tried that didn't work the way you wanted: geoms that you tried but didn't make the right plot, faulty aesthetic mappings, error messages, and warning messages.
 
-::: {.callout-tip collapse="false"}
-## Stop to Reflect
+Also be aware of your comforts and discomforts in this collaborative environment. Pay attention to the comforts and discomforts of your groupmates.
 
-As you pair program, be aware of your comforts and discomforts in the roles of driver and navigator. Pay attention to the comforts and discomforts of your partner. What could you do to support them in becoming more comfortable and confident in both roles?
+We'll have a few minutes at the end of class to reflect holistically on today's activity.
 :::
 
-::: {.callout-tip collapse="false"}
-## Record Errors
-Every time you run into a new error, record the error message and your process for fixing the error in the "Error Log" section of the Quarto file for these exercises.
-:::
+<br>
+
+If you have time, keep working with each other on your plots to get them to look as below (which shows your goal for Challenge 1).
+
+![SFO weather in 2011 (minimum requirements for Challenge 1 submission)](images/hw1_goal.png)
 
 
-<br><br><br>
+<br><br><br><br>
+
+
+## Reflect
+
+In terms of both coding and collaboration, what challenges did you face today? What did you do to address those challenges? What would you like to try for next time?
+
+Take a few minutes to write some thoguhts in your personal course journal.
+
+
+<br><br><br><br>
 
 
 # Challenge 1
@@ -242,3 +275,12 @@ Every time you run into a new error, record the error message and your process f
 Navigate to [Challenge 1](https://classroom.github.com/a/u96MWDm2) on GitHub to clone the repository for this challenge. Challenge 1 involves finishing this NYT visualization recreation and is part of [Homework 1](homework1.qmd).
 
 
+<br><br><br><br>
+
+
+# Announcements
+
+- If you are interested in partnering with Ignite Afterschool for the course project, send me a message by 5pm today. (See [here](01-introductions.qmd#project-opportunity-collaborating-with-a-community-partner) for details about this collaboration.)
+- Take a look at the [Schedule page](schedule.qmd) to see how to prepare for Thursday
+- Look through your peers' introductions in the `#general` channel on [Slack](https://statcomp212spring2024.slack.com) to see who you connect with and who might be a potential good project partner.
+    - If you have not already introduced yourself, please post an introduction so that others can connect with you.

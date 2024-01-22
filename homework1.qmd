@@ -16,7 +16,7 @@ Nothing to turn in for this section, but please do the following:
 
 **Asynchronous skills challenges**
 
-- **Advanced visualization with ggplot2 - Challenge 1:** Navigate to the challenge on [GitHub](https://classroom.github.com/a/u96MWDm2). This challenge involves finishing the plot that we started in our [Advanced Data Visualization in ggplot2](02-adv-ggplot.qmd#homework) class activity.
+- **Advanced visualization with ggplot2 - Challenge 1:** Navigate to the challenge on [GitHub](https://classroom.github.com/a/u96MWDm2). This challenge involves finishing the plot that we started in our [Advanced Data Visualization in ggplot2](02-adv-ggplot.qmd) class activity.
 
 <br>
 
