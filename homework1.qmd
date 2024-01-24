@@ -5,6 +5,12 @@ sidebar: false
 
 # Required parts
 
+<center>
+Due by **Monday, January 29** at midnight.
+</center>
+
+<br><br>
+
 **Getting acquainted with Git and GitHub**
 
 Nothing to turn in for this section, but please do the following:

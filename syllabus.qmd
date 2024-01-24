@@ -96,6 +96,10 @@ By the end of this course you should be able to:
 
 <br><br><br><br><br>
 
+<span style="float: left; padding-right: 20px; padding-bottom: 20px;">
+![](images/graham.png){width=200 fig-align="left"}
+</span>
+
 **Graham Elliot (preceptor)**
 
 **About me:** Hi Everyone! My name is Graham and I am a senior Data Science major here at Mac. I am really excited to help all of you with anything you need this semester, data science or otherwise. I love everything sports and everything movies, and I also do a lot of running. Please feel free to reach out and come to office hours whenever you need help with anything. 

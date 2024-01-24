@@ -228,6 +228,7 @@ After we debrief on these approaches, we'll finalize this part of the plot toget
 
 Work together until your precipitation plot looks as below.
 
+- The triangles point to precipitation records. Refer to the Codebook above for the `RecordP` variable.
 - The numbers on the plot indicate the total precipitation for the month. Do some searching about the `hjust` and `vjust` options to adjust the alignment of the numbers.
 - The blue and tan colors are `"#32a3d8"` and `"#ebeae2"`.
 

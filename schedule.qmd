@@ -78,8 +78,8 @@ Guiding questions for pre-class readings and videos are available at the bottom 
       <b>1/30: Advanced map visualization</b> <br>
       <span class="b4">Before class:</span>
       <ul>
-        <li>Install the following R packages: ___</li>
         <li>Watch <a href="https://youtu.be/xJyJlKbZFlc?si=pc7ThQPO-v8ur-qx">this video</a> on Coordinate Reference Systems, and answer the Guiding Questions at the bottom of this page.</li>
+        <li>Run the package installation commands in the Guiding Questions section at the bottom of this page.</li>
       </ul>
     </td>
     
@@ -100,7 +100,7 @@ Guiding questions for pre-class readings and videos are available at the bottom 
     
     <td class="topleft">
       <b>2/6: Interactive visualization</b> <br>
-      <span class="b4">Before class:</span> Install the <span style="font-family: Courier New;">shiny</span> and <span style="font-family: Courier New;">plotly</span> R packages.
+      <span class="b4">Before class:</span> Install the <span class="code">shiny</span> and <span class="code">plotly</span> R packages.
     </td>
     
     <td class="topleft">
@@ -390,13 +390,47 @@ p10 <- ggplot(diamonds, aes(x = carat, y = price, color = cut)) + geom_point() +
 grid.arrange(p9, p10, nrow = 1)
 ```
 
+<details>
+    <summary>Solution</summary>
+
+```{r eval=FALSE}
+library(gridExtra)
+p1 <- ggplot(diamonds, aes(x = cut)) + geom_bar() + theme_classic()
+p2 <- ggplot(diamonds, aes(x = price)) + geom_histogram() + theme_classic()
+p3 <- ggplot(diamonds, aes(x = price)) + geom_density() + theme_classic()
+grid.arrange(p1, p2, p3, nrow = 1)
+
+p4 <- ggplot(diamonds, aes(x = cut, y = price)) + geom_boxplot() + theme_classic()
+p5 <- ggplot(diamonds, aes(x = price, color = cut)) + geom_density() + theme_classic()
+grid.arrange(p4, p5, nrow = 1)
+
+p6 <- ggplot(diamonds, aes(x = cut, fill = color)) + geom_bar() + theme_classic()
+p7 <- ggplot(diamonds, aes(x = cut, fill = color)) + geom_bar(position = "dodge") + theme_classic()
+p8 <- ggplot(diamonds, aes(x = cut, fill = color)) + geom_bar(position = "fill") + theme_classic()
+grid.arrange(p6, p7, p8, nrow = 1)
+
+p9 <- ggplot(diamonds, aes(x = carat, y = price)) + geom_point() + theme_classic()
+p10 <- ggplot(diamonds, aes(x = carat, y = price, color = cut)) + geom_point() + geom_smooth(method = "lm") + theme_classic()
+grid.arrange(p9, p10, nrow = 1)
+```
+
+</details>
+
 ## 1/30: Advanced map visualization
 
 After/while watching [this video](https://youtu.be/xJyJlKbZFlc?si=pc7ThQPO-v8ur-qx) on Coordinate Reference Systems (CRS), answer the following questions:
 
 - What is the shape of the Earth?
-- Why is GDA94 a great datum name?
 - What are the two components of a CRS/GCS?
 - Why do we use many different local CRSs rather than just one CRS for the whole earth?
 - Why is it insufficient to identify a location by its latitude and longitude?
 - Why do we need to be mindful about CRSs when working with different spatial datasets?
+
+Run the following package installation commands:
+
+```{r eval=FALSE}
+install.packages(c("sf", "elevatr", "terra", "stars", "tidycensus", "remotes"))
+install.packages("USAboundariesData", repos = "http://packages.ropensci.org", type = "source")
+remotes::install_github("ropensci/USAboundaries")
+```
+
