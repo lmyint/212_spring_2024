@@ -64,7 +64,7 @@ You will need to refer to the variable codebook below throughout this activity.
 **Class exercise 1:** Examine the temperature visualization in the [original NYT article](https://www.nytimes.com/interactive/2016/02/19/us/2015-year-in-weather-temperature-precipitation.html).
 
 - **Data storytelling:** Relate the intro paragraph ("Scientists declared that 2015 was Earth’s hottest year on record...") to the *design* of the visualization: Based on the intro paragraph, what key message/claim does NYT want readers to be able to explore? How did this goal inform what information is displayed in the visualization?
-- **Techinical implementation:** What specific variables (from the codebook) underlie the visualization, and how do they map to visual elements (e.g., position, size, shape, and color of the glyphs)?
+- **Technical implementation:** What specific variables (from the codebook) underlie the visualization, and how do they map to visual elements (e.g., position, size, shape, and color of the glyphs)?
 
 ------------------------------------------------------------------------
 

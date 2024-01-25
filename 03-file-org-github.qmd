@@ -1,0 +1,177 @@
+---
+title: "File organization, GitHub"
+sidebar: false
+---
+
+# Learning goals
+
+After this lesson, you should be able to:
+
+- Set up an organized directory structure for data science projects
+- Explain the difference between absolute and relative file paths and why relative file paths are preferred for reading in data
+- Construct relative file paths to read in data
+- Use the following `git` commands within RStudio (whether via the GUI or by the Terminal command line): `clone`, `add`, `commit`, `push`
+
+
+<br><br><br><br>
+
+
+# File organization and navigation
+
+## Folder/directory structure
+
+**Minimal directory structure for a data science project:** (Sub-bullets indicate folders that are inside other folders.) At minimum, a data science project should have a `code`, `data`, and `results` folder. Not having these folders and mixing code, data, and results files all in one folder can quickly get hard to navigate for even small projects.
+
+- `Documents` (This should be some place you can find *easily* through your Finder (Mac) or File Explorer (Windows).)
+    - `descriptive_project_name`
+        - `code`: All code files (`.R`, `.Rmd`, `.qmd`) should go here. Recommendation:
+            - `cleaning.qmd`: for data acquisition and wrangling. Save (write) the cleaned dataset at the end of this file with `readr::write_csv()`.
+            - `visualizations.qmd`: for exploratory and final plots
+            - `modeling.qmd`: for any statistical or predictive modeling
+        - `data`: All data files go here
+        - `results`: e.g., plots saved as images, results tables
+
+<br>
+
+**More involved directory structure for a data science project:** If you have a larger-scale project that involves a lot more code and data, the expanded directory structure below is useful:
+
+- `Documents`
+    - `descriptive_project_name`
+        - `code`
+            - `raw`: For messy code that you're actively working on
+            - `clean`: For code that you have cleaned up, documented, organized, and tested to run as expected
+        - `data`
+            - `raw`: Original data that hasn't been cleaned
+            - `clean`: Any non-original data that has been processed in some way
+        - `results`
+            - `figures`: Plots that will be used in communicating your project should go here. (Using screenshots of output in RStudio is not a good practice.)
+            - `tables`: Any sort of plain text file results (e.g., CSVs)
+
+
+## File paths
+
+::: {.callout-note title="What are file paths?"}
+A file path is a text string that tells a computer how to navigate from one location to another. We use file paths to read in (and write out) data.
+
+**Essentially, file paths are what go inside `read_csv()`.**
+:::
+
+There are two types of paths: **absolute** and **relative**.
+
+**Absolute file paths** start at the "root" directory in a computer system. Examples:
+
+- Mac: `/Users/lesliemyint/Desktop/teaching/STAT212/2024_spring/activities/adv_ggplot/sfo_weather.csv`
+    - On a Mac the tilde `~` in a file path refers to the "Home" directory, which is `/Users/lesliemyint`. In this case, the path becomes `~/Desktop/teaching/STAT212/2024_spring/activities/adv_ggplot/sfo_weather.csv`
+- Windows: `C:/Users/lesliemyint/Documents/teaching/STAT212/2024_spring/activities/adv_ggplot/sfo_weather.csv`
+    - Note: Windows uses both `/` (forward slash) and `\` (backward slash) to separate folders in a file path.
+
+::: {.callout-caution title="DON'T use absolute paths"}
+For reading in data, absolute paths are not a good idea because if the code file is shared. The path will not work on a different computer.
+:::
+
+<br>
+
+**Relative file paths** start wherever you are right now (the **working directory (WD)**). The WD when you're working in a code file (`.Rmd`, `.qmd`) may be different from the working directory in the Console.
+
+*Directory setup 1:*
+
+- `some_folder`
+    - `your_code_file.qmd`
+    - `data.csv`
+    
+To read in the data:
+
+```{r rel_path1, eval=FALSE}
+data <- read_csv("data.csv")
+```
+
+*Directory setup 2:*
+
+- `some_folder`
+    - `your_code_file.qmd`
+    - `data`
+        - `data.csv`
+
+To read in the data:
+
+```{r rel_path2, eval=FALSE}
+data <- read_csv("data/data.csv")
+```
+
+*Directory setup 3:*
+
+- `some_folder`
+    - `data.csv`
+    - `code`
+        - `your_code_file.qmd`
+
+To go "up" a folder in a relative path we use `../`. To read in the data:
+
+```{r rel_path3, eval=FALSE}
+data <- read_csv("../data.csv")
+```
+
+*Directory setup 4:*
+
+- `some_folder`
+    - `data`
+        - `data.csv`
+    - `code`
+        - `your_code_file.qmd`
+
+To read in the data:
+
+```{r rel_path4, eval=FALSE}
+data <- read_csv("../data/data.csv")
+```
+
+::: {.callout-tip title="DO use relative paths"}
+For reading in data, relative paths are preferred because if the project directory structure is used on a different computer, the relative paths will still work.
+:::
+
+## Exercise
+
+Download [this Zip file](https://moodle.macalester.edu/mod/resource/view.php?id=83593) from Moodle, and save it to your class folder. After unzipping, open the `code/clean/cleaning.qmd` file in RStudio. Follow the instructions in that file.
+
+Exercise goals:
+
+- Practice using relative paths in a realistic project context
+- Practice data wrangling
+
+
+<br><br><br><br>
+
+
+# GitHub for working on skills challenges
+
+We'll step through the process from [Lisa Lendway's GitHub-RStudio setup video](https://youtu.be/QLFc9gw_Hfs?si=Ww--upiZ7hM2e1id) for *Advanced visualization with ggplot2 - Challenge 1*.
+
+<br>
+
+The remainder of class time today is yours to work on any of the following:
+
+- Advanced visualization with ggplot2 - [Challenge 1](https://classroom.github.com/a/u96MWDm2) (Part of [Homework 1](homework1.qmd))
+- Advanced visualization with ggplot2 - [Challenge 2](https://classroom.github.com/a/bl30jylw) (Will be part of Homework 2)
+
+::: {.callout-tip title="Reminder: Record and observe"}
+As you work to finalize your plots, try as best you can to observe your strategies for getting unstuck--what sorts of things do you try? Some ideas:
+
+- Draw the part of your plot that you expect your code will create. Then compare to what actually does happen.
+- Consult peers for different Google queries
+- Look at function documentation by entering `?function_name` in the Console. See what arguments might be tweaked to get what you want.
+:::
+
+
+<br><br><br><br>
+
+
+# Announcements
+
+- [Homework 1](homework1.qmd) is due Monday, January 29 at midnight.
+- [Skills Session 1](skills_session1.qmd) will be happening 2/5-2/9. Keep practicing the keyboard shortcuts described [here](https://lmyint.github.io/IntermediateDataSciNotes/keyboard.html).
+- Check our [Schedule](schedule.qmd) for next week: there is one video to watch before class on Tuesday (with Guiding Questions) and packages to install.
+
+
+
+
+

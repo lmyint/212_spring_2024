@@ -64,7 +64,7 @@ You will need to refer to the variable codebook below throughout this activity.
 **Class exercise 1:** Examine the temperature visualization in the [original NYT article](https://www.nytimes.com/interactive/2016/02/19/us/2015-year-in-weather-temperature-precipitation.html).
 
 - **Data storytelling:** Relate the intro paragraph ("Scientists declared that 2015 was Earth’s hottest year on record...") to the *design* of the visualization: Based on the intro paragraph, what key message/claim does NYT want readers to be able to explore? How did this goal inform what information is displayed in the visualization?
-- **Techinical implementation:** What specific variables (from the codebook) underlie the visualization, and how do they map to visual elements (e.g., position, size, shape, and color of the glyphs)?
+- **Technical implementation:** What specific variables (from the codebook) underlie the visualization, and how do they map to visual elements (e.g., position, size, shape, and color of the glyphs)?
 
 ------------------------------------------------------------------------
 
@@ -175,7 +175,7 @@ Work together until your precipitation plot looks as below.
 
 ![](https://lmyint.github.io/212_spring_2024/02-adv-ggplot_files/figure-html/weather_plot_precip-1.png)
 
-
+- The triangles point to precipitation records. Refer to the Codebook above for the `RecordP` variable.
 - The numbers on the plot indicate the total precipitation for the month. Do some searching about the `hjust` and `vjust` options to adjust the alignment of the numbers.
 - The blue and tan colors are `"#32a3d8"` and `"#ebeae2"`.
 

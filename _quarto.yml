@@ -33,6 +33,7 @@ website:
       contents:
         - 01-introductions.qmd
         - 02-adv-ggplot.qmd
+        - 03-file-org-github.qmd
 
     - id: homework
       title: "Homework"

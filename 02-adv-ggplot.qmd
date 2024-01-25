@@ -110,7 +110,7 @@ You will need to refer to the variable codebook below throughout this activity.
 **Class exercise 1:** Examine the temperature visualization in the [original NYT article](https://www.nytimes.com/interactive/2016/02/19/us/2015-year-in-weather-temperature-precipitation.html).
 
 - **Data storytelling:** Relate the intro paragraph ("Scientists declared that 2015 was Earth’s hottest year on record...") to the *design* of the visualization: Based on the intro paragraph, what key message/claim does NYT want readers to be able to explore? How did this goal inform what information is displayed in the visualization?
-- **Techinical implementation:** What specific variables (from the codebook) underlie the visualization, and how do they map to visual elements (e.g., position, size, shape, and color of the glyphs)?
+- **Technical implementation:** What specific variables (from the codebook) underlie the visualization, and how do they map to visual elements (e.g., position, size, shape, and color of the glyphs)?
 
 ------------------------------------------------------------------------
 
@@ -182,7 +182,7 @@ ggplot(weather) +
     theme_classic()
 ```
 
-::: {.callout-tip collapse="false" title="Keyboard shortcuts"}
+::: {.callout-tip title="Keyboard shortcuts"}
 As you work on this plot, try to use some new [keyboard shortcuts](https://lmyint.github.io/IntermediateDataSciNotes/keyboard.html). Focus on the following:
 
 - Insert code chunk: `Ctrl+Alt+I` (Windows). `Option+Command+I` (Mac).
@@ -243,7 +243,7 @@ ggplot(weather) +
     theme_classic()
 ```
 
-::: {.callout-tip collapse="false" title="Reminder: Record and observe"}
+::: {.callout-tip title="Reminder: Record and observe"}
 As you work through this new phase of the plot, makes notes in your personal class journal about anything that you tried that didn't work the way you wanted: geoms that you tried but didn't make the right plot, faulty aesthetic mappings, error messages, and warning messages.
 
 Also be aware of your comforts and discomforts in this collaborative environment. Pay attention to the comforts and discomforts of your groupmates.
@@ -265,7 +265,7 @@ If you have time, keep working with each other on your plots to get them to look
 
 In terms of both coding and collaboration, what challenges did you face today? What did you do to address those challenges? What would you like to try for next time?
 
-Take a few minutes to write some thoguhts in your personal course journal.
+Take a few minutes to write some thoughts in your personal course journal.
 
 
 <br><br><br><br>

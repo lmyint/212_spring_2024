@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>STAT/COMP 212 - Workflow: Files and RStudio setup</title>
+<title>STAT/COMP 212 - File organization, GitHub</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -105,6 +139,10 @@ ul.task-list li input[type="checkbox"] {
     <a class="dropdown-item" href="./02-adv-ggplot.html" rel="" target="">
  <span class="dropdown-text">Advanced Data Visualization in ggplot2</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./03-file-org-github.html" rel="" target="">
+ <span class="dropdown-text">File organization, GitHub</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -153,22 +191,15 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#file-organization-and-navigation" id="toc-file-organization-and-navigation" class="nav-link active" data-scroll-target="#file-organization-and-navigation">File organization and navigation</a>
+  <li><a href="#learning-goals" id="toc-learning-goals" class="nav-link active" data-scroll-target="#learning-goals">Learning goals</a></li>
+  <li><a href="#file-organization-and-navigation" id="toc-file-organization-and-navigation" class="nav-link" data-scroll-target="#file-organization-and-navigation">File organization and navigation</a>
   <ul class="collapse">
-  <li><a href="#change-the-default-file-download-location-for-your-internet-browser" id="toc-change-the-default-file-download-location-for-your-internet-browser" class="nav-link" data-scroll-target="#change-the-default-file-download-location-for-your-internet-browser">Change the default file download location for your internet browser</a></li>
-  <li><a href="#folderdirectory-structure" id="toc-folderdirectory-structure" class="nav-link" data-scroll-target="#folderdirectory-structure">Folder/directory structure</a>
-  <ul class="collapse">
-  <li><a href="#activity-clean-up-your-files-and-folders-for-class" id="toc-activity-clean-up-your-files-and-folders-for-class" class="nav-link" data-scroll-target="#activity-clean-up-your-files-and-folders-for-class">Activity: Clean up your files and folders for class</a></li>
+  <li><a href="#folderdirectory-structure" id="toc-folderdirectory-structure" class="nav-link" data-scroll-target="#folderdirectory-structure">Folder/directory structure</a></li>
   <li><a href="#file-paths" id="toc-file-paths" class="nav-link" data-scroll-target="#file-paths">File paths</a></li>
-  <li><a href="#activity-update-file-paths-in-maps-activity" id="toc-activity-update-file-paths-in-maps-activity" class="nav-link" data-scroll-target="#activity-update-file-paths-in-maps-activity">Activity: Update file paths in maps activity</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
   </ul></li>
-  </ul></li>
-  <li><a href="#rstudio-options" id="toc-rstudio-options" class="nav-link" data-scroll-target="#rstudio-options">RStudio options</a></li>
-  <li><a href="#keyboard-shortcuts" id="toc-keyboard-shortcuts" class="nav-link" data-scroll-target="#keyboard-shortcuts">Keyboard shortcuts</a>
-  <ul class="collapse">
-  <li><a href="#in-rstudio" id="toc-in-rstudio" class="nav-link" data-scroll-target="#in-rstudio">In RStudio</a></li>
-  <li><a href="#in-general-for-typing" id="toc-in-general-for-typing" class="nav-link" data-scroll-target="#in-general-for-typing">In general for typing</a></li>
-  </ul></li>
+  <li><a href="#github-for-working-on-skills-challenges" id="toc-github-for-working-on-skills-challenges" class="nav-link" data-scroll-target="#github-for-working-on-skills-challenges">GitHub for working on skills challenges</a></li>
+  <li><a href="#announcements" id="toc-announcements" class="nav-link" data-scroll-target="#announcements">Announcements</a></li>
   </ul>
 </nav>
     </div>
@@ -177,7 +208,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Workflow: Files and RStudio setup</h1>
+<h1 class="title">File organization, GitHub</h1>
 </div>
 
 
@@ -192,20 +223,42 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<section id="learning-goals" class="level1">
+<h1>Learning goals</h1>
+<p>After this lesson, you should be able to:</p>
+<ul>
+<li>Set up an organized directory structure for data science projects</li>
+<li>Explain the difference between absolute and relative file paths and why relative file paths are preferred for reading in data</li>
+<li>Construct relative file paths to read in data</li>
+<li>Use the following <code>git</code> commands within RStudio (whether via the GUI or by the Terminal command line): <code>clone</code>, <code>add</code>, <code>commit</code>, <code>push</code></li>
+</ul>
+<p><br><br><br><br></p>
+</section>
 <section id="file-organization-and-navigation" class="level1">
 <h1>File organization and navigation</h1>
-<section id="change-the-default-file-download-location-for-your-internet-browser" class="level2">
-<h2 class="anchored" data-anchor-id="change-the-default-file-download-location-for-your-internet-browser">Change the default file download location for your internet browser</h2>
-<ul>
-<li>Generally by default, internet browsers automatically save all files to the <code>Downloads</code> folder on your computer. This does not encourage good file organization practices. You need to change this option so that your browser asks you where to save each file before downloading it.</li>
-<li>This <a href="https://www.online-tech-tips.com/computer-tips/change-default-download-folder-location-on-any-web-browser/">page</a> has information on how to do this for the most common browsers.</li>
-</ul>
-</section>
 <section id="folderdirectory-structure" class="level2">
 <h2 class="anchored" data-anchor-id="folderdirectory-structure">Folder/directory structure</h2>
-<p>When working on any data science project, I recommend setting up the directory (folder) structure below. Sub-bullets indicate folders that are inside other folders.</p>
+<p><strong>Minimal directory structure for a data science project:</strong> (Sub-bullets indicate folders that are inside other folders.) At minimum, a data science project should have a <code>code</code>, <code>data</code>, and <code>results</code> folder. Not having these folders and mixing code, data, and results files all in one folder can quickly get hard to navigate for even small projects.</p>
 <ul>
 <li><code>Documents</code> (This should be some place you can find <em>easily</em> through your Finder (Mac) or File Explorer (Windows).)
+<ul>
+<li><code>descriptive_project_name</code>
+<ul>
+<li><code>code</code>: All code files (<code>.R</code>, <code>.Rmd</code>, <code>.qmd</code>) should go here. Recommendation:
+<ul>
+<li><code>cleaning.qmd</code>: for data acquisition and wrangling. Save (write) the cleaned dataset at the end of this file with <code>readr::write_csv()</code>.</li>
+<li><code>visualizations.qmd</code>: for exploratory and final plots</li>
+<li><code>modeling.qmd</code>: for any statistical or predictive modeling</li>
+</ul></li>
+<li><code>data</code>: All data files go here</li>
+<li><code>results</code>: e.g., plots saved as images, results tables</li>
+</ul></li>
+</ul></li>
+</ul>
+<p><br></p>
+<p><strong>More involved directory structure for a data science project:</strong> If you have a larger-scale project that involves a lot more code and data, the expanded directory structure below is useful:</p>
+<ul>
+<li><code>Documents</code>
 <ul>
 <li><code>descriptive_project_name</code>
 <ul>
@@ -227,56 +280,51 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 </ul></li>
 </ul>
-<p>From this point onward, we will use a simplified version of this directory structure for all of our class activities.</p>
-<section id="activity-clean-up-your-files-and-folders-for-class" class="level3">
-<h3 class="anchored" data-anchor-id="activity-clean-up-your-files-and-folders-for-class">Activity: Clean up your files and folders for class</h3>
-<p>Create a folder for this course in a place you can find <em>easily</em> through your Finder (Mac) or File Explorer (Windows). The name of this folder should not have spaces (use underscores <code>_</code> instead). Suggestion: <code>STAT212</code> or <code>COMP212</code></p>
-<p>Organize your files from class using the following directory structure:</p>
-<ul>
-<li><code>STAT212</code> (or <code>COMP212</code>)
-<ul>
-<li><code>advanced_ggplot</code> (For our <a href="./02-adv-ggplot.html">Advanced visualization in ggplot2</a> activity)
-<ul>
-<li><code>code</code>
-<ul>
-<li><code>02-adv-ggplot.qmd</code></li>
-</ul></li>
-<li><code>data</code></li>
-</ul></li>
-<li><code>advanced_maps</code> (For our <a href="03-adv-maps.qmd">Advanced map visualization</a> activity)
-<ul>
-<li><code>code</code>
-<ul>
-<li><code>03-adv-maps.qmd</code></li>
-</ul></li>
-<li><code>data</code>
-<ul>
-<li><code>apportionment.csv</code></li>
-<li><code>shp_loc_pop_centers</code> (From <code>shp_loc_pop_centers.zip</code>)</li>
-<li><code>shp_water_lakes_rivers</code> (From <code>shp_water_lakes_rivers.zip</code>)</li>
-<li><code>us_states_hexgrid.geojson</code></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
 </section>
-<section id="file-paths" class="level3">
-<h3 class="anchored" data-anchor-id="file-paths">File paths</h3>
-<p>In a code file, when you read in data from a source on your computer, you need to specify the <strong>file path</strong> correctly. The file path is a text string that tells you how to get from your code file to the data. There are two types of paths: absolute and relative.</p>
+<section id="file-paths" class="level2">
+<h2 class="anchored" data-anchor-id="file-paths">File paths</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="What are file paths?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+What are file paths?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A file path is a text string that tells a computer how to navigate from one location to another. We use file paths to read in (and write out) data.</p>
+<p><strong>Essentially, file paths are what go inside <code>read_csv()</code>.</strong></p>
+</div>
+</div>
+<p>There are two types of paths: <strong>absolute</strong> and <strong>relative</strong>.</p>
 <p><strong>Absolute file paths</strong> start at the “root” directory in a computer system. Examples:</p>
 <ul>
-<li>Mac: <code>/Users/lesliemyint/Desktop/teaching/STAT212/2023_fall/class_activities/advanced_maps/us_states_hexgrid.geojson</code>
+<li>Mac: <code>/Users/lesliemyint/Desktop/teaching/STAT212/2024_spring/activities/adv_ggplot/sfo_weather.csv</code>
 <ul>
-<li>On a Mac the tilde <code>~</code> in a file path refers to the “Home” directory, which is <code>/Users/lesliemyint</code>. In this case, the path becomes <code>~/Desktop/teaching/STAT212/2023_fall/class_activities/advanced_maps/us_states_hexgrid.geojson</code></li>
+<li>On a Mac the tilde <code>~</code> in a file path refers to the “Home” directory, which is <code>/Users/lesliemyint</code>. In this case, the path becomes <code>~/Desktop/teaching/STAT212/2024_spring/activities/adv_ggplot/sfo_weather.csv</code></li>
 </ul></li>
-<li>Windows: <code>C:/Users/lesliemyint/Documents/teaching/STAT212/2023_fall/class_activities/advanced_maps/us_states_hexgrid.geojson</code>
+<li>Windows: <code>C:/Users/lesliemyint/Documents/teaching/STAT212/2024_spring/activities/adv_ggplot/sfo_weather.csv</code>
 <ul>
 <li>Note: Windows uses both <code>/</code> (forward slash) and <code>\</code> (backward slash) to separate folders in a file path.</li>
 </ul></li>
 </ul>
+<div class="callout callout-style-default callout-caution callout-titled" title="DON'T use absolute paths">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+DON’T use absolute paths
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For reading in data, absolute paths are not a good idea because if the code file is shared. The path will not work on a different computer.</p>
+</div>
+</div>
 <p><br></p>
-<p><strong>Relative file paths</strong> start wherever you are right now (the <strong>working directory (WD)</strong>). The WD when you’re working in a code file may be different from the working directory in the Console.</p>
-<p><em>Directory setup 1: Data is in same folder as code file</em></p>
+<p><strong>Relative file paths</strong> start wherever you are right now (the <strong>working directory (WD)</strong>). The WD when you’re working in a code file (<code>.Rmd</code>, <code>.qmd</code>) may be different from the working directory in the Console.</p>
+<p><em>Directory setup 1:</em></p>
 <ul>
 <li><code>some_folder</code>
 <ul>
@@ -284,12 +332,11 @@ ul.task-list li input[type="checkbox"] {
 <li><code>data.csv</code></li>
 </ul></li>
 </ul>
-<p>There are two options for the relative path:</p>
-<ul>
-<li><code>./data.csv</code> (The <code>./</code> refers to the current working directory.)</li>
-<li><code>data.csv</code></li>
-</ul>
-<p><em>Directory setup 2: Data is within a subfolder called <code>data</code></em></p>
+<p>To read in the data:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><em>Directory setup 2:</em></p>
 <ul>
 <li><code>some_folder</code>
 <ul>
@@ -300,8 +347,11 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 </ul></li>
 </ul>
-<p>The relative path would be <code>data/data.csv</code>. (Note: <code>./data/data.csv</code> would also work.)</p>
-<p><em>Directory setup 3: Need to go to a “parent” folder first to get to the data</em></p>
+<p>To read in the data:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/data.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><em>Directory setup 3:</em></p>
 <ul>
 <li><code>some_folder</code>
 <ul>
@@ -312,74 +362,91 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 </ul></li>
 </ul>
-<p>To go “up” a folder in a relative path we use <code>../</code>.</p>
-<p>The relative path here would be <code>../data.csv</code>.</p>
-</section>
-<section id="activity-update-file-paths-in-maps-activity" class="level3">
-<h3 class="anchored" data-anchor-id="activity-update-file-paths-in-maps-activity">Activity: Update file paths in maps activity</h3>
-<p>In <code>03-adv-maps.qmd</code>, navigate to the code chunk where you read in <code>us_states_hexgrid.geojson</code>, <code>apportionment.csv</code>, <code>shp_loc_pop_centers</code>, and <code>shp_water_lakes_rivers</code>.</p>
-<p>Update the file paths to correctly find the data in the new directory structure.</p>
-<p><br><br><br></p>
-</section>
-</section>
-</section>
-<section id="rstudio-options" class="level1">
-<h1>RStudio options</h1>
-<p>Go to Edit &gt; Preferences &gt; General</p>
+<p>To go “up” a folder in a relative path we use <code>../</code>. To read in the data:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../data.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><em>Directory setup 4:</em></p>
 <ul>
-<li>Workspace
+<li><code>some_folder</code>
 <ul>
-<li>Restore <code>.RData</code> into workspace at startup: <strong>Leave this unchecked</strong></li>
-<li>Save workspace to <code>.RData</code> on exit: <strong>Select “Never”</strong></li>
+<li><code>data</code>
+<ul>
+<li><code>data.csv</code></li>
+</ul></li>
+<li><code>code</code>
+<ul>
+<li><code>your_code_file.qmd</code></li>
+</ul></li>
 </ul></li>
 </ul>
-<p>Without doing this RStudio will save all of the objects in your Environment. In practice, this leads to all of the objects, datasets, etc that you have ever worked with at Macalester being loaded in when you start RStudio.</p>
-<ul>
-<li>This can make startup slow.</li>
-<li>It clutters the Environment. (e.g., You’re working on something and referring to <code>diamonds</code> not knowing that a <code>diamonds</code> that was used in class last year is already in the Environment.)</li>
-</ul>
-<p><br><br><br></p>
+<p>To read in the data:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../data/data.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="DO use relative paths">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+DO use relative paths
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For reading in data, relative paths are preferred because if the project directory structure is used on a different computer, the relative paths will still work.</p>
+</div>
+</div>
 </section>
-<section id="keyboard-shortcuts" class="level1">
-<h1>Keyboard shortcuts</h1>
-<section id="in-rstudio" class="level2">
-<h2 class="anchored" data-anchor-id="in-rstudio">In RStudio</h2>
+<section id="exercise" class="level2">
+<h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
+<p>Download <a href="https://moodle.macalester.edu/mod/resource/view.php?id=83593">this Zip file</a> from Moodle, and save it to your class folder. After unzipping, open the <code>code/clean/cleaning.qmd</code> file in RStudio. Follow the instructions in that file.</p>
+<p>Exercise goals:</p>
 <ul>
-<li>When you’re in the Console, hitting the up and down arrow keys allows you to cycle through previous commands</li>
-<li>Tab completion
-<ul>
-<li>Type part of a function or object name (in the Editor or Console) and then hit Tab. A menu of autocomplete options will popup. Select your choice with arrow keys and hit Tab or Enter. (e.g., Type <code>ggp</code> and hit Tab.)</li>
-<li>Type part of a function argument and then hit Tab for a menu of autocomplete options.</li>
-</ul></li>
+<li>Practice using relative paths in a realistic project context</li>
+<li>Practice data wrangling</li>
 </ul>
+<p><br><br><br><br></p>
 </section>
-<section id="in-general-for-typing" class="level2">
-<h2 class="anchored" data-anchor-id="in-general-for-typing">In general for typing</h2>
+</section>
+<section id="github-for-working-on-skills-challenges" class="level1">
+<h1>GitHub for working on skills challenges</h1>
+<p>We’ll step through the process from <a href="https://youtu.be/QLFc9gw_Hfs?si=Ww--upiZ7hM2e1id">Lisa Lendway’s GitHub-RStudio setup video</a> for <em>Advanced visualization with ggplot2 - Challenge 1</em>.</p>
+<p><br></p>
+<p>The remainder of class time today is yours to work on any of the following:</p>
 <ul>
-<li>Moving your cursor to the beginning/end of a word
+<li>Advanced visualization with ggplot2 - <a href="https://classroom.github.com/a/u96MWDm2">Challenge 1</a> (Part of <a href="./homework1.html">Homework 1</a>)</li>
+<li>Advanced visualization with ggplot2 - <a href="https://classroom.github.com/a/bl30jylw">Challenge 2</a> (Will be part of Homework 2)</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled" title="Reminder: Record and observe">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Reminder: Record and observe
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>As you work to finalize your plots, try as best you can to observe your strategies for getting unstuck–what sorts of things do you try? Some ideas:</p>
 <ul>
-<li>Mac: Option + Left/Right</li>
-<li>Windows: Ctrl + Left/Right</li>
-</ul></li>
-<li>Deleting one word at a time
+<li>Draw the part of your plot that you expect your code will create. Then compare to what actually does happen.</li>
+<li>Consult peers for different Google queries</li>
+<li>Look at function documentation by entering <code>?function_name</code> in the Console. See what arguments might be tweaked to get what you want.</li>
+</ul>
+</div>
+</div>
+<p><br><br><br><br></p>
+</section>
+<section id="announcements" class="level1">
+<h1>Announcements</h1>
 <ul>
-<li>Mac: Option + Backspace</li>
-<li>Windows: Ctrl + Backspace</li>
-</ul></li>
-<li>Moving your cursor to the beginning/end of a line
-<ul>
-<li>Mac: Command + Left/Right</li>
-<li>Windows: Alt + Left/Right</li>
-</ul></li>
-<li>Deleting a whole line at a time
-<ul>
-<li>Mac: Command + Backspace</li>
-<li>Windows: Alt + Backspace</li>
-</ul></li>
+<li><a href="./homework1.html">Homework 1</a> is due Monday, January 29 at midnight.</li>
+<li><a href="./skills_session1.html">Skills Session 1</a> will be happening 2/5-2/9. Keep practicing the keyboard shortcuts described <a href="https://lmyint.github.io/IntermediateDataSciNotes/keyboard.html">here</a>.</li>
+<li>Check our <a href="./schedule.html">Schedule</a> for next week: there is one video to watch before class on Tuesday (with Guiding Questions) and packages to install.</li>
 </ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
