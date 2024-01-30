@@ -138,6 +138,49 @@ Exercise goals:
 - Practice using relative paths in a realistic project context
 - Practice data wrangling
 
+<details>
+    <summary>Solution</summary>
+
+Load packages and read in data.
+
+```{r solutions_read, eval=FALSE}
+library(tidyverse)
+weather <- read_csv("../../data/raw/weather.csv")
+```
+
+Add `dateInYear` variable.
+
+```{r solutions_wrangle1, eval=FALSE}
+weather_clean <- weather %>% 
+    arrange(Month, Day) %>% 
+    mutate(dateInYear = 1:365)
+```
+
+Add in 3-letter month abbreviations.
+
+```{r solutions_wrangle2, eval=FALSE}
+# Option 1: via joins
+months <- tibble(
+    Month = 1:12,
+    month_name = month.abb
+)
+weather_clean <- weather_clean %>% 
+    left_join(months)
+
+# Option 2: via vector subsetting
+weather %>% 
+    mutate(month_name = month.abb[Month])
+```
+
+Write out clean data to a CSV file.
+
+```{r solutions_write, eval=FALSE}
+write_csv(weather_clean, file = "../../data/clean/weather_clean.csv")
+```
+
+</details>
+
+
 
 <br><br><br><br>
 

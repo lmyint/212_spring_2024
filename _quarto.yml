@@ -34,12 +34,13 @@ website:
         - 01-introductions.qmd
         - 02-adv-ggplot.qmd
         - 03-file-org-github.qmd
+        - 04-adv-maps.qmd
 
     - id: homework
       title: "Homework"
       contents:
         - homework1.qmd
-        # - homework2.qmd
+        - homework2.qmd
         # - homework3.qmd
         # - homework4.qmd
         # - reflection1.qmd

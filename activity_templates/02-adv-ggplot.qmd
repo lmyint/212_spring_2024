@@ -1,6 +1,5 @@
 ---
 title: "Advanced Data Visualization in ggplot2"
-sidebar: false
 ---
 
 # Learning goals

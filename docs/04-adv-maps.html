@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>STAT/COMP 212 - Advanced spatial visualization</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">STAT/COMP 212</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./schedule.html" rel="" target="">
+ <span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./syllabus.html" rel="" target="">
+ <span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-activities" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Activities</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-activities">    
+        <li>
+    <a class="dropdown-item" href="./01-introductions.html" rel="" target="">
+ <span class="dropdown-text">Welcome to the course!</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./02-adv-ggplot.html" rel="" target="">
+ <span class="dropdown-text">Advanced Data Visualization in ggplot2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./03-file-org-github.html" rel="" target="">
+ <span class="dropdown-text">File organization, GitHub</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./04-adv-maps.html" rel="" target="">
+ <span class="dropdown-text">Advanced spatial visualization</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-homework" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Homework</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-homework">    
+        <li>
+    <a class="dropdown-item" href="./homework1.html" rel="" target="">
+ <span class="dropdown-text">Homework 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./homework2.html" rel="" target="">
+ <span class="dropdown-text">Homework 2</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-skills-sessions" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Skills Sessions</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-skills-sessions">    
+        <li>
+    <a class="dropdown-item" href="./skills_session1.html" rel="" target="">
+ <span class="dropdown-text">Skills Session 1</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./project.html" rel="" target="">
+ <span class="menu-text">Project</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./tech_setup.html" rel="" target="">
+ <span class="menu-text">Tech Setup</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#learning-goals" id="toc-learning-goals" class="nav-link active" data-scroll-target="#learning-goals">Learning goals</a></li>
+  <li><a href="#additional-resources" id="toc-additional-resources" class="nav-link" data-scroll-target="#additional-resources">Additional resources</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
+  <li><a href="#coordinate-reference-system" id="toc-coordinate-reference-system" class="nav-link" data-scroll-target="#coordinate-reference-system">Coordinate Reference System</a>
+  <ul class="collapse">
+  <li><a href="#ellipsoid" id="toc-ellipsoid" class="nav-link" data-scroll-target="#ellipsoid">Ellipsoid</a></li>
+  <li><a href="#datum" id="toc-datum" class="nav-link" data-scroll-target="#datum">Datum</a></li>
+  <li><a href="#projection" id="toc-projection" class="nav-link" data-scroll-target="#projection">Projection</a></li>
+  </ul></li>
+  <li><a href="#spatial-data" id="toc-spatial-data" class="nav-link" data-scroll-target="#spatial-data">Spatial data</a>
+  <ul class="collapse">
+  <li><a href="#vector" id="toc-vector" class="nav-link" data-scroll-target="#vector">Vector</a></li>
+  <li><a href="#raster" id="toc-raster" class="nav-link" data-scroll-target="#raster">Raster</a></li>
+  </ul></li>
+  <li><a href="#reading-in-spatial-data" id="toc-reading-in-spatial-data" class="nav-link" data-scroll-target="#reading-in-spatial-data">Reading in spatial data</a></li>
+  <li><a href="#initial-maps-exploring-crs-impact" id="toc-initial-maps-exploring-crs-impact" class="nav-link" data-scroll-target="#initial-maps-exploring-crs-impact">Initial maps, exploring CRS impact</a></li>
+  <li><a href="#extended-example-mn-map-with-multiple-layers" id="toc-extended-example-mn-map-with-multiple-layers" class="nav-link" data-scroll-target="#extended-example-mn-map-with-multiple-layers">Extended example: MN map with multiple layers</a>
+  <ul class="collapse">
+  <li><a href="#get-county-boundaries" id="toc-get-county-boundaries" class="nav-link" data-scroll-target="#get-county-boundaries">Get county boundaries</a></li>
+  <li><a href="#unifying-crss-across-different-spatial-datasets" id="toc-unifying-crss-across-different-spatial-datasets" class="nav-link" data-scroll-target="#unifying-crss-across-different-spatial-datasets">Unifying CRSs across different spatial datasets</a></li>
+  <li><a href="#initial-map-counties-and-cities" id="toc-initial-map-counties-and-cities" class="nav-link" data-scroll-target="#initial-map-counties-and-cities">Initial map: counties and cities</a></li>
+  <li><a href="#adding-elevation-data" id="toc-adding-elevation-data" class="nav-link" data-scroll-target="#adding-elevation-data">Adding elevation data</a></li>
+  <li><a href="#zoom-in-to-twin-cities-and-add-water" id="toc-zoom-in-to-twin-cities-and-add-water" class="nav-link" data-scroll-target="#zoom-in-to-twin-cities-and-add-water">Zoom in to Twin Cities and add water</a></li>
+  <li><a href="#twin-cities-map-with-leaflet" id="toc-twin-cities-map-with-leaflet" class="nav-link" data-scroll-target="#twin-cities-map-with-leaflet">Twin Cities map with <code>leaflet</code></a></li>
+  </ul></li>
+  <li><a href="#challenge-1" id="toc-challenge-1" class="nav-link" data-scroll-target="#challenge-1">Challenge 1</a></li>
+  <li><a href="#reflect" id="toc-reflect" class="nav-link" data-scroll-target="#reflect">Reflect</a></li>
+  <li><a href="#announcements" id="toc-announcements" class="nav-link" data-scroll-target="#announcements">Announcements</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Advanced spatial visualization</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="learning-goals" class="level1">
+<h1>Learning goals</h1>
+<p>After this lesson, you should be able to:</p>
+<ul>
+<li>Understand the basics of a CRS (coordinate reference system)</li>
+<li>Understand and recognize different spatial file types and data types in R</li>
+<li>Implement some of the basic plotting with the <code>sf</code> package</li>
+<li>Understand foundational ideas in working with spatial data (aggregating spatial point data to a spatial region, joining spatial data sets)</li>
+</ul>
+<p><br><br><br><br></p>
+</section>
+<section id="additional-resources" class="level1">
+<h1>Additional resources</h1>
+<ul>
+<li>Spatial Data Science <a href="https://r-spatial.org/book/" class="uri">https://r-spatial.org/book/</a></li>
+<li>Spatial Data Science with R and <code>terra</code>: <a href="https://rspatial.org/" class="uri">https://rspatial.org/</a></li>
+<li>Leaflet in R <a href="https://rstudio.github.io/leaflet/" class="uri">https://rstudio.github.io/leaflet/</a></li>
+<li>CRAN task view on spatial analysis: https://cran.r-project.org/web/views/Spatial.html</li>
+</ul>
+<p><br><br><br><br></p>
+</section>
+<section id="setup" class="level1">
+<h1>Setup</h1>
+<p>You can download a template Quarto file to start from <a href="activity_templates/04-adv-maps.qmd">here</a>. Create the following directory structure for this activity:</p>
+<ul>
+<li><code>04_adv_maps</code>
+<ul>
+<li><code>code</code>
+<ul>
+<li><code>04-adv-maps.qmd</code></li>
+</ul></li>
+<li><code>data</code>
+<ul>
+<li>We will be saving data here during this activity.</li>
+</ul></li>
+<li><code>figures</code>
+<ul>
+<li>We will be saving created maps here during this activity.</li>
+</ul></li>
+</ul></li>
+</ul>
+<p>First load required packages.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf) <span class="co"># tools for working with spatial vector data (GIS functionality, mapping)</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(elevatr) <span class="co"># access to raster elevation maps</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(terra)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stars)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidycensus) <span class="co"># spatial data for the US with census information</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(USAboundaries) <span class="co"># access to boundaries for US states, counties, zip codes, and congressional districts </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br><br><br><br></p>
+</section>
+<section id="coordinate-reference-system" class="level1">
+<h1>Coordinate Reference System</h1>
+<p>At the heart of every spatial visualization is a set of locations. One way to describe a location is in terms of coordinates and a coordinate reference system (CRS).</p>
+<p>There are three main components to a CRS: ellipsoid, datum, and a projection. (The projection is a part of <em>projected</em> CRSs.)</p>
+<section id="ellipsoid" class="level2">
+<h2 class="anchored" data-anchor-id="ellipsoid">Ellipsoid</h2>
+<ul>
+<li>The Earth is not a sphere.
+<ul>
+<li>It’s closer to a bumpy ellipsoid with a bulge at the equator.</li>
+</ul></li>
+<li>The ellipsoid part of a CRS is a mathematical model giving a smooth approximation to Earth’s shape.</li>
+<li>Common ellipsoid models: WGS84 and GRS80</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://www.icsm.gov.au/sites/default/files/inline-images/geocentric_0.jpg" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Illustration of ellipsoid model (black) and Earth’s irregular surface (red), centered to have an overall best fit. Source: www.icsm.gov.au</figcaption>
+</figure>
+</div>
+</section>
+<section id="datum" class="level2">
+<h2 class="anchored" data-anchor-id="datum">Datum</h2>
+<ul>
+<li>Where do we center the ellipsoid? This center is called a <strong>datum</strong>.</li>
+<li>For a given ellipsoid model, different datums are used to better fit different areas of the world.
+<ul>
+<li>e.g., For the GRS80 ellipsoid, the NAD83 datum is a good fit in North America, but SIRGAS2000 is a better fit in South America.</li>
+<li>The Global Positioning System (GPS) uses the WGS84 ellipsoid model and WGS84 datum. This provides an overall best fit of the Earth.</li>
+</ul></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://www.icsm.gov.au/sites/default/files/inline-images/regional_0.jpg" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Illustration of ellipsoid model and Earth’s irregular surface for a datum that better fits southern part (bottom right) of the Earth. Source: www.icsm.gov.au</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-important callout-titled" title="Why do the ellipsoid and datum matter?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Why do the ellipsoid and datum matter?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you have longitude and latitude coordinates for a location, you need to know what datum and ellipsoid were used to define those positions in order to overlay those points correctly on a map.</p>
+<p><strong>Note:</strong> In practice, the horizontal distance between WGS84 and NAD83 coordinates is about 3-4 feet in the US, which may not be significant for most applications.</p>
+</div>
+</div>
+</section>
+<section id="projection" class="level2">
+<h2 class="anchored" data-anchor-id="projection">Projection</h2>
+<p>Lastly, the Earth lives in a 3 dimensional (3D) world and most visualizations are on a 2 dimensional (2D) surface. We must choose a projection method to represent points, regions, and lines on Earth on a 2D map with distance units (typically meter, international foot, US survey foot). In that projection process, a 3D element will lose angle, area, and/or distance when projected onto a 2D surface, no matter which method is chosen.</p>
+<ul>
+<li>For a good overview of common projection methods, see <a href="https://pubs.usgs.gov/gip/70047422/report.pdf" class="uri">https://pubs.usgs.gov/gip/70047422/report.pdf</a>.</li>
+<li>Common projection: Mercator projection
+<ul>
+<li>Cylindrical map projection from the 1500’s</li>
+<li>Useful for navigation because it represented north as up and south as down everywhere and preserves local directions and shape</li>
+<li>Drawback: it inflates the size of regions far from the equator. Greenland, Antarctica, Canada, and Russia appear much bigger than they should. The illustration below compares country areas/shapes under the Mercator projection (light blue) with true areas/shapes (dark blue).</li>
+</ul></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/mercator.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption"><a href="https://www.reddit.com/r/dataisbeautiful/comments/9nkg7k/map_projections_can_be_deceptive_oc/">Source</a>: <span class="citation" data-cites="neilrkaye">@neilrkaye</span></figcaption>
+</figure>
+</div>
+<p>Below you can see four different world projections. Take note of what is lost in terms of angle, area, or distance in these projections.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>world <span class="ot">&lt;-</span> rnaturalearth<span class="sc">::</span><span class="fu">ne_countries</span>(<span class="at">scale =</span> <span class="st">"medium"</span>, <span class="at">returnclass =</span> <span class="st">"sf"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Basic Map w/ labels</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> world) <span class="sc">+</span> </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"#bada55"</span>) <span class="sc">+</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Longitude"</span>, <span class="at">y =</span> <span class="st">"Latitude"</span>, <span class="at">title =</span> <span class="st">"World Map - Mercator Projection"</span>, <span class="at">subtitle =</span> <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="fu">length</span>(<span class="fu">unique</span>(world<span class="sc">$</span>name)), <span class="st">" countries)"</span>)) <span class="sc">+</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="04-adv-maps_files/figure-html/projections-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> world) <span class="sc">+</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"#bada55"</span>) <span class="sc">+</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_sf</span>(<span class="at">crs =</span> <span class="st">"+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +units=m +no_defs"</span>) <span class="sc">+</span> </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Lambert Azimuthal Equal-Area Projection"</span>, <span class="at">subtitle =</span> <span class="st">"Correctly represents area but not angles"</span>) <span class="sc">+</span> </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="04-adv-maps_files/figure-html/projections-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> world) <span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"#bada55"</span>) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_sf</span>(<span class="at">crs =</span> <span class="st">"+proj=fouc"</span>) <span class="sc">+</span> </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Foucaut Projection"</span>, <span class="at">subtitle =</span> <span class="st">"Correctly represents area, lots of shape distortion in high latitudes"</span>) <span class="sc">+</span> </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="04-adv-maps_files/figure-html/projections-3.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> world) <span class="sc">+</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"#bada55"</span>) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_sf</span>(<span class="at">crs =</span> <span class="st">"+proj=natearth2"</span>) <span class="sc">+</span> </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Natural Earth II Projection"</span>, <span class="at">subtitle =</span> <span class="st">"Represents globe shape, distorted at high latitudes"</span>) <span class="sc">+</span> </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="04-adv-maps_files/figure-html/projections-4.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><br><br><br><br></p>
+</section>
+</section>
+<section id="spatial-data" class="level1">
+<h1>Spatial data</h1>
+<p>With a CRS to collect and record location data in terms of longitude or easting (x) and latitude or northing (y) coordinates, we can now consider common models for storing spatial data on the computer. There are two main data models: vector and raster.</p>
+<section id="vector" class="level2">
+<h2 class="anchored" data-anchor-id="vector">Vector</h2>
+<p>Vector data represents the world as a set of spatial geometries that are defined in terms of location coordinates (with a specified CRS) with non-spatial attributes or properties.</p>
+<p>The three basic vector geometries are:</p>
+<ul>
+<li><strong>Points:</strong> Locations defined based on a (x, y) coordinates.
+<ul>
+<li>e.g., Cities</li>
+</ul></li>
+<li><strong>Lines:</strong> A set of ordered points connected by straight lines.
+<ul>
+<li>e.g., Roads, rivers</li>
+</ul></li>
+<li><strong>Polygons:</strong> A set of ordered points connected by straight lines, first and last point are the same.
+<ul>
+<li>e.g., Geopolitical boundaries, bodies of water</li>
+</ul></li>
+</ul>
+<p>File formats:</p>
+<ul>
+<li>Text files (e.g., <code>.csv</code>)
+<ul>
+<li>x and y columns: for coordinates (x for longitude and y for latitude)</li>
+<li>group id column: needed for lines and polygons</li>
+<li>additional columns: attributes related to the areas in each row (e.g., population sizes, demographic information)</li>
+<li>Text files do not store the CRS.</li>
+</ul></li>
+<li>Shapefiles (<code>.shp</code>)
+<ul>
+<li>Widely supported spatial vector file format (that includes the CRS).</li>
+</ul></li>
+<li>GeoJSON (<code>.geojson</code>) (Geographical Javascript Object Notation)</li>
+<li>KML (<code>.kml</code>) (Keyhole Markup Language)</li>
+</ul>
+</section>
+<section id="raster" class="level2">
+<h2 class="anchored" data-anchor-id="raster">Raster</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://i.stack.imgur.com/r2wim.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Difference between vector and raster formats. Source: gis.stackexchange.com</figcaption>
+</figure>
+</div>
+<ul>
+<li>Continuous grid of cells where each cell has a single value.
+<ul>
+<li>Continuous values (e.g., elevation, precipitation)</li>
+<li>Categorical values (e.g., land cover type, soil type)</li>
+</ul></li>
+<li>Shape of cells
+<ul>
+<li>Generally square (like pixels)</li>
+<li>Cells can be rotated and sheared. Rectilinear and curvilinear shapes are also possible, depending on the spatial region of interest and CRS.</li>
+</ul></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://r-tmap.github.io/tmap-book/02-geodata_files/figure-html/grid-types-1.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Raster cell shapes (<a href="https://r-tmap.github.io/tmap-book/geodata.html">Source</a>)</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled" title="Computational time considerations">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Computational time considerations
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>High resolution raster data involves a large number of small cells. This results in large file sizes and objects which can make computation and visualization quite slow.</p>
+</div>
+</div>
+<p>File formats:</p>
+<ul>
+<li>GeoTIFF (<code>.tif</code> or <code>.tiff</code>)
+<ul>
+<li>Most popular</li>
+</ul></li>
+<li>NetCDF (<code>.nc</code>)</li>
+<li>HDF (<code>.hdf</code>)</li>
+</ul>
+<p>To work with raster data in R, you’ll use the <code>raster</code>, <code>terra</code>, and the <code>stars</code> packages. If you are interested in learning more, check out <a href="https://r-spatial.github.io/stars/" class="uri">https://r-spatial.github.io/stars/</a>.</p>
+<p><br><br><br><br></p>
+</section>
+</section>
+<section id="reading-in-spatial-data" class="level1">
+<h1>Reading in spatial data</h1>
+<p>Navigate to the following URLs to download the spatial data files we’ll be using in this activity. Put these files in the <code>data</code> folder of your <code>04_adv_maps</code> folder.</p>
+<ul>
+<li>MN cities: <a href="https://gisdata.mn.gov/dataset/loc-pop-centers" class="uri">https://gisdata.mn.gov/dataset/loc-pop-centers</a>
+<ul>
+<li>File type: shapefile (<code>.shp</code>)</li>
+<li>File name: <code>shp_loc_pop_centers.zip</code> (Unzip this after downloading.)</li>
+</ul></li>
+<li>MN water: <a href="https://gisdata.mn.gov/dataset/us-mn-state-metc-water-lakes-rivers" class="uri">https://gisdata.mn.gov/dataset/us-mn-state-metc-water-lakes-rivers</a>
+<ul>
+<li>File type: shapefile (<code>.shp</code>)</li>
+<li>File name: <code>shp_water_lakes_rivers.zip</code> (Unzip this after downloading.)</li>
+</ul></li>
+</ul>
+<p><strong>Exercise:</strong> Read in the MN cities and MN water shapefiles by entering the correct relative paths in <code>st_read()</code>. <strong>Tab completion will be very helpful here: type part of a directory or file name and hit tab to autocomplete or bring up a dropdown of options.</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The sf package comes with a North Carolina shapefile:</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>nc <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="fu">system.file</span>(<span class="st">"shape/nc.shp"</span>, <span class="at">package =</span> <span class="st">"sf"</span>))</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in shapefiles just downloaded</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>mn_cities <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"Add correct relative path to city_and_township_population_centers.shp"</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>mn_water <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"Add correct relative path to LakesAndRivers.shp"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<details>
+<summary>
+Solution
+</summary>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>mn_cities <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"../data/shp_loc_pop_centers/city_and_township_population_centers.shp"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>mn_water <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"../data/shp_water_lakes_rivers/LakesAndRivers.shp"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</details>
+<p>The <code>sf</code> package reads in spatial data in <code>data.frame</code>-like format. Using the <code>class()</code> function we can check the <strong>class</strong> (type) of object that we just read in. Note the presence of the “sf” and “data.frame” classes:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(nc)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(mn_cities)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(mn_water)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="initial-maps-exploring-crs-impact" class="level1">
+<h1>Initial maps, exploring CRS impact</h1>
+<p>When we read in spatial objects, it is useful to check what CRS underlies the data. We can do that with <code>st_crs()</code> from the <code>sf</code> package:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">st_crs</span>(nc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can treat <code>sf</code> objects similarly to ordinary datasets when using <code>ggplot2</code> to make spatial visualizations:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(nc) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>() <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"NAD27"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Let’s explore how changing the CRS changes the map. The <code>st_transform()</code> function in <code>sf</code> re-expresses a spatial object using a user-supplied CRS. The <code>crs</code> argument takes a string descriptor of the CRS. We can find these descriptors via <a href="https://epsg.io" class="uri">https://epsg.io</a>. In the example below, I searched for “South Carolina”.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>nc_transformed <span class="ot">&lt;-</span> nc <span class="sc">%&gt;%</span> <span class="fu">st_transform</span>(<span class="at">crs =</span> <span class="st">"EPSG:32133"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">st_crs</span>(nc_transformed)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(nc_transformed) <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>() <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Exercise:</strong> The goal is to use <a href="https://epsg.io" class="uri">https://epsg.io</a> to <strong>find two CRSs</strong> that result in a North Carolina map that is noticeably different from the original in the NAD27 CRS.</p>
+<p>Take a look at the <strong>function</strong> below that re-maps a spatial object using a new CRS.</p>
+<ul>
+<li>Read through the function to get a sense for how this code works.</li>
+<li><code>spatial_obj</code> and <code>new_crs</code> are called <strong>arguments</strong> (function <strong>inputs</strong>).
+<ul>
+<li>Add one more argument called <code>title</code> to this function. Use this input to set the plot title.</li>
+</ul></li>
+<li>Use your function to make two new maps using your chosen CRSs.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>transform_and_plot <span class="ot">&lt;-</span> <span class="cf">function</span>(spatial_obj, new_crs) {</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    spatial_obj <span class="sc">%&gt;%</span> </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">st_transform</span>(<span class="at">crs =</span> new_crs) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>            <span class="fu">geom_sf</span>() <span class="sc">+</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>            <span class="fu">theme_classic</span>()</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage of this function (using a South Carolina CRS)</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="fu">transform_and_plot</span>(nc, <span class="at">new_crs =</span> <span class="st">"EPSG:32133"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Verify your understanding:</strong> If you had point location data that was not in the NAD27 CRS, what would you expect about the accuracy of how they would be overlaid on the original North Carolina map?</p>
+<details>
+<summary>
+Solution
+</summary>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>transform_and_plot <span class="ot">&lt;-</span> <span class="cf">function</span>(spatial_obj, new_crs, title) {</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    spatial_obj <span class="sc">%&gt;%</span> </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">st_transform</span>(<span class="at">crs =</span> new_crs) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>            <span class="fu">geom_sf</span>() <span class="sc">+</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>            <span class="fu">labs</span>(<span class="at">title =</span> title) <span class="sc">+</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>            <span class="fu">theme_classic</span>()</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(nc) <span class="sc">+</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>() <span class="sc">+</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"NAD27 (Original)"</span>)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="fu">transform_and_plot</span>(nc, <span class="at">new_crs =</span> <span class="st">"EPSG:32133"</span>, <span class="at">title =</span> <span class="st">"South Carolina"</span>)</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="fu">transform_and_plot</span>(nc, <span class="at">new_crs =</span> <span class="st">"EPSG:6439"</span>, <span class="at">title =</span> <span class="st">"Florida"</span>)</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="fu">transform_and_plot</span>(nc, <span class="at">new_crs =</span> <span class="st">"EPSG:3112"</span>, <span class="at">title =</span> <span class="st">"Australia (GDA94)"</span>)</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="fu">transform_and_plot</span>(nc, <span class="at">new_crs =</span> <span class="st">"EPSG:20353"</span>, <span class="at">title =</span> <span class="st">"Australia (Queensland, South, West)"</span>)</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="fu">transform_and_plot</span>(nc, <span class="at">new_crs =</span> <span class="st">"EPSG:5940"</span>, <span class="at">title =</span> <span class="st">"Russia"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</details>
+<p><br><br><br><br></p>
+</section>
+<section id="extended-example-mn-map-with-multiple-layers" class="level1">
+<h1>Extended example: MN map with multiple layers</h1>
+<p><strong>Goal:</strong> create a map of MN with different layers of information (city point locations, county polygon boundaries, rivers as lines and polygons, and a raster elevation map).</p>
+<section id="get-county-boundaries" class="level2">
+<h2 class="anchored" data-anchor-id="get-county-boundaries">Get county boundaries</h2>
+<p>We’ve already read in city location and water information from external shapefiles. We can access county boundaries with the <code>us_counties()</code> function in the <code>USAboundaries</code> package.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load country boundaries data as sf object</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>mn_counties <span class="ot">&lt;-</span> USAboundaries<span class="sc">::</span><span class="fu">us_counties</span>(<span class="at">resolution =</span> <span class="st">"high"</span>, <span class="at">states =</span> <span class="st">"Minnesota"</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Take care of duplicate column names (there are two identical "state_name" columns)</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>names_counties <span class="ot">&lt;-</span> <span class="fu">names</span>(mn_counties)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mn_counties)[names_counties <span class="sc">==</span> <span class="st">"state_name"</span>] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"state_name1"</span>, <span class="st">"state_name2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="unifying-crss-across-different-spatial-datasets" class="level2">
+<h2 class="anchored" data-anchor-id="unifying-crss-across-different-spatial-datasets">Unifying CRSs across different spatial datasets</h2>
+<p>We first need to ensure that the CRS is the same for all spatial datasets.</p>
+<p><strong>Exercise:</strong></p>
+<ul>
+<li>Check the CRS for the <code>mn_cities</code>, <code>mn_water</code>, and <code>mn_counties</code> datasets.</li>
+<li>If the datasets don’t all have the same CRS, use <code>st_transform()</code> to update the datasets to have the same CRS as <code>mn_cities</code>. You can use <code>crs = st_crs(mn_cities)</code> within <code>st_transform()</code>.</li>
+</ul>
+<details>
+<summary>
+Solution
+</summary>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check CRSs</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">st_crs</span>(mn_cities)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">st_crs</span>(mn_water)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">st_crs</span>(mn_counties) <span class="co"># mn_counties is different!</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Transform the CRS of county data to the more local CRS of the cities</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>mn_counties <span class="ot">&lt;-</span> mn_counties <span class="sc">%&gt;%</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">st_transform</span>(<span class="at">crs =</span> <span class="fu">st_crs</span>(mn_cities))</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the new CRS for mn_counties</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="fu">st_crs</span>(mn_counties)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</details>
+</section>
+<section id="initial-map-counties-and-cities" class="level2">
+<h2 class="anchored" data-anchor-id="initial-map-counties-and-cities">Initial map: counties and cities</h2>
+<p><strong>Exercise:</strong> Create a map where city locations are overlaid on a map of county boundaries.</p>
+<ul>
+<li>You will need to call <code>geom_sf()</code> twice.</li>
+<li>Make the map background white.</li>
+<li>Install the <code>ggthemes</code> package, and add the following layer to use a clean map theme: <code>+ ggthemes::theme_map()</code></li>
+</ul>
+<details>
+<summary>
+Solution
+</summary>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Option 1</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> <span class="co"># plot frame</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="at">data =</span> mn_counties, <span class="at">fill =</span> <span class="st">"white"</span>) <span class="sc">+</span> <span class="co"># county boundary layer</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="at">data =</span> mn_cities, <span class="at">size =</span> <span class="fl">0.5</span>) <span class="sc">+</span> <span class="co"># city point layer</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    ggthemes<span class="sc">::</span><span class="fu">theme_map</span>()</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Option 2</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mn_counties) <span class="sc">+</span> <span class="co"># plot frame</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="at">fill =</span> <span class="st">"white"</span>) <span class="sc">+</span> <span class="co"># county boundary layer</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="at">data =</span> mn_cities, <span class="at">size =</span> <span class="fl">0.5</span>) <span class="sc">+</span> <span class="co"># city point layer</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    ggthemes<span class="sc">::</span><span class="fu">theme_map</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</details>
+<p>We can use traditional <code>ggplot2</code> aesthetics (e.g., <code>fill</code>, <code>color</code>) to display location specific attributes. Below we only plot large cities, and we color and size cities according to their population.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="at">data =</span> mn_counties, <span class="at">fill =</span> <span class="st">"white"</span>) <span class="sc">+</span> </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="at">data =</span> mn_cities <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Population <span class="sc">&gt;=</span> <span class="dv">10000</span>), <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">color =</span> Population, <span class="at">size =</span> Population)) <span class="sc">+</span> <span class="co"># cities layer</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_viridis_c</span>() <span class="sc">+</span> <span class="co"># continuous (gradient) color scale</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Minnesota Cities with Population &gt;= 10,000"</span>) <span class="sc">+</span> </span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    ggthemes<span class="sc">::</span><span class="fu">theme_map</span>() <span class="sc">+</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>) <span class="co"># move legend</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Exercise:</strong> Look up the <code>scale_color_viridis_c()</code> documentation via the <a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">ggplot2 reference</a>.</p>
+<ul>
+<li>Read the function description at the top. What is the advantage of using this function for making color palettes?</li>
+<li>Look through the examples section. What is the difference between the <code>_d()</code>, <code>_c()</code>, and <code>_b()</code> variants of this function?</li>
+</ul>
+<details>
+<summary>
+Solution
+</summary>
+<p>The viridis color scale results in plots that can be interpreted analogously whether in color or black and white and is color-blind friendly.</p>
+<ul>
+<li>The <code>_d()</code> variant is used when color is mapped to a discrete (categorical) variable.</li>
+<li>The <code>_c()</code> variant is used when color is mapped to a continuous variable.</li>
+<li>The <code>_b()</code> variant is used when color is mapped to a continuous variable but when we want that continuous variable to be binned so that there is a small set of colors.</li>
+</ul>
+</details>
+</section>
+<section id="adding-elevation-data" class="level2">
+<h2 class="anchored" data-anchor-id="adding-elevation-data">Adding elevation data</h2>
+<p>Where are large cities located? Is there some relationship to local geography/terrain? To investigate these questions, we can obtain elevation data to include on the map using the <code>elevatr</code> package. We encounter two new functions here—we can look up their documentation to make sense of the code by entering the following in the Console:</p>
+<ul>
+<li><code>?elevatr::get_elev_raster</code></li>
+<li><code>?terra::as.data.frame</code></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>elevation <span class="ot">&lt;-</span> elevatr<span class="sc">::</span><span class="fu">get_elev_raster</span>(mn_counties, <span class="at">z =</span> <span class="dv">5</span>, <span class="at">clip =</span> <span class="st">"bbox"</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>raster<span class="sc">::</span><span class="fu">crs</span>(elevation) <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_crs</span>(mn_counties)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to data frame for plotting</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>elev_df <span class="ot">&lt;-</span> elevation <span class="sc">%&gt;%</span> terra<span class="sc">::</span><span class="fu">as.data.frame</span>(<span class="at">xy =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(elev_df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"x"</span>, <span class="st">"y"</span>, <span class="st">"elevation"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Exercise:</strong> Build on our existing map by adding a raster layer for elevation as the background.</p>
+<ul>
+<li>Look up the documentation for <code>geom_raster()</code> to plot the elevation data from <code>elev_df</code>. This will be the first layer of the plot.</li>
+<li>Look at the documentation for <code>scale_fill_gradient()</code> to add the following elevation color scale: <code>"darkgreen"</code> represents the lowest elevations, and <code>"white"</code> represents the highest elevations.</li>
+<li>Add in the layers from the map above to show the largest cities and the county outlines. To remove a background color, use <code>fill = NA</code>.</li>
+</ul>
+<details>
+<summary>
+Solution
+</summary>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_raster</span>(<span class="at">data =</span> elev_df, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">fill =</span> elevation)) <span class="sc">+</span> <span class="co"># adding the elevation as first (bottom) layer</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_gradient</span>(<span class="at">low =</span> <span class="st">"darkgreen"</span>, <span class="at">high =</span> <span class="st">"white"</span>, <span class="at">guide =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="at">data =</span> mn_counties, <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span> </span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="at">data =</span> mn_cities <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Population <span class="sc">&gt;=</span> <span class="dv">10000</span>), <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">color =</span> Population, <span class="at">size =</span> Population))<span class="sc">+</span> <span class="co"># cities layer</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_viridis_c</span>() <span class="sc">+</span> <span class="co"># continuous (gradient) color scale</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Minnesota Cities with Population &gt;= 10,000"</span>) <span class="sc">+</span> </span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    ggthemes<span class="sc">::</span><span class="fu">theme_map</span>() <span class="sc">+</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>) <span class="co"># move legend</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</details>
+</section>
+<section id="zoom-in-to-twin-cities-and-add-water" class="level2">
+<h2 class="anchored" data-anchor-id="zoom-in-to-twin-cities-and-add-water">Zoom in to Twin Cities and add water</h2>
+<p>The bulk of the interesting information in this map is in the Twin Cities area. Let’s zoom in to this area.</p>
+<ul>
+<li>We can use the <code>st_bbox()</code> function to get the <strong>bounding box</strong> for a spatial object—we do this after filtering to the 7 counties in the Twin Cities.</li>
+<li>We then use <code>st_crop()</code> to trim a spatial object to a given bounding box.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>seven_countyarea <span class="ot">&lt;-</span> mn_counties <span class="sc">%&gt;%</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(name <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Anoka"</span>, <span class="st">"Hennepin"</span>, <span class="st">"Ramsey"</span>, <span class="st">"Dakota"</span>, <span class="st">"Carver"</span>, <span class="st">"Washington"</span>, <span class="st">"Scott"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">st_bbox</span>()</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>seven_countyarea</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>elevation <span class="ot">&lt;-</span> elevatr<span class="sc">::</span><span class="fu">get_elev_raster</span>(mn_counties <span class="sc">%&gt;%</span> <span class="fu">st_crop</span>(seven_countyarea), <span class="at">z =</span> <span class="dv">9</span>, <span class="at">clip =</span> <span class="st">"bbox"</span>)</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>raster<span class="sc">::</span><span class="fu">crs</span>(elevation) <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_crs</span>(mn_counties)</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to data frame for plotting</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>elev_df <span class="ot">&lt;-</span> elevation <span class="sc">%&gt;%</span> terra<span class="sc">::</span><span class="fu">as.data.frame</span>(<span class="at">xy =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(elev_df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"x"</span>, <span class="st">"y"</span>, <span class="st">"elevation"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In the plot below, we add a layer for water information and a <code>coord_sf()</code> layer to restrict the x and y-axis limits to the Twin Cities bounding box. (Without this layer, the map would zoom back out to show all counties and bodies of water).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_raster</span>(<span class="at">data =</span> elev_df, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">fill =</span> elevation)) <span class="sc">+</span> </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="at">data =</span> mn_counties, <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span> <span class="co"># county boundary layer</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="at">data =</span> mn_water, <span class="at">fill =</span> <span class="st">"lightsteelblue1"</span>, <span class="at">color =</span> <span class="st">"lightsteelblue1"</span>) <span class="sc">+</span> <span class="co"># NEW: river/lake layer</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="at">data =</span> mn_cities <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Population <span class="sc">&gt;=</span> <span class="dv">10000</span>), <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">color =</span> Population, <span class="at">size =</span> Population)) <span class="sc">+</span> <span class="co"># cities layer</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_viridis_c</span>(<span class="at">option =</span> <span class="st">"magma"</span>) <span class="sc">+</span> <span class="co"># continuous (gradient) color scale</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_gradient</span>(<span class="at">low =</span> <span class="st">"darkgreen"</span>, <span class="at">high =</span> <span class="st">"white"</span>) <span class="sc">+</span> <span class="co"># continuous (gradient) fill scale</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_sf</span>(<span class="at">xlim =</span> seven_countyarea[<span class="fu">c</span>(<span class="st">"xmin"</span>, <span class="st">"xmax"</span>)], <span class="at">ylim =</span> seven_countyarea[<span class="fu">c</span>(<span class="st">"ymin"</span>, <span class="st">"ymax"</span>)]) <span class="sc">+</span> <span class="co"># NEW: crop map to Twin Cities bounding box</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Twin Cities with Population &gt;= 10,000"</span>) <span class="sc">+</span> </span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    ggthemes<span class="sc">::</span><span class="fu">theme_map</span>() <span class="sc">+</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="co"># remove legend</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="twin-cities-map-with-leaflet" class="level2">
+<h2 class="anchored" data-anchor-id="twin-cities-map-with-leaflet">Twin Cities map with <code>leaflet</code></h2>
+<p>Below we show how to make the MN counties map in the <code>leaflet</code> package.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaflet)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>mn_counties_leaf <span class="ot">&lt;-</span> mn_counties <span class="sc">%&gt;%</span> <span class="fu">st_transform</span>(<span class="dv">4326</span>) <span class="co"># Leaflet expects this CRS for vectors</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>mn_cities_leaf <span class="ot">&lt;-</span> mn_cities <span class="sc">%&gt;%</span> <span class="fu">st_transform</span>(<span class="dv">4326</span>)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>cities_per_county <span class="ot">&lt;-</span> <span class="fu">st_join</span>(mn_cities_leaf, mn_counties_leaf) <span class="sc">%&gt;%</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">st_drop_geometry</span>() <span class="sc">%&gt;%</span> <span class="co"># removes geometry - makes the following calculation more efficient</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(name) </span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>mn_counties_leaf <span class="sc">%&gt;%</span> </span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(name <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Anoka"</span>, <span class="st">"Hennepin"</span>, <span class="st">"Ramsey"</span>, <span class="st">"Dakota"</span>, <span class="st">"Carver"</span>, <span class="st">"Washington"</span>, <span class="st">"Scott"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(cities_per_county) <span class="sc">%&gt;%</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">leaflet</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">addProviderTiles</span>(<span class="st">"CartoDB.Positron"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">addPolygons</span>(</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">color =</span> <span class="st">"#444444"</span>, <span class="at">weight =</span> <span class="dv">1</span>, <span class="at">smoothFactor =</span> <span class="fl">0.5</span>, <span class="at">opacity =</span> <span class="fl">1.0</span>,</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">fillOpacity =</span> <span class="fl">0.5</span>, <span class="at">fillColor =</span> <span class="sc">~</span><span class="fu">colorQuantile</span>(<span class="st">"YlOrRd"</span>, n)(n),</span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">highlightOptions =</span> <span class="fu">highlightOptions</span>(<span class="at">color =</span> <span class="st">"white"</span>, <span class="at">weight =</span> <span class="dv">2</span>, <span class="at">bringToFront =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">addCircles</span>(<span class="at">data =</span> mn_cities_leaf <span class="sc">%&gt;%</span> <span class="fu">filter</span>(County <span class="sc">%in%</span> <span class="fu">paste</span>(<span class="fu">c</span>(<span class="st">"Anoka"</span>, <span class="st">"Hennepin"</span>, <span class="st">"Ramsey"</span>, <span class="st">"Dakota"</span>, <span class="st">"Carver"</span>, <span class="st">"Washington"</span>, <span class="st">"Scott"</span>), <span class="st">"County"</span>)), <span class="at">color =</span> <span class="st">"#444444"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br><br><br><br></p>
+</section>
+</section>
+<section id="challenge-1" class="level1">
+<h1>Challenge 1</h1>
+<p>Navigate to <a href="https://classroom.github.com/a/5W1jLTYy">Advanced map visualization - Challenge 1</a> on GitHub to clone the repository for this challenge. Challenge 1 involves using the tools we learned today to spatially explore different aspects of the Twin Cities and is part of <a href="./homework2.html">Homework 2</a>.</p>
+<p><br><br><br><br></p>
+</section>
+<section id="reflect" class="level1">
+<h1>Reflect</h1>
+<p>In your personal course journal, write a few observations from today about any of the following:</p>
+<ul>
+<li>What was challenging and why? What specific strategy do you want to try to improve your understanding?</li>
+<li>What strategies, associations, insights helped things click today?</li>
+</ul>
+<p>Remember that the point of this journal is for you to have some record of what was going on in your learning at this point so that in a couple weeks, you can reflect meaningfully on your progress.</p>
+<p><br><br><br><br></p>
+</section>
+<section id="announcements" class="level1">
+<h1>Announcements</h1>
+<ul>
+<li><a href="./skills_session1.html">Skills Session 1</a> (keyboard shortcuts) should be completed with me <strong>next week.</strong> Look at the <a href="./skills_session1.html#scheduling">bottom</a> of the Skills Session 1 page for when you can find me in my office to complete this.</li>
+<li>Start thinking concretely about your course project topic. <a href="./project.html#milestone-1">Project Milestone 1</a> is coming up in 2 weeks (2/12).
+<ul>
+<li>Start looking for datasets to see what might be feasible. Think about who you would like to work with.</li>
+<li>If you are looking for project partners, there will be time on Thursday to connect with partners.</li>
+</ul></li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">© Leslie Myint, 2024<br> All content licensed under <img src="https://static.thenounproject.com/png/70967-200.png" height="20"> (<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>)</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">Site built with <a href="https://quarto.org/">Quarto</a></div>
+  </div>
+</footer>
+
+
+
+</body></html>
