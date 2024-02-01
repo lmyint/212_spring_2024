@@ -36,7 +36,7 @@ After this lesson, you should be able to:
 - Spatial Data Science <https://r-spatial.org/book/>
 - Spatial Data Science with R and `terra`: <https://rspatial.org/>
 - Leaflet in R <https://rstudio.github.io/leaflet/>
-- CRAN task view on spatial analysis: https://cran.r-project.org/web/views/Spatial.html
+- CRAN task view on spatial analysis: <https://cran.r-project.org/web/views/Spatial.html>
 
 
 <br><br><br><br>
@@ -570,4 +570,16 @@ Remember that the point of this journal is for you to have some record of what w
 - Start thinking concretely about your course project topic. [Project Milestone 1](project.qmd#milestone-1) is coming up in 2 weeks (2/12).
     - Start looking for datasets to see what might be feasible. Think about who you would like to work with.
     - If you are looking for project partners, there will be time on Thursday to connect with partners.
+- Work on [Homework 2](homework2.qmd) due Monday 2/5.
+
+
+<br><br><br><br>
+
+
+# Day 2
+
+We'll work on [Homework 2](homework2.qmd) today. (ggplot Challenge 2 and Maps Challenge 1).
+
+**Finding project partners:** If you are looking to connect with project partners with similar interests, use [this Google Jamboard](https://jamboard.google.com/d/19e1TAntdiP9LDQep1Vgk8omjAqwV9dvpY03jxlwxHMg/edit?usp=sharing) to record your ideas and see who is interested in similar areas.
+
 

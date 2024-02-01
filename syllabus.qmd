@@ -307,7 +307,7 @@ In order to earn a final letter grade of A, you will need to meet the requiremen
 - **Asynchronous skills demonstrations:** Pass **both challenges** in each skills category.
 - **Project:** Thoughtfully integrate peer and instructor feedback to create a codebase and digital artifact that go beyond the *Passing* requirements and meet the *Excellent* requirements in at least 2 areas.
 - **Your choice:** One of the following:
-    - Make a good faith effort at 5 different [Tidy Tuesday](https://github.com/rfordatascience/tidytuesday) challenges.
+    - Make a good faith effort at 5 different [Tidy Tuesday](https://github.com/rfordatascience/tidytuesday) challenges. A good faith effort involves posing a research question, making a clean plot with good labeling that addresses that question, interpreting the plot in light of data limitations, and describing a next step in the investigation.
     - Learn a new skill or an existing topic more deeply. If you choose this option, talk with me to discuss what this might look like. (Examples: Python, Tableau, writing R packages, a statistical modeling concept)
 
 

@@ -100,7 +100,8 @@ Guiding questions for pre-class readings and videos are available at the bottom 
     
     <td class="topleft">
       <b>2/6: Interactive visualization</b> <br>
-      <span class="b4">Before class:</span> Install the <span class="code">shiny</span> and <span class="code">plotly</span> R packages.
+      <span class="b4">Before class:</span> Install the <span class="code">shiny</span> and <span class="code">plotly</span> R packages.<br>
+      Listen to <a href="https://datastori.es/127-storytelling-with-data-with-cole-nussbaumer-knaflic/">this podcast</a> (timestamp 18:09-25:27). Reflect on the Guiding Question at the bottom of this page.
     </td>
     
     <td class="topleft">
@@ -434,3 +435,6 @@ install.packages("USAboundariesData", repos = "http://packages.ropensci.org", ty
 remotes::install_github("ropensci/USAboundaries")
 ```
 
+## 2/6: Interactive visualization in Shiny
+
+What was new, unexpected, or interesting in the discussion about animations, interactivity, and dashboards?
