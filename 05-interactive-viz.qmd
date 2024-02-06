@@ -401,5 +401,6 @@ What was challenging or satisfying about learning about interactivity and `shiny
 - Homework 1 feedback will be available shortly. I will share with each of you a Google Sheet that tracks your grades and feedback.
     - Reminder about our grading system: You'll receive a grade of Pass or Not Yet on challenges. If you receive a grade of Not Yet, you can always revise your work and resubmit. Send me an email when you do so that I know to take a look.
 - Do [Skills Session 1](skills_session1.qmd) with me this week.
+- Updated reading for next week (data wrangling) to spread several chapters out over 2 days.
 
 
