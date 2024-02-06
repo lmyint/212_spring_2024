@@ -66,10 +66,13 @@ Due date: Monday, February 12
 
 **Task (requirements for passing this Milestone):**
 
-- Form project groups and pick a topic/scope
+Put the following information in a PDF, and submit on [Moodle](https://moodle.macalester.edu/mod/assign/view.php?id=85482). (Only one team member per group needs to submit.)
+
+- Write down names of all team members
+- Briefly describe your topic/scope in a phrase/sentence.
 - Describe 2-3 broad questions that you wish to explore within this topic. (Not all of them might be able to be investigated with the data source you find for this Milestone---that's fine.)
-- Find one data source, and read that data into R
-- Thoroughly describe the data context (who, what, when, where, why, and how? questions related to the dataset)
+- Find one data source, and read that data into R.
+- Thoroughly describe the data context (who, what, when, where, why, and how? questions related to the dataset).
 - Write up a data codebook. That is, describe the type and meaning of the variables in your dataset. Group your variables into categories (e.g., demographic variables, neighborhood variables).
     - If you have a lot of variables, it may not be necessary/feasible to describe every variable individually. Rather, you can describe groups of similar variables.
 - Based on the data context writeup and your codebook, describe which of your 2-3 broad questions can be addressed with your dataset and how.

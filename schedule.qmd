@@ -121,12 +121,12 @@ Guiding questions for pre-class readings and videos are available at the bottom 
     
     <td class="topleft">
       <b>2/13: Data wrangling</b> <br>
-      <span class="b4">Before class:</span> Read Chapters 13-18 in <a href="https://r4ds.hadley.nz/">R4DS</a>.
+      <span class="b4">Before class:</span> Read Chapters 12, 13, 16, 17 in <a href="https://r4ds.hadley.nz/">R4DS</a>.
     </td>
     
     <td class="topleft">
       <b>2/15: Data wrangling and project work time</b> <br>
-      <span class="b4">Before class:</span> 
+      <span class="b4">Before class:</span> Read Chapters 14, 15, 19 in <a href="https://r4ds.hadley.nz/">R4DS</a>.
     </td>
     
     <td class="topleft">
@@ -150,7 +150,7 @@ Guiding questions for pre-class readings and videos are available at the bottom 
     </td>
     
     <td class="topleft">
-      Turn in <a href="https://lmyint.github.io/212_spring 2024/homework5.html">HW5</a> (includes Project Milestone 2) by midnight on Monday 2/19.
+      Turn in <a href="https://lmyint.github.io/212_spring 2024/homework5.html">HW5</a> (includes Project Milestone 2) by midnight on Monday 2/26.
     </td>
   </tr>
   <!----------------------------------------------------------->

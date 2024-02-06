@@ -1,0 +1,29 @@
+---
+title: "Homework 3"
+sidebar: false
+---
+
+# Required parts
+
+<center>
+Due by **Monday, February 12** at midnight.
+</center>
+
+<br><br>
+
+**Asynchronous skills challenges**
+
+- **Advanced map visualization - Challenge 2:** Navigate to this challenge on [GitHub](https://classroom.github.com/a/lwCGUNt1).
+- **Shiny - Challenge 1:** Complete the app from our [class activity](05-interactive-viz.qmd#shiny-challenge-1). Submit your `app.R` file on [Moodle](https://moodle.macalester.edu/mod/assign/view.php?id=85480).
+
+**Project Milestone 1:** See information on our [Project page](project.qmd#milestone-1).
+
+
+<br><br>
+
+
+# Optional
+
+If you are aiming for an A in the course, recall from our [syllabus](syllabus.qmd#requirements-for-an-a) that participating in 5 Tidy Tuesday challenges can move you toward this goal.
+
+- For further all-around practice, I encourage you to participate in the most recent [Tidy Tuesday](https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-02-06/readme.md) challenge.
