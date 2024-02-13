@@ -36,6 +36,7 @@ website:
         - 03-file-org-github.qmd
         - 04-adv-maps.qmd
         - 05-interactive-viz.qmd
+        - 06-wrangling-1.qmd
 
     - id: homework
       title: "Homework"
@@ -43,15 +44,12 @@ website:
         - homework1.qmd
         - homework2.qmd
         - homework3.qmd
-        # - homework4.qmd
-        # - reflection1.qmd
+        - homework4.qmd
         # - homework5.qmd
         # - homework6.qmd
         # - homework7.qmd
-        # - reflection2.qmd
         # - homework8.qmd
         # - homework9.qmd
-        # - reflection3.qmd
     
     - id: skills_sessions
       title: "Skills Sessions"

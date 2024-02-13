@@ -145,7 +145,7 @@ Guiding questions for pre-class readings and videos are available at the bottom 
     </td>
     
     <td class="topleft">
-      <b>2/22: Writing functions</b> <br>
+      <b>2/22: Writing functions, more version control</b> <br>
       <span class="b4">Before class:</span> Read <a href="https://r4ds.hadley.nz/functions.html">R4DS Chapter 26 (Functions)</a> and <a href="https://bookdown.org/rdpeng/rprogdatascience/control-structures.html#if-else">RPDS Section 13.1 (if-else)</a>.
     </td>
     
@@ -160,7 +160,7 @@ Guiding questions for pre-class readings and videos are available at the bottom 
     <td class="topleft">7</td>
     
     <td class="topleft">
-      <b>2/27: Functions (continued)</b> <br>
+      <b>2/27: Functions and version control(continued)</b> <br>
       <span class="b4">Before class:</span> 
     </td>
     

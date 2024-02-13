@@ -1,0 +1,35 @@
+---
+title: "Homework 4"
+sidebar: false
+---
+
+# Required parts
+
+<center>
+Due by **Monday, February 19** at midnight.
+</center>
+
+<br><br>
+
+**Asynchronous skills challenges** (Just one this week)
+
+- **Shiny - Challenge 2:** Complete the steps in the [Advanced interactivity with `plotly` section](05-interactive-viz.qmd#advanced-interactivity-with-plotly) of our in class Shiny activity. Submit your `app.R` file on [Moodle](https://moodle.macalester.edu/mod/assign/view.php?id=86598).
+
+**Reflection 1:** In a Google Doc, respond to the following prompts:
+
+- Comment on the evolution of your understanding from class activity, to Challenge 1, and to Challenge 2 for our core topics so far: advanced `ggplot2` visualization, maps, and Shiny. What was challenging initially? How have your skills progressed? What would you still like to work on? What support or resources would help you make the progress you want?
+- Comment on the role of peers in your learning. How have you collaborated with peers so far? What would you like collaboration to look like? What can you and the instructor do to move towards that goal?
+
+Please draw on observations from your personal class journal as you write so that you can add specific examples to your reflection.
+
+Submit a link to your Google Doc on [Moodle](https://moodle.macalester.edu/mod/assign/view.php?id=86599&forceview=1).
+
+
+<br><br>
+
+
+# Optional
+
+If you are aiming for an A in the course, recall from our [syllabus](syllabus.qmd#requirements-for-an-a) that participating in 5 Tidy Tuesday challenges can move you toward this goal.
+
+- For further all-around practice, I encourage you to participate in the most recent [Tidy Tuesday](https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-02-13/readme.md) challenge.

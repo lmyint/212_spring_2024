@@ -223,10 +223,9 @@ Our [course learning goals](syllabus.qmd#course-learning-goals) will have associ
 | Skills category        |              |              |
 |:-----------------------|:-------------|:-------------|
 | Advanced ggplot2       | [Challenge 1](https://classroom.github.com/a/u96MWDm2) | [Challenge 2](https://classroom.github.com/a/bl30jylw) |
-| Spatial visualization     | [Challenge 1](https://classroom.github.com/a/5W1jLTYy) | Challenge 2 |
+| Spatial visualization     | [Challenge 1](https://classroom.github.com/a/5W1jLTYy) | [Challenge 2](https://classroom.github.com/a/lwCGUNt1) |
 | Shiny                     | Challenge 1 | Challenge 2 |
 | Data wrangling            | Challenge 1 | Challenge 2 |
-| Modeling and missing data | Challenge 1 | Challenge 2 |
 | Writing functions         | Challenge 1 | Challenge 2 |
 | Writing loops             | Challenge 1 | Challenge 2 |
 | APIs                      | Challenge 1 | Challenge 2 |
