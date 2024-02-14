@@ -383,9 +383,9 @@ ggplotly(p, source = "plotly_scatterplot") %>%
 - Update the map part of your `server` section to have the following structure:
 
 ```{r plotly_step2, eval=FALSE}
+ed <- event_data("plotly_selected", source = "plotly_scatterplot")
+
 if (is.null(ed)) {
-    ed <- event_data("plotly_selected", source = "plotly_scatterplot")
-    
     p <- # ggplot code to make your map (your original map code)
 } else {
     zoomed_area <- st_bbox(???)
