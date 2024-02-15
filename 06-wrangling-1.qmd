@@ -334,7 +334,7 @@ Below we use date-time [parsing functions](https://lubridate.tidyverse.org/refer
 lakers <- lakers %>%
     mutate(
         date = ymd(date),
-        time = hm(time)
+        time = ms(time)
     )
 ```
 

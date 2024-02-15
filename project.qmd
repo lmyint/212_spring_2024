@@ -22,35 +22,109 @@ The goal of the project is to **build something awesome** that you are proud to 
 - You are required to use at least 2 different data sources for this project.
 - I *encourage* (but am not requiring) you to use one of the new data acquisition tools covered in our course (APIs, web scraping, SQL) for one of these data sources.
 
-**Overview of quality expectations:**
-
-- Write high quality code that is documented well
-    - Code duplication is minimal to nonexistent with the use of **functions** and **loops**
-    - Use comments appropriately to document what is happening in different parts of code
-    - Text space before and after code chunks is used for longer form (paragraph) documentation
-
-- Use good file organization practices
-    - Separate files for cleaning, plotting, and modeling
-    - Clean datasets are saved at the end of code files devoted to cleaning and loaded in at the start of code files devoted to plotting and modeling
-
-- Engage in effective version control practices
-    - As seen through GitHub commits and file diffs, each team member should contribute equally to the codebase. Note that contributions include both writing new lines of code AND modifying/deleting code (e.g., perhaps to reduce code duplication).
-
-- Engage thoughtfully with the contexts of your data sources
-    - Careful consideration of the who, what, when, where, why, and how of your datasets and how that affects results and interpretation
-    - Careful consideration of how the data context relates to ethical considerations of how you investigate your data and how your results should be used/interpreted
-
-- Effective data storytelling with clear and concise communication. The final digital artifact should:
-    - Motivate the importance of the topic
-    - Lead the reader through the rationale for the narrowing/focusing of the scope via the main 2-3 broad questions
-    - Tie results (plots and modeling output) to the broad questions and explain how all results fit together
-    - End with main takeaways, limitations, and future directions
-
-**Deliverables:** You will create a digital artifact that can be hosted on your personal website or linked to from your personal website.
+**Deliverables:** You will create a digital artifact that can be hosted on your personal website or linked to from your personal website. Options include:
 
 - Blog post (single `.qmd` file)
 - Standalone Shiny app (e.g., dashboard style with an `app.R` file)
 - Blog post with Shiny features. This is like a blog post where you scroll through text and plots, but with this format, the plots can be interactive (mini Shiny apps). (In RStudio, when you choose File > New File > Quarto Document, you can choose the "Interactive" option to generate this format.)
+
+
+<br><br>
+
+
+# Rubric
+
+For each category, there will be a grade of **Excellent**, **Passing**, or **Needs Improvement**.
+
+## Category: Thoughtful engagement with data context
+
+Overview of this category:
+
+- Careful consideration of the who, what, when, where, why, and how of your datasets and how that affects results and interpretation
+- Careful consideration of how the data context relates to ethical considerations of how you investigate your data and how your results should be used/interpreted. It will help to think about the following:
+    - Who is affected by the project's data acquisition and results?
+    - What (mis)interpretations or actions might result from the conduct of your investigations or your conclusions?
+    - How might negative consequences be mitigated?
+
+**Excellent** work will:
+
+- Thoughtfully consider the items above by drawing on team members' lived experiences AND perspectives from at least 2 other sources (e.g., news articles, research articles, blog posts, press releases, documentation from organizations affiliated with your data). These sources should be referenced in your final digital artifact.
+
+**Passing** work will:
+
+- Thoughtfully consider the items above by drawing on team members' lived experiences
+
+**Needs Improvement** work will:
+
+- Attempt to consider the items above but need more thought
+
+## Category: Effective data storytelling
+
+The final digital artifact should:
+
+- Motivate the importance of the topic
+- Lead the reader through the rationale for the narrowing/focusing of the scope via the main 2-3 broad questions
+- Tie results (plots and modeling output) to the broad questions and explain how all results fit together
+- End with main takeaways, limitations, and future directions
+- Use clear and concise communication throughout
+
+**Excellent** work will:
+
+- Meet **all** above the above quality expectations
+
+**Passing** work will:
+
+- Meet **most** above the above quality expectations
+
+**Needs Improvement** work will:
+
+- Meet **some** above the above quality expectations
+
+## Category: Code quality and documentation
+
+Overview of this category:
+
+- Code duplication is minimal to nonexistent with the use of **functions** and **loops**
+- Use comments appropriately to document what is happening in different parts of code
+- Text space before and after code chunks is used for longer form (paragraph) documentation
+
+**Excellent** work will:
+
+- Use functions **in all instances** where code would have been copied and pasted twice
+- Use functions and loops **in all instances** where code would have been copied and pasted 3 or more times
+- Consistently use (but not overuse) comments within R code to document code in a way that allows your future selves to remember what was going on. (Not every line of code needs to have a comment, but groups of lines that achieve a particular goal should have a comment.)
+- The text space before and after code chunks explains what is happening in each code chunk (e.g., why particular wrangling steps were performed, the motivation for fitting certain models, why different modeling outputs were extracted).
+
+**Passing** work will:
+
+- **Often** use functions and loops to reduce code duplication but have a **small number of missed opportunities**
+- **Often** use code comments and text space before and after code chunks for documentation but have a **small number of missed opportunities**
+
+**Needs Improvement** work will:
+
+- **Sometimes** use functions and loops to reduce code duplication but have **several missed opportunities**
+- **Sometimes** use code comments and text space before and after code chunks for documentation but have **several missed opportunities**
+
+## Category: File organization and version control
+
+Overview of this category:
+
+- Separate files for cleaning, plotting, and modeling
+- Clean datasets are saved at the end of code files devoted to cleaning and loaded in at the start of code files devoted to plotting and modeling
+- As seen through GitHub commits and file diffs, each team member should contribute roughly equally to the codebase. Note that contributions include both writing new lines of code AND modifying/deleting code (e.g., perhaps to reduce code duplication).
+    - Note: I am not going to count the number of lines added/modified by each team member. Rather, I will look at the GitHub commits and file diffs holistically.
+
+**Excellent** work will:
+
+- Meet **all** above the above quality expectations
+
+**Passing** work will:
+
+- **Generally meet** the above quality expectations but will require more separation of tasks across files or more use of saving clean datasets
+
+**Needs Improvement** work will:
+
+- **Sometimes meet** the above quality expectations but will require more separation of tasks across files, more use of saving clean datasets, and more even contributions from team members to the codebase
 
 
 <br><br>
@@ -68,14 +142,14 @@ Due date: Monday, February 12
 
 Put the following information in a PDF, and submit on [Moodle](https://moodle.macalester.edu/mod/assign/view.php?id=85482). (Only one team member per group needs to submit.)
 
-- Write down names of all team members
-- Briefly describe your topic/scope in a phrase/sentence.
-- Describe 2-3 broad questions that you wish to explore within this topic. (Not all of them might be able to be investigated with the data source you find for this Milestone---that's fine.)
-- Find one data source, and read that data into R.
-- Thoroughly describe the data context (who, what, when, where, why, and how? questions related to the dataset).
-- Write up a data codebook. That is, describe the type and meaning of the variables in your dataset. Group your variables into categories (e.g., demographic variables, neighborhood variables).
+1. Write down names of all team members
+2. Briefly describe your topic/scope in a phrase/sentence.
+3. Describe 2-3 broad questions that you wish to explore within this topic. (Not all of them might be able to be investigated with the data source you find for this Milestone---that's fine.)
+4. Find one data source, and read that data into R.
+5. Thoroughly describe the data context (who, what, when, where, why, and how? questions related to the dataset).
+6. Write up a data codebook. That is, describe the type and meaning of the variables in your dataset. Group your variables into categories (e.g., demographic variables, neighborhood variables).
     - If you have a lot of variables, it may not be necessary/feasible to describe every variable individually. Rather, you can describe groups of similar variables.
-- Based on the data context writeup and your codebook, describe which of your 2-3 broad questions can be addressed with your dataset and how.
+7. Based on the data context write-up and your codebook, describe which of your 2-3 broad questions can be addressed with your dataset and how.
     - Write a plan for addressing these questions. Make sure that the steps in this plan are reasonable to complete in 2 weeks for Milestone 2. You will receive feedback on this plan and will be expected to integrate this feedback for Milestone 2.
 
 
@@ -88,12 +162,41 @@ Due date: Monday, February 26
 
 **Task (requirements for passing this Milestone):**
 
-- Complete the steps in your plan from Milestone 1 (the plan with feedback from the instructional team)
-- Write a plan for further pursuing your 2-3 broad questions. Make sure that the steps in this plan are reasonable to complete in 2 weeks for Milestone 3. You will receive feedback on this plan and will be expected to integrate this feedback for Milestone 3. Questions to think about as you develop this plan:
+1. Create a team GitHub repository with a folder structure as follows:
+    - `your_github_project_folder`
+        - `code`
+        - `data`
+        - `results`
+
+2. Create a `.gitignore` file.
+    - **What is this?** `.gitignore` is a special file that tells Git what files and folders to ignore in version control.
+    - Steps to create this file:
+        1. Open the Terminal in RStudio. Enter the command `pwd`. Make sure that a path to your project folder is displayed. If not, use the command `cd RELATIVE/PATH/TO/YOUR/PROJECT/FOLDER` to **c**hange the **d**irectory to your project folder. The part that comes after `cd` is a relative path from your current location to your project folder. If you need to use `cd`, use `pwd` again afterward to confirm that you are in your project folder.
+        2. Enter the command `touch .gitignore`.
+        3. Enter the command `ls -a`. You should see all files in this directory (including hidden files that start with `.`). You should see the `.gitignore` file.
+        4. Enter the command `open .gitignore`. Note that you can use **tab completion** in the Terminal for typing shortcuts. After you type `open .giti` hit Tab to auto-complete the rest of the `.gitignore` file name. This will open the `.gitignore` file in RStudio or your computer's plain text editor.
+        5. Add the following lines to your `.gitignore` file, and save the file.
+            ```
+            data/
+            .DS_Store (a hidden Mac file)
+            .Rhistory
+            .Rproj.user
+            *.Rproj
+            .quarto/
+            ```
+    - Add, commit, and push your `code/` folder and the `.gitignore` file. Unless you change your `.gitignore` later, this is the only time you will need to add, commit, and push your `.gitignore` file.
+
+3. Add the instructor as a collaborator to your project GitHub repository. (GH username: `lmyint`)
+
+4. Add a code chunk to the end of all of your `.Rmd`/`.qmd` documents with `sessionInfo()`
+    - When rendering your markdown file to HTML, this adds information about all packages used in the file as well as their package versions. As packages get updated over time, old code may break, so it is good to know what version of a package was used to complete your work so that you can restore that particular package version.
+
+5. Complete the steps in your plan from Milestone 1 (the plan with feedback from the instructional team)
+
+6. Write a plan for further pursuing your 2-3 broad questions. Make sure that the steps in this plan are reasonable to complete in 2 weeks for Milestone 3. You will receive feedback on this plan and will be expected to integrate this feedback for Milestone 3. Questions to think about as you develop this plan:
     - Do your 2-3 original broad questions need to be revised?
     - Is it time to start looking for additional datasets?
-- GITHUB STUFF
-- Adding `sessionInfo()`
+
 
 
 ## Milestone 3
@@ -104,8 +207,8 @@ Due date: Friday, March 8 (day before Spring Break)
 
 **Task (requirements for passing this Milestone):**
 
-- Complete the steps in your plan from Milestone 2 (the plan with feedback from the instructional team)
-- Write a short blog post (no more than 1000 words) about your results so far. In this post, you should:
+1. Complete the steps in your plan from Milestone 2 (the plan with feedback from the instructional team)
+2. Write a short blog post (no more than 1000 words) about your results so far. Use a `.qmd` to generate an HTML file for this post. In this post, you should:
     - Motivate the importance of the topic
     - Lead the reader through the rationale for the narrowing/focusing of the scope via the main 2-3 broad questions
     - Tie results (plots and modeling output) to the broad questions and explain how all results fit together

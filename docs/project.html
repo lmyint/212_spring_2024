@@ -121,6 +121,10 @@ ul.task-list li input[type="checkbox"] {
     <a class="dropdown-item" href="./06-wrangling-1.html" rel="" target="">
  <span class="dropdown-text">Data wrangling - Part 1</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./07-wrangling-2.html" rel="" target="">
+ <span class="dropdown-text">Data wrangling - Part 2</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -183,6 +187,13 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#goal" id="toc-goal" class="nav-link active" data-scroll-target="#goal">Goal</a></li>
   <li><a href="#project-requirements" id="toc-project-requirements" class="nav-link" data-scroll-target="#project-requirements">Project requirements</a></li>
+  <li><a href="#rubric" id="toc-rubric" class="nav-link" data-scroll-target="#rubric">Rubric</a>
+  <ul class="collapse">
+  <li><a href="#category-thoughtful-engagement-with-data-context" id="toc-category-thoughtful-engagement-with-data-context" class="nav-link" data-scroll-target="#category-thoughtful-engagement-with-data-context">Category: Thoughtful engagement with data context</a></li>
+  <li><a href="#category-effective-data-storytelling" id="toc-category-effective-data-storytelling" class="nav-link" data-scroll-target="#category-effective-data-storytelling">Category: Effective data storytelling</a></li>
+  <li><a href="#category-code-quality-and-documentation" id="toc-category-code-quality-and-documentation" class="nav-link" data-scroll-target="#category-code-quality-and-documentation">Category: Code quality and documentation</a></li>
+  <li><a href="#category-file-organization-and-version-control" id="toc-category-file-organization-and-version-control" class="nav-link" data-scroll-target="#category-file-organization-and-version-control">Category: File organization and version control</a></li>
+  </ul></li>
   <li><a href="#project-milestones" id="toc-project-milestones" class="nav-link" data-scroll-target="#project-milestones">Project milestones</a>
   <ul class="collapse">
   <li><a href="#milestone-1" id="toc-milestone-1" class="nav-link" data-scroll-target="#milestone-1">Milestone 1</a></li>
@@ -226,43 +237,116 @@ ul.task-list li input[type="checkbox"] {
 <li>You are required to use at least 2 different data sources for this project.</li>
 <li>I <em>encourage</em> (but am not requiring) you to use one of the new data acquisition tools covered in our course (APIs, web scraping, SQL) for one of these data sources.</li>
 </ul>
-<p><strong>Overview of quality expectations:</strong></p>
-<ul>
-<li>Write high quality code that is documented well
-<ul>
-<li>Code duplication is minimal to nonexistent with the use of <strong>functions</strong> and <strong>loops</strong></li>
-<li>Use comments appropriately to document what is happening in different parts of code</li>
-<li>Text space before and after code chunks is used for longer form (paragraph) documentation</li>
-</ul></li>
-<li>Use good file organization practices
-<ul>
-<li>Separate files for cleaning, plotting, and modeling</li>
-<li>Clean datasets are saved at the end of code files devoted to cleaning and loaded in at the start of code files devoted to plotting and modeling</li>
-</ul></li>
-<li>Engage in effective version control practices
-<ul>
-<li>As seen through GitHub commits and file diffs, each team member should contribute equally to the codebase. Note that contributions include both writing new lines of code AND modifying/deleting code (e.g., perhaps to reduce code duplication).</li>
-</ul></li>
-<li>Engage thoughtfully with the contexts of your data sources
-<ul>
-<li>Careful consideration of the who, what, when, where, why, and how of your datasets and how that affects results and interpretation</li>
-<li>Careful consideration of how the data context relates to ethical considerations of how you investigate your data and how your results should be used/interpreted</li>
-</ul></li>
-<li>Effective data storytelling with clear and concise communication. The final digital artifact should:
-<ul>
-<li>Motivate the importance of the topic</li>
-<li>Lead the reader through the rationale for the narrowing/focusing of the scope via the main 2-3 broad questions</li>
-<li>Tie results (plots and modeling output) to the broad questions and explain how all results fit together</li>
-<li>End with main takeaways, limitations, and future directions</li>
-</ul></li>
-</ul>
-<p><strong>Deliverables:</strong> You will create a digital artifact that can be hosted on your personal website or linked to from your personal website.</p>
+<p><strong>Deliverables:</strong> You will create a digital artifact that can be hosted on your personal website or linked to from your personal website. Options include:</p>
 <ul>
 <li>Blog post (single <code>.qmd</code> file)</li>
 <li>Standalone Shiny app (e.g., dashboard style with an <code>app.R</code> file)</li>
 <li>Blog post with Shiny features. This is like a blog post where you scroll through text and plots, but with this format, the plots can be interactive (mini Shiny apps). (In RStudio, when you choose File &gt; New File &gt; Quarto Document, you can choose the “Interactive” option to generate this format.)</li>
 </ul>
 <p><br><br></p>
+</section>
+<section id="rubric" class="level1">
+<h1>Rubric</h1>
+<p>For each category, there will be a grade of <strong>Excellent</strong>, <strong>Passing</strong>, or <strong>Needs Improvement</strong>.</p>
+<section id="category-thoughtful-engagement-with-data-context" class="level2">
+<h2 class="anchored" data-anchor-id="category-thoughtful-engagement-with-data-context">Category: Thoughtful engagement with data context</h2>
+<p>Overview of this category:</p>
+<ul>
+<li>Careful consideration of the who, what, when, where, why, and how of your datasets and how that affects results and interpretation</li>
+<li>Careful consideration of how the data context relates to ethical considerations of how you investigate your data and how your results should be used/interpreted. It will help to think about the following:
+<ul>
+<li>Who is affected by the project’s data acquisition and results?</li>
+<li>What (mis)interpretations or actions might result from the conduct of your investigations or your conclusions?</li>
+<li>How might negative consequences be mitigated?</li>
+</ul></li>
+</ul>
+<p><strong>Excellent</strong> work will:</p>
+<ul>
+<li>Thoughtfully consider the items above by drawing on team members’ lived experiences AND perspectives from at least 2 other sources (e.g., news articles, research articles, blog posts, press releases, documentation from organizations affiliated with your data). These sources should be referenced in your final digital artifact.</li>
+</ul>
+<p><strong>Passing</strong> work will:</p>
+<ul>
+<li>Thoughtfully consider the items above by drawing on team members’ lived experiences</li>
+</ul>
+<p><strong>Needs Improvement</strong> work will:</p>
+<ul>
+<li>Attempt to consider the items above but need more thought</li>
+</ul>
+</section>
+<section id="category-effective-data-storytelling" class="level2">
+<h2 class="anchored" data-anchor-id="category-effective-data-storytelling">Category: Effective data storytelling</h2>
+<p>The final digital artifact should:</p>
+<ul>
+<li>Motivate the importance of the topic</li>
+<li>Lead the reader through the rationale for the narrowing/focusing of the scope via the main 2-3 broad questions</li>
+<li>Tie results (plots and modeling output) to the broad questions and explain how all results fit together</li>
+<li>End with main takeaways, limitations, and future directions</li>
+<li>Use clear and concise communication throughout</li>
+</ul>
+<p><strong>Excellent</strong> work will:</p>
+<ul>
+<li>Meet <strong>all</strong> above the above quality expectations</li>
+</ul>
+<p><strong>Passing</strong> work will:</p>
+<ul>
+<li>Meet <strong>most</strong> above the above quality expectations</li>
+</ul>
+<p><strong>Needs Improvement</strong> work will:</p>
+<ul>
+<li>Meet <strong>some</strong> above the above quality expectations</li>
+</ul>
+</section>
+<section id="category-code-quality-and-documentation" class="level2">
+<h2 class="anchored" data-anchor-id="category-code-quality-and-documentation">Category: Code quality and documentation</h2>
+<p>Overview of this category:</p>
+<ul>
+<li>Code duplication is minimal to nonexistent with the use of <strong>functions</strong> and <strong>loops</strong></li>
+<li>Use comments appropriately to document what is happening in different parts of code</li>
+<li>Text space before and after code chunks is used for longer form (paragraph) documentation</li>
+</ul>
+<p><strong>Excellent</strong> work will:</p>
+<ul>
+<li>Use functions <strong>in all instances</strong> where code would have been copied and pasted twice</li>
+<li>Use functions and loops <strong>in all instances</strong> where code would have been copied and pasted 3 or more times</li>
+<li>Consistently use (but not overuse) comments within R code to document code in a way that allows your future selves to remember what was going on. (Not every line of code needs to have a comment, but groups of lines that achieve a particular goal should have a comment.)</li>
+<li>The text space before and after code chunks explains what is happening in each code chunk (e.g., why particular wrangling steps were performed, the motivation for fitting certain models, why different modeling outputs were extracted).</li>
+</ul>
+<p><strong>Passing</strong> work will:</p>
+<ul>
+<li><strong>Often</strong> use functions and loops to reduce code duplication but have a <strong>small number of missed opportunities</strong></li>
+<li><strong>Often</strong> use code comments and text space before and after code chunks for documentation but have a <strong>small number of missed opportunities</strong></li>
+</ul>
+<p><strong>Needs Improvement</strong> work will:</p>
+<ul>
+<li><strong>Sometimes</strong> use functions and loops to reduce code duplication but have <strong>several missed opportunities</strong></li>
+<li><strong>Sometimes</strong> use code comments and text space before and after code chunks for documentation but have <strong>several missed opportunities</strong></li>
+</ul>
+</section>
+<section id="category-file-organization-and-version-control" class="level2">
+<h2 class="anchored" data-anchor-id="category-file-organization-and-version-control">Category: File organization and version control</h2>
+<p>Overview of this category:</p>
+<ul>
+<li>Separate files for cleaning, plotting, and modeling</li>
+<li>Clean datasets are saved at the end of code files devoted to cleaning and loaded in at the start of code files devoted to plotting and modeling</li>
+<li>As seen through GitHub commits and file diffs, each team member should contribute roughly equally to the codebase. Note that contributions include both writing new lines of code AND modifying/deleting code (e.g., perhaps to reduce code duplication).
+<ul>
+<li>Note: I am not going to count the number of lines added/modified by each team member. Rather, I will look at the GitHub commits and file diffs holistically.</li>
+</ul></li>
+</ul>
+<p><strong>Excellent</strong> work will:</p>
+<ul>
+<li>Meet <strong>all</strong> above the above quality expectations</li>
+</ul>
+<p><strong>Passing</strong> work will:</p>
+<ul>
+<li><strong>Generally meet</strong> the above quality expectations but will require more separation of tasks across files or more use of saving clean datasets</li>
+</ul>
+<p><strong>Needs Improvement</strong> work will:</p>
+<ul>
+<li><strong>Sometimes meet</strong> the above quality expectations but will require more separation of tasks across files, more use of saving clean datasets, and more even contributions from team members to the codebase</li>
+</ul>
+<p><br><br></p>
+</section>
 </section>
 <section id="project-milestones" class="level1">
 <h1>Project milestones</h1>
@@ -272,7 +356,7 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Purpose:</strong> The goal of Milestone 1 is to get the project moving early on in the semester to have time to make the final product as high quality as possible. You will form teams, lay the vision for your project, and make progress on that vision with one dataset.</p>
 <p><strong>Task (requirements for passing this Milestone):</strong></p>
 <p>Put the following information in a PDF, and submit on <a href="https://moodle.macalester.edu/mod/assign/view.php?id=85482">Moodle</a>. (Only one team member per group needs to submit.)</p>
-<ul>
+<ol type="1">
 <li>Write down names of all team members</li>
 <li>Briefly describe your topic/scope in a phrase/sentence.</li>
 <li>Describe 2-3 broad questions that you wish to explore within this topic. (Not all of them might be able to be investigated with the data source you find for this Milestone—that’s fine.)</li>
@@ -282,43 +366,68 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li>If you have a lot of variables, it may not be necessary/feasible to describe every variable individually. Rather, you can describe groups of similar variables.</li>
 </ul></li>
-<li>Based on the data context writeup and your codebook, describe which of your 2-3 broad questions can be addressed with your dataset and how.
+<li>Based on the data context write-up and your codebook, describe which of your 2-3 broad questions can be addressed with your dataset and how.
 <ul>
 <li>Write a plan for addressing these questions. Make sure that the steps in this plan are reasonable to complete in 2 weeks for Milestone 2. You will receive feedback on this plan and will be expected to integrate this feedback for Milestone 2.</li>
 </ul></li>
-</ul>
+</ol>
 </section>
 <section id="milestone-2" class="level2">
 <h2 class="anchored" data-anchor-id="milestone-2">Milestone 2</h2>
 <p>Due date: Monday, February 26</p>
 <p><strong>Purpose:</strong> The goal of Milestone 2 is to make progress on the goals you set out earlier and get tailored feedback on next steps to make the final product as high quality as possible.</p>
 <p><strong>Task (requirements for passing this Milestone):</strong></p>
+<ol type="1">
+<li><p>Create a team GitHub repository with a folder structure as follows:</p>
 <ul>
-<li>Complete the steps in your plan from Milestone 1 (the plan with feedback from the instructional team)</li>
-<li>Write a plan for further pursuing your 2-3 broad questions. Make sure that the steps in this plan are reasonable to complete in 2 weeks for Milestone 3. You will receive feedback on this plan and will be expected to integrate this feedback for Milestone 3. Questions to think about as you develop this plan:
+<li><code>your_github_project_folder</code>
+<ul>
+<li><code>code</code></li>
+<li><code>data</code></li>
+<li><code>results</code></li>
+</ul></li>
+</ul></li>
+<li><p>Create a <code>.gitignore</code> file.</p>
+<ul>
+<li><strong>What is this?</strong> <code>.gitignore</code> is a special file that tells Git what files and folders to ignore in version control.</li>
+<li>Steps to create this file:
+<ol type="1">
+<li>Open the Terminal in RStudio. Enter the command <code>pwd</code>. Make sure that a path to your project folder is displayed. If not, use the command <code>cd RELATIVE/PATH/TO/YOUR/PROJECT/FOLDER</code> to <strong>c</strong>hange the <strong>d</strong>irectory to your project folder. The part that comes after <code>cd</code> is a relative path from your current location to your project folder. If you need to use <code>cd</code>, use <code>pwd</code> again afterward to confirm that you are in your project folder.</li>
+<li>Enter the command <code>touch .gitignore</code>.</li>
+<li>Enter the command <code>ls -a</code>. You should see all files in this directory (including hidden files that start with <code>.</code>). You should see the <code>.gitignore</code> file.</li>
+<li>Enter the command <code>open .gitignore</code>. Note that you can use <strong>tab completion</strong> in the Terminal for typing shortcuts. After you type <code>open .giti</code> hit Tab to auto-complete the rest of the <code>.gitignore</code> file name. This will open the <code>.gitignore</code> file in RStudio or your computer’s plain text editor.</li>
+<li>Add the following lines to your <code>.gitignore</code> file, and save the file. <code>data/       .DS_Store (a hidden Mac file)       .Rhistory       .Rproj.user       *.Rproj       .quarto/</code></li>
+</ol></li>
+<li>Add, commit, and push your <code>code/</code> folder and the <code>.gitignore</code> file. Unless you change your <code>.gitignore</code> later, this is the only time you will need to add, commit, and push your <code>.gitignore</code> file.</li>
+</ul></li>
+<li><p>Add the instructor as a collaborator to your project GitHub repository. (GH username: <code>lmyint</code>)</p></li>
+<li><p>Add a code chunk to the end of all of your <code>.Rmd</code>/<code>.qmd</code> documents with <code>sessionInfo()</code></p>
+<ul>
+<li>When rendering your markdown file to HTML, this adds information about all packages used in the file as well as their package versions. As packages get updated over time, old code may break, so it is good to know what version of a package was used to complete your work so that you can restore that particular package version.</li>
+</ul></li>
+<li><p>Complete the steps in your plan from Milestone 1 (the plan with feedback from the instructional team)</p></li>
+<li><p>Write a plan for further pursuing your 2-3 broad questions. Make sure that the steps in this plan are reasonable to complete in 2 weeks for Milestone 3. You will receive feedback on this plan and will be expected to integrate this feedback for Milestone 3. Questions to think about as you develop this plan:</p>
 <ul>
 <li>Do your 2-3 original broad questions need to be revised?</li>
 <li>Is it time to start looking for additional datasets?</li>
 </ul></li>
-<li>GITHUB STUFF</li>
-<li>Adding <code>sessionInfo()</code></li>
-</ul>
+</ol>
 </section>
 <section id="milestone-3" class="level2">
 <h2 class="anchored" data-anchor-id="milestone-3">Milestone 3</h2>
 <p>Due date: Friday, March 8 (day before Spring Break)</p>
 <p><strong>Purpose:</strong> The goal of Milestone 3 is to make progress on the goals you set out earlier and get tailored feedback on next steps to make the final product as high quality as possible.</p>
 <p><strong>Task (requirements for passing this Milestone):</strong></p>
-<ul>
+<ol type="1">
 <li>Complete the steps in your plan from Milestone 2 (the plan with feedback from the instructional team)</li>
-<li>Write a short blog post (no more than 1000 words) about your results so far. In this post, you should:
+<li>Write a short blog post (no more than 1000 words) about your results so far. Use a <code>.qmd</code> to generate an HTML file for this post. In this post, you should:
 <ul>
 <li>Motivate the importance of the topic</li>
 <li>Lead the reader through the rationale for the narrowing/focusing of the scope via the main 2-3 broad questions</li>
 <li>Tie results (plots and modeling output) to the broad questions and explain how all results fit together</li>
 <li>End with main takeaways, limitations with regard to the data context and ethical considerations, and future directions</li>
 </ul></li>
-</ul>
+</ol>
 
 
 </section>

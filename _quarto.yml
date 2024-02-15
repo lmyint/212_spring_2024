@@ -37,6 +37,7 @@ website:
         - 04-adv-maps.qmd
         - 05-interactive-viz.qmd
         - 06-wrangling-1.qmd
+        - 07-wrangling-2.qmd
 
     - id: homework
       title: "Homework"
