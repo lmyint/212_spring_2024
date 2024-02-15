@@ -176,6 +176,7 @@ Due date: Monday, February 26
         3. Enter the command `ls -a`. You should see all files in this directory (including hidden files that start with `.`). You should see the `.gitignore` file.
         4. Enter the command `open .gitignore`. Note that you can use **tab completion** in the Terminal for typing shortcuts. After you type `open .giti` hit Tab to auto-complete the rest of the `.gitignore` file name. This will open the `.gitignore` file in RStudio or your computer's plain text editor.
         5. Add the following lines to your `.gitignore` file, and save the file.
+        
             ```
             data/
             .DS_Store (a hidden Mac file)
@@ -184,6 +185,7 @@ Due date: Monday, February 26
             *.Rproj
             .quarto/
             ```
+            
     - Add, commit, and push your `code/` folder and the `.gitignore` file. Unless you change your `.gitignore` later, this is the only time you will need to add, commit, and push your `.gitignore` file.
 
 3. Add the instructor as a collaborator to your project GitHub repository. (GH username: `lmyint`)

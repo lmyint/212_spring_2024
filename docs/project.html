@@ -392,11 +392,17 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>What is this?</strong> <code>.gitignore</code> is a special file that tells Git what files and folders to ignore in version control.</li>
 <li>Steps to create this file:
 <ol type="1">
-<li>Open the Terminal in RStudio. Enter the command <code>pwd</code>. Make sure that a path to your project folder is displayed. If not, use the command <code>cd RELATIVE/PATH/TO/YOUR/PROJECT/FOLDER</code> to <strong>c</strong>hange the <strong>d</strong>irectory to your project folder. The part that comes after <code>cd</code> is a relative path from your current location to your project folder. If you need to use <code>cd</code>, use <code>pwd</code> again afterward to confirm that you are in your project folder.</li>
-<li>Enter the command <code>touch .gitignore</code>.</li>
-<li>Enter the command <code>ls -a</code>. You should see all files in this directory (including hidden files that start with <code>.</code>). You should see the <code>.gitignore</code> file.</li>
-<li>Enter the command <code>open .gitignore</code>. Note that you can use <strong>tab completion</strong> in the Terminal for typing shortcuts. After you type <code>open .giti</code> hit Tab to auto-complete the rest of the <code>.gitignore</code> file name. This will open the <code>.gitignore</code> file in RStudio or your computer’s plain text editor.</li>
-<li>Add the following lines to your <code>.gitignore</code> file, and save the file. <code>data/       .DS_Store (a hidden Mac file)       .Rhistory       .Rproj.user       *.Rproj       .quarto/</code></li>
+<li><p>Open the Terminal in RStudio. Enter the command <code>pwd</code>. Make sure that a path to your project folder is displayed. If not, use the command <code>cd RELATIVE/PATH/TO/YOUR/PROJECT/FOLDER</code> to <strong>c</strong>hange the <strong>d</strong>irectory to your project folder. The part that comes after <code>cd</code> is a relative path from your current location to your project folder. If you need to use <code>cd</code>, use <code>pwd</code> again afterward to confirm that you are in your project folder.</p></li>
+<li><p>Enter the command <code>touch .gitignore</code>.</p></li>
+<li><p>Enter the command <code>ls -a</code>. You should see all files in this directory (including hidden files that start with <code>.</code>). You should see the <code>.gitignore</code> file.</p></li>
+<li><p>Enter the command <code>open .gitignore</code>. Note that you can use <strong>tab completion</strong> in the Terminal for typing shortcuts. After you type <code>open .giti</code> hit Tab to auto-complete the rest of the <code>.gitignore</code> file name. This will open the <code>.gitignore</code> file in RStudio or your computer’s plain text editor.</p></li>
+<li><p>Add the following lines to your <code>.gitignore</code> file, and save the file.</p>
+<pre><code>data/
+.DS_Store (a hidden Mac file)
+.Rhistory
+.Rproj.user
+*.Rproj
+.quarto/</code></pre></li>
 </ol></li>
 <li>Add, commit, and push your <code>code/</code> folder and the <code>.gitignore</code> file. Unless you change your <code>.gitignore</code> later, this is the only time you will need to add, commit, and push your <code>.gitignore</code> file.</li>
 </ul></li>
