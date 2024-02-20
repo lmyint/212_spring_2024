@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>STAT/COMP 212 - Missing data</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">STAT/COMP 212</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./schedule.html" rel="" target="">
+ <span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./syllabus.html" rel="" target="">
+ <span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-activities" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Activities</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-activities">    
+        <li>
+    <a class="dropdown-item" href="./01-introductions.html" rel="" target="">
+ <span class="dropdown-text">Welcome to the course!</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./02-adv-ggplot.html" rel="" target="">
+ <span class="dropdown-text">Advanced Data Visualization in ggplot2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./03-file-org-github.html" rel="" target="">
+ <span class="dropdown-text">File organization, GitHub</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./04-adv-maps.html" rel="" target="">
+ <span class="dropdown-text">Advanced spatial visualization</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./05-interactive-viz.html" rel="" target="">
+ <span class="dropdown-text">Interactive visualization</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./06-wrangling-1.html" rel="" target="">
+ <span class="dropdown-text">Data wrangling - Part 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./07-wrangling-2.html" rel="" target="">
+ <span class="dropdown-text">Data wrangling - Part 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./08-missing-data.html" rel="" target="">
+ <span class="dropdown-text">Missing data</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-homework" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Homework</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-homework">    
+        <li>
+    <a class="dropdown-item" href="./homework1.html" rel="" target="">
+ <span class="dropdown-text">Homework 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./homework2.html" rel="" target="">
+ <span class="dropdown-text">Homework 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./homework3.html" rel="" target="">
+ <span class="dropdown-text">Homework 3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./homework4.html" rel="" target="">
+ <span class="dropdown-text">Homework 4</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./homework5.html" rel="" target="">
+ <span class="dropdown-text">Homework 5</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-skills-sessions" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Skills Sessions</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-skills-sessions">    
+        <li>
+    <a class="dropdown-item" href="./skills_session1.html" rel="" target="">
+ <span class="dropdown-text">Skills Session 1</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./project.html" rel="" target="">
+ <span class="menu-text">Project</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./tech_setup.html" rel="" target="">
+ <span class="menu-text">Tech Setup</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#learning-goals" id="toc-learning-goals" class="nav-link active" data-scroll-target="#learning-goals">Learning goals</a></li>
+  <li><a href="#approaches-to-working-with-missing-data" id="toc-approaches-to-working-with-missing-data" class="nav-link" data-scroll-target="#approaches-to-working-with-missing-data">Approaches to working with missing data</a></li>
+  <li><a href="#missing-data-mechanisms" id="toc-missing-data-mechanisms" class="nav-link" data-scroll-target="#missing-data-mechanisms">Missing data mechanisms</a>
+  <ul class="collapse">
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
+  </ul></li>
+  <li><a href="#exploring-missing-data" id="toc-exploring-missing-data" class="nav-link" data-scroll-target="#exploring-missing-data">Exploring missing data</a>
+  <ul class="collapse">
+  <li><a href="#missingness-by-variable" id="toc-missingness-by-variable" class="nav-link" data-scroll-target="#missingness-by-variable">Missingness by variable</a></li>
+  <li><a href="#missingness-by-case" id="toc-missingness-by-case" class="nav-link" data-scroll-target="#missingness-by-case">Missingness by case</a></li>
+  <li><a href="#exploring-missingness-mechanisms" id="toc-exploring-missingness-mechanisms" class="nav-link" data-scroll-target="#exploring-missingness-mechanisms">Exploring missingness mechanisms</a></li>
+  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise</a></li>
+  </ul></li>
+  <li><a href="#multiple-imputation-and-simulation-studies" id="toc-multiple-imputation-and-simulation-studies" class="nav-link" data-scroll-target="#multiple-imputation-and-simulation-studies">Multiple imputation and simulation studies</a></li>
+  <li><a href="#reflection" id="toc-reflection" class="nav-link" data-scroll-target="#reflection">Reflection</a></li>
+  <li><a href="#announcements" id="toc-announcements" class="nav-link" data-scroll-target="#announcements">Announcements</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Missing data</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="learning-goals" class="level1">
+<h1>Learning goals</h1>
+<p>After this lesson, you should be able to:</p>
+<ul>
+<li>Explain the difference between MCAR, MAR, and MNAR missing data mechanisms</li>
+<li>Assess what missing data mechanisms might be at play in a given dataset</li>
+<li>Use visualizations to explore missing data patterns</li>
+<li>Explain why multiple imputation is preferred to single imputation</li>
+<li>Explain how a simulation study can be used to investigate properties of statistical methods</li>
+</ul>
+<p><br></p>
+<p>You can download a template Quarto file to start from <a href="activity_templates/08-missing-data.qmd">here</a>. Put this file in a folder called <code>missing_data</code> within a folder for this course. Install the <code>naniar</code> and <code>mice</code> packages.</p>
+<p><br><br><br><br></p>
+</section>
+<section id="approaches-to-working-with-missing-data" class="level1">
+<h1>Approaches to working with missing data</h1>
+<p>If you have missing data, there are 3 main ways of proceeding:</p>
+<ol type="1">
+<li>Drop the cases with missing data from the analysis–a <strong>complete case analysis</strong></li>
+<li>For some variables, a missing value might be meaningful itself in a category.
+<ul>
+<li>Example: The survey question “What is your gender?” might only provide two responses: “male” and “female”. Missing values for this could indicate that the respondent uses a non-binary designation. Instead of dropping these cases, treating the missing data as its own category (“Not male or female”) could be more appropriate.</li>
+</ul></li>
+<li><strong>Impute</strong> (fill in) the missing data using imputation algorithms.
+<ul>
+<li>Imputation algorithms can be as simple as replacing missing values with the mean of the non-missing values.</li>
+<li>More sophisticated imputation algorithms use models to predict missing values as a function of other variables in the data.</li>
+</ul></li>
+</ol>
+<p>Deciding between these 3 options and proceeding with choosing finer details within an option requires an understanding of the <strong>mechanism</strong> by which data become missing.</p>
+<p><br><br><br><br></p>
+</section>
+<section id="missing-data-mechanisms" class="level1">
+<h1>Missing data mechanisms</h1>
+<p>The reasons for which a variable might have missing data are divided into 3 mechanisms: MCAR, MAR, and MNAR. Within a dataset, multiple mechanisms may be present–we need to consider the missingness mechanism for each variable individually.</p>
+<ul>
+<li><strong>Missing completely at random (MCAR)</strong>:
+<ul>
+<li>The probability of missing data for a variable is the same for all cases. Implies that causes of the missing data are unrelated to the data. (https://stefvanbuuren.name/fimd/sec-MCAR.html)</li>
+<li>Examples:
+<ul>
+<li>Measurement device that runs out of batteries causes the remainder of observations for the day to be missing.</li>
+<li>Data entry software requires a particular field to be typo-free, and missing values are introduced when there are typos.</li>
+</ul></li>
+<li>Implications for downstream work:
+<ul>
+<li>If a variable has MCAR missingness, a complete case analysis will be unbiased.</li>
+<li>However, with a lot of missing observations, a complete case analysis will suffer from loss of statistical power, and imputation will be useful to retain the original sample size.</li>
+</ul></li>
+</ul></li>
+<li><strong>Missing at random (MAR):</strong>
+<ul>
+<li>The probability of missing data is related to <strong>observed</strong> variables but unrelated to unobserved information.</li>
+<li>Examples:
+<ul>
+<li>Blood pressure measurements tend to be missing in patients in worse health. (Those in worse health are more likely to miss clinic visits.) Better and worse health can be measured by a variety of indicators in their health record.</li>
+<li>In a survey, older people are more likely to report their income than younger people. Missingness is related to the observed age variable, but not to unobserved information.</li>
+</ul></li>
+<li>Implications for downstream work:
+<ul>
+<li>Try to use imputation methods that predict the value of the missing variables from other observed variables. Assessing whether this can be done accurately takes some exploration–we’ll explore this shortly.</li>
+</ul></li>
+</ul></li>
+<li><strong>Missing not at random (MNAR):</strong>
+<ul>
+<li>The probability of missing data is related to <strong>unobserved</strong> variables (and probably observed variables too).</li>
+<li>Examples:
+<ul>
+<li>Blood pressure measurements are more likely to be missing for those with the highest blood pressure. This is MNAR rather than MAR because the missing data on blood pressure is related to the unobserved values themselves.</li>
+<li>High-income individuals may be less likely to report their income.</li>
+</ul></li>
+<li>Implications for downstream work:
+<ul>
+<li>Ideally, we would learn more about the causes for the missingness. This could allow us to use more informed imputation models.
+<ul>
+<li>Example: In my work, I deal with biological measurements that tend to be missing because of concentrations that are too low (a phenomenon known as left-censoring). Imputation methods specifically suited to left-censoring are useful here.</li>
+</ul></li>
+<li>We can use imputation methods with different assumptions about the missing data and try out a variety of assumptions. This lets us see how sensitive the results are under various scenarios.
+<ul>
+<li>Example: If higher incomes are more likely to be missing, we can make different assumptions about what “high” could be to fill in the missing values and see how our results change under these different assumptions.</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<section id="exercise" class="level2">
+<h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
+<p>For each of the following situations, propose what missing data mechanism you think is most likely at play.</p>
+<ol type="1">
+<li>In a clinical trial, some patients dropped out before the end of the study. Their reasons for dropping out were not recorded.</li>
+<li>A weather station records temperature, humidity, and wind speed every hour. Some of the recorded values are missing.</li>
+<li>A social media platform collects data on user interactions, such as likes, comments, and shares. Some interactions are not recorded due to bugs in the code. <!-- 4. A school collects data on student performance, attendance, and socioeconomic status. Some students' socioeconomic status is not recorded. --> <!-- 5. A retail store collects data on customer purchases, demographics, and shopping behavior. Some customers' demographic information is not recorded. --></li>
+</ol>
+<details>
+<summary>
+Responses
+</summary>
+<p>A variety of responses would be reasonable here:</p>
+<ol type="1">
+<li><p>MNAR probably: The chance of missingness is likely due to factors that aren’t recorded (like discomfort).</p></li>
+<li><p>Could be MCAR if the missing values are from technical glitches. Could be MAR if the missing values are related to other measured weather variables. Could be MNAR if the values tend to be missing when the values themselves are high (e.g., high temperature, humidity, and wind speed causing measurement devices to malfunction).</p></li>
+<li><p>Could be MCAR if the bugs affected the platform uniformly. Could be MAR if the bugs affected groups of users differently, but where the groupings are known (e.g., bugs affect mobile users more and mobile vs.&nbsp;desktop usage is measurable). Could be MNAR if the bugs lead to performance issues that affect users with slower internet more (where internet speed is likely not measured).</p></li>
+</ol>
+</details>
+<p><br><br><br><br></p>
+</section>
+</section>
+<section id="exploring-missing-data" class="level1">
+<h1>Exploring missing data</h1>
+<p><strong>Guiding question:</strong> How can we use visualizations and tabulations to explore what missing data mechanisms may be at play?</p>
+<p>We’ll look at the <code>airquality</code> dataset available in base R, which gives daily air quality measurements in New York from May to September 1973. You can pull up the codebook with <code>?airquality</code> in the Console.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(airquality)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="missingness-by-variable" class="level2">
+<h2 class="anchored" data-anchor-id="missingness-by-variable">Missingness by variable</h2>
+<p>We can explore how much missingness there is for each variable with the following functions:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(airquality) <span class="co"># Summary statistics in addition to number of NA's</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     Ozone           Solar.R           Wind             Temp      
+ Min.   :  1.00   Min.   :  7.0   Min.   : 1.700   Min.   :56.00  
+ 1st Qu.: 18.00   1st Qu.:115.8   1st Qu.: 7.400   1st Qu.:72.00  
+ Median : 31.50   Median :205.0   Median : 9.700   Median :79.00  
+ Mean   : 42.13   Mean   :185.9   Mean   : 9.958   Mean   :77.88  
+ 3rd Qu.: 63.25   3rd Qu.:258.8   3rd Qu.:11.500   3rd Qu.:85.00  
+ Max.   :168.00   Max.   :334.0   Max.   :20.700   Max.   :97.00  
+ NA's   :37       NA's   :7                                       
+     Month            Day      
+ Min.   :5.000   Min.   : 1.0  
+ 1st Qu.:6.000   1st Qu.: 8.0  
+ Median :7.000   Median :16.0  
+ Mean   :6.993   Mean   :15.8  
+ 3rd Qu.:8.000   3rd Qu.:23.0  
+ Max.   :9.000   Max.   :31.0  
+                               </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>naniar<span class="sc">::</span><span class="fu">vis_miss</span>(airquality) <span class="co"># In what rows are NA's located?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="08-missing-data_files/figure-html/miss_by_var-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>naniar<span class="sc">::</span><span class="fu">miss_var_summary</span>(airquality) <span class="co"># Information from vis_miss() in table form</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  variable n_miss pct_miss
+  &lt;chr&gt;     &lt;int&gt;    &lt;dbl&gt;
+1 Ozone        37    24.2 
+2 Solar.R       7     4.58
+3 Wind          0     0   
+4 Temp          0     0   
+5 Month         0     0   
+6 Day           0     0   </code></pre>
+</div>
+</div>
+</section>
+<section id="missingness-by-case" class="level2">
+<h2 class="anchored" data-anchor-id="missingness-by-case">Missingness by case</h2>
+<p>We can explore how much missingness there is for each case with <code>miss_case_summary()</code>. For each case, this function calculates the number and percentage of variables with a missing value. If the <code>pct_miss</code> column is large for a case, we likely won’t be able to impute any of its missing values because there just isn’t enough known information–this case will have to be dropped from the analysis.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">miss_case_summary</span>(airquality)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 153 × 3
+    case n_miss pct_miss
+   &lt;int&gt;  &lt;int&gt;    &lt;dbl&gt;
+ 1     5      2     33.3
+ 2    27      2     33.3
+ 3     6      1     16.7
+ 4    10      1     16.7
+ 5    11      1     16.7
+ 6    25      1     16.7
+ 7    26      1     16.7
+ 8    32      1     16.7
+ 9    33      1     16.7
+10    34      1     16.7
+# ℹ 143 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="exploring-missingness-mechanisms" class="level2">
+<h2 class="anchored" data-anchor-id="exploring-missingness-mechanisms">Exploring missingness mechanisms</h2>
+<p>Assessing missingness mechanisms involves checking if missingness in a variable is related to other variables. Through our available data, we are really only able to explore the potential for MCAR or MAR mechanisms. There is always the chance that unobserved information (unobserved other variables or unobserved values of the variables we do have) is related to missingness for our variables, so to think through the potential for MNAR, more contextual information is necessary.</p>
+<p>To explore these relationships, we can create TRUE/FALSE indicators of whether a variable is missing. In the plots below, we use <code>is.na(Ozone)</code> to explore whether cases with missing ozone values are noticeably different from cases with observed ozone values in terms of <code>Solar.R</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(airquality, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">is.na</span>(Ozone), <span class="at">y =</span> Solar.R)) <span class="sc">+</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 7 rows containing non-finite values (`stat_boxplot()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="08-missing-data_files/figure-html/miss_box_dens-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(airquality, <span class="fu">aes</span>(<span class="at">x =</span> Solar.R, <span class="at">color =</span> <span class="fu">is.na</span>(Ozone))) <span class="sc">+</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 7 rows containing non-finite values (`stat_density()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="08-missing-data_files/figure-html/miss_box_dens-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The above boxplots and density plots suggest that missing ozone is not strongly related to solar radiation levels. We still should check if ozone missingness is related to the <code>Wind</code>, <code>Temp</code>, <code>Month</code>, and <code>Day</code> variables (to be done in Exercises).</p>
+<p>In addition to checking if the <em>chance</em> of ozone missingness is related to <code>Solar.R</code>, we should check if the <em>values</em> of ozone could be predicted by <code>Solar.R</code>. In the scaterrplot below, we look at the relationship between <code>Ozone</code> and <code>Solar.R</code> and use vertical lines to indicate the <code>Solar.R</code> values for cases that are missing <code>Ozone</code>.</p>
+<ul>
+<li>We see that missing <code>Ozone</code> cases are within the observed span of <code>Solar.R</code>, so we would be ok with predicting <code>Ozone</code> from <code>Solar.R</code> because there would be no <strong>extrapolation</strong>.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(airquality, <span class="fu">aes</span>(<span class="at">x =</span> Solar.R, <span class="at">y =</span> Ozone)) <span class="sc">+</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">data =</span> airquality <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">is.na</span>(Ozone)), <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">xintercept =</span> Solar.R))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 42 rows containing non-finite values (`stat_smooth()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 42 rows containing missing values (`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing missing values (`geom_vline()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="08-missing-data_files/figure-html/miss_scatter_na_markers-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><strong>Mini-exercise:</strong> Look at the boxplot+scatterplot pairs for Alternate Situations 1 and 2 below. How do these situations compare to our actual situation and to each other? What concerns might arise from using a model to impute <code>Ozone</code>?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>airquality_mod <span class="ot">&lt;-</span> airquality <span class="sc">%&gt;%</span> </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">Solar.R_mod1 =</span> <span class="fu">if_else</span>(<span class="fu">is.na</span>(Ozone), <span class="dv">250</span><span class="sc">+</span>Solar.R<span class="sc">/</span><span class="dv">4</span>, Solar.R),</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">Solar.R_mod2 =</span> <span class="fu">if_else</span>(<span class="fu">is.na</span>(Ozone), <span class="dv">250</span><span class="sc">+</span>Solar.R<span class="sc">/</span><span class="dv">2</span>, Solar.R)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(airquality_mod, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">is.na</span>(Ozone), <span class="at">y =</span> Solar.R_mod1)) <span class="sc">+</span> </span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Alternate Situation 1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 7 rows containing non-finite values (`stat_boxplot()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="08-missing-data_files/figure-html/miss_scatter_na_markers_alt-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(airquality_mod, <span class="fu">aes</span>(<span class="at">x =</span> Solar.R_mod1, <span class="at">y =</span> Ozone)) <span class="sc">+</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">data =</span> airquality_mod <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">is.na</span>(Ozone)), <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">xintercept =</span> Solar.R_mod1)) <span class="sc">+</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Alternate Situation 1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 42 rows containing non-finite values (`stat_smooth()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 42 rows containing missing values (`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing missing values (`geom_vline()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="08-missing-data_files/figure-html/miss_scatter_na_markers_alt-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(airquality_mod, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">is.na</span>(Ozone), <span class="at">y =</span> Solar.R_mod2)) <span class="sc">+</span> </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Alternate Situation 2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 7 rows containing non-finite values (`stat_boxplot()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="08-missing-data_files/figure-html/miss_scatter_na_markers_alt-3.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(airquality_mod, <span class="fu">aes</span>(<span class="at">x =</span> Solar.R_mod2, <span class="at">y =</span> Ozone)) <span class="sc">+</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">data =</span> airquality_mod <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">is.na</span>(Ozone)), <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">xintercept =</span> Solar.R_mod2)) <span class="sc">+</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Alternate Situation 2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 42 rows containing non-finite values (`stat_smooth()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 42 rows containing missing values (`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing missing values (`geom_vline()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="08-missing-data_files/figure-html/miss_scatter_na_markers_alt-4.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="exercise-1" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-1">Exercise</h2>
+<p>Continue the investigation of missingness for <code>Ozone</code>. We want to see how <code>Month</code>, <code>Wind</code>, and <code>Temp</code> relate to the chance of missingness for <code>Ozone</code> and to the value of <code>Ozone</code>.</p>
+<p>Does it look like a linear regression model (perhaps with variable transformations) could be effective in imputing the missing ozone data?</p>
+<details>
+<summary>
+Solution
+</summary>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(airquality, <span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">is.na</span>(Ozone), <span class="at">x =</span> <span class="fu">factor</span>(Month))) <span class="sc">+</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="08-missing-data_files/figure-html/miss_explore_solutions-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(airquality, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">is.na</span>(Ozone), <span class="at">y =</span> Wind)) <span class="sc">+</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="08-missing-data_files/figure-html/miss_explore_solutions-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(airquality, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">is.na</span>(Ozone), <span class="at">y =</span> Temp)) <span class="sc">+</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="08-missing-data_files/figure-html/miss_explore_solutions-3.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(airquality, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(Month), <span class="at">y =</span> Ozone)) <span class="sc">+</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 37 rows containing non-finite values (`stat_boxplot()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="08-missing-data_files/figure-html/miss_explore_solutions-4.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(airquality, <span class="fu">aes</span>(<span class="at">x =</span> Wind, <span class="at">y =</span> Ozone)) <span class="sc">+</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">data =</span> airquality <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">is.na</span>(Ozone)), <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">xintercept =</span> Wind))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 37 rows containing non-finite values (`stat_smooth()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 37 rows containing missing values (`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="08-missing-data_files/figure-html/miss_explore_solutions-5.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(airquality, <span class="fu">aes</span>(<span class="at">x =</span> Temp, <span class="at">y =</span> Ozone)) <span class="sc">+</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">data =</span> airquality <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">is.na</span>(Ozone)), <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">xintercept =</span> Temp))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 37 rows containing non-finite values (`stat_smooth()`).
+Removed 37 rows containing missing values (`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="08-missing-data_files/figure-html/miss_explore_solutions-6.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</details>
+<p><br><br><br><br></p>
+</section>
+</section>
+<section id="multiple-imputation-and-simulation-studies" class="level1">
+<h1>Multiple imputation and simulation studies</h1>
+<p>When a model is built and used to generate a single set of predictions for missing values, this is known as <strong>single imputation</strong>. When using singly imputed data in subsequent modeling, the uncertainty in estimates tends to be underestimated. This means that:</p>
+<ul>
+<li>Standard errors are lower than they should be.</li>
+<li>Confidence intervals won’t contain the true parameter value the “advertised” percentage of times
+<ul>
+<li>e.g., 95% confidence intervals will not contain the truth in 95% of samples–the coverage probability will be less than 95%</li>
+</ul></li>
+</ul>
+<p>In <strong>multiple imputation</strong>, multiple imputed datasets are generated with different values for the filled-in data. Subsequent models are fit on each of these datasets, and both estimates and uncertainty measures are pooled across all of these fits. Multiple imputation more accurately estimates uncertainty measures.</p>
+<p>We can use a <strong>simulation study</strong> to investigate the statistical properties described above.</p>
+<ol type="1">
+<li>Generate (simulate) data where we are in control of missing data mechanisms and the true relationship between an outcome and the predictors.</li>
+<li>On that simulated data, use single imputation to fill in the missing values. Fit the desired model, and obtain a confidence interval for a coefficient of interest.</li>
+<li>On that simulated data, use multiple imputation to fill in the missing values. Fit the desired models on all imputed datasets, pool results, and obtain a confidence interval for a coefficient of interest.</li>
+<li>Steps 1 - 3 are repeated a lot of times (<code>num_simulations &gt;= 1000</code>) to see how things work out in lots of different samples.</li>
+<li>Summarize the performance of single and multiple imputation across the <code>num_simulations</code> simulations.</li>
+</ol>
+<p>We will slowly step through the simulation study code below. We will pause frequently for you to add comments documenting what is happening. You’ll be reorganizing and adding to the code below in a future homework Challenge.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">224</span>)</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>num_simulations <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>ci_list <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">"list"</span>, <span class="at">length =</span> num_simulations)</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>({</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>num_simulations) {</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Simulate data</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>    n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>    sim_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">x1 =</span> <span class="fu">runif</span>(n, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>),</span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">x2 =</span> x1 <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>),</span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">x2_miss_bool =</span> <span class="fu">rbinom</span>(n, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">prob =</span> x1<span class="sc">/</span><span class="dv">2</span>),</span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">x2_NA =</span> <span class="fu">if_else</span>(x2_miss_bool<span class="sc">==</span><span class="dv">1</span>, <span class="cn">NA</span>, x2),</span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Single imputation ---------------</span></span>
+<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a>    mice_obj <span class="ot">&lt;-</span> <span class="fu">mice</span>(sim_data <span class="sc">%&gt;%</span> <span class="fu">select</span>(x1, x2_NA, y), <span class="at">m =</span> <span class="dv">1</span>, <span class="at">method =</span> <span class="st">"norm"</span>, <span class="at">printFlag =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a>    si_mod <span class="ot">&lt;-</span> <span class="fu">with</span>(mice_obj, <span class="fu">lm</span>(y <span class="sc">~</span> x1<span class="sc">+</span>x2_NA))</span>
+<span id="cb44-19"><a href="#cb44-19" aria-hidden="true" tabindex="-1"></a>    ci_single <span class="ot">&lt;-</span> si_mod<span class="sc">$</span>analyses[[<span class="dv">1</span>]] <span class="sc">%&gt;%</span> <span class="fu">confint</span>(<span class="at">level =</span> <span class="fl">0.95</span>)</span>
+<span id="cb44-20"><a href="#cb44-20" aria-hidden="true" tabindex="-1"></a>    ci_single <span class="ot">&lt;-</span> ci_single[<span class="st">"x2_NA"</span>,]</span>
+<span id="cb44-21"><a href="#cb44-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb44-22"><a href="#cb44-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Multiple imputation -------------</span></span>
+<span id="cb44-23"><a href="#cb44-23" aria-hidden="true" tabindex="-1"></a>    mice_obj <span class="ot">&lt;-</span> <span class="fu">mice</span>(sim_data <span class="sc">%&gt;%</span> <span class="fu">select</span>(x1, x2_NA, y), <span class="at">m =</span> <span class="dv">10</span>, <span class="at">method =</span> <span class="st">"norm"</span>, <span class="at">printFlag =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb44-24"><a href="#cb44-24" aria-hidden="true" tabindex="-1"></a>    mi_mods <span class="ot">&lt;-</span> <span class="fu">with</span>(mice_obj, <span class="fu">lm</span>(y <span class="sc">~</span> x1<span class="sc">+</span>x2_NA))</span>
+<span id="cb44-25"><a href="#cb44-25" aria-hidden="true" tabindex="-1"></a>    pooled_res <span class="ot">&lt;-</span> <span class="fu">pool</span>(mi_mods)</span>
+<span id="cb44-26"><a href="#cb44-26" aria-hidden="true" tabindex="-1"></a>    summ_pooled_res <span class="ot">&lt;-</span> <span class="fu">summary</span>(pooled_res, <span class="at">conf.int =</span> <span class="cn">TRUE</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span>
+<span id="cb44-27"><a href="#cb44-27" aria-hidden="true" tabindex="-1"></a>    ci_multiple_lower <span class="ot">&lt;-</span> summ_pooled_res <span class="sc">%&gt;%</span> <span class="fu">filter</span>(term<span class="sc">==</span><span class="st">"x2_NA"</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(<span class="st">`</span><span class="at">2.5 %</span><span class="st">`</span>)</span>
+<span id="cb44-28"><a href="#cb44-28" aria-hidden="true" tabindex="-1"></a>    ci_multiple_upper <span class="ot">&lt;-</span> summ_pooled_res <span class="sc">%&gt;%</span> <span class="fu">filter</span>(term<span class="sc">==</span><span class="st">"x2_NA"</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(<span class="st">`</span><span class="at">97.5 %</span><span class="st">`</span>)</span>
+<span id="cb44-29"><a href="#cb44-29" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb44-30"><a href="#cb44-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Store CI information</span></span>
+<span id="cb44-31"><a href="#cb44-31" aria-hidden="true" tabindex="-1"></a>    ci_list[[i]] <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb44-32"><a href="#cb44-32" aria-hidden="true" tabindex="-1"></a>        <span class="at">ci_lower =</span> <span class="fu">c</span>(</span>
+<span id="cb44-33"><a href="#cb44-33" aria-hidden="true" tabindex="-1"></a>            ci_single[<span class="dv">1</span>],</span>
+<span id="cb44-34"><a href="#cb44-34" aria-hidden="true" tabindex="-1"></a>            ci_multiple_lower</span>
+<span id="cb44-35"><a href="#cb44-35" aria-hidden="true" tabindex="-1"></a>        ),</span>
+<span id="cb44-36"><a href="#cb44-36" aria-hidden="true" tabindex="-1"></a>        <span class="at">ci_upper =</span> <span class="fu">c</span>(</span>
+<span id="cb44-37"><a href="#cb44-37" aria-hidden="true" tabindex="-1"></a>            ci_single[<span class="dv">2</span>],</span>
+<span id="cb44-38"><a href="#cb44-38" aria-hidden="true" tabindex="-1"></a>            ci_multiple_upper</span>
+<span id="cb44-39"><a href="#cb44-39" aria-hidden="true" tabindex="-1"></a>        ),</span>
+<span id="cb44-40"><a href="#cb44-40" aria-hidden="true" tabindex="-1"></a>        <span class="at">which_imp =</span> <span class="fu">c</span>(<span class="st">"single"</span>, <span class="st">"multiple"</span>)</span>
+<span id="cb44-41"><a href="#cb44-41" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb44-42"><a href="#cb44-42" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb44-43"><a href="#cb44-43" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Below we compute the confidence interval (CI) coverage probability (fraction of times the CI contains the true value of <code>1</code>) for the CIs generated from single and multiple imputation:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>ci_data <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(ci_list)</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>ci_data <span class="sc">%&gt;%</span> </span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">contains_truth =</span> ci_lower <span class="sc">&lt;</span> <span class="dv">1</span> <span class="sc">&amp;</span> ci_upper <span class="sc">&gt;</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(which_imp) <span class="sc">%&gt;%</span> </span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">frac_contains_truth =</span> <span class="fu">mean</span>(contains_truth))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br><br><br><br></p>
+</section>
+<section id="reflection" class="level1">
+<h1>Reflection</h1>
+<p>What were the challenges and successes of today? What resources do you need to take the next steps in your understanding of the ideas today? Record observations in your personal class journal.</p>
+<p><br><br><br><br></p>
+</section>
+<section id="announcements" class="level1">
+<h1>Announcements</h1>
+<ul>
+<li>Work on <a href="./homework5.html">Homework 5</a> due next Monday.
+<ul>
+<li>Wrangling+Functions Challenge 1</li>
+<li>Project Milestone 2–see <a href="./project.html#milestone-2">Project page</a> for details.</li>
+</ul></li>
+<li>Check our <a href="./schedule.html">Schedule</a> for two readings to prepare for Thursday (Functions and Control Structures).</li>
+<li>We will be forming random pairings starting Thursday for the class sessions up to Spring Break. Why?
+<ul>
+<li>The content coming up (Functions, Loops) is a great space for <strong>pair programming</strong>. You will learn a lot from experiencing others’ coding practices.</li>
+<li>Reflect on how you function in this type of environment. What about the partnership makes it one where you can learn the most and where your partner can learn the most? What can you do to prepare now to make that environment a reality on Thursday?</li>
+</ul></li>
+</ul>
+<p><br><br><br><br></p>
+</section>
+<section id="references" class="level1">
+<h1>References</h1>
+<ul>
+<li>The <code>naniar</code> <a href="https://cran.r-project.org/package=naniar">package</a> provides a variety of functions for exploring missing data through visualizations and tabulations.</li>
+<li><a href="https://stefvanbuuren.name/fimd/">Flexible Imputation of Missing Data</a>: A free online book about missing data and imputation
+<ul>
+<li><a href="https://stefvanbuuren.name/fimd/sec-MCAR.html">This section</a> digs into missing data mechanisms.</li>
+</ul></li>
+<li>A <a href="http://www.stat.columbia.edu/~gelman/arm/missing.pdf">chapter</a> on missing data from Andrew Gelman’s online textbook</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">© Leslie Myint, 2024<br> All content licensed under <img src="https://static.thenounproject.com/png/70967-200.png" height="20"> (<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>)</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">Site built with <a href="https://quarto.org/">Quarto</a></div>
+  </div>
+</footer>
+
+
+
+</body></html>

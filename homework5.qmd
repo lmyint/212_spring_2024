@@ -1,0 +1,28 @@
+---
+title: "Homework 5"
+sidebar: false
+---
+
+# Required parts
+
+<center>
+Due by **Monday, February 26** at midnight.
+</center>
+
+<br><br>
+
+**Asynchronous skills challenges**
+
+- **Wrangling+functions - Challenge 1:** Navigate to this challenge on [GitHub](https://classroom.github.com/a/GKDDji9Y).
+
+**Project Milestone 2:** See information on our [Project page](project.qmd#milestone-2).
+
+
+<br><br>
+
+
+# Optional
+
+If you are aiming for an A in the course, recall from our [syllabus](syllabus.qmd#requirements-for-an-a) that participating in 5 Tidy Tuesday challenges can move you toward this goal.
+
+- For further all-around practice, I encourage you to participate in the most recent [Tidy Tuesday](https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-02-20/readme.md) challenge.

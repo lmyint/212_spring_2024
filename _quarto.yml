@@ -38,6 +38,7 @@ website:
         - 05-interactive-viz.qmd
         - 06-wrangling-1.qmd
         - 07-wrangling-2.qmd
+        - 08-missing-data.qmd
 
     - id: homework
       title: "Homework"
@@ -46,7 +47,7 @@ website:
         - homework2.qmd
         - homework3.qmd
         - homework4.qmd
-        # - homework5.qmd
+        - homework5.qmd
         # - homework6.qmd
         # - homework7.qmd
         # - homework8.qmd
