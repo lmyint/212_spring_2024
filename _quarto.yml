@@ -39,6 +39,7 @@ website:
         - 06-wrangling-1.qmd
         - 07-wrangling-2.qmd
         - 08-missing-data.qmd
+        - 09-functions.qmd
 
     - id: homework
       title: "Homework"
