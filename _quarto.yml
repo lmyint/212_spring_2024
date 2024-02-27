@@ -40,6 +40,7 @@ website:
         - 07-wrangling-2.qmd
         - 08-missing-data.qmd
         - 09-functions.qmd
+        - 10-subset-str-shiny.qmd
 
     - id: homework
       title: "Homework"
@@ -59,7 +60,6 @@ website:
       contents:
         - skills_session1.qmd
         # - skills_session2.qmd
-        # - skills_session3.qmd
   
   page-footer:
     left: |

@@ -432,6 +432,13 @@ months_fct
 sort(months_fct)
 ```
 
+We can access the levels of a factor with `levels()`:
+
+```{r get_levels}
+levels(months_fct)
+```
+
+
 What if we try to create a factor with values that aren't in the levels? (e.g., a typo in a month name)
 
 ```{r months_typo}
