@@ -200,7 +200,7 @@ Write a function that takes the following inputs:
 
 Your function will fit a linear model on the dataset using the given outcome and predictor variables and return a data frame (`tibble`) with the coefficient estimate and CI for the predictor of interest.
 
-Test your function on the `mtcars` dataset with your chosen
+Test your function on the `mtcars` dataset.
 
 Development tip: As you develop, it will help to create objects for the arguments so that you can see what output looks like interactively:
 

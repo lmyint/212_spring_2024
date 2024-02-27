@@ -176,6 +176,45 @@ Write functions that take a vector as input and return:
 2. Every element except the last value.
 3. Only even values (and no missing values).
 
+<details>
+    <summary>Solutions</summary>
+
+```{r}
+get_even_pos <- function(x) {
+    if (length(x) <= 1) {
+        print("No even positions")
+    } else {
+        idx <- seq(2, length(x), by = 2)
+        x[idx]
+    }
+}
+get_even_pos(1:10)
+get_even_pos(1:9)
+get_even_pos(1)
+```
+
+```{r}
+get_all_but_last <- function(x) {
+    head(x, -1)
+    # x[1:(length(x)-1)]
+}
+get_all_but_last(1:10)
+```
+
+```{r}
+get_evens <- function(x) {
+    x[x %% 2 == 0 & !is.na(x)]
+}
+
+get_evens(c(1, 2, 7, NA))
+get_evens(c(1, 2, 7, 8, NA))
+```
+
+
+
+
+</details>
+
 
 <br><br><br><br>
 
@@ -204,15 +243,15 @@ Write a function that takes the following inputs:
 
 Your function will fit a linear model on the dataset using the given outcome and predictor variables and return a data frame (`tibble`) with the coefficient estimate and CI for the predictor of interest.
 
-Test your function on the `mtcars` dataset with your chosen
+Test your function on the `mtcars` dataset.
 
 Development tip: As you develop, it will help to create objects for the arguments so that you can see what output looks like interactively:
 
 ```{r eval=FALSE}
 data <- mtcars
-yvar <- 
-preds <- 
-pred_of_interest <- 
+yvar <- "mpg"
+preds <- c("hp", "wt")
+pred_of_interest <- "hp"
 ```
 
 When you're done developing your function, remove these objects to declutter your environment by entering `rm(data, yvar, preds, pred_of_interest)` in the Console.
@@ -225,7 +264,7 @@ fit_mod_and_extract <- function(___) {
     mod_form <- as.formula(mod_formula_str)
     
     # Fit a linear model using the constructed formula and given data
-    mod <- lm(mod_form, ___)
+    mod <- lm(mod_form, data = data)
     
     # Obtain 95% confidence interval
     ci <- confint(mod, level = 0.95)
@@ -239,6 +278,39 @@ fit_mod_and_extract <- function(___) {
     )
 }
 ```
+
+
+<details>
+    <summary>Solutions</summary>
+
+```{r}
+fit_mod_and_extract <- function(data, yvar, preds, pred_of_interest) {
+    # Use str_c to create a string (formula_str) that looks like "yvar ~ pred1 + pred2"
+    # Look at the documentation for a helpful argument
+    mod_formula_str <- str_c(yvar, "~", str_c(preds, collapse = "+"))
+    mod_form <- as.formula(mod_formula_str)
+    
+    # Fit a linear model using the constructed formula and given data
+    mod <- lm(mod_form, data = data)
+    
+    # Obtain 95% confidence interval
+    ci <- confint(mod, level = 0.95)
+    
+    # Return the coefficient estimate and CI for the predictor of interest
+    tibble(
+        which_pred = pred_of_interest,
+        estimate = mod$coefficients[pred_of_interest],
+        ci_lower = ci[pred_of_interest, "2.5 %"],
+        ci_upper = ci[pred_of_interest, "97.5 %"]
+    )
+}
+
+
+fit_mod_and_extract(data = mtcars, yvar = "mpg", preds = c("hp", "wt"), pred_of_interest = "hp")
+```
+
+
+</details>
 
 
 <br><br><br><br>
