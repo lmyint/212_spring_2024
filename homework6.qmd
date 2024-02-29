@@ -1,0 +1,26 @@
+---
+title: "Homework 6"
+sidebar: false
+---
+
+# Required parts
+
+<center>
+Due by **Friday, March 8** at midnight.
+</center>
+
+<br><br>
+
+**Asynchronous skills challenges**
+
+- **Wrangling+functions - Challenge 2:** Navigate to this challenge on [GitHub](https://classroom.github.com/a/jYlmF2ew).
+
+
+<br><br>
+
+
+# Optional
+
+If you are aiming for an A in the course, recall from our [syllabus](syllabus.qmd#requirements-for-an-a) that participating in 5 Tidy Tuesday challenges can move you toward this goal.
+
+- For further all-around practice, I encourage you to participate in the most recent [Tidy Tuesday](https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-02-27/readme.md) challenge.

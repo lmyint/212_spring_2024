@@ -50,7 +50,7 @@ website:
         - homework3.qmd
         - homework4.qmd
         - homework5.qmd
-        # - homework6.qmd
+        - homework6.qmd
         # - homework7.qmd
         # - homework8.qmd
         # - homework9.qmd
