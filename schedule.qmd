@@ -218,7 +218,7 @@ Guiding questions for pre-class readings and videos are available at the bottom 
     </td>
     
     <td class="topleft">
-      Turn in <a href="https://lmyint.github.io/212_spring 2024/homework7.html">HW7</a> and <a href="https://lmyint.github.io/212_spring_2024/reflection2.html">Reflection 2</a> by midnight on Monday 3/25.
+      Turn in <a href="https://lmyint.github.io/212_spring 2024/homework7.html">HW7</a> (includes Project Milestone 3) by midnight on Wednesday 3/27.
     </td>
   </tr>
   <!----------------------------------------------------------->
@@ -238,7 +238,7 @@ Guiding questions for pre-class readings and videos are available at the bottom 
     </td>
     
     <td class="topleft">
-      Turn in <a href="https://lmyint.github.io/212_spring 2024/homework8.html">HW8</a> (includes Project Milestone 4) by midnight on Monday 4/1.
+      Turn in <a href="https://lmyint.github.io/212_spring 2024/homework8.html">HW8</a> by midnight on Wednesday 4/3.
     </td>
   </tr>
   <!----------------------------------------------------------->
@@ -257,7 +257,7 @@ Guiding questions for pre-class readings and videos are available at the bottom 
     </td>
     
     <td class="topleft">
-      Turn in <a href="https://lmyint.github.io/212_spring 2024/homework9.html">HW9</a> by midnight on Monday 4/8.
+      Turn in <a href="https://lmyint.github.io/212_spring 2024/homework9.html">HW9</a> by midnight on Wednesday 4/10.
     </td>
   </tr>
   <!----------------------------------------------------------->

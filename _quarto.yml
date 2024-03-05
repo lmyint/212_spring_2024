@@ -41,6 +41,7 @@ website:
         - 08-missing-data.qmd
         - 09-functions.qmd
         - 10-subset-str-shiny.qmd
+        - 11-iteration-1.qmd
 
     - id: homework
       title: "Homework"

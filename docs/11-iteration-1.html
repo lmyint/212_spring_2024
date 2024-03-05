@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>STAT/COMP 212 - Loops and iteration</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">STAT/COMP 212</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./schedule.html" rel="" target="">
+ <span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./syllabus.html" rel="" target="">
+ <span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-activities" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Activities</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-activities">    
+        <li>
+    <a class="dropdown-item" href="./01-introductions.html" rel="" target="">
+ <span class="dropdown-text">Welcome to the course!</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./02-adv-ggplot.html" rel="" target="">
+ <span class="dropdown-text">Advanced Data Visualization in ggplot2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./03-file-org-github.html" rel="" target="">
+ <span class="dropdown-text">File organization, GitHub</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./04-adv-maps.html" rel="" target="">
+ <span class="dropdown-text">Advanced spatial visualization</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./05-interactive-viz.html" rel="" target="">
+ <span class="dropdown-text">Interactive visualization</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./06-wrangling-1.html" rel="" target="">
+ <span class="dropdown-text">Data wrangling - Part 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./07-wrangling-2.html" rel="" target="">
+ <span class="dropdown-text">Data wrangling - Part 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./08-missing-data.html" rel="" target="">
+ <span class="dropdown-text">Missing data</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./09-functions.html" rel="" target="">
+ <span class="dropdown-text">Functions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./10-subset-str-shiny.html" rel="" target="">
+ <span class="dropdown-text">Subsetting, str(), Shiny debugging</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./11-iteration-1.html" rel="" target="">
+ <span class="dropdown-text">Loops and iteration</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-homework" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Homework</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-homework">    
+        <li>
+    <a class="dropdown-item" href="./homework1.html" rel="" target="">
+ <span class="dropdown-text">Homework 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./homework2.html" rel="" target="">
+ <span class="dropdown-text">Homework 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./homework3.html" rel="" target="">
+ <span class="dropdown-text">Homework 3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./homework4.html" rel="" target="">
+ <span class="dropdown-text">Homework 4</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./homework5.html" rel="" target="">
+ <span class="dropdown-text">Homework 5</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./homework6.html" rel="" target="">
+ <span class="dropdown-text">Homework 6</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-skills-sessions" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Skills Sessions</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-skills-sessions">    
+        <li>
+    <a class="dropdown-item" href="./skills_session1.html" rel="" target="">
+ <span class="dropdown-text">Skills Session 1</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./project.html" rel="" target="">
+ <span class="menu-text">Project</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./tech_setup.html" rel="" target="">
+ <span class="menu-text">Tech Setup</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#learning-goals" id="toc-learning-goals" class="nav-link active" data-scroll-target="#learning-goals">Learning goals</a></li>
+  <li><a href="#iteration-across-data-frame-columns-with-across" id="toc-iteration-across-data-frame-columns-with-across" class="nav-link" data-scroll-target="#iteration-across-data-frame-columns-with-across">Iteration across data frame columns with <code>across()</code></a>
+  <ul class="collapse">
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
+  </ul></li>
+  <li><a href="#for-loops" id="toc-for-loops" class="nav-link" data-scroll-target="#for-loops"><code>for</code> loops</a>
+  <ul class="collapse">
+  <li><a href="#exercises-1" id="toc-exercises-1" class="nav-link" data-scroll-target="#exercises-1">Exercises</a></li>
+  </ul></li>
+  <li><a href="#case-study-performing-many-different-versions-of-an-analysis" id="toc-case-study-performing-many-different-versions-of-an-analysis" class="nav-link" data-scroll-target="#case-study-performing-many-different-versions-of-an-analysis">Case study: performing many different versions of an analysis</a>
+  <ul class="collapse">
+  <li><a href="#exercises-2" id="toc-exercises-2" class="nav-link" data-scroll-target="#exercises-2">Exercises</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Loops and iteration</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="learning-goals" class="level1">
+<h1>Learning goals</h1>
+<p>After this lesson, you should be able to:</p>
+<ul>
+<li>Use the <code>across()</code> function to wrangle multiple variables simultaneously
+<ul>
+<li>Compare <code>across()</code> to an approach with <code>pivot_longer()</code> and <code>pivot_wider()</code></li>
+</ul></li>
+<li>Write a <code>for</code> loop in R to handle repeated tasks</li>
+<li>Use the <code>map()</code> family of functions in the <code>purrr</code> package to handle repeated tasks</li>
+</ul>
+<p><br></p>
+<p>You can download a template Quarto file to start from <a href="activity_templates/11-iteration-1.qmd">here</a>. Put this file in a folder called <code>iteration</code> within a folder for this course.</p>
+<p><br><br><br><br></p>
+</section>
+<section id="iteration-across-data-frame-columns-with-across" class="level1">
+<h1>Iteration across data frame columns with <code>across()</code></h1>
+<p>Often we will have to perform the same data wrangling on many variables (e.g., rounding numbers)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">carat =</span> <span class="fu">round</span>(carat, <span class="dv">1</span>),</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="fu">round</span>(x, <span class="dv">1</span>),</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="fu">round</span>(y, <span class="dv">1</span>),</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">z =</span> <span class="fu">round</span>(z, <span class="dv">1</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 53,940 × 10
+   carat cut       color clarity depth table price     x     y     z
+   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1   0.2 Ideal     E     SI2      61.5    55   326   4     4     2.4
+ 2   0.2 Premium   E     SI1      59.8    61   326   3.9   3.8   2.3
+ 3   0.2 Good      E     VS1      56.9    65   327   4     4.1   2.3
+ 4   0.3 Premium   I     VS2      62.4    58   334   4.2   4.2   2.6
+ 5   0.3 Good      J     SI2      63.3    58   335   4.3   4.3   2.8
+ 6   0.2 Very Good J     VVS2     62.8    57   336   3.9   4     2.5
+ 7   0.2 Very Good I     VVS1     62.3    57   336   4     4     2.5
+ 8   0.3 Very Good H     SI1      61.9    55   337   4.1   4.1   2.5
+ 9   0.2 Fair      E     VS2      65.1    61   337   3.9   3.8   2.5
+10   0.2 Very Good H     VS1      59.4    61   338   4     4     2.4
+# ℹ 53,930 more rows</code></pre>
+</div>
+</div>
+<p><code>dplyr</code> provides the <code>across()</code> function for performing these repeated function calls:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Option 1: Create our own named function</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>round_to_one <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(x, <span class="at">digits =</span> <span class="dv">1</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span> </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="at">.cols =</span> <span class="fu">c</span>(carat, x, y, z), <span class="at">.fns =</span> round_to_one))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 53,940 × 10
+   carat cut       color clarity depth table price     x     y     z
+   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1   0.2 Ideal     E     SI2      61.5    55   326   4     4     2.4
+ 2   0.2 Premium   E     SI1      59.8    61   326   3.9   3.8   2.3
+ 3   0.2 Good      E     VS1      56.9    65   327   4     4.1   2.3
+ 4   0.3 Premium   I     VS2      62.4    58   334   4.2   4.2   2.6
+ 5   0.3 Good      J     SI2      63.3    58   335   4.3   4.3   2.8
+ 6   0.2 Very Good J     VVS2     62.8    57   336   3.9   4     2.5
+ 7   0.2 Very Good I     VVS1     62.3    57   336   4     4     2.5
+ 8   0.3 Very Good H     SI1      61.9    55   337   4.1   4.1   2.5
+ 9   0.2 Fair      E     VS2      65.1    61   337   3.9   3.8   2.5
+10   0.2 Very Good H     VS1      59.4    61   338   4     4     2.4
+# ℹ 53,930 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Option 2: Use an "anonymous" or "lambda" function that isn't named</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="at">.cols =</span> <span class="fu">c</span>(carat, x, y, z), <span class="at">.fns =</span> <span class="cf">function</span>(x) {<span class="fu">round</span>(x, <span class="at">digits =</span> <span class="dv">1</span>)} ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 53,940 × 10
+   carat cut       color clarity depth table price     x     y     z
+   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1   0.2 Ideal     E     SI2      61.5    55   326   4     4     2.4
+ 2   0.2 Premium   E     SI1      59.8    61   326   3.9   3.8   2.3
+ 3   0.2 Good      E     VS1      56.9    65   327   4     4.1   2.3
+ 4   0.3 Premium   I     VS2      62.4    58   334   4.2   4.2   2.6
+ 5   0.3 Good      J     SI2      63.3    58   335   4.3   4.3   2.8
+ 6   0.2 Very Good J     VVS2     62.8    57   336   3.9   4     2.5
+ 7   0.2 Very Good I     VVS1     62.3    57   336   4     4     2.5
+ 8   0.3 Very Good H     SI1      61.9    55   337   4.1   4.1   2.5
+ 9   0.2 Fair      E     VS2      65.1    61   337   3.9   3.8   2.5
+10   0.2 Very Good H     VS1      59.4    61   338   4     4     2.4
+# ℹ 53,930 more rows</code></pre>
+</div>
+</div>
+<p>When we look at the documentation for <code>across()</code>, we see that the <code>.cols</code> argument specifies which variables we want to transform, and it has a <code>&lt;tidy-select&gt;</code> tag. This means that the syntax we use for <code>.cols</code> follows certain rules. Let’s click this link to explore the possibilities for selecting variables.</p>
+<ul>
+<li>Read through the “Overview of selection features” section to get an overall sense of the many ways to select variables.</li>
+<li>Navigate back to the <code>across()</code> documentation and read through the Examples section at the bottom. Click the “Run examples” link to view the output for all of the examples.</li>
+</ul>
+<section id="exercises" class="level2">
+<h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
+<p>(Not a pair programming exercise, but check in with each other as you work)</p>
+<p>Using the <code>diamonds</code> dataset:</p>
+<ol type="1">
+<li>Transform the <code>x</code>, <code>y</code>, and <code>z</code> columns so that the units of millimeters are displayed (e.g., “4.0 mm”).</li>
+<li>Convert all numeric columns into character columns.
+<ul>
+<li>Hint: type <code>is.</code> and hit Tab in the Console. Scroll through the function options. Do the same with <code>as.</code></li>
+</ul></li>
+</ol>
+<details>
+<summary>
+Solutions
+</summary>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>add_mm <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_c</span>(x, <span class="st">" mm"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span> </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="at">.cols =</span> x<span class="sc">:</span>z, <span class="at">.fns =</span> add_mm))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 53,940 × 10
+   carat cut       color clarity depth table price x       y       z      
+   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  
+ 1  0.23 Ideal     E     SI2      61.5    55   326 3.95 mm 3.98 mm 2.43 mm
+ 2  0.21 Premium   E     SI1      59.8    61   326 3.89 mm 3.84 mm 2.31 mm
+ 3  0.23 Good      E     VS1      56.9    65   327 4.05 mm 4.07 mm 2.31 mm
+ 4  0.29 Premium   I     VS2      62.4    58   334 4.2 mm  4.23 mm 2.63 mm
+ 5  0.31 Good      J     SI2      63.3    58   335 4.34 mm 4.35 mm 2.75 mm
+ 6  0.24 Very Good J     VVS2     62.8    57   336 3.94 mm 3.96 mm 2.48 mm
+ 7  0.24 Very Good I     VVS1     62.3    57   336 3.95 mm 3.98 mm 2.47 mm
+ 8  0.26 Very Good H     SI1      61.9    55   337 4.07 mm 4.11 mm 2.53 mm
+ 9  0.22 Fair      E     VS2      65.1    61   337 3.87 mm 3.78 mm 2.49 mm
+10  0.23 Very Good H     VS1      59.4    61   338 4 mm    4.05 mm 2.39 mm
+# ℹ 53,930 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="at">.cols =</span> <span class="fu">where</span>(is.numeric), <span class="at">.fns =</span> as.character))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 53,940 × 10
+   carat cut       color clarity depth table price x     y     z    
+   &lt;chr&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
+ 1 0.23  Ideal     E     SI2     61.5  55    326   3.95  3.98  2.43 
+ 2 0.21  Premium   E     SI1     59.8  61    326   3.89  3.84  2.31 
+ 3 0.23  Good      E     VS1     56.9  65    327   4.05  4.07  2.31 
+ 4 0.29  Premium   I     VS2     62.4  58    334   4.2   4.23  2.63 
+ 5 0.31  Good      J     SI2     63.3  58    335   4.34  4.35  2.75 
+ 6 0.24  Very Good J     VVS2    62.8  57    336   3.94  3.96  2.48 
+ 7 0.24  Very Good I     VVS1    62.3  57    336   3.95  3.98  2.47 
+ 8 0.26  Very Good H     SI1     61.9  55    337   4.07  4.11  2.53 
+ 9 0.22  Fair      E     VS2     65.1  61    337   3.87  3.78  2.49 
+10 0.23  Very Good H     VS1     59.4  61    338   4     4.05  2.39 
+# ℹ 53,930 more rows</code></pre>
+</div>
+</div>
+</details>
+<hr>
+<p>What if we wanted to perform multiple transformations on each of many variables?</p>
+<p>Within the different values of diamond <code>cut</code>, let’s summarize the mean, median, and standard deviation of the numeric variables. When we look at the <code>.fns</code> argument in the <code>across()</code> documentation, we see that we can provide a <strong>list</strong> of functions:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(cut) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="fu">across</span>(<span class="at">.cols =</span> <span class="fu">where</span>(is.numeric), <span class="at">.fns =</span> <span class="fu">list</span>(<span class="at">mean =</span> mean, <span class="at">med =</span> median, <span class="at">sd =</span> sd)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 22
+  cut     carat_mean carat_med carat_sd depth_mean depth_med depth_sd table_mean
+  &lt;ord&gt;        &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;
+1 Fair         1.05       1       0.516       64.0      65      3.64        59.1
+2 Good         0.849      0.82    0.454       62.4      63.4    2.17        58.7
+3 Very G…      0.806      0.71    0.459       61.8      62.1    1.38        58.0
+4 Premium      0.892      0.86    0.515       61.3      61.4    1.16        58.7
+5 Ideal        0.703      0.54    0.433       61.7      61.8    0.719       56.0
+# ℹ 14 more variables: table_med &lt;dbl&gt;, table_sd &lt;dbl&gt;, price_mean &lt;dbl&gt;,
+#   price_med &lt;dbl&gt;, price_sd &lt;dbl&gt;, x_mean &lt;dbl&gt;, x_med &lt;dbl&gt;, x_sd &lt;dbl&gt;,
+#   y_mean &lt;dbl&gt;, y_med &lt;dbl&gt;, y_sd &lt;dbl&gt;, z_mean &lt;dbl&gt;, z_med &lt;dbl&gt;,
+#   z_sd &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>What does the list of functions look like? What is the structure of this list object?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>list_of_fcts <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">mean =</span> mean, <span class="at">med =</span> median, <span class="at">sd =</span> sd)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>list_of_fcts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$mean
+function (x, ...) 
+UseMethod("mean")
+&lt;bytecode: 0x124b3f870&gt;
+&lt;environment: namespace:base&gt;
+
+$med
+function (x, na.rm = FALSE, ...) 
+UseMethod("median")
+&lt;bytecode: 0x12502c0a8&gt;
+&lt;environment: namespace:stats&gt;
+
+$sd
+function (x, na.rm = FALSE) 
+sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), 
+    na.rm = na.rm))
+&lt;bytecode: 0x114a9c2c8&gt;
+&lt;environment: namespace:stats&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(list_of_fcts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>List of 3
+ $ mean:function (x, ...)  
+ $ med :function (x, na.rm = FALSE, ...)  
+ $ sd  :function (x, na.rm = FALSE)  </code></pre>
+</div>
+</div>
+<p>We’ll be working more with lists soon.</p>
+<p><br><br><br><br></p>
+</section>
+</section>
+<section id="for-loops" class="level1">
+<h1><code>for</code> loops</h1>
+<p>In R, <code>for</code> loops have the following general structure:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> some_vector) {</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Code to do stuff with i</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>some_vector</code> can be <strong>any</strong> vector, including:</p>
+<ul>
+<li>An indexing vector: <code>1:3</code></li>
+<li>A character vector: <code>c("group1", "group2", "group3")</code></li>
+<li>A vector of any other class</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>groups <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"group1"</span>, <span class="st">"group2"</span>, <span class="st">"group3"</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) {</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(groups[i])</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "group1"
+[1] "group2"
+[1] "group3"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (g <span class="cf">in</span> groups) {</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(g)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "group1"
+[1] "group2"
+[1] "group3"</code></pre>
+</div>
+</div>
+<p>The <code>seq_along()</code> function generates an integer sequence from 1 to the length of the vector supplied. A nice feature of <code>seq_along()</code> is that it generates an empty iteration vector if the vector you’re iterating over itself has length 0.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq_along</span>(groups)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>no_groups <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">seq_along</span>(no_groups)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>integer(0)</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(groups)) {</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(groups[i])</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "group1"
+[1] "group2"
+[1] "group3"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(no_groups)) {</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(no_groups[i])</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Closely related to <code>seq_along()</code> is <code>seq_len()</code>. While <code>seq_along(x)</code> generates an integer sequence from 1 to <code>length(x)</code>, <code>seq_len(x)</code> takes <code>x</code> itself to be a length:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq_len</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq_len</span>(<span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>integer(0)</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_len</span>(<span class="fu">length</span>(groups))) {</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(groups[i])</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "group1"
+[1] "group2"
+[1] "group3"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_len</span>(<span class="fu">length</span>(no_groups))) {</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(no_groups[i])</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>seq_len()</code> is useful for iterating over the rows of a data frame because <code>seq_along()</code> would iterate over columns:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>small_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">a =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">b =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">c =</span> <span class="dv">4</span><span class="sc">:</span><span class="dv">5</span>)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (col <span class="cf">in</span> small_data) {</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(col)</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2
+[1] 2 3
+[1] 4 5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (r <span class="cf">in</span> <span class="fu">seq_len</span>(<span class="fu">nrow</span>(small_data))) {</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(r)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1
+[1] 2</code></pre>
+</div>
+</div>
+<p>Often we’ll want to store output created during a <code>for</code> loop. We can create storage containers with the <code>vector()</code> function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>char_storage <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">"character"</span>, <span class="at">length =</span> <span class="dv">3</span>)</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>num_storage <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">"numeric"</span>, <span class="at">length =</span> <span class="dv">3</span>)</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>list_storage <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">"list"</span>, <span class="at">length =</span> <span class="dv">3</span>)</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>char_storage</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "" "" ""</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>num_storage</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0 0 0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>list_storage</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+NULL
+
+[[2]]
+NULL
+
+[[3]]
+NULL</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_len</span>(<span class="dv">3</span>)) {</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>    char_storage[i] <span class="ot">&lt;-</span> <span class="fu">str_c</span>(<span class="st">"Number: "</span>, i)</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>    num_storage[i] <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span>i</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>    list_storage[[i]] <span class="ot">&lt;-</span> i <span class="co"># Note the [[ for subsetting here</span></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>char_storage</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Number: 1" "Number: 2" "Number: 3"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>num_storage</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2 4 6</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>list_storage</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] 1
+
+[[2]]
+[1] 2
+
+[[3]]
+[1] 3</code></pre>
+</div>
+</div>
+<section id="exercises-1" class="level2">
+<h2 class="anchored" data-anchor-id="exercises-1">Exercises</h2>
+<p><strong>Pair programming exercises:</strong> Whoever has most recently eaten dessert (broadly interpreted) should be the driver first. Switch after Exercise 2.</p>
+<p>Write <code>for</code>-loops that do each of the following:</p>
+<ol type="1">
+<li>Prints the even numbers from 2:20
+<ul>
+<li>Produce the same output with the <code>seq()</code> function</li>
+</ul></li>
+<li>Iterates over the <code>month.name</code> vector and stores a character vector of output containing strings like “Month 1: January”, “Month 2: February”.
+<ul>
+<li>Produce the same output with <code>str_c()</code> only.</li>
+</ul></li>
+<li>On the <code>diamonds</code> dataset, fit models of price vs.&nbsp;carat separately for each value of <code>cut</code>, and store the fitted models in a list storage container.</li>
+</ol>
+<details>
+<summary>
+Solutions
+</summary>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_len</span>(<span class="dv">10</span>)) {</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="dv">2</span><span class="sc">*</span>i)</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2
+[1] 4
+[1] 6
+[1] 8
+[1] 10
+[1] 12
+[1] 14
+[1] 16
+[1] 18
+[1] 20</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">2</span>, <span class="at">to =</span> <span class="dv">20</span>, <span class="at">by =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  2  4  6  8 10 12 14 16 18 20</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>month_strings <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">"character"</span>, <span class="at">length =</span> <span class="fu">length</span>(month.name))</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(month.name)) {</span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>    month_strings[i] <span class="ot">&lt;-</span> <span class="fu">str_c</span>(<span class="st">"Month "</span>, i, <span class="st">": "</span>, month.name[i])</span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>month_strings</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Month 1: January"   "Month 2: February"  "Month 3: March"    
+ [4] "Month 4: April"     "Month 5: May"       "Month 6: June"     
+ [7] "Month 7: July"      "Month 8: August"    "Month 9: September"
+[10] "Month 10: October"  "Month 11: November" "Month 12: December"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(<span class="st">"Month "</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="st">": "</span>, month.name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Month 1: January"   "Month 2: February"  "Month 3: March"    
+ [4] "Month 4: April"     "Month 5: May"       "Month 6: June"     
+ [7] "Month 7: July"      "Month 8: August"    "Month 9: September"
+[10] "Month 10: October"  "Month 11: November" "Month 12: December"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(diamonds)</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit models of price vs. carat separately for each value of cut</span></span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>unique_cuts <span class="ot">&lt;-</span> diamonds <span class="sc">%&gt;%</span> <span class="fu">pull</span>(cut) <span class="sc">%&gt;%</span> <span class="fu">levels</span>()</span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>lin_mod_results <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="at">mode =</span> <span class="st">"list"</span>, <span class="at">length =</span> <span class="fu">length</span>(unique_cuts))</span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(unique_cuts)) {</span>
+<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a>    this_cut <span class="ot">&lt;-</span> unique_cuts[i]</span>
+<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a>    diamonds_sub <span class="ot">&lt;-</span> diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb60-10"><a href="#cb60-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">filter</span>(cut<span class="sc">==</span>this_cut)</span>
+<span id="cb60-11"><a href="#cb60-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># The double square brackets [[i]] accesses the ith element of a list</span></span>
+<span id="cb60-12"><a href="#cb60-12" aria-hidden="true" tabindex="-1"></a>    lin_mod_results[[i]] <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> carat, <span class="at">data =</span> diamonds_sub)</span>
+<span id="cb60-13"><a href="#cb60-13" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</details>
+<p><br><br><br><br></p>
+</section>
+</section>
+<section id="case-study-performing-many-different-versions-of-an-analysis" class="level1">
+<h1>Case study: performing many different versions of an analysis</h1>
+<p>One of my most common use cases for writing functions and iteration/looping is to perform some exploration or modeling repeatedly for several different “settings”. For example, our broad goal might be to fit a linear regression model to our data. However, there are often multiple choices that we have to make in practice:</p>
+<ul>
+<li>Keep missing values or fill them in (imputation)?</li>
+<li>Fit the model only on a certain group of cases?</li>
+<li>Filter out outliers in one or more variables?</li>
+<li>Transform certain variables? (e.g., log transformation)</li>
+</ul>
+<p>We can map any number of these choices to <strong>arguments</strong> in a custom model-fitting function:</p>
+<ul>
+<li><code>impute</code>: TRUE or FALSE</li>
+<li><code>filter_to</code>: This could be a string description like “All cases”, “Group 1”, or “Groups 1 and 2”</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>fit_model <span class="ot">&lt;-</span> <span class="cf">function</span>(data, impute, filter_to) {</span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (impute) {</span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>        data <span class="ot">&lt;-</span> <span class="fu">some_imputation_function</span>(data)</span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (filter_to<span class="sc">==</span><span class="st">"Group 1"</span>) {</span>
+<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a>        data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> </span>
+<span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a>            <span class="fu">filter</span>(group<span class="sc">==</span><span class="dv">1</span>)</span>
+<span id="cb61-9"><a href="#cb61-9" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (filter_to<span class="sc">==</span><span class="st">"Groups 1 and 2"</span>) {</span>
+<span id="cb61-10"><a href="#cb61-10" aria-hidden="true" tabindex="-1"></a>        data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> </span>
+<span id="cb61-11"><a href="#cb61-11" aria-hidden="true" tabindex="-1"></a>            <span class="fu">filter</span>(group <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb61-12"><a href="#cb61-12" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb61-13"><a href="#cb61-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb61-14"><a href="#cb61-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lm</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2, <span class="at">data =</span> data)</span>
+<span id="cb61-15"><a href="#cb61-15" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The <code>tidyr</code> package has a useful function called <code>crossing()</code> that is useful for generating argument combinations. For each argument, we specify all possible values for that argument. <code>crossing()</code> generates all combinations:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>df_arg_combos <span class="ot">&lt;-</span> <span class="fu">crossing</span>(</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">impute =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>),</span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">filter_to =</span> <span class="fu">c</span>(<span class="st">"All cases"</span>, <span class="st">"Group 1"</span>, <span class="st">"Groups 1 and 2"</span>)</span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>df_arg_combos</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+  impute filter_to     
+  &lt;lgl&gt;  &lt;chr&gt;         
+1 FALSE  All cases     
+2 FALSE  Group 1       
+3 FALSE  Groups 1 and 2
+4 TRUE   All cases     
+5 TRUE   Group 1       
+6 TRUE   Groups 1 and 2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Another example</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="fu">crossing</span>(</span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">option1 =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,</span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">option2 =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>),</span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">option3 =</span> <span class="fu">c</span>(<span class="st">"low"</span>, <span class="st">"medium"</span>, <span class="st">"high"</span>)</span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 18 × 3
+   option1 option2 option3
+     &lt;int&gt; &lt;lgl&gt;   &lt;chr&gt;  
+ 1       1 FALSE   high   
+ 2       1 FALSE   low    
+ 3       1 FALSE   medium 
+ 4       1 TRUE    high   
+ 5       1 TRUE    low    
+ 6       1 TRUE    medium 
+ 7       2 FALSE   high   
+ 8       2 FALSE   low    
+ 9       2 FALSE   medium 
+10       2 TRUE    high   
+11       2 TRUE    low    
+12       2 TRUE    medium 
+13       3 FALSE   high   
+14       3 FALSE   low    
+15       3 FALSE   medium 
+16       3 TRUE    high   
+17       3 TRUE    low    
+18       3 TRUE    medium </code></pre>
+</div>
+</div>
+<p>With loops in our toobox, we can iterate the <code>fit_model()</code> function over the combinations in <code>df_arg_combos</code>.</p>
+<section id="exercises-2" class="level2">
+<h2 class="anchored" data-anchor-id="exercises-2">Exercises</h2>
+<p><strong>Goal:</strong> In the <code>diamonds</code> dataset, we want to understand the relationship between <code>price</code> and size (<code>carat</code>). We want to explore variation along two choices:</p>
+<ol type="1">
+<li>The variables included in the model. We’ll explore 3 sets of variables:
+<ul>
+<li>No further variables (just <code>price</code> and <code>carat</code>)</li>
+<li>Adjusting for <code>cut</code></li>
+<li>Adjusting for <code>cut</code> and <code>clarity</code></li>
+<li>Adjusting for <code>cut</code>, <code>clarity</code>, and <code>color</code></li>
+</ul></li>
+<li>Whether or not to remove outliers in the <code>carat</code> variable. We’ll define outliers as cases whose <code>carat</code> is over 3 SDs away from the mean.</li>
+</ol>
+<p>Work with your partner on the following exercises (not in a pair-programming fashion). As you work, make note of what is challenging and any helpful thought processes/strategies that arise from the collaboration.</p>
+<p><strong>Exercise 1:</strong> Use <code>crossing()</code> to create the data frame of argument combinations for our analyses. Call it <code>df_arg_combos</code>. Note that you can create a list of <strong>formula</strong> objects in R with <code>c(y ~ x1, y ~ x1 + x2)</code>. (Something like this will be the right hand side of an argument to <code>crossing()</code>.)</p>
+<details>
+<summary>
+Solution
+</summary>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>df_arg_combos <span class="ot">&lt;-</span> <span class="fu">crossing</span>(</span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">mod_formula =</span> <span class="fu">c</span>(price <span class="sc">~</span> carat, price <span class="sc">~</span> carat <span class="sc">+</span> cut,  price <span class="sc">~</span> carat <span class="sc">+</span> cut <span class="sc">+</span> clarity,  price <span class="sc">~</span> carat <span class="sc">+</span> cut <span class="sc">+</span> clarity <span class="sc">+</span> color),</span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">remove_outliers =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>)</span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>df_arg_combos</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8 × 2
+  mod_formula remove_outliers
+  &lt;list&gt;      &lt;lgl&gt;          
+1 &lt;formula&gt;   FALSE          
+2 &lt;formula&gt;   TRUE           
+3 &lt;formula&gt;   FALSE          
+4 &lt;formula&gt;   TRUE           
+5 &lt;formula&gt;   FALSE          
+6 &lt;formula&gt;   TRUE           
+7 &lt;formula&gt;   FALSE          
+8 &lt;formula&gt;   TRUE           </code></pre>
+</div>
+</div>
+</details>
+<p><strong>Exercise 2:</strong> Write a function called <code>remove_outliers</code> that removes outliers in a dataset. The user should be able to supply the dataset (<code>data</code>), the variable to remove outliers in (<code>what_var</code>), and a threshold on the number of SDs away from the mean used to define outliers (<code>sd_thresh</code>). Write your function so that it runs as follows: <code>remove_outliers(diamonds, what_var = carat, sd_thresh = 3)</code>.</p>
+<details>
+<summary>
+Solution
+</summary>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>remove_outliers <span class="ot">&lt;-</span> <span class="cf">function</span>(data, what_var, sd_thresh) {</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>    data <span class="sc">%&gt;%</span> </span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="at">zscore =</span> ({{ what_var }} <span class="sc">-</span> <span class="fu">mean</span>({{ what_var }}, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))<span class="sc">/</span><span class="fu">sd</span>({{ what_var }}, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">filter</span>(zscore <span class="sc">&lt;=</span> sd_thresh)</span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</details>
+<p><strong>Exercise 3:</strong> Write a function called <code>fit_model</code> that implements the different settings for our <code>diamonds</code> analysis.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>fit_model <span class="ot">&lt;-</span> <span class="cf">function</span>(data, mod_formula, remove_outliers) {</span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># remove_outliers is a TRUE/FALSE flag of whether or not to remove outliers</span></span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># This function implements our specific use case: outliers are cases that are 3 SDs away from the mean for the carat variable</span></span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Use mod_formula as the first argument of lm()</span></span>
+<span id="cb69-6"><a href="#cb69-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb69-7"><a href="#cb69-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-8"><a href="#cb69-8" aria-hidden="true" tabindex="-1"></a><span class="fu">fit_model</span>(<span class="at">data =</span> diamonds, <span class="at">mod_formula =</span> price <span class="sc">~</span> carat, <span class="at">outlier_var =</span> carat, )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<details>
+<summary>
+Solution
+</summary>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>fit_model <span class="ot">&lt;-</span> <span class="cf">function</span>(data, mod_formula, remove_outliers) {</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (remove_outliers) {</span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>        data_clean <span class="ot">&lt;-</span> <span class="fu">remove_outliers</span>(data, <span class="at">what_var =</span> carat, <span class="at">sd_thresh =</span> <span class="dv">3</span>)</span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a>        data_clean <span class="ot">&lt;-</span> data</span>
+<span id="cb70-6"><a href="#cb70-6" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb70-7"><a href="#cb70-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb70-8"><a href="#cb70-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lm</span>(mod_formula, <span class="at">data =</span> data_clean)</span>
+<span id="cb70-9"><a href="#cb70-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</details>
+<p><strong>Exercise 4:</strong> Write a <code>for</code> loop that stores the fitted linear models from all versions of the analysis.</p>
+<p>Recall that you can pull out the contents of a single data frame column in many ways. For a data frame <code>df</code> with a variable named <code>x</code>:</p>
+<ul>
+<li><code>df$x</code></li>
+<li><code>df %&gt;% pull(x)</code></li>
+<li><code>df[["x"]]</code></li>
+</ul>
+<p>Note that in <code>df_arg_combos</code>:</p>
+<ul>
+<li><code>mod_formula</code>: this column is a <strong>list</strong> and you can extract the 1st element with <code>[[1]]</code></li>
+<li><code>remove_outliers</code>: this column is a <strong>vector</strong> and you can extract the 1st element with <code>[1]</code></li>
+</ul>
+<details>
+<summary>
+Solution
+</summary>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>lin_mod_res_for <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="at">mode =</span> <span class="st">"list"</span>, <span class="at">length =</span> <span class="fu">nrow</span>(df_arg_combos))</span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(lin_mod_res_for)) {</span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a>    this_formula <span class="ot">&lt;-</span> df_arg_combos<span class="sc">$</span>mod_formula[[i]] <span class="co"># Double [[ for the **list** of formulas</span></span>
+<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a>    this_remove_outliers <span class="ot">&lt;-</span> df_arg_combos<span class="sc">$</span>remove_outliers[i] <span class="co"># Single [ for the **atomic vector** of logicals</span></span>
+<span id="cb71-6"><a href="#cb71-6" aria-hidden="true" tabindex="-1"></a>    lin_mod_res_for[[i]] <span class="ot">&lt;-</span> <span class="fu">fit_model</span>(</span>
+<span id="cb71-7"><a href="#cb71-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">data =</span> diamonds,</span>
+<span id="cb71-8"><a href="#cb71-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">mod_formula =</span> this_formula,</span>
+<span id="cb71-9"><a href="#cb71-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">remove_outliers =</span> this_remove_outliers</span>
+<span id="cb71-10"><a href="#cb71-10" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb71-11"><a href="#cb71-11" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</details>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">© Leslie Myint, 2024<br> All content licensed under <img src="https://static.thenounproject.com/png/70967-200.png" height="20"> (<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>)</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">Site built with <a href="https://quarto.org/">Quarto</a></div>
+  </div>
+</footer>
+
+
+
+</body></html>
