@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>STAT/COMP 212 - Loops and iteration</title>
+<title>STAT/COMP 212 - Loops and iteration - Part 1</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -173,7 +173,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
         <li>
     <a class="dropdown-item" href="./11-iteration-1.html" rel="" target="">
- <span class="dropdown-text">Loops and iteration</span></a>
+ <span class="dropdown-text">Loops and iteration - Part 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./12-iteration-2.html" rel="" target="">
+ <span class="dropdown-text">Loops and iteration - Part 2</span></a>
   </li>  
     </ul>
   </li>
@@ -264,7 +268,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Loops and iteration</h1>
+<h1 class="title">Loops and iteration - Part 1</h1>
 </div>
 
 
@@ -288,7 +292,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Compare <code>across()</code> to an approach with <code>pivot_longer()</code> and <code>pivot_wider()</code></li>
 </ul></li>
 <li>Write a <code>for</code> loop in R to handle repeated tasks</li>
-<li>Use the <code>map()</code> family of functions in the <code>purrr</code> package to handle repeated tasks</li>
 </ul>
 <p><br></p>
 <p>You can download a template Quarto file to start from <a href="activity_templates/11-iteration-1.qmd">here</a>. Put this file in a folder called <code>iteration</code> within a folder for this course.</p>
@@ -392,7 +395,7 @@ Solutions
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span> </span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="at">.cols =</span> x<span class="sc">:</span>z, <span class="at">.fns =</span> add_mm))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="at">.cols =</span> <span class="fu">c</span>(x, y, z), <span class="at">.fns =</span> add_mm))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 53,940 × 10
    carat cut       color clarity depth table price x       y       z      
@@ -461,20 +464,20 @@ Solutions
 <pre><code>$mean
 function (x, ...) 
 UseMethod("mean")
-&lt;bytecode: 0x124b3f870&gt;
+&lt;bytecode: 0x12b350270&gt;
 &lt;environment: namespace:base&gt;
 
 $med
 function (x, na.rm = FALSE, ...) 
 UseMethod("median")
-&lt;bytecode: 0x12502c0a8&gt;
+&lt;bytecode: 0x12a7f8aa8&gt;
 &lt;environment: namespace:stats&gt;
 
 $sd
 function (x, na.rm = FALSE) 
 sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), 
     na.rm = na.rm))
-&lt;bytecode: 0x114a9c2c8&gt;
+&lt;bytecode: 0x12b610f88&gt;
 &lt;environment: namespace:stats&gt;</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(list_of_fcts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

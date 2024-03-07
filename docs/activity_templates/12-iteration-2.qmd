@@ -1,0 +1,128 @@
+---
+title: "Loops and iteration - Part 2"
+sidebar: false
+---
+
+```{r setup, echo=FALSE, message=FALSE}
+library(tidyverse)
+```
+
+# Learning goals
+
+After this lesson, you should be able to:
+
+- Use the `map()` family of functions in the `purrr` package to handle repeated tasks
+
+
+
+
+
+# Iteration with `purrr`
+
+`purrr` is a `tidyverse` package that provides several useful functions for iteration. Open up the [`purrr` cheatsheet](https://rstudio.github.io/cheatsheets/purrr.pdf).
+
+The main advantages of `purrr` include:
+
+- Improved readability of R code
+- Reduction in the "overhead" in writing a `for` loop (creating storage containers and writing the `for (i in ...)`)
+
+**Exercise:** Write a `for` loop that stores the `class()` (type) of every column in the `mtcars` data frame. Recall that:
+
+- `vector("numeric/logical/character/list", length)` creates a storage container.
+- `mtcars[[1]]` gets the first column of the data frame.
+
+
+
+
+
+In `purrr`, we can use the family of `map()` functions to apply a function to each element of a list or vector. We can think of this as mapping an input (a list or vector) to a new output via a function. Let's look at the [`purrr` cheatsheet](https://rstudio.github.io/cheatsheets/purrr.pdf) to look at graphical representations of how these functions work.
+
+- `map()` returns a list
+- `map_chr()` returns a character vector
+- `map_lgl()` returns a logical vector
+- `map_int()` returns an integer vector
+- `map_dbl()` returns a numeric vector
+- `map_vec()` returns a vector of a different (non-atomic) type (like dates)
+
+To get the `class()` of each data frame column, `map_chr()` is sensible because classes are strings:
+
+```{r purrr_col_classes}
+map_chr(mtcars, class)
+```
+
+Let's get the class of each variable in `diamonds`:
+
+```{r purrr_col_classes_error, error=TRUE}
+map_chr(diamonds, class)
+```
+
+What happened!? `map_chr()` was expecting to create a character vector with one element per element (column) in `diamonds`. But something happened in column 2 with the `cut` variable. Let's figure out what happened:
+
+```{r class_diamonds_cut}
+class(diamonds$cut)
+```
+
+Ah! `cut` has 2 classes. In this case, `map()` (which returns a list) is the best option because some variables have multiple classes:
+
+```{r purrr_col_classes_no_error}
+map(diamonds, class)
+```
+
+The error we encountered with `map_chr()` is a nice feature of `purrr` because it allows us to be very sure of the type of output we are getting. (Failing loudly is vastly preferable to getting unexpected outputs silently because we can catch errors earlier.)
+
+Recall that last time we explored syntax and functions for selecting variables in a data frame via the tidy-select documentation. (`?dplyr_tidy_select` in the Console.) We can combine `map_*()` functions with tidy selection for some powerful variable summaries that require much less code than `for` loops.
+
+```{r purrr_examples_by_col}
+map_dbl(diamonds %>% select(where(is.numeric)), mean)
+map_int(diamonds %>% select(!where(is.numeric)), n_distinct)
+```
+
+**Exercise:** We want to compute several summary statistics on each quantitative variable in a data frame and organize the results in a new data frame (rows = variables, columns = summary statistics).
+
+- Write a function called `summ_stats()` that takes a numeric vector `x` as input and returns the mean, median, standard deviation, and IQR as a data frame. You can use `tibble()` to create the data frame.
+    - Example: `tibble(a = 1:2, b = 2:3)` creates a data frame with variables `a` and `b`.
+- Use a `map*()` function from `purrr` to get the summary statistics for each quantitative variable in `diamonds`.
+- Look up the `bind_rows()` documentation from `dplyr` to combine summary statistics for all quantitative variables into one data frame.
+    - Note: You'll notice that the variable names are not present in the output. Try to figure out a way to add variable names back in with `mutate()` and `colnames()`.
+- (We'll review solutions for the above parts before you tackle this on your own.) Write a `for` loop to achieve the same result. Which do you prefer in terms of ease of code writing and readability?
+
+
+----------
+
+`purrr` also offers the `pmap()` family of functions that take multiple inputs and loops over them simultaneously. Let's look at the [`purrr` cheatsheet](https://rstudio.github.io/cheatsheets/purrr.pdf) to look at graphical representations of how these functions work.
+
+```{r pmap_ex1}
+string_data <- tibble(
+    string = c("apple", "banana", "cherry"),
+    pattern = c("p", "n", "h"),
+    replacement = c("P", "N", "H")
+)
+string_data
+
+pmap_chr(string_data, str_replace_all)
+```
+
+Note how the column names in `string_data` exactly match the argument names in `str_replace_all()`. The iteration that is happening is across rows, and the multiple arguments in `str_replace_all()` are being matched by name.
+
+We can also use `pmap()` to specify variations in some arguments but leave some arguments constant across the iterations:
+
+```{r pmap_ex2}
+string_data <- tibble(
+    pattern = c("p", "n", "h"),
+    replacement = c("P", "N", "H")
+)
+
+pmap_chr(string_data, str_replace_all, string = "ppp nnn hhh")
+```
+
+**Exercise:** Create 2 small examples that show how `pmap()` works with `str_sub()`. Your examples should:
+
+- Use different arguments for `string`, `start`, and `end`
+- Use different arguments for `start` and `end` but a fixed `string`
+
+
+
+
+
+**Exercise:** Last class we worked on an extended exercise where our goal was to write a series of functions and a `for` loop to repeat linear model fitting under different "settings" (removal of outliers, model formula choice). Repeat this exercise using `pmap()`--you'll need to use the `df_arg_combos` object, your `remove_outliers()` function, and your `fit_model()` function.
+
