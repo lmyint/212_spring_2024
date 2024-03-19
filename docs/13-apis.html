@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>STAT/COMP 212 - APIs</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">STAT/COMP 212</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./schedule.html" rel="" target="">
+ <span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./syllabus.html" rel="" target="">
+ <span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-activities" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Activities</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-activities">    
+        <li>
+    <a class="dropdown-item" href="./01-introductions.html" rel="" target="">
+ <span class="dropdown-text">Welcome to the course!</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./02-adv-ggplot.html" rel="" target="">
+ <span class="dropdown-text">Advanced Data Visualization in ggplot2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./03-file-org-github.html" rel="" target="">
+ <span class="dropdown-text">File organization, GitHub</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./04-adv-maps.html" rel="" target="">
+ <span class="dropdown-text">Advanced spatial visualization</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./05-interactive-viz.html" rel="" target="">
+ <span class="dropdown-text">Interactive visualization</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./06-wrangling-1.html" rel="" target="">
+ <span class="dropdown-text">Data wrangling - Part 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./07-wrangling-2.html" rel="" target="">
+ <span class="dropdown-text">Data wrangling - Part 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./08-missing-data.html" rel="" target="">
+ <span class="dropdown-text">Missing data</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./09-functions.html" rel="" target="">
+ <span class="dropdown-text">Functions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./10-subset-str-shiny.html" rel="" target="">
+ <span class="dropdown-text">Subsetting, str(), Shiny debugging</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./11-iteration-1.html" rel="" target="">
+ <span class="dropdown-text">Loops and iteration - Part 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./12-iteration-2.html" rel="" target="">
+ <span class="dropdown-text">Loops and iteration - Part 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./13-apis.html" rel="" target="">
+ <span class="dropdown-text">APIs</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-homework" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Homework</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-homework">    
+        <li>
+    <a class="dropdown-item" href="./homework1.html" rel="" target="">
+ <span class="dropdown-text">Homework 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./homework2.html" rel="" target="">
+ <span class="dropdown-text">Homework 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./homework3.html" rel="" target="">
+ <span class="dropdown-text">Homework 3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./homework4.html" rel="" target="">
+ <span class="dropdown-text">Homework 4</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./homework5.html" rel="" target="">
+ <span class="dropdown-text">Homework 5</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./homework6.html" rel="" target="">
+ <span class="dropdown-text">Homework 6</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./homework7.html" rel="" target="">
+ <span class="dropdown-text">Homework 7</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-skills-sessions" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Skills Sessions</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-skills-sessions">    
+        <li>
+    <a class="dropdown-item" href="./skills_session1.html" rel="" target="">
+ <span class="dropdown-text">Skills Session 1</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./project.html" rel="" target="">
+ <span class="menu-text">Project</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./tech_setup.html" rel="" target="">
+ <span class="menu-text">Tech Setup</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#learning-goals" id="toc-learning-goals" class="nav-link active" data-scroll-target="#learning-goals">Learning goals</a></li>
+  <li><a href="#apis" id="toc-apis" class="nav-link" data-scroll-target="#apis">APIs</a></li>
+  <li><a href="#wrapper-packages" id="toc-wrapper-packages" class="nav-link" data-scroll-target="#wrapper-packages">Wrapper packages</a></li>
+  <li><a href="#accessing-web-apis-directly" id="toc-accessing-web-apis-directly" class="nav-link" data-scroll-target="#accessing-web-apis-directly">Accessing web APIs directly</a>
+  <ul class="collapse">
+  <li><a href="#getting-a-census-api-key" id="toc-getting-a-census-api-key" class="nav-link" data-scroll-target="#getting-a-census-api-key">Getting a Census API key</a></li>
+  <li><a href="#navigating-api-documentation" id="toc-navigating-api-documentation" class="nav-link" data-scroll-target="#navigating-api-documentation">Navigating API documentation</a></li>
+  </ul></li>
+  <li><a href="#board-game-geek" id="toc-board-game-geek" class="nav-link" data-scroll-target="#board-game-geek">Board Game Geek</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">APIs</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="learning-goals" class="level1">
+<h1>Learning goals</h1>
+<p>After this lesson, you should be able to:</p>
+<ul>
+<li>Explain what an API is</li>
+<li>Set up an API key for a public API</li>
+<li>Develop comfort in using a wrapper package or URL-method of calling a web API</li>
+<li>Recognize the structure in a URL for a web API and adjust for your purposes</li>
+<li>Explore and subset complex nested lists</li>
+</ul>
+<p><br></p>
+<p>You can download a template Quarto file to start from <a href="activity_templates/13-apis.qmd">here</a>. Put this file in a folder called <code>data_acquisition</code> within a folder for this course.</p>
+<p><br><br><br><br></p>
+</section>
+<section id="apis" class="level1">
+<h1>APIs</h1>
+<p>When we interact with sites like The New York Times, Zillow, and Google, we are accessing their data via a graphical layout (e.g., images, colors, columns) that is easy for humans to read but hard for computers.</p>
+<p>An <strong>API</strong> stands for <strong>Application Programming Interface</strong>, and this term describes a general class of tool that allows computers, rather than humans, to interact with an organization’s data. How does this work?</p>
+<ul>
+<li>When we use web browsers to navigate the web, our browsers communicate with web servers using a technology called <a href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">HTTP</a> or Hypertext Transfer Protocol to get information that is formatted into the display of a web page.</li>
+<li>Programming languages such as R can also use HTTP to communicate with web servers. The easiest way to do this is via <a href="https://en.wikipedia.org/wiki/Web_API">Web APIs</a>, or Web Application Programming Interfaces, which focus on transmitting raw data, rather than images, colors, or other appearance-related information that humans interact with when viewing a web page.</li>
+</ul>
+<p>A large variety of web APIs provide data accessible to programs written in R (and almost any other programming language!). Almost all reasonably large commercial websites offer APIs. Todd Motto has compiled an expansive list of <a href="https://github.com/toddmotto/public-apis">Public Web APIs</a> on GitHub. Let’s browse this list to see what data sources are available.</p>
+</section>
+<section id="wrapper-packages" class="level1">
+<h1>Wrapper packages</h1>
+<p>In R, it is easiest to use Web APIs through a <strong>wrapper package</strong>, an R package written specifically for a particular Web API.</p>
+<ul>
+<li>The R development community has already contributed wrapper packages for most large Web APIs.</li>
+<li>To find a wrapper package, search the web for “R package” and the name of the website. For example:
+<ul>
+<li>Searching for “R Reddit package” returns <a href="https://cran.r-project.org/web/packages/RedditExtractoR/index.html">RedditExtractor</a></li>
+<li>Searching for “R Weather.com package” returns <a href="https://ram-n.github.io/weatherData/">weatherData</a></li>
+</ul></li>
+<li><a href="https://ropensci.org/packages/">rOpenSci</a> also has a good collection of wrapper packages.</li>
+</ul>
+<p>In our work with maps, we’ve used the <code>tidycensus</code> package to obtain census data to display on maps. <code>tidycensus</code> is a wrapper package that makes it easy to obtain desired census information:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>tidycensus<span class="sc">::</span><span class="fu">get_acs</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">year =</span> <span class="dv">2020</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">state =</span> <span class="st">"MN"</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">geography =</span> <span class="st">"tract"</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">variables =</span> <span class="fu">c</span>(<span class="st">"B01003_001"</span>, <span class="st">"B19013_001"</span>),</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">output =</span> <span class="st">"wide"</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">geometry =</span> <span class="cn">TRUE</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Extra resources:</p>
+<ul>
+<li><code>tidycensus</code>: wrapper package that provides an interface to a few census datasets with map geometry included
+<ul>
+<li>Full documentation is available at <a href="https://walker-data.com/tidycensus/" class="uri">https://walker-data.com/tidycensus/</a></li>
+</ul></li>
+<li><code>censusapi</code>: wrapper package that offers an interface to all census datasets
+<ul>
+<li>Full documentation is available at <a href="https://www.hrecht.com/censusapi/" class="uri">https://www.hrecht.com/censusapi/</a></li>
+</ul></li>
+</ul>
+<p>What is going on behind the scenes with <code>get_acs()</code>?</p>
+<p><br><br><br><br></p>
+</section>
+<section id="accessing-web-apis-directly" class="level1">
+<h1>Accessing web APIs directly</h1>
+<section id="getting-a-census-api-key" class="level2">
+<h2 class="anchored" data-anchor-id="getting-a-census-api-key">Getting a Census API key</h2>
+<p>Many APIs require users to obtain a <strong>key</strong> to use their services.</p>
+<ul>
+<li>This lets organizations keep track of what data is being used.</li>
+<li>It also <strong>rate limits</strong> their API and ensures programs don’t make too many requests per day/minute/hour. Be aware that most APIs do have rate limits — especially for their free tiers.</li>
+</ul>
+<p>Navigate to <a href="https://api.census.gov/data/key_signup.html" class="uri">https://api.census.gov/data/key_signup.html</a> to obtain a Census API key:</p>
+<ul>
+<li>Organization: Macalester College</li>
+<li>Email: Your Mac email address</li>
+</ul>
+<p>You will get the message:</p>
+<blockquote class="blockquote">
+<p>Your request for a new API key has been successfully submitted. Please check your email. In a few minutes you should receive a message with instructions on how to activate your new key.</p>
+</blockquote>
+<p>Check your email. Copy and paste your key into a new text file:</p>
+<ul>
+<li>File &gt; New File &gt; Text File (towards the bottom of the menu)</li>
+<li>Save as <code>census_api_key.txt</code> in the same folder as this <code>.qmd</code>.</li>
+</ul>
+<p>Read in the key with the following code:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>census_api_key <span class="ot">&lt;-</span> <span class="fu">readLines</span>(<span class="st">"census_api_key.txt"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>census_api_key <span class="ot">&lt;-</span> <span class="fu">readLines</span>(<span class="st">"../census_api_key.txt"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in readLines("../census_api_key.txt"): incomplete final line found on
+'../census_api_key.txt'</code></pre>
+</div>
+</div>
+</section>
+<section id="navigating-api-documentation" class="level2">
+<h2 class="anchored" data-anchor-id="navigating-api-documentation">Navigating API documentation</h2>
+<p>Navigate to the <a href="https://www.census.gov/data/developers/guidance/api-user-guide.html">Census API user guide</a> and click on the “Example API Queries” tab.</p>
+<p>Let’s look at the Population Estimates Example and the American Community Survey (ACS) Example. These examples walk us through the steps to incrementally build up a URL to obtain desired data. This URL is known as a web API <strong>request</strong>.</p>
+<p>https://api.census.gov/data/2019/acs/acs1?get=NAME,B02015_009E,B02015_009M&amp;for=state:*</p>
+<ul>
+<li><code>https://api.census.gov</code>: This is the <strong>base URL</strong>.
+<ul>
+<li><code>http://</code>: The <strong>scheme</strong>, which tells your browser or program how to communicate with the web server. This will typically be either <code>http:</code> or <code>https:</code>.</li>
+<li><code>api.census.gov</code>: The <strong>hostname</strong>, which is a name that identifies the web server that will process the request.</li>
+</ul></li>
+<li><code>data/2019/acs/acs1</code>: The <strong>path</strong>, which tells the web server how to get to the desired resource.
+<ul>
+<li>In the case of the Census API, this locates a desired dataset in a particular year.</li>
+<li>Other APIs allow search functionality. (e.g., News organizations have article searches.) In these cases, the path locates the search function we would like to call.</li>
+</ul></li>
+<li><code>?get=NAME,B02015_009E,B02015_009M&amp;for=state:*</code>: The <strong>query parameters</strong>, which provide the parameters for the function you would like to call.
+<ul>
+<li>We can view this as a string of key-value pairs separated by <code>&amp;</code>. That is, the general structure of this part is <code>key1=value1&amp;key2=value2</code>.</li>
+</ul></li>
+</ul>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">key</th>
+<th style="text-align: left;">value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">get</td>
+<td style="text-align: left;">NAME,B02015_009E,B02015_009M</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">for</td>
+<td style="text-align: left;">state:*</td>
+</tr>
+</tbody>
+</table>
+<p>Typically, each of these URL components will be specified in the API documentation. Sometimes, the scheme, hostname, and path (<code>https://api.census.gov/data/2019/acs/acs1</code>) will be referred to as the <strong><a href="https://en.wikipedia.org/wiki/Web_API#Endpoints">endpoint</a></strong> for the API call.</p>
+<p>We will use the <code>httr2</code> package to build up a full URL from its parts.</p>
+<ul>
+<li><code>request()</code> creates an API request object using the <strong>base URL</strong></li>
+<li><code>req_url_path_append()</code> builds up the URL by adding path components separated by <code>/</code></li>
+<li><code>req_url_query()</code> adds the <code>?</code> separating the endpoint from the query and sets the key-value pairs in the query
+<ul>
+<li>The <code>.multi</code> argument controls how multiple values for a given key are combined.</li>
+<li>The <code>I()</code> function around <code>"state:*"</code> inhibits parsing of special characters like <code>:</code> and <code>*</code>. (It’s known as the “as-is” function.)</li>
+<li>The backticks around <code>for</code> are needed because <code>for</code> is a reserved word in R (for for-loops). You’ll need backticks whenever the key name has special characters (like spaces, dashes).</li>
+<li>We can see from <a href="https://www.census.gov/data/developers/guidance/api-user-guide.Help_&amp;_Contact_Us.html">here</a> that providing an API key is achieved with <code>key=YOUR_API_KEY</code>.</li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>req <span class="ot">&lt;-</span> <span class="fu">request</span>(<span class="st">"https://api.census.gov"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">req_url_path_append</span>(<span class="st">"data"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">req_url_path_append</span>(<span class="st">"2019"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">req_url_path_append</span>(<span class="st">"acs"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">req_url_path_append</span>(<span class="st">"acs1"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">req_url_query</span>(<span class="at">get =</span> <span class="fu">c</span>(<span class="st">"NAME"</span>, <span class="st">"B02015_009E"</span>, <span class="st">"B02015_009M"</span>), <span class="st">`</span><span class="at">for</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">I</span>(<span class="st">"state:*"</span>), <span class="at">key =</span> census_api_key, <span class="at">.multi =</span> <span class="st">"comma"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Why would we ever use these steps instead of just using the full URL as a string?</strong></p>
+<ul>
+<li>To generalize this code with functions! (This is exactly what wrapper packages do.)</li>
+<li>To handle special characters
+<ul>
+<li>e.g., query parameters might have spaces, which need to be represented in a particular way in a URL (URLs can’t contain spaces)</li>
+</ul></li>
+</ul>
+<p>Once we’ve fully constructed our request, we can use <code>req_perform()</code> to send out the API request and get a <strong>response</strong>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>resp <span class="ot">&lt;-</span> <span class="fu">req_perform</span>(req)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>resp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>&lt;httr2_response&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>GET
+https://api.census.gov/data/2019/acs/acs1?get=NAME,B02015_009E,B02015_009M&amp;for=state:*&amp;key=31d49a72c27f08d632defd32f7a80918a4187b90</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Status: 200 OK</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Content-Type: application/json</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Body: In memory (1691 bytes)</code></pre>
+</div>
+</div>
+<p>We see from <code>Content-Type</code> that the format of the response is something called JSON. We can navigate to the request URL to see the structure of this output.</p>
+<ul>
+<li>JSON (Javascript Object Notation) is a nested structure of key-value pairs.</li>
+<li>We can use <code>resp_body_json()</code> to parse the JSON into a nicer format.
+<ul>
+<li>Without <code>simplifyVector = TRUE</code>, the JSON is read in as a list.</li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>resp_json_list <span class="ot">&lt;-</span> resp <span class="sc">%&gt;%</span> <span class="fu">resp_body_json</span>()</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(resp_json_list, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[[1]][[1]]
+[1] "NAME"
+
+[[1]][[2]]
+[1] "B02015_009E"
+
+[[1]][[3]]
+[1] "B02015_009M"
+
+[[1]][[4]]
+[1] "state"
+
+
+[[2]]
+[[2]][[1]]
+[1] "Mississippi"
+
+[[2]][[2]]
+NULL
+
+[[2]][[3]]
+NULL
+
+[[2]][[4]]
+[1] "28"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>resp_json_df <span class="ot">&lt;-</span> resp <span class="sc">%&gt;%</span> <span class="fu">resp_body_json</span>(<span class="at">simplifyVector =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(resp_json_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1]          [,2]          [,3]          [,4]   
+[1,] "NAME"        "B02015_009E" "B02015_009M" "state"
+[2,] "Mississippi" NA            NA            "28"   
+[3,] "Missouri"    "953"         "1141"        "29"   
+[4,] "Montana"     NA            NA            "30"   
+[5,] "Nebraska"    "412"         "477"         "31"   
+[6,] "Nevada"      "863"         "745"         "32"   </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>resp_json_df <span class="ot">&lt;-</span> janitor<span class="sc">::</span><span class="fu">row_to_names</span>(resp_json_df, <span class="dv">1</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(resp_json_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     NAME            B02015_009E B02015_009M state
+[1,] "Mississippi"   NA          NA          "28" 
+[2,] "Missouri"      "953"       "1141"      "29" 
+[3,] "Montana"       NA          NA          "30" 
+[4,] "Nebraska"      "412"       "477"       "31" 
+[5,] "Nevada"        "863"       "745"       "32" 
+[6,] "New Hampshire" NA          NA          "33" </code></pre>
+</div>
+</div>
+<p><strong>Exercises: (Homework 7)</strong></p>
+<ol type="1">
+<li><p>Write a function called <code>get_acs1()</code> that gets 1-year ACS data for a given year for a set of user specified variables for all states. Function arguments should include:</p>
+<ul>
+<li><code>year</code>: Within your function check that this is between 2005 and 2022 (data only available in this span). If the year is outside this range, include <code>stop("Helpful error message here")</code> to display a helpful error message to the user.</li>
+<li><code>variables</code>: A character vector of variable names to obtain. e.g., <code>c("B02015_009", "B01003_001")</code>. Note that these don’t have “E” or “M” at the end. You’ll always return the “E” version (for the estimate). See next argument for the “M” version.</li>
+<li><code>include_moe</code>: TRUE/FALSE indicator of whether to additionally include the “M” version (for the margin of error on the estimate). Set the default to TRUE.</li>
+<li><code>key</code>: Census API key Your function should include a <code>Sys.sleep(0.5)</code> at the beginning to pause code execution for 0.5 seconds. While the Census API does not seem to have a <a href="https://www.census.gov/data/developers/guidance/api-user-guide.Help_&amp;_Contact_Us.html">rate limit</a> when you provide an API key, include this pause just to be safe.</li>
+</ul></li>
+<li><p>Come up with a set of test cases that will <strong>fully</strong> test your function. Update your function as needed as you run your tests. Show output from successful tests on all test cases.</p></li>
+<li><p>Obtain 1-year ACS data for all states from 2005-2022 for the following two variables: <code>B01003_001</code> (total population) and <code>B06011_001</code> (Median Income in the Past 12 Months in 2022 Inflation-Adjusted Dollars).</p>
+<ul>
+<li>Get both the estimate and the margin of error for these two variables.</li>
+<li>Put all of this information into a single data frame.</li>
+<li>Do this with both a <code>for</code> loop and with an appropriate <code>purrr</code> function. (See our <a href="./12-iteration-2.html">iteration day 2 activity</a> for reference.)</li>
+<li>Verify using the <code>identical()</code> function that you get identical data frames from both approaches.</li>
+</ul></li>
+<li><p>Create visualizations that show how the two variables have changed over 2005-2022.</p>
+<ul>
+<li>Show both the estimate and margin of error in an effective way.</li>
+<li>Make sure that your plots have clean labels and a title.</li>
+</ul></li>
+</ol>
+<p><br><br><br><br></p>
+</section>
+</section>
+<section id="board-game-geek" class="level1">
+<h1>Board Game Geek</h1>
+<p>The <a href="https://boardgamegeek.com/wiki/page/BGG_XML_API2">Board Game Geek API</a> is referenced in the <a href="https://github.com/toddmotto/public-apis?tab=readme-ov-file#games--comics">Games &amp; Comics</a> section of <a href="https://github.com/toddmotto/public-apis">toddmotto’s public API list</a>.</p>
+<p>Our goal is to use the search API at the bottom of the page. Let’s start at the top of the API documentation page to see how to navigate this reference.</p>
+<ul>
+<li>We can see from the XML references at the top that we will be expecting a new output format: XML stands for Extensible Markup Language</li>
+<li>The “Root Path” section tells us the base URL for the Board Game Geeks API endpoints and related APIs: <a href="https://boardgamegeek.com/xmlapi2/" class="uri">https://boardgamegeek.com/xmlapi2/</a></li>
+<li>The “Search” section at the bottom of the page tells us:
+<ul>
+<li>the path for the search endpoint (<code>/search</code>)</li>
+<li>what query parameters are possible</li>
+<li>particular formatting instructions for query parameter values</li>
+</ul></li>
+</ul>
+<p>The following request searches for board games, board game accessories, and board game expansions with the words “mystery” and “curse” in the title:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>req <span class="ot">&lt;-</span> <span class="fu">request</span>(<span class="st">"https://boardgamegeek.com/xmlapi2"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">req_url_path_append</span>(<span class="st">"search"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">req_url_query</span>(<span class="at">query =</span> <span class="fu">I</span>(<span class="st">"mystery+curse"</span>), <span class="at">type =</span> <span class="fu">I</span>(<span class="st">"boardgame,boardgameaccessory,boardgameexpansion"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>When we use <code>req_perform()</code>, we see from <code>Content-Type</code> that the format of the response is something called XML. We can navigate to the request URL to see the structure of this output.</p>
+<ul>
+<li>XML (Extensible Markup Language) is a tree structure of named nodes and attributes.</li>
+<li>We can use <code>resp_body_xml()</code> to read in the XML as an R object.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>resp <span class="ot">&lt;-</span> <span class="fu">req_perform</span>(req)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>resp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>&lt;httr2_response&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>GET
+https://boardgamegeek.com/xmlapi2/search?query=mystery+curse&amp;type=boardgame,boardgameaccessory,boardgameexpansion</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Status: 200 OK</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Content-Type: text/xml</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Body: In memory (1903 bytes)</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>resp <span class="ot">&lt;-</span> <span class="fu">resp_body_xml</span>(resp)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>resp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{xml_document}
+&lt;items total="9" termsofuse="https://boardgamegeek.com/xmlapi/termsofuse"&gt;
+[1] &lt;item type="boardgame" id="63495"&gt;\n  &lt;name type="primary" value="Murder  ...
+[2] &lt;item type="boardgame" id="40175"&gt;\n  &lt;name type="primary" value="Murder  ...
+[3] &lt;item type="boardgame" id="256211"&gt;\n  &lt;name type="primary" value="Robins ...
+[4] &lt;item type="boardgame" id="238391"&gt;\n  &lt;name type="primary" value="Robins ...
+[5] &lt;item type="boardgameaccessory" id="289457"&gt;\n  &lt;name type="primary" valu ...
+[6] &lt;item type="boardgameaccessory" id="291036"&gt;\n  &lt;name type="primary" valu ...
+[7] &lt;item type="boardgameaccessory" id="309435"&gt;\n  &lt;name type="alternate" va ...
+[8] &lt;item type="boardgameexpansion" id="256211"&gt;\n  &lt;name type="primary" valu ...
+[9] &lt;item type="boardgameexpansion" id="238391"&gt;\n  &lt;name type="primary" valu ...</code></pre>
+</div>
+</div>
+<p>The XML output is not packaged in a nice way. (We’d love to have a data frame.) We can use the <code>xml2</code> package to explore and navigate the XML structure to extract the information we need.</p>
+<p>Let’s first use the <code>xml_structure()</code> function to see how information is organized:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">xml_structure</span>(resp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;items [total, termsofuse]&gt;
+  &lt;item [type, id]&gt;
+    &lt;name [type, value]&gt;
+    &lt;yearpublished [value]&gt;
+  &lt;item [type, id]&gt;
+    &lt;name [type, value]&gt;
+    &lt;yearpublished [value]&gt;
+  &lt;item [type, id]&gt;
+    &lt;name [type, value]&gt;
+    &lt;yearpublished [value]&gt;
+  &lt;item [type, id]&gt;
+    &lt;name [type, value]&gt;
+    &lt;yearpublished [value]&gt;
+  &lt;item [type, id]&gt;
+    &lt;name [type, value]&gt;
+    &lt;yearpublished [value]&gt;
+  &lt;item [type, id]&gt;
+    &lt;name [type, value]&gt;
+  &lt;item [type, id]&gt;
+    &lt;name [type, value]&gt;
+    &lt;yearpublished [value]&gt;
+  &lt;item [type, id]&gt;
+    &lt;name [type, value]&gt;
+    &lt;yearpublished [value]&gt;
+  &lt;item [type, id]&gt;
+    &lt;name [type, value]&gt;
+    &lt;yearpublished [value]&gt;</code></pre>
+</div>
+</div>
+<p>The key navigation and extraction functions in <code>xml2</code> are:</p>
+<ul>
+<li><code>xml_children()</code>: Get nodes that are nested inside
+<ul>
+<li>Like getting the first level bullet points inside a given bullet point</li>
+</ul></li>
+<li><code>xml_find_all()</code>: Finds nodes matching an XPath expression (XPath stands for XML path)
+<ul>
+<li>XPath expressions are like string regular expressions for XML trees</li>
+<li>See <a href="https://www.w3schools.com/xml/xpath_intro.asp">here</a> for a deeper dive into XPath</li>
+</ul></li>
+<li><code>xml_attr()</code>: Selects the value of an attribute (the information to the right of the <code>=</code> in quotes)
+<ul>
+<li><code>&lt;node_name attribute_name1="attribute_value1" attribute_name2="attribute_value2"&gt;</code></li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the item nodes in 2 different ways</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>resp <span class="sc">%&gt;%</span> <span class="fu">xml_find_all</span>(<span class="st">"item"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{xml_nodeset (9)}
+[1] &lt;item type="boardgame" id="63495"&gt;\n  &lt;name type="primary" value="Murder  ...
+[2] &lt;item type="boardgame" id="40175"&gt;\n  &lt;name type="primary" value="Murder  ...
+[3] &lt;item type="boardgame" id="256211"&gt;\n  &lt;name type="primary" value="Robins ...
+[4] &lt;item type="boardgame" id="238391"&gt;\n  &lt;name type="primary" value="Robins ...
+[5] &lt;item type="boardgameaccessory" id="289457"&gt;\n  &lt;name type="primary" valu ...
+[6] &lt;item type="boardgameaccessory" id="291036"&gt;\n  &lt;name type="primary" valu ...
+[7] &lt;item type="boardgameaccessory" id="309435"&gt;\n  &lt;name type="alternate" va ...
+[8] &lt;item type="boardgameexpansion" id="256211"&gt;\n  &lt;name type="primary" valu ...
+[9] &lt;item type="boardgameexpansion" id="238391"&gt;\n  &lt;name type="primary" valu ...</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>resp <span class="sc">%&gt;%</span> <span class="fu">xml_children</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{xml_nodeset (9)}
+[1] &lt;item type="boardgame" id="63495"&gt;\n  &lt;name type="primary" value="Murder  ...
+[2] &lt;item type="boardgame" id="40175"&gt;\n  &lt;name type="primary" value="Murder  ...
+[3] &lt;item type="boardgame" id="256211"&gt;\n  &lt;name type="primary" value="Robins ...
+[4] &lt;item type="boardgame" id="238391"&gt;\n  &lt;name type="primary" value="Robins ...
+[5] &lt;item type="boardgameaccessory" id="289457"&gt;\n  &lt;name type="primary" valu ...
+[6] &lt;item type="boardgameaccessory" id="291036"&gt;\n  &lt;name type="primary" valu ...
+[7] &lt;item type="boardgameaccessory" id="309435"&gt;\n  &lt;name type="alternate" va ...
+[8] &lt;item type="boardgameexpansion" id="256211"&gt;\n  &lt;name type="primary" valu ...
+[9] &lt;item type="boardgameexpansion" id="238391"&gt;\n  &lt;name type="primary" valu ...</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the item "type"</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>resp <span class="sc">%&gt;%</span> <span class="fu">xml_find_all</span>(<span class="st">"item"</span>) <span class="sc">%&gt;%</span> <span class="fu">xml_attr</span>(<span class="st">"type"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "boardgame"          "boardgame"          "boardgame"         
+[4] "boardgame"          "boardgameaccessory" "boardgameaccessory"
+[7] "boardgameaccessory" "boardgameexpansion" "boardgameexpansion"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The &lt;name&gt; and &lt;yearpublished&gt; nodes are nested within each &lt;item&gt;</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>resp <span class="sc">%&gt;%</span> <span class="fu">xml_find_all</span>(<span class="st">"item/name"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{xml_nodeset (9)}
+[1] &lt;name type="primary" value="Murder Mystery Dinner Party: The Curse of the ...
+[2] &lt;name type="primary" value="Murder Mystery Evening: The Curse of the Mumm ...
+[3] &lt;name type="primary" value="Robinson Crusoe: Adventures on the Cursed Isl ...
+[4] &lt;name type="primary" value="Robinson Crusoe: Adventures on the Cursed Isl ...
+[5] &lt;name type="primary" value="Robinson Crusoe: Adventures on the Cursed Isl ...
+[6] &lt;name type="primary" value="Robinson Crusoe: Adventures on the Cursed Isl ...
+[7] &lt;name type="alternate" value="Robinson Crusoe: Adventures on the Cursed I ...
+[8] &lt;name type="primary" value="Robinson Crusoe: Adventures on the Cursed Isl ...
+[9] &lt;name type="primary" value="Robinson Crusoe: Adventures on the Cursed Isl ...</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>resp <span class="sc">%&gt;%</span> <span class="fu">xml_find_all</span>(<span class="st">"item/yearpublished"</span>) <span class="co"># Notice that this is length 8 instead of 9!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{xml_nodeset (8)}
+[1] &lt;yearpublished value="2008"/&gt;
+[2] &lt;yearpublished value="2007"/&gt;
+[3] &lt;yearpublished value="2018"/&gt;
+[4] &lt;yearpublished value="2019"/&gt;
+[5] &lt;yearpublished value="2019"/&gt;
+[6] &lt;yearpublished value="2019"/&gt;
+[7] &lt;yearpublished value="2018"/&gt;
+[8] &lt;yearpublished value="2019"/&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the "primary" or "alternate" designation for each name</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>resp <span class="sc">%&gt;%</span> <span class="fu">xml_find_all</span>(<span class="st">"item/name"</span>) <span class="sc">%&gt;%</span> <span class="fu">xml_attr</span>(<span class="st">"type"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "primary"   "primary"   "primary"   "primary"   "primary"   "primary"  
+[7] "alternate" "primary"   "primary"  </code></pre>
+</div>
+</div>
+<p><strong>Exercises: (not part of Homework 7)</strong></p>
+<ol type="1">
+<li>Get the board game name (e.g., “Murder Mystery…” and “Robinson Crusoe”)</li>
+<li>Get the board game ID number (e.g., 63495, 40175)</li>
+</ol>
+<!--
+
+
+::: {.cell}
+
+```{.r .cell-code}
+resp %>% xml_children() %>% xml_attr("type")
+```
+
+::: {.cell-output .cell-output-stdout}
+```
+[1] "boardgame"          "boardgame"          "boardgame"         
+[4] "boardgame"          "boardgameaccessory" "boardgameaccessory"
+[7] "boardgameaccessory" "boardgameexpansion" "boardgameexpansion"
+```
+:::
+
+```{.r .cell-code}
+resp %>% xml_children() %>% xml_attr("id")
+```
+
+::: {.cell-output .cell-output-stdout}
+```
+[1] "63495"  "40175"  "256211" "238391" "289457" "291036" "309435" "256211"
+[9] "238391"
+```
+:::
+
+```{.r .cell-code}
+resp %>% xml_children() %>% xml_children() %>% xml_attr("type")
+```
+
+::: {.cell-output .cell-output-stdout}
+```
+ [1] "primary"   NA          "primary"   NA          "primary"   NA         
+ [7] "primary"   NA          "primary"   NA          "primary"   "alternate"
+[13] NA          "primary"   NA          "primary"   NA         
+```
+:::
+
+```{.r .cell-code}
+resp %>% xml_children() %>% xml_children() %>% xml_attr("value")
+```
+
+::: {.cell-output .cell-output-stdout}
+```
+ [1] "Murder Mystery Dinner Party: The Curse of the Green Lady"                             
+ [2] "2008"                                                                                 
+ [3] "Murder Mystery Evening: The Curse of the Mummy"                                       
+ [4] "2007"                                                                                 
+ [5] "Robinson Crusoe: Adventures on the Cursed Island – Mystery Cards I"                   
+ [6] "2018"                                                                                 
+ [7] "Robinson Crusoe: Adventures on the Cursed Island – Mystery Tales"                     
+ [8] "2019"                                                                                 
+ [9] "Robinson Crusoe: Adventures on the Cursed Island – Mystery Tales Upgrade Pack"        
+[10] "2019"                                                                                 
+[11] "Robinson Crusoe: Adventures on the Cursed Island – Mystery Tales – Insert Here Insert"
+[12] "Robinson Crusoe: Adventures on the Cursed Island – Mystery Tales: e-Raptor Insert"    
+[13] "2019"                                                                                 
+[14] "Robinson Crusoe: Adventures on the Cursed Island – Mystery Cards I"                   
+[15] "2018"                                                                                 
+[16] "Robinson Crusoe: Adventures on the Cursed Island – Mystery Tales"                     
+[17] "2019"                                                                                 
+```
+:::
+
+```{.r .cell-code}
+resp %>% xml_children() %>% xml_children() %>% xml_find_all("//name") %>% xml_attr("type")
+```
+
+::: {.cell-output .cell-output-stdout}
+```
+[1] "primary"   "primary"   "primary"   "primary"   "primary"   "primary"  
+[7] "alternate" "primary"   "primary"  
+```
+:::
+
+```{.r .cell-code}
+resp %>% xml_children() %>% xml_children() %>% xml_find_all("//name") %>% xml_attr("value")
+```
+
+::: {.cell-output .cell-output-stdout}
+```
+[1] "Murder Mystery Dinner Party: The Curse of the Green Lady"                             
+[2] "Murder Mystery Evening: The Curse of the Mummy"                                       
+[3] "Robinson Crusoe: Adventures on the Cursed Island – Mystery Cards I"                   
+[4] "Robinson Crusoe: Adventures on the Cursed Island – Mystery Tales"                     
+[5] "Robinson Crusoe: Adventures on the Cursed Island – Mystery Tales Upgrade Pack"        
+[6] "Robinson Crusoe: Adventures on the Cursed Island – Mystery Tales – Insert Here Insert"
+[7] "Robinson Crusoe: Adventures on the Cursed Island – Mystery Tales: e-Raptor Insert"    
+[8] "Robinson Crusoe: Adventures on the Cursed Island – Mystery Cards I"                   
+[9] "Robinson Crusoe: Adventures on the Cursed Island – Mystery Tales"                     
+```
+:::
+
+```{.r .cell-code}
+resp %>% xml_children() %>% xml_children() %>% xml_find_all("//yearpublished") %>% xml_attr("value")
+```
+
+::: {.cell-output .cell-output-stdout}
+```
+[1] "2008" "2007" "2018" "2019" "2019" "2019" "2018" "2019"
+```
+:::
+
+```{.r .cell-code}
+purrr::map(resp %>% xml_children(), function(x) { x %>% xml_find_first("name") %>% xml_attr("value") })
+```
+
+::: {.cell-output .cell-output-stdout}
+```
+[[1]]
+[1] "Murder Mystery Dinner Party: The Curse of the Green Lady"
+
+[[2]]
+[1] "Murder Mystery Evening: The Curse of the Mummy"
+
+[[3]]
+[1] "Robinson Crusoe: Adventures on the Cursed Island – Mystery Cards I"
+
+[[4]]
+[1] "Robinson Crusoe: Adventures on the Cursed Island – Mystery Tales"
+
+[[5]]
+[1] "Robinson Crusoe: Adventures on the Cursed Island – Mystery Tales Upgrade Pack"
+
+[[6]]
+[1] "Robinson Crusoe: Adventures on the Cursed Island – Mystery Tales – Insert Here Insert"
+
+[[7]]
+[1] "Robinson Crusoe: Adventures on the Cursed Island – Mystery Tales: e-Raptor Insert"
+
+[[8]]
+[1] "Robinson Crusoe: Adventures on the Cursed Island – Mystery Cards I"
+
+[[9]]
+[1] "Robinson Crusoe: Adventures on the Cursed Island – Mystery Tales"
+```
+:::
+
+```{.r .cell-code}
+purrr::map(resp %>% xml_children(), function(x) { x %>% xml_find_first("yearpublished") %>% xml_attr("value") })
+```
+
+::: {.cell-output .cell-output-stdout}
+```
+[[1]]
+[1] "2008"
+
+[[2]]
+[1] "2007"
+
+[[3]]
+[1] "2018"
+
+[[4]]
+[1] "2019"
+
+[[5]]
+[1] "2019"
+
+[[6]]
+[1] NA
+
+[[7]]
+[1] "2019"
+
+[[8]]
+[1] "2018"
+
+[[9]]
+[1] "2019"
+```
+:::
+:::
+
+
+-->
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">© Leslie Myint, 2024<br> All content licensed under <img src="https://static.thenounproject.com/png/70967-200.png" height="20"> (<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>)</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">Site built with <a href="https://quarto.org/">Quarto</a></div>
+  </div>
+</footer>
+
+
+
+</body></html>

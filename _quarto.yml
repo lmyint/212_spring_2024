@@ -43,6 +43,7 @@ website:
         - 10-subset-str-shiny.qmd
         - 11-iteration-1.qmd
         - 12-iteration-2.qmd
+        - 13-apis.qmd
 
     - id: homework
       title: "Homework"
@@ -53,7 +54,7 @@ website:
         - homework4.qmd
         - homework5.qmd
         - homework6.qmd
-        # - homework7.qmd
+        - homework7.qmd
         # - homework8.qmd
         # - homework9.qmd
     

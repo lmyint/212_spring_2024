@@ -275,7 +275,7 @@ Guiding questions for pre-class readings and videos are available at the bottom 
     </td>
     
     <td class="topleft">
-      Schedule <b>Skills Session 3</b> for next week (4/15-4/19) via <a href="https://calendly.com/lmyint">Calendly</a>.
+      Schedule <b>Skills Session 2</b> for next week (4/15-4/19) via <a href="https://calendly.com/lmyint">Calendly</a>.
     </td>
   </tr>
   <!----------------------------------------------------------->
@@ -293,7 +293,7 @@ Guiding questions for pre-class readings and videos are available at the bottom 
     </td>
     
     <td class="topleft">
-      <b>Skills Session 3</b> will be happening this week.
+      <b>Skills Session 2</b> will be happening this week.
     </td>
   </tr>
   <!----------------------------------------------------------->
