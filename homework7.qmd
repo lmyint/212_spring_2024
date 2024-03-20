@@ -30,6 +30,11 @@ Turn in all class exercises from [our introduction to APIs](13-apis.qmd) as a re
 5. Interpret your results and discuss limitations in roughly 100-200 words.
 
 
+## Project Milestone 3
+
+See details about Milestone 3 on our [Project page](project.qmd#milestone-3).
+
+
 <br><br>
 
 

@@ -218,21 +218,15 @@ If I didn't have to give grades, I wouldn't. But because I am required to, it is
 
 ### Asynchronous skills demonstrations
 
-Our [course learning goals](syllabus.qmd#course-learning-goals) will have associated challenges for practicing the tools/concepts. During weekly homework assignments, you will work on one challenge from the most recent class topic as well as the prior class topic. A challenge will either receive a grade of Pass (P) or Not Yet (NY). Requirements for passing will be clearly described in each challenge.
+Our [course learning goals](syllabus.qmd#course-learning-goals) will have associated challenges for practicing the tools/concepts. During weekly homework assignments, you will work on one challenge from the most recent class topic as well as the prior class topic. A challenge will either receive a grade of Pass (P) or Not Yet (NY). Requirements for passing will be clearly described in each challenge. There will be 2 challenges for each of the following skills categories:
 
-| Skills category        |              |              |
-|:-----------------------|:-------------|:-------------|
-| Advanced ggplot2       | [Challenge 1](https://classroom.github.com/a/u96MWDm2) | [Challenge 2](https://classroom.github.com/a/bl30jylw) |
-| Spatial visualization     | [Challenge 1](https://classroom.github.com/a/5W1jLTYy) | [Challenge 2](https://classroom.github.com/a/lwCGUNt1) |
-| Shiny                     | Challenge 1 | Challenge 2 |
-| Data wrangling            | Challenge 1 | Challenge 2 |
-| Writing functions         | Challenge 1 | Challenge 2 |
-| Writing loops             | Challenge 1 | Challenge 2 |
-| APIs                      | Challenge 1 | Challenge 2 |
-| Web scraping              | Challenge 1 | Challenge 2 |
-| SQL                       | Challenge 1 | Challenge 2 |
-
-: {tbl-colwidths="[44,28,28]"}
+- Advanced ggplot2
+- Maps
+- Shiny
+- Functions+data wrangling
+- HW7 (functions, wrangling, loops, APIs)
+- HW8 (functions, wrangling, loops, web scraping)
+- HW9 (SQL)
 
 ::: {.callout-tip title="Purpose"}
 The purpose of skills challenges is to *engage in targeted and repeated practice* for core skills. The reason for *interleaving* different topics within a single homework assignment is to promote skills becoming more deeply ingrained by spacing out practice over time.
@@ -245,11 +239,10 @@ The purpose of skills challenges is to *engage in targeted and repeated practice
 
 ### In-person skills sessions
 
-A skills session (SS) is a discussion that you and I will have about course content. There will be 3 SS's in the semester (weeks of 2/5, 3/4, and 4/15). 
+A skills session (SS) is a discussion that you and I will have about course content. There will be 2 SS's in the semester (weeks of 2/5 and 4/15). 
 
 - Skills session 1: This session will be very short (5 minutes) and will focus on your fluency with keyboard shortcuts. Sometime during the week of 2/5-2/9 come talk to me to demonstrate your keyboard shortcut usage.
-- Skills session 2: This session will be 30 minutes. Schedule this during the week of 3/4-3/8 via [Calendly](https://calendly.com/lmyint).
-- Skills session 3: This session will be 30 minutes. Schedule this during the week of 4/15-4/19 via [Calendly](https://calendly.com/lmyint).
+- Skills session 2: This session will be 30 minutes. Schedule this during the week of 4/15-4/19 via [Calendly](https://calendly.com/lmyint).
 
 One week before the SS, I will provide a set of problems that you can (and should!) work on with peers. During the SS, we will talk through a subset of those problems. I will choose some problems that I'd like you to talk through, and in the time remaining, you will talk through a problem (or part of a problem) of your choosing.
 
@@ -294,8 +287,8 @@ Each project milestone will receive a grade of Pass (P) or Not Yet (NY) based on
 
 In order to earn a final letter grade of B, you will need to:
 
-- **Asynchronous skills demonstrations:** Pass the **first** challenge in each skills category.
-- **In-person skills sessions:** Pass all 3 in-person skills sessions.
+- **Asynchronous skills demonstrations:** Pass **one** challenge in each skills category.
+- **In-person skills sessions:** Pass all 2 in-person skills sessions.
 - **Reflection:** Pass all 3 monthly reflections.
 - **Project:** Pass all project checkpoints. Submit a passing code base and a passing digital artifact.
 
