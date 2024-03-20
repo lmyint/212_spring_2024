@@ -6,10 +6,15 @@ sidebar: false
 # Required parts
 
 <center>
-Due by **Wednesday, March 27** at midnight on [Moodle](https://moodle.macalester.edu/mod/assign/view.php?id=90165).
+Due by **Wednesday, March 27** at midnight.
 </center>
 
+- [Moodle link for Challenges](https://moodle.macalester.edu/mod/assign/view.php?id=90165)
+- [Moodle link for Project Milestone 3](https://moodle.macalester.edu/mod/assign/view.php?id=90314)
+
+
 <br><br>
+
 
 ## Homework 7 - Challenge 1
 
