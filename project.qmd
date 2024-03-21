@@ -130,6 +130,17 @@ Overview of this category:
 <br><br>
 
 
+# Collaboration and GitHub
+
+After Milestone 2, you set up your directory structure to organize your data separately from your code. With this setup, it is useful for each team member to have their own `.qmd` file for their own share of the explorations.
+
+- In this way when you commit, push, and pull, you won't run into merge conflicts from overwriting contents of each other's files.
+- Coordinating what explorations each team member is doing becomes the main topic to coordinate
+
+
+<br><br>
+
+
 # Project milestones
 
 ## Milestone 1
