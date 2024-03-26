@@ -44,6 +44,7 @@ website:
         - 11-iteration-1.qmd
         - 12-iteration-2.qmd
         - 13-apis.qmd
+        - 14-scraping.qmd
 
     - id: homework
       title: "Homework"

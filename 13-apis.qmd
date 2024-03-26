@@ -188,7 +188,7 @@ To learn more about JSON, consult the following readings:
 **Exercises: (Homework 7)**
 
 1. Write a function called `get_acs1()` that gets 1-year ACS data for a given year for a set of user specified variables for all states. Function arguments should include:
-    - `year`: Within your function check that this is between 2005 and 2022 (data only available in this span). If the year is outside this range, include `stop("Helpful error message here")` to display a helpful error message to the user.
+    - `year`: Within your function check that this is between 2005 and 2022 and not 2020 (data only available from 2005-2022 except for 2020). If the year is outside this range, include `stop("Helpful error message here")` to display a helpful error message to the user.
     - `variables`: A character vector of variable names to obtain. e.g., `c("B02015_009", "B01003_001")`. Note that these don't have "E" or "M" at the end. You'll always return the "E" version (for the estimate). See next argument for the "M" version.
     - `include_moe`: TRUE/FALSE indicator of whether to additionally include the "M" version (for the margin of error on the estimate). Set the default to TRUE.
     - `key`: Census API key
@@ -196,13 +196,13 @@ To learn more about JSON, consult the following readings:
 
 2. Come up with a set of test cases that will **fully** test your function. Update your function as needed as you run your tests. Show output from successful tests on all test cases.
 
-3. Obtain 1-year ACS data for all states from 2005-2022 for the following two variables: `B01003_001` (total population) and `B06011_001` (Median Income in the Past 12 Months in 2022 Inflation-Adjusted Dollars).
+3. Obtain 1-year ACS data for all states from 2005-2022 (except 2020) for the following two variables: `B01003_001` (total population) and `B06011_001` (Median Income in the Past 12 Months in 2022 Inflation-Adjusted Dollars).
     - Get both the estimate and the margin of error for these two variables.
     - Put all of this information into a single data frame.
     - Do this with both a `for` loop and with an appropriate `purrr` function. (See our [iteration day 2 activity](12-iteration-2.qmd) for reference.)
     - Verify using the `identical()` function that you get identical data frames from both approaches.
 
-4. Create visualizations that show how the two variables have changed over 2005-2022.
+4. Create visualizations that show how the two variables have changed over 2005-2022 (except 2020).
     - Show both the estimate and margin of error in an effective way.
     - Make sure that your plots have clean labels and a title.
 
