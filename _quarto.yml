@@ -45,6 +45,7 @@ website:
         - 12-iteration-2.qmd
         - 13-apis.qmd
         - 14-scraping.qmd
+        - 15-strategies-principles.qmd
 
     - id: homework
       title: "Homework"
@@ -56,7 +57,7 @@ website:
         - homework5.qmd
         - homework6.qmd
         - homework7.qmd
-        # - homework8.qmd
+        - homework8.qmd
         # - homework9.qmd
     
     - id: skills_sessions
