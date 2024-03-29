@@ -82,14 +82,21 @@ To be kind to the website owners, please add a 1 second pause between page queri
 <br><br>
 
 
+# Optional
+
 ## Homework 8 - Challenge 2
 
 ***This challenge is fully optional--I know that things are very busy right now. You can still earn an A without completing Challenge 2.***
 
-**Option 1:** Scrape Macalester's [Spring 2024 class schedule](https://macadmsys.macalester.edu/macssb/customPage/page/classSchedule?term=202430)
+**Option 1:** Scrape Macalester's [Fall 2024 class schedule](https://macadmsys.macalester.edu/macssb/customPage/page/classSchedule?term=202510)
 
-- Goal: Obtain a data frame of all courses with the following columns: course department (e.g., AMST or PE), course number (e.g., 102, 200), section number (e.g., 01, 02), course name, meeting days (e.g., M W F, T R), meeting time, meeting room, instructor(s), open seats, max enrollment.
-- Hint: All of your CSS selectors should have the text `col`.
+- **Obtaining the data:** Because the Registrar uses Javascript to dynamically generate the page, there is actually no HTML source underlying the tables with course data when you use `read_html()`. You'll need to do the following as a workaround:
+    - **Google Chrome users:** Use Command-S, Ctrl-S, or File > Save Page As... to bring up options for saving the webpage. For Format, choose **Webpage, Complete**, and save this file as `fall24_schedule.html`.
+    - **All other browsers:** Navigate to [Moodle](https://moodle.macalester.edu/mod/resource/view.php?id=91422) to download the webpage HTML source that the instructor downloaded. (Note: Safari has a Web Archive format, but unfortunately, the file type can't be read by `rvest`.)
+
+- **Goal:** Obtain a data frame of all courses with the following columns: course department (e.g., AMST or PE), course number (e.g., 102, 200), section number (e.g., 01, 02), course name, meeting days (e.g., M W F, T R), meeting time, meeting room, instructor(s), open seats, max enrollment.
+
+- **Hint:** All of your CSS selectors should have the text `col`. (You might encounter other CSS selectors via SelectorGadget, but you'll run into issues with the number of elements selected.)
 
 **Option 2:** Scrape any page of interest to you (possibly related to your project).
 
@@ -99,7 +106,7 @@ To be kind to the website owners, please add a 1 second pause between page queri
 <br><br>
 
 
-# Optional
+## Tidy Tuesday
 
 If you are aiming for an A in the course, recall from our [syllabus](syllabus.qmd#requirements-for-an-a) that participating in 5 Tidy Tuesday challenges can move you toward this goal.
 

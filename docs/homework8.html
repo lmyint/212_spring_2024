@@ -270,9 +270,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#required-parts" id="toc-required-parts" class="nav-link active" data-scroll-target="#required-parts">Required parts</a>
   <ul class="collapse">
   <li><a href="#homework-8---challenge-1" id="toc-homework-8---challenge-1" class="nav-link" data-scroll-target="#homework-8---challenge-1">Homework 8 - Challenge 1</a></li>
-  <li><a href="#homework-8---challenge-2" id="toc-homework-8---challenge-2" class="nav-link" data-scroll-target="#homework-8---challenge-2">Homework 8 - Challenge 2</a></li>
   </ul></li>
-  <li><a href="#optional" id="toc-optional" class="nav-link" data-scroll-target="#optional">Optional</a></li>
+  <li><a href="#optional" id="toc-optional" class="nav-link" data-scroll-target="#optional">Optional</a>
+  <ul class="collapse">
+  <li><a href="#homework-8---challenge-2" id="toc-homework-8---challenge-2" class="nav-link" data-scroll-target="#homework-8---challenge-2">Homework 8 - Challenge 2</a></li>
+  <li><a href="#tidy-tuesday" id="toc-tidy-tuesday" class="nav-link" data-scroll-target="#tidy-tuesday">Tidy Tuesday</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -360,13 +363,21 @@ Due by <strong>Wednesday, April 3</strong> at midnight on <a href="https://moodl
 <p><strong>Part 7:</strong> Evaluate the code that you wrote in terms of the <a href="./15-strategies-principles.html">core principle of good function writing</a>. To what extent does your implementation follow these principles? What are you learning about what is easy/challenging for you about approaching complex tasks requiring functions and loops?</p>
 <p><br><br></p>
 </section>
+</section>
+<section id="optional" class="level1">
+<h1>Optional</h1>
 <section id="homework-8---challenge-2" class="level2">
 <h2 class="anchored" data-anchor-id="homework-8---challenge-2">Homework 8 - Challenge 2</h2>
 <p><strong><em>This challenge is fully optional–I know that things are very busy right now. You can still earn an A without completing Challenge 2.</em></strong></p>
-<p><strong>Option 1:</strong> Scrape Macalester’s <a href="https://macadmsys.macalester.edu/macssb/customPage/page/classSchedule?term=202430">Spring 2024 class schedule</a></p>
+<p><strong>Option 1:</strong> Scrape Macalester’s <a href="https://macadmsys.macalester.edu/macssb/customPage/page/classSchedule?term=202510">Fall 2024 class schedule</a></p>
 <ul>
-<li>Goal: Obtain a data frame of all courses with the following columns: course department (e.g., AMST or PE), course number (e.g., 102, 200), section number (e.g., 01, 02), course name, meeting days (e.g., M W F, T R), meeting time, meeting room, instructor(s), open seats, max enrollment.</li>
-<li>Hint: All of your CSS selectors should have the text <code>col</code>.</li>
+<li><p><strong>Obtaining the data:</strong> Because the Registrar uses Javascript to dynamically generate the page, there is actually no HTML source underlying the tables with course data when you use <code>read_html()</code>. You’ll need to do the following as a workaround:</p>
+<ul>
+<li><strong>Google Chrome users:</strong> Use Command-S, Ctrl-S, or File &gt; Save Page As… to bring up options for saving the webpage. For Format, choose <strong>Webpage, Complete</strong>, and save this file as <code>fall24_schedule.html</code>.</li>
+<li><strong>All other browsers:</strong> Navigate to <a href="https://moodle.macalester.edu/mod/resource/view.php?id=91422">Moodle</a> to download the webpage HTML source that the instructor downloaded. (Note: Safari has a Web Archive format, but unfortunately, the file type can’t be read by <code>rvest</code>.)</li>
+</ul></li>
+<li><p><strong>Goal:</strong> Obtain a data frame of all courses with the following columns: course department (e.g., AMST or PE), course number (e.g., 102, 200), section number (e.g., 01, 02), course name, meeting days (e.g., M W F, T R), meeting time, meeting room, instructor(s), open seats, max enrollment.</p></li>
+<li><p><strong>Hint:</strong> All of your CSS selectors should have the text <code>col</code>. (You might encounter other CSS selectors via SelectorGadget, but you’ll run into issues with the number of elements selected.)</p></li>
 </ul>
 <p><strong>Option 2:</strong> Scrape any page of interest to you (possibly related to your project).</p>
 <ul>
@@ -374,15 +385,15 @@ Due by <strong>Wednesday, April 3</strong> at midnight on <a href="https://moodl
 </ul>
 <p><br><br></p>
 </section>
-</section>
-<section id="optional" class="level1">
-<h1>Optional</h1>
+<section id="tidy-tuesday" class="level2">
+<h2 class="anchored" data-anchor-id="tidy-tuesday">Tidy Tuesday</h2>
 <p>If you are aiming for an A in the course, recall from our <a href="./syllabus.html#requirements-for-an-a">syllabus</a> that participating in 5 Tidy Tuesday challenges can move you toward this goal.</p>
 <ul>
 <li>For further all-around practice, I encourage you to participate in the most recent <a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-03-26/readme.md">Tidy Tuesday</a> challenge.</li>
 </ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
