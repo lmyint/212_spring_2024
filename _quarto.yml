@@ -46,6 +46,7 @@ website:
         - 13-apis.qmd
         - 14-scraping.qmd
         - 15-strategies-principles.qmd
+        - 16-databases.qmd
 
     - id: homework
       title: "Homework"
@@ -58,7 +59,7 @@ website:
         - homework6.qmd
         - homework7.qmd
         - homework8.qmd
-        # - homework9.qmd
+        - homework9.qmd
     
     - id: skills_sessions
       title: "Skills Sessions"

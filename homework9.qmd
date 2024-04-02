@@ -1,0 +1,52 @@
+---
+title: "Homework 9"
+sidebar: false
+---
+
+# Required parts
+
+<center>
+Due by **Wednesday, April 10** at midnight on [Moodle](https://moodle.macalester.edu/mod/assign/view.php?id=91832).
+</center>
+
+
+<br><br>
+
+
+## Homework 9 - Challenge 1
+
+Turn in a knitted HTML of all exercises from our [databases activity](16-databases.qmd).
+
+
+<br><br>
+
+
+## Homework 9 - Challenge 2
+
+The [SQL Murder Mystery](https://mystery.knightlab.com/walkthrough.html) is a game-based way to learn and practice SQL. The activity starts with a discussion of relational databases and SQL, and it ends with the application of those concepts to solve a murder mystery!
+
+As you work through the mystery, record the SQL queries you use.
+
+Put your response for the name of the killer(s) below:
+
+> 🔎 The killer(s) is/are INSERT NAME(S) HERE!
+
+```sql
+--Put your SQL queries here
+```
+
+
+<br><br>
+
+
+# Optional
+
+## Tidy Tuesday
+
+If you are aiming for an A in the course, recall from our [syllabus](syllabus.qmd#requirements-for-an-a) that participating in 5 Tidy Tuesday challenges can move you toward this goal.
+
+- For further all-around practice, I encourage you to participate in the most recent [Tidy Tuesday](https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-04-02/readme.md) challenge.
+
+
+
+
