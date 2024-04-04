@@ -1,0 +1,63 @@
+---
+title: "Wrangling assumptions, joins"
+sidebar: false
+---
+
+```{r setup, echo=FALSE, message=FALSE}
+library(tidyverse)
+```
+
+
+# Checking assumptions when wrangling
+
+When we wrangle data, we make assumptions about the data that need to be checked. For example, when we parse a date variable with `lubridate::mdy()`, we assume that all date strings are properly formatted:
+
+```{r}
+df_dates <- tibble(
+    start = c("04/01/24", "04/02/24", "4324")
+)
+df_dates_clean <- df_dates %>% 
+    mutate(
+        start_date = mdy(start)
+    )
+df_dates_clean
+```
+
+In this case we nicely get a warning. If this weren't such a small dataset, we would need to do a bit more coding to discover the issue:
+
+```{r}
+df_dates_clean %>%
+    filter(is.na(start_date))
+```
+
+Joining datasets is another wrangling activity that involves several assumptions.
+
+# Joining
+
+Before asking ChatGPT to provide things to consider when joining two datasets, I came up with my own:
+
+- Decide on the correct join type (left, right, inner, full, etc.)
+- Make sure that the key variables (`by`) have the same meaning in both datasets and are represented in the same way
+    - e.g., id = 1 to 20 in first dataset will match id = 01 - 20 in undesirable ways
+- Predict the number of rows that will result from the join
+
+**Exercise:** Think through whether you think the above set of considerations is complete or needs more clarity. Then read through and evaluate the ChatGPT prompt and response below in the same way.
+
+**Prompt:** Give me a checklist of things to check when merging two datasets.
+
+> When merging two datasets, it's important to ensure that the merge is performed accurately and that the resulting dataset meets your analysis requirements. Here's a checklist of things to check when merging two datasets:
+> 
+> - **Data Structure:** Check the structure of both datasets (number of rows and columns) to ensure they are compatible for merging.
+> - **Common Key Variables:** Identify the common key variable(s) that will be used to merge the datasets. Ensure that these variables exist in both datasets and have the same data type.
+> - **Duplicate Records:** Check for duplicate records within each dataset and ensure they are handled appropriately before merging.
+> - **Missing Values:** Identify missing values in the key variables and decide how to handle them during the merge process (e.g., omitting rows with missing values, imputing missing values).
+> - **Merge Type:** Determine the type of merge operation to perform (e.g., inner join, left join, right join, outer join) based on your analysis requirements and the nature of the data.
+> - **Merge Operation:** Implement the chosen merge operation using appropriate functions or methods (e.g., merge() function in R, pd.merge() function in Python's pandas library).
+> - **Check Merge Result:** Inspect the merged dataset to ensure that the merge was successful and that the resulting dataset contains the expected number of rows and columns.
+> - **Check for Unexpected Changes:** Examine the merged dataset for any unexpected changes in the data or structure that may have occurred during the merge process.
+> - **Check for Consistency:** Verify that the merged dataset maintains consistency with the original datasets in terms of data values, variable names, and variable types.
+> - **Test Analysis:** Perform some preliminary analysis or validation checks on the merged dataset to ensure that it meets the requirements of your analysis.
+> - **Documentation:** Document the merge process, including the merge type, key variables, any data transformations or manipulations applied, and any issues encountered during the merge.
+
+**Exercise:** Work with your group to get ChatGPT to give concrete examples that clearly illustrate key points.
+

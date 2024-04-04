@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>STAT/COMP 212 - Homework 4</title>
+<title>STAT/COMP 212 - Wrangling assumptions, joins</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -245,8 +279,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#required-parts" id="toc-required-parts" class="nav-link active" data-scroll-target="#required-parts">Required parts</a></li>
-  <li><a href="#optional" id="toc-optional" class="nav-link" data-scroll-target="#optional">Optional</a></li>
+  <li><a href="#checking-assumptions-when-wrangling" id="toc-checking-assumptions-when-wrangling" class="nav-link active" data-scroll-target="#checking-assumptions-when-wrangling">Checking assumptions when wrangling</a></li>
+  <li><a href="#joining" id="toc-joining" class="nav-link" data-scroll-target="#joining">Joining</a></li>
   </ul>
 </nav>
     </div>
@@ -255,7 +289,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Homework 4</h1>
+<h1 class="title">Wrangling assumptions, joins</h1>
 </div>
 
 
@@ -270,31 +304,76 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="required-parts" class="level1">
-<h1>Required parts</h1>
-<center>
-Due by <strong>Monday, February 19</strong> at midnight.
-</center>
-<p><br><br></p>
-<p><strong>Asynchronous skills challenges</strong> (Just one this week)</p>
-<ul>
-<li><strong>Shiny - Challenge 2:</strong> Complete the steps in the <a href="./05-interactive-viz.html#advanced-interactivity-with-plotly">Advanced interactivity with <code>plotly</code> section</a> of our in class Shiny activity. Submit your <code>app.R</code> file on <a href="https://moodle.macalester.edu/mod/assign/view.php?id=86598">Moodle</a>.</li>
-</ul>
-<p><strong>Reflection 1:</strong> In a Google Doc, respond to the following prompts:</p>
-<ul>
-<li>Comment on the evolution of your understanding from class activity, to Challenge 1, and to Challenge 2 for our core topics so far: advanced <code>ggplot2</code> visualization, maps, and Shiny. What was challenging initially? How have your skills progressed? What would you still like to work on? What support or resources would help you make the progress you want?</li>
-<li>Comment on the role of peers in your learning. How have you collaborated with peers so far? What would you like collaboration to look like? What can you and the instructor do to move towards that goal?</li>
-</ul>
-<p>Please draw on observations from your personal class journal as you write so that you can add specific examples to your reflection.</p>
-<p>Submit a link to your Google Doc on <a href="https://moodle.macalester.edu/mod/assign/view.php?id=86599&amp;forceview=1">Moodle</a>.</p>
-<p><br><br></p>
+<section id="checking-assumptions-when-wrangling" class="level1">
+<h1>Checking assumptions when wrangling</h1>
+<p>When we wrangle data, we make assumptions about the data that need to be checked. For example, when we parse a date variable with <code>lubridate::mdy()</code>, we assume that all date strings are properly formatted:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>df_dates <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">start =</span> <span class="fu">c</span>(<span class="st">"04/01/24"</span>, <span class="st">"04/02/24"</span>, <span class="st">"4324"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>df_dates_clean <span class="ot">&lt;-</span> df_dates <span class="sc">%&gt;%</span> </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">start_date =</span> <span class="fu">mdy</span>(start)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: There was 1 warning in `mutate()`.
+ℹ In argument: `start_date = mdy(start)`.
+Caused by warning:
+!  1 failed to parse.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df_dates_clean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  start    start_date
+  &lt;chr&gt;    &lt;date&gt;    
+1 04/01/24 2024-04-01
+2 04/02/24 2024-04-02
+3 4324     NA        </code></pre>
+</div>
+</div>
+<p>In this case we nicely get a warning. If this weren’t such a small dataset, we would need to do a bit more coding to discover the issue:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df_dates_clean <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="fu">is.na</span>(start_date))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 2
+  start start_date
+  &lt;chr&gt; &lt;date&gt;    
+1 4324  NA        </code></pre>
+</div>
+</div>
+<p>Joining datasets is another wrangling activity that involves several assumptions.</p>
 </section>
-<section id="optional" class="level1">
-<h1>Optional</h1>
-<p>If you are aiming for an A in the course, recall from our <a href="./syllabus.html#requirements-for-an-a">syllabus</a> that participating in 5 Tidy Tuesday challenges can move you toward this goal.</p>
+<section id="joining" class="level1">
+<h1>Joining</h1>
+<p>Before asking ChatGPT to provide things to consider when joining two datasets, I came up with my own:</p>
 <ul>
-<li>For further all-around practice, I encourage you to participate in the most recent <a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-02-13/readme.md">Tidy Tuesday</a> challenge.</li>
+<li>Decide on the correct join type (left, right, inner, full, etc.)</li>
+<li>Make sure that the key variables (<code>by</code>) have the same meaning in both datasets and are represented in the same way
+<ul>
+<li>e.g., id = 1 to 20 in first dataset will match id = 01 - 20 in undesirable ways</li>
+</ul></li>
+<li>Predict the number of rows that will result from the join</li>
 </ul>
+<p><strong>Exercise:</strong> Think through whether you think the above set of considerations is complete or needs more clarity. Then read through and evaluate the ChatGPT prompt and response below in the same way.</p>
+<p><strong>Prompt:</strong> Give me a checklist of things to check when merging two datasets.</p>
+<blockquote class="blockquote">
+<p>When merging two datasets, it’s important to ensure that the merge is performed accurately and that the resulting dataset meets your analysis requirements. Here’s a checklist of things to check when merging two datasets:</p>
+<ul>
+<li><strong>Data Structure:</strong> Check the structure of both datasets (number of rows and columns) to ensure they are compatible for merging.</li>
+<li><strong>Common Key Variables:</strong> Identify the common key variable(s) that will be used to merge the datasets. Ensure that these variables exist in both datasets and have the same data type.</li>
+<li><strong>Duplicate Records:</strong> Check for duplicate records within each dataset and ensure they are handled appropriately before merging.</li>
+<li><strong>Missing Values:</strong> Identify missing values in the key variables and decide how to handle them during the merge process (e.g., omitting rows with missing values, imputing missing values).</li>
+<li><strong>Merge Type:</strong> Determine the type of merge operation to perform (e.g., inner join, left join, right join, outer join) based on your analysis requirements and the nature of the data.</li>
+<li><strong>Merge Operation:</strong> Implement the chosen merge operation using appropriate functions or methods (e.g., merge() function in R, pd.merge() function in Python’s pandas library).</li>
+<li><strong>Check Merge Result:</strong> Inspect the merged dataset to ensure that the merge was successful and that the resulting dataset contains the expected number of rows and columns.</li>
+<li><strong>Check for Unexpected Changes:</strong> Examine the merged dataset for any unexpected changes in the data or structure that may have occurred during the merge process.</li>
+<li><strong>Check for Consistency:</strong> Verify that the merged dataset maintains consistency with the original datasets in terms of data values, variable names, and variable types.</li>
+<li><strong>Test Analysis:</strong> Perform some preliminary analysis or validation checks on the merged dataset to ensure that it meets the requirements of your analysis.</li>
+<li><strong>Documentation:</strong> Document the merge process, including the merge type, key variables, any data transformations or manipulations applied, and any issues encountered during the merge.</li>
+</ul>
+</blockquote>
+<p><strong>Exercise:</strong> Work with your group to get ChatGPT to give concrete examples that clearly illustrate key points.</p>
 
 
 </section>

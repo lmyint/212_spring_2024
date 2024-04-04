@@ -47,6 +47,7 @@ website:
         - 14-scraping.qmd
         - 15-strategies-principles.qmd
         - 16-databases.qmd
+        - 17-joins.qmd
 
     - id: homework
       title: "Homework"

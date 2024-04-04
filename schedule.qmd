@@ -267,7 +267,8 @@ Guiding questions for pre-class readings and videos are available at the bottom 
     <td class="topleft">13</td>
     
     <td class="topleft">
-      <b>4/9: Project work time</b>
+      <b>4/9: Project work time: peer code review</b> <br>
+      <span class="b4">Before class:</span> Prepare to present your project code to another team. You will be helping each other check your data wrangling.
     </td>
     
     <td class="topleft">
