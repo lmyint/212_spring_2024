@@ -439,3 +439,4 @@ remotes::install_github("ropensci/USAboundaries")
 ## 2/6: Interactive visualization in Shiny
 
 What was new, unexpected, or interesting in the discussion about animations, interactivity, and dashboards?
+
