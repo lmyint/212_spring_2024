@@ -199,6 +199,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="./17-joins.html" rel="" target="">
  <span class="dropdown-text">Wrangling assumptions, joins</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./18-project-work.html" rel="" target="">
+ <span class="dropdown-text">Project work</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -252,6 +256,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li>
     <a class="dropdown-item" href="./skills_session1.html" rel="" target="">
  <span class="dropdown-text">Skills Session 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./skills_session2.html" rel="" target="">
+ <span class="dropdown-text">Skills Session 2</span></a>
   </li>  
     </ul>
   </li>
@@ -496,20 +504,20 @@ Solutions
 <pre><code>$mean
 function (x, ...) 
 UseMethod("mean")
-&lt;bytecode: 0x145b0e270&gt;
+&lt;bytecode: 0x12cdc5870&gt;
 &lt;environment: namespace:base&gt;
 
 $med
 function (x, na.rm = FALSE, ...) 
 UseMethod("median")
-&lt;bytecode: 0x155fe8ca8&gt;
+&lt;bytecode: 0x12b4ad0a8&gt;
 &lt;environment: namespace:stats&gt;
 
 $sd
 function (x, na.rm = FALSE) 
 sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), 
     na.rm = na.rm))
-&lt;bytecode: 0x145d466d0&gt;
+&lt;bytecode: 0x11b285130&gt;
 &lt;environment: namespace:stats&gt;</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(list_of_fcts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -893,9 +901,7 @@ Solution
 <span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># This function implements our specific use case: outliers are cases that are 3 SDs away from the mean for the carat variable</span></span>
 <span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Use mod_formula as the first argument of lm()</span></span>
-<span id="cb69-6"><a href="#cb69-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb69-7"><a href="#cb69-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-8"><a href="#cb69-8" aria-hidden="true" tabindex="-1"></a><span class="fu">fit_model</span>(<span class="at">data =</span> diamonds, <span class="at">mod_formula =</span> price <span class="sc">~</span> carat, <span class="at">outlier_var =</span> carat, )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb69-6"><a href="#cb69-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <details>
 <summary>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>STAT/COMP 212 - File organization, GitHub</title>
+<title>STAT/COMP 212 - Project work</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,40 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -287,15 +253,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#learning-goals" id="toc-learning-goals" class="nav-link active" data-scroll-target="#learning-goals">Learning goals</a></li>
-  <li><a href="#file-organization-and-navigation" id="toc-file-organization-and-navigation" class="nav-link" data-scroll-target="#file-organization-and-navigation">File organization and navigation</a>
-  <ul class="collapse">
-  <li><a href="#folderdirectory-structure" id="toc-folderdirectory-structure" class="nav-link" data-scroll-target="#folderdirectory-structure">Folder/directory structure</a></li>
-  <li><a href="#file-paths" id="toc-file-paths" class="nav-link" data-scroll-target="#file-paths">File paths</a></li>
-  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
-  </ul></li>
-  <li><a href="#github-for-working-on-skills-challenges" id="toc-github-for-working-on-skills-challenges" class="nav-link" data-scroll-target="#github-for-working-on-skills-challenges">GitHub for working on skills challenges</a></li>
-  <li><a href="#announcements" id="toc-announcements" class="nav-link" data-scroll-target="#announcements">Announcements</a></li>
+  <li><a href="#peer-review-of-code" id="toc-peer-review-of-code" class="nav-link active" data-scroll-target="#peer-review-of-code">Peer review of code</a></li>
+  <li><a href="#data-storytelling" id="toc-data-storytelling" class="nav-link" data-scroll-target="#data-storytelling">Data storytelling</a></li>
   </ul>
 </nav>
     </div>
@@ -304,7 +263,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">File organization, GitHub</h1>
+<h1 class="title">Project work</h1>
 </div>
 
 
@@ -319,262 +278,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="learning-goals" class="level1">
-<h1>Learning goals</h1>
-<p>After this lesson, you should be able to:</p>
-<ul>
-<li>Set up an organized directory structure for data science projects</li>
-<li>Explain the difference between absolute and relative file paths and why relative file paths are preferred for reading in data</li>
-<li>Construct relative file paths to read in data</li>
-<li>Use the following <code>git</code> commands within RStudio (whether via the GUI or by the Terminal command line): <code>clone</code>, <code>add</code>, <code>commit</code>, <code>push</code></li>
-</ul>
-<p><br><br><br><br></p>
+<section id="peer-review-of-code" class="level1">
+<h1>Peer review of code</h1>
+<p><strong>Class date:</strong> April 9, 2024</p>
+<p><strong>Plan:</strong> You’ll walk through your code so far step by step and demonstrate to another team that all steps are accurate.</p>
 </section>
-<section id="file-organization-and-navigation" class="level1">
-<h1>File organization and navigation</h1>
-<section id="folderdirectory-structure" class="level2">
-<h2 class="anchored" data-anchor-id="folderdirectory-structure">Folder/directory structure</h2>
-<p><strong>Minimal directory structure for a data science project:</strong> (Sub-bullets indicate folders that are inside other folders.) At minimum, a data science project should have a <code>code</code>, <code>data</code>, and <code>results</code> folder. Not having these folders and mixing code, data, and results files all in one folder can quickly get hard to navigate for even small projects.</p>
-<ul>
-<li><code>Documents</code> (This should be some place you can find <em>easily</em> through your Finder (Mac) or File Explorer (Windows).)
-<ul>
-<li><code>descriptive_project_name</code>
-<ul>
-<li><code>code</code>: All code files (<code>.R</code>, <code>.Rmd</code>, <code>.qmd</code>) should go here. Recommendation:
-<ul>
-<li><code>cleaning.qmd</code>: for data acquisition and wrangling. Save (write) the cleaned dataset at the end of this file with <code>readr::write_csv()</code>.</li>
-<li><code>visualizations.qmd</code>: for exploratory and final plots</li>
-<li><code>modeling.qmd</code>: for any statistical or predictive modeling</li>
-</ul></li>
-<li><code>data</code>: All data files go here</li>
-<li><code>results</code>: e.g., plots saved as images, results tables</li>
-</ul></li>
-</ul></li>
-</ul>
-<p><br></p>
-<p><strong>More involved directory structure for a data science project:</strong> If you have a larger-scale project that involves a lot more code and data, the expanded directory structure below is useful:</p>
-<ul>
-<li><code>Documents</code>
-<ul>
-<li><code>descriptive_project_name</code>
-<ul>
-<li><code>code</code>
-<ul>
-<li><code>raw</code>: For messy code that you’re actively working on</li>
-<li><code>clean</code>: For code that you have cleaned up, documented, organized, and tested to run as expected</li>
-</ul></li>
-<li><code>data</code>
-<ul>
-<li><code>raw</code>: Original data that hasn’t been cleaned</li>
-<li><code>clean</code>: Any non-original data that has been processed in some way</li>
-</ul></li>
-<li><code>results</code>
-<ul>
-<li><code>figures</code>: Plots that will be used in communicating your project should go here. (Using screenshots of output in RStudio is not a good practice.)</li>
-<li><code>tables</code>: Any sort of plain text file results (e.g., CSVs)</li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
-</section>
-<section id="file-paths" class="level2">
-<h2 class="anchored" data-anchor-id="file-paths">File paths</h2>
-<div class="callout callout-style-default callout-note callout-titled" title="What are file paths?">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-What are file paths?
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>A file path is a text string that tells a computer how to navigate from one location to another. We use file paths to read in (and write out) data.</p>
-<p><strong>Essentially, file paths are what go inside <code>read_csv()</code>.</strong></p>
-</div>
-</div>
-<p>There are two types of paths: <strong>absolute</strong> and <strong>relative</strong>.</p>
-<p><strong>Absolute file paths</strong> start at the “root” directory in a computer system. Examples:</p>
-<ul>
-<li>Mac: <code>/Users/lesliemyint/Desktop/teaching/STAT212/2024_spring/activities/adv_ggplot/sfo_weather.csv</code>
-<ul>
-<li>On a Mac the tilde <code>~</code> in a file path refers to the “Home” directory, which is <code>/Users/lesliemyint</code>. In this case, the path becomes <code>~/Desktop/teaching/STAT212/2024_spring/activities/adv_ggplot/sfo_weather.csv</code></li>
-</ul></li>
-<li>Windows: <code>C:/Users/lesliemyint/Documents/teaching/STAT212/2024_spring/activities/adv_ggplot/sfo_weather.csv</code>
-<ul>
-<li>Note: Windows uses both <code>/</code> (forward slash) and <code>\</code> (backward slash) to separate folders in a file path.</li>
-</ul></li>
-</ul>
-<div class="callout callout-style-default callout-caution callout-titled" title="DON'T use absolute paths">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-DON’T use absolute paths
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>For reading in data, absolute paths are not a good idea because if the code file is shared. The path will not work on a different computer.</p>
-</div>
-</div>
-<p><br></p>
-<p><strong>Relative file paths</strong> start wherever you are right now (the <strong>working directory (WD)</strong>). The WD when you’re working in a code file (<code>.Rmd</code>, <code>.qmd</code>) may be different from the working directory in the Console.</p>
-<p><em>Directory setup 1:</em></p>
-<ul>
-<li><code>some_folder</code>
-<ul>
-<li><code>your_code_file.qmd</code></li>
-<li><code>data.csv</code></li>
-</ul></li>
-</ul>
-<p>To read in the data:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><em>Directory setup 2:</em></p>
-<ul>
-<li><code>some_folder</code>
-<ul>
-<li><code>your_code_file.qmd</code></li>
-<li><code>data</code>
-<ul>
-<li><code>data.csv</code></li>
-</ul></li>
-</ul></li>
-</ul>
-<p>To read in the data:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/data.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><em>Directory setup 3:</em></p>
-<ul>
-<li><code>some_folder</code>
-<ul>
-<li><code>data.csv</code></li>
-<li><code>code</code>
-<ul>
-<li><code>your_code_file.qmd</code></li>
-</ul></li>
-</ul></li>
-</ul>
-<p>To go “up” a folder in a relative path we use <code>../</code>. To read in the data:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../data.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><em>Directory setup 4:</em></p>
-<ul>
-<li><code>some_folder</code>
-<ul>
-<li><code>data</code>
-<ul>
-<li><code>data.csv</code></li>
-</ul></li>
-<li><code>code</code>
-<ul>
-<li><code>your_code_file.qmd</code></li>
-</ul></li>
-</ul></li>
-</ul>
-<p>To read in the data:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../data/data.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled" title="DO use relative paths">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-DO use relative paths
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>For reading in data, relative paths are preferred because if the project directory structure is used on a different computer, the relative paths will still work.</p>
-</div>
-</div>
-</section>
-<section id="exercise" class="level2">
-<h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
-<p>Download <a href="https://moodle.macalester.edu/mod/resource/view.php?id=83593">this Zip file</a> from Moodle, and save it to your class folder. After unzipping, open the <code>code/clean/cleaning.qmd</code> file in RStudio. Follow the instructions in that file.</p>
-<p>Exercise goals:</p>
-<ul>
-<li>Practice using relative paths in a realistic project context</li>
-<li>Practice data wrangling</li>
-</ul>
-<details>
-<summary>
-Solution
-</summary>
-<p>Load packages and read in data.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>weather <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../../data/raw/weather.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Add <code>dateInYear</code> variable.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>weather_clean <span class="ot">&lt;-</span> weather <span class="sc">%&gt;%</span> </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(Month, Day) <span class="sc">%&gt;%</span> </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">dateInYear =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">365</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Add in 3-letter month abbreviations.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Option 1: via joins</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>months <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">Month =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>,</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">month_name =</span> month.abb</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>weather_clean <span class="ot">&lt;-</span> weather_clean <span class="sc">%&gt;%</span> </span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(months)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Option 2: via vector subsetting</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>weather <span class="sc">%&gt;%</span> </span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">month_name =</span> month.abb[Month])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Write out clean data to a CSV file.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(weather_clean, <span class="at">file =</span> <span class="st">"../../data/clean/weather_clean.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</details>
-<p><br><br><br><br></p>
-</section>
-</section>
-<section id="github-for-working-on-skills-challenges" class="level1">
-<h1>GitHub for working on skills challenges</h1>
-<p>We’ll step through the process from <a href="https://youtu.be/QLFc9gw_Hfs?si=Ww--upiZ7hM2e1id">Lisa Lendway’s GitHub-RStudio setup video</a> for <em>Advanced visualization with ggplot2 - Challenge 1</em>.</p>
-<p><br></p>
-<p>The remainder of class time today is yours to work on any of the following:</p>
-<ul>
-<li>Advanced visualization with ggplot2 - <a href="https://classroom.github.com/a/u96MWDm2">Challenge 1</a> (Part of <a href="./homework1.html">Homework 1</a>)</li>
-<li>Advanced visualization with ggplot2 - <a href="https://classroom.github.com/a/bl30jylw">Challenge 2</a> (Will be part of Homework 2)</li>
-</ul>
-<div class="callout callout-style-default callout-tip callout-titled" title="Reminder: Record and observe">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Reminder: Record and observe
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>As you work to finalize your plots, try as best you can to observe your strategies for getting unstuck–what sorts of things do you try? Some ideas:</p>
-<ul>
-<li>Draw the part of your plot that you expect your code will create. Then compare to what actually does happen.</li>
-<li>Consult peers for different Google queries</li>
-<li>Look at function documentation by entering <code>?function_name</code> in the Console. See what arguments might be tweaked to get what you want.</li>
-</ul>
-</div>
-</div>
-<p><br><br><br><br></p>
-</section>
-<section id="announcements" class="level1">
-<h1>Announcements</h1>
-<ul>
-<li><a href="./homework1.html">Homework 1</a> is due Monday, January 29 at midnight.</li>
-<li><a href="./skills_session1.html">Skills Session 1</a> will be happening 2/5-2/9. Keep practicing the keyboard shortcuts described <a href="https://lmyint.github.io/IntermediateDataSciNotes/keyboard.html">here</a>.</li>
-<li>Check our <a href="./schedule.html">Schedule</a> for next week: there is one video to watch before class on Tuesday (with Guiding Questions) and packages to install.</li>
-</ul>
+<section id="data-storytelling" class="level1">
+<h1>Data storytelling</h1>
+<p><strong>Class date:</strong> April 11, 2024</p>
+<p><strong>Plan:</strong> We’ll look at some materials to provide inspiration and guidance for your projects.</p>
+<!-- 
+
+Theme for project work day 2 on 4/11: data storytelling
+
+Visualization
+
+- https://www.nytimes.com/2024/03/03/us/politics/biden-age-trump-poll.html
+
+
+
+
+
+Theme for project work day 3 on 4/16: Ethics
+"Raw Data" Is an Oxymoron
+Activity: what unmeasured variables could augment your dataset to provide a more full human picture of each case?
+-->
 
 
 </section>

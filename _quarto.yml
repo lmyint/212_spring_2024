@@ -48,6 +48,7 @@ website:
         - 15-strategies-principles.qmd
         - 16-databases.qmd
         - 17-joins.qmd
+        - 18-project-work.qmd
 
     - id: homework
       title: "Homework"
@@ -66,7 +67,7 @@ website:
       title: "Skills Sessions"
       contents:
         - skills_session1.qmd
-        # - skills_session2.qmd
+        - skills_session2.qmd
   
   page-footer:
     left: |

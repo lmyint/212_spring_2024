@@ -1,0 +1,34 @@
+---
+title: "Project work"
+sidebar: false
+---
+
+# Peer review of code
+
+**Class date:** April 9, 2024
+
+**Plan:** You'll walk through your code so far step by step and demonstrate to another team that all steps are accurate. 
+
+# Data storytelling
+
+**Class date:** April 11, 2024
+
+**Plan:** We'll look at some materials to provide inspiration and guidance for your projects.
+
+
+<!-- 
+
+Theme for project work day 2 on 4/11: data storytelling
+
+Visualization
+
+- https://www.nytimes.com/2024/03/03/us/politics/biden-age-trump-poll.html
+
+
+
+
+
+Theme for project work day 3 on 4/16: Ethics
+"Raw Data" Is an Oxymoron
+Activity: what unmeasured variables could augment your dataset to provide a more full human picture of each case?
+-->

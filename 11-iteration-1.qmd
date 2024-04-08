@@ -367,8 +367,6 @@ fit_model <- function(data, mod_formula, remove_outliers) {
     
     # Use mod_formula as the first argument of lm()
 }
-
-fit_model(data = diamonds, mod_formula = price ~ carat, outlier_var = carat, )
 ```
 
 

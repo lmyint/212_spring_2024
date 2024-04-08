@@ -1,0 +1,53 @@
+---
+title: "Skills Session 2"
+sidebar: false
+---
+
+# Purpose
+
+- Reflect and get feedback on your coding process for complex tasks.
+- Identify areas for continued growth and clarify paths to work towards that growth.
+
+
+<br><br>
+
+
+# Task
+
+<!--
+1. Review your work from the [these exercises](https://lmyint.github.io/212_spring_2024/11-iteration-1.html#exercises-2) from our *Loops and iteration - Part 1* activity.
+    - Compare your implementations to the solutions provided in the dropdowns. What do you notice? What questions/wonders/curiosities arise, if any?
+    - Do you think that the design of the functions (choice of functions to write and their arguments) and the structure of the `for` loop followed the [core principle of writing good functions](15-strategies-principles.qmd)?
+-->
+
+**First:** Schedule a 15 minute meeting with me during the week of 4/15 - 4/19 via [Calendly](https://calendly.com/lmyint). 
+
+<br>
+
+**Before our meeting:** Work through the following reflection exercise and type responses in a Google Doc. Add me to this document as an Editor or Commenter.
+
+1. Review your work from [Homework 7](homework7.qmd) Challenge 1 and [Homework 8](homework8.qmd) Challenge 1 in addition to the feedback on your personal feedback Google Sheet (titled "YOUR NAME: STAT/COMP 212 Feedback").
+    - Try to recall your thought process as you worked on these assignments.
+    - What do you notice about the types of work that you feel strong at and the types that you want to improve at?
+
+2. Review your notes from our [peer review of project code](18-project-work.qmd#peer-review-of-code) and [data storytelling](18-project-work.qmd#data-storytelling) class activities.
+    - What did you learn from **both** giving and receiving feedback?
+
+3. Based on these reflections, what would be the most helpful to discuss at our meeting?
+
+<br>
+
+**During our meeting:** In addition to talking about the topics in item 3 above, I'll also check in with you about your goals for the course and what we/you can do in the last weeks of the semester and beyond to keep moving towards those goals.
+
+<br>
+
+**After our meeting:** Based on what we discuss at our meeting, add to your Google Doc a plan for continuing to improve at your goals.
+
+    
+<br><br>
+
+
+# Requirements for passing
+
+- Thoughtfully complete pre- and post-meeting reflections in your Google Doc
+
