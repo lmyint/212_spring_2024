@@ -19,7 +19,7 @@ sidebar: false
     - Is their clear documentation in the text before and after code chunks of what is happening in each code chunk?
     - Are code comments used to add clarity inside code chunks?
     - When using a clean dataset for modeling and/or visualization, is it clear what the cases represent and what portion (possibly a subset) of the data is being used?
-- Take notes on what you learn from peer feedback on your code and what you learn from observing your peer's code.
+- Take notes on what you learn from peer feedback on your code and what you learn from observing your peer's code. This will be part of the reflection for [Skills Session 2](skills_session2.qmd).
 
 
 
