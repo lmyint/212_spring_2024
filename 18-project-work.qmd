@@ -7,7 +7,27 @@ sidebar: false
 
 **Class date:** April 9, 2024
 
-**Plan:** You'll walk through your code so far step by step and demonstrate to another team that all steps are accurate. 
+**Plan:** You'll walk through your code so far step by step and demonstrate to another team that all steps are accurate.
+
+**Process:** 
+
+- One team will talk through each section of code in their project so far and explain how they checked the accuracy of those steps.
+- The other team will listen, ask questions, and provide suggestions. The listening team members should keep in mind the following characteristics from the **Code quality and documentation** section of the [project rubric](project.qmd#rubric):
+    - Are functions used effectively to reduce code duplication?
+    - Do functions do a single small task?
+    - Are loops/`purrr` used appropriately to handle repeated tasks?
+    - Is their clear documentation in the text before and after code chunks of what is happening in each code chunk?
+    - Are code comments used to add clarity inside code chunks?
+    - When using a clean dataset for modeling and/or visualization, is it clear what the cases represent and what portion (possibly a subset) of the data is being used?
+- Take notes on what you learn from peer feedback on your code and what you learn from observing your peer's code.
+
+
+
+
+<br><br><br><br>
+
+
+
 
 # Data storytelling
 
