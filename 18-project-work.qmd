@@ -35,17 +35,56 @@ sidebar: false
 
 **Plan:** We'll look at some materials to provide inspiration and guidance for your projects.
 
+## Improving your data visualizations
+
+Section 4.2.1 [Guidelines for good plots](https://rdpeng.github.io/RProgDA/customizing-ggplot2-plots.html) presents 6 guidelines for creating great plots:
+
+1. Aim for high data density.
+2. Use clear, meaningful labels.
+3. Provide useful references.
+4. Highlight interesting aspects of the data.
+5. Consider using small multiples.
+6. Make order meaningful.
+
+Although it's not explicitly stated, an overarching theme is to **facilitate comparisons**.
+
+- When you present your visualizations, what aspects is the viewer drawn to, and what do they want to compare?
+- Make it as easy as possible to compare those things.
+
+Example: grid of scatterplots
+
+- Scatterplot grids are considered in Guideline 5: Consider using small multiples. 
+- What if the viewer ultimately wants to focus on the slope and the strength of the correlation?
+    - Then it might be more effective to summarize each scatter plot with the correlation coefficient, slope estimate, and slope confidence interval.
+    - `geom_point()`, `geom_linerange()`/`geom_errorbar()` would be effective here.
+
+Example: [Majority of Biden’s 2020 Voters Now Say He’s Too Old to Be Effective](https://www.nytimes.com/2024/03/03/us/politics/biden-age-trump-poll.html)
+
+- What aspects of the plot reinforce the intended message?
+
+## Resources for sparking creativity and imagination in your plots
+
+- [Blog post: The 30 Best Data Visualizations of 2023](https://visme.co/blog/best-data-visualizations/)
+- [The Pudding](https://pudding.cool/) is a great data journalism site. Examples of articles with unique visualizations:
+    - [Pockets](https://pudding.cool/2018/08/pockets/): On the sizes of men's and women's pockets
+    - [Making it Big](https://pudding.cool/2017/01/making-it-big/): Exploring the trajectory of bands
+    - [The Differences in How CNN, MSNBC, & FOX Cover the News](https://pudding.cool/2018/01/chyrons/)
+    - [The Physical Traits that Define Men and Women in Literature](https://pudding.cool/2020/07/gendered-descriptions/)
+    - [How News Media Covers Trump and Clinton](https://pudding.cool/2017/03/elections/): An analysis of images in news media
+    - [Where Slang Comes From](https://pudding.cool/2017/02/new-slang/): Exploring the emergence of slang over time
+- Visualizations from the New York Times:
+    - [The Best NYT Visualizations of 2015](https://www.informationisbeautifulawards.com/news/118-the-nyt-s-best-data-visualizations-of-the-year)
+    - [2022: The Year in Visual Stories and Graphics](https://www.nytimes.com/interactive/2022/12/28/us/2022-year-in-graphics.html)
+
+## Your project in 3 visuals
+
+**Exercise:** If your digital deliverable (whether blog post or Shiny app) could only show 3 visuals, what would they be? Why?
+
+- What ideas do you have about the order of your visuals?
+- What might you do to combine multiple visuals into one?
+
 
 <!-- 
-
-Theme for project work day 2 on 4/11: data storytelling
-
-Visualization
-
-- https://www.nytimes.com/2024/03/03/us/politics/biden-age-trump-poll.html
-
-
-
 
 
 Theme for project work day 3 on 4/16: Ethics
