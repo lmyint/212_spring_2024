@@ -84,10 +84,23 @@ Example: [Majority of Biden’s 2020 Voters Now Say He’s Too Old to Be Effecti
 - What might you do to combine multiple visuals into one?
 
 
-<!-- 
 
 
-Theme for project work day 3 on 4/16: Ethics
-"Raw Data" Is an Oxymoron
-Activity: what unmeasured variables could augment your dataset to provide a more full human picture of each case?
--->
+<br><br><br><br>
+
+
+
+# Human-centered data science
+
+Let's take a moment to explore The Pudding's [30 Years of
+American Anxieties](https://pudding.cool/2018/11/dearabby/).
+
+- In what ways do these letters reveal essential context that would never be found in a dataset?
+- What hidden context can you imagine for your dataset?
+    - What additional information could accompany your dataset to provide a more full picture of the lived experiences of all those who may have been connected to the data?
+    - Who collected this data? Why? What might have been their agenda?
+    - How might the agendas of the data collectors affected what data are available? In terms of:
+        - What cases are present in and absent from the data?
+        - What variables are available and in what format (e.g., categories)?
+    - Think about the labor involved in collecting your data. Whose labor is most visible and applauded? Whose labor is invisible?
+
