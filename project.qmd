@@ -13,27 +13,49 @@ The goal of the project is to **build something awesome** that you are proud to 
 
 # Project requirements
 
-**Team size:** You will be working on this project over the course of the semester in teams of 2 or 3. **Individual teams are not allowed because one goal of the project is to practice collaboration via GitHub.**
+## Team size
 
-**Aligning with other classes:** You may choose a project topic that is the same or similar to a topic that you're exploring in another course. This is encouraged! Combining multiple course perspectives can significantly increase the quality of your work.
+You will be working on this project over the course of the semester in teams of 2 or 3. **Individual teams are not allowed because one goal of the project is to practice collaboration via GitHub.**
 
-**Data sources:** 
+## Aligning with other classes
+
+You may choose a project topic that is the same or similar to a topic that you're exploring in another course. This is encouraged! Combining multiple course perspectives can significantly increase the quality of your work.
+
+## Data sources
 
 - You are required to use at least 2 different data sources for this project.
 - I *encourage* (but am not requiring) you to use one of the new data acquisition tools covered in our course (APIs, web scraping, SQL) for one of these data sources.
 
-**Deliverables:** You will create a digital artifact that can be hosted on your personal website or linked to from your personal website. Options include:
+## Deliverables
+
+You will create a digital artifact that can be hosted on your personal website or linked to from your personal website. Options include:
 
 - Blog post (single `.qmd` file)
 - Standalone Shiny app (e.g., dashboard style with an `app.R` file)
 - Blog post with Shiny features. This is like a blog post where you scroll through text and plots, but with this format, the plots can be interactive (mini Shiny apps). (In RStudio, when you choose File > New File > Quarto Document, you can choose the "Interactive" option to generate this format.)
 
-**Presentation:** On the last day of class (Thursday, April 25) all teams will present their work. (We will not be using our final exam slot.)
+## Presentation
+
+On the last day of class (Thursday, April 25) all teams will present their work. (We will not be using our final exam slot.)
 
 - Format: "Poster session"
     - Each team will set up a digital display of their work for about 30 minutes and talk to people who come by. We'll do 3 rounds of 30 minutes with 3-4 teams presenting per round.
     - Why this format? Because we have 10 teams, it would feel too fast-paced to do sequential presentations. I hope that this format feels more low key and celebratory.
     - We'll have breakfast snacks to celebrate!
+
+## Final submission
+
+By the end of the day on **Wednesday, May 1**:
+
+- If your artifact has Shiny components (is a standalone Shiny app or hs a blog post with Shiny features), you have the following options:
+    - Publish your app on shinyapps.io using the instructions [here](05-interactive-viz.qmd#publishing-shiny-apps) and share the link [on Moodle](https://moodle.macalester.edu/mod/assign/view.php?id=95009).
+    - Submit [on Moodle](https://moodle.macalester.edu/mod/assign/view.php?id=95009) all files needed for me to view your Shiny app on my computer. This will include the `app.R` file and any associated data files.
+
+- If your artifact is a blog post (without Shiny components):
+    - Submit all files needed for me to view your post [on Moodle](https://moodle.macalester.edu/mod/assign/view.php?id=95009). Double check my downloading your Moodle upload that all images are contained in the post.
+    - Share [on Moodle](https://moodle.macalester.edu/mod/assign/view.php?id=95009) a link to your final blog post in your team GitHub repository.
+
+All groups should make sure that the final codebase is pushed to your team's GitHub repository.
 
 
 <br><br>

@@ -254,7 +254,15 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#goal" id="toc-goal" class="nav-link active" data-scroll-target="#goal">Goal</a></li>
-  <li><a href="#project-requirements" id="toc-project-requirements" class="nav-link" data-scroll-target="#project-requirements">Project requirements</a></li>
+  <li><a href="#project-requirements" id="toc-project-requirements" class="nav-link" data-scroll-target="#project-requirements">Project requirements</a>
+  <ul class="collapse">
+  <li><a href="#team-size" id="toc-team-size" class="nav-link" data-scroll-target="#team-size">Team size</a></li>
+  <li><a href="#aligning-with-other-classes" id="toc-aligning-with-other-classes" class="nav-link" data-scroll-target="#aligning-with-other-classes">Aligning with other classes</a></li>
+  <li><a href="#data-sources" id="toc-data-sources" class="nav-link" data-scroll-target="#data-sources">Data sources</a></li>
+  <li><a href="#deliverables" id="toc-deliverables" class="nav-link" data-scroll-target="#deliverables">Deliverables</a></li>
+  <li><a href="#presentation" id="toc-presentation" class="nav-link" data-scroll-target="#presentation">Presentation</a></li>
+  <li><a href="#final-submission" id="toc-final-submission" class="nav-link" data-scroll-target="#final-submission">Final submission</a></li>
+  </ul></li>
   <li><a href="#rubric" id="toc-rubric" class="nav-link" data-scroll-target="#rubric">Rubric</a>
   <ul class="collapse">
   <li><a href="#category-thoughtful-engagement-with-data-context" id="toc-category-thoughtful-engagement-with-data-context" class="nav-link" data-scroll-target="#category-thoughtful-engagement-with-data-context">Category: Thoughtful engagement with data context</a></li>
@@ -299,20 +307,33 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="project-requirements" class="level1">
 <h1>Project requirements</h1>
-<p><strong>Team size:</strong> You will be working on this project over the course of the semester in teams of 2 or 3. <strong>Individual teams are not allowed because one goal of the project is to practice collaboration via GitHub.</strong></p>
-<p><strong>Aligning with other classes:</strong> You may choose a project topic that is the same or similar to a topic that you’re exploring in another course. This is encouraged! Combining multiple course perspectives can significantly increase the quality of your work.</p>
-<p><strong>Data sources:</strong></p>
+<section id="team-size" class="level2">
+<h2 class="anchored" data-anchor-id="team-size">Team size</h2>
+<p>You will be working on this project over the course of the semester in teams of 2 or 3. <strong>Individual teams are not allowed because one goal of the project is to practice collaboration via GitHub.</strong></p>
+</section>
+<section id="aligning-with-other-classes" class="level2">
+<h2 class="anchored" data-anchor-id="aligning-with-other-classes">Aligning with other classes</h2>
+<p>You may choose a project topic that is the same or similar to a topic that you’re exploring in another course. This is encouraged! Combining multiple course perspectives can significantly increase the quality of your work.</p>
+</section>
+<section id="data-sources" class="level2">
+<h2 class="anchored" data-anchor-id="data-sources">Data sources</h2>
 <ul>
 <li>You are required to use at least 2 different data sources for this project.</li>
 <li>I <em>encourage</em> (but am not requiring) you to use one of the new data acquisition tools covered in our course (APIs, web scraping, SQL) for one of these data sources.</li>
 </ul>
-<p><strong>Deliverables:</strong> You will create a digital artifact that can be hosted on your personal website or linked to from your personal website. Options include:</p>
+</section>
+<section id="deliverables" class="level2">
+<h2 class="anchored" data-anchor-id="deliverables">Deliverables</h2>
+<p>You will create a digital artifact that can be hosted on your personal website or linked to from your personal website. Options include:</p>
 <ul>
 <li>Blog post (single <code>.qmd</code> file)</li>
 <li>Standalone Shiny app (e.g., dashboard style with an <code>app.R</code> file)</li>
 <li>Blog post with Shiny features. This is like a blog post where you scroll through text and plots, but with this format, the plots can be interactive (mini Shiny apps). (In RStudio, when you choose File &gt; New File &gt; Quarto Document, you can choose the “Interactive” option to generate this format.)</li>
 </ul>
-<p><strong>Presentation:</strong> On the last day of class (Thursday, April 25) all teams will present their work. (We will not be using our final exam slot.)</p>
+</section>
+<section id="presentation" class="level2">
+<h2 class="anchored" data-anchor-id="presentation">Presentation</h2>
+<p>On the last day of class (Thursday, April 25) all teams will present their work. (We will not be using our final exam slot.)</p>
 <ul>
 <li>Format: “Poster session”
 <ul>
@@ -321,7 +342,25 @@ ul.task-list li input[type="checkbox"] {
 <li>We’ll have breakfast snacks to celebrate!</li>
 </ul></li>
 </ul>
+</section>
+<section id="final-submission" class="level2">
+<h2 class="anchored" data-anchor-id="final-submission">Final submission</h2>
+<p>By the end of the day on <strong>Wednesday, May 1</strong>:</p>
+<ul>
+<li>If your artifact has Shiny components (is a standalone Shiny app or hs a blog post with Shiny features), you have the following options:
+<ul>
+<li>Publish your app on shinyapps.io using the instructions <a href="./05-interactive-viz.html#publishing-shiny-apps">here</a> and share the link <a href="https://moodle.macalester.edu/mod/assign/view.php?id=95009">on Moodle</a>.</li>
+<li>Submit <a href="https://moodle.macalester.edu/mod/assign/view.php?id=95009">on Moodle</a> all files needed for me to view your Shiny app on my computer. This will include the <code>app.R</code> file and any associated data files.</li>
+</ul></li>
+<li>If your artifact is a blog post (without Shiny components):
+<ul>
+<li>Submit all files needed for me to view your post <a href="https://moodle.macalester.edu/mod/assign/view.php?id=95009">on Moodle</a>. Double check my downloading your Moodle upload that all images are contained in the post.</li>
+<li>Share <a href="https://moodle.macalester.edu/mod/assign/view.php?id=95009">on Moodle</a> a link to your final blog post in your team GitHub repository.</li>
+</ul></li>
+</ul>
+<p>All groups should make sure that the final codebase is pushed to your team’s GitHub repository.</p>
 <p><br><br></p>
+</section>
 </section>
 <section id="rubric" class="level1">
 <h1>Rubric</h1>

@@ -1076,5 +1076,47 @@
     "title": "Project work",
     "section": "Your project in 3 visuals",
     "text": "Your project in 3 visuals\nExercise: If your digital deliverable (whether blog post or Shiny app) could only show 3 visuals, what would they be? Why?\n\nWhat ideas do you have about the order of your visuals?\nWhat might you do to combine multiple visuals into one?"
+  },
+  {
+    "objectID": "project.html#team-size",
+    "href": "project.html#team-size",
+    "title": "Project",
+    "section": "Team size",
+    "text": "Team size\nYou will be working on this project over the course of the semester in teams of 2 or 3. Individual teams are not allowed because one goal of the project is to practice collaboration via GitHub."
+  },
+  {
+    "objectID": "project.html#aligning-with-other-classes",
+    "href": "project.html#aligning-with-other-classes",
+    "title": "Project",
+    "section": "Aligning with other classes",
+    "text": "Aligning with other classes\nYou may choose a project topic that is the same or similar to a topic that you’re exploring in another course. This is encouraged! Combining multiple course perspectives can significantly increase the quality of your work."
+  },
+  {
+    "objectID": "project.html#data-sources",
+    "href": "project.html#data-sources",
+    "title": "Project",
+    "section": "Data sources",
+    "text": "Data sources\n\nYou are required to use at least 2 different data sources for this project.\nI encourage (but am not requiring) you to use one of the new data acquisition tools covered in our course (APIs, web scraping, SQL) for one of these data sources."
+  },
+  {
+    "objectID": "project.html#deliverables",
+    "href": "project.html#deliverables",
+    "title": "Project",
+    "section": "Deliverables",
+    "text": "Deliverables\nYou will create a digital artifact that can be hosted on your personal website or linked to from your personal website. Options include:\n\nBlog post (single .qmd file)\nStandalone Shiny app (e.g., dashboard style with an app.R file)\nBlog post with Shiny features. This is like a blog post where you scroll through text and plots, but with this format, the plots can be interactive (mini Shiny apps). (In RStudio, when you choose File &gt; New File &gt; Quarto Document, you can choose the “Interactive” option to generate this format.)"
+  },
+  {
+    "objectID": "project.html#presentation",
+    "href": "project.html#presentation",
+    "title": "Project",
+    "section": "Presentation",
+    "text": "Presentation\nOn the last day of class (Thursday, April 25) all teams will present their work. (We will not be using our final exam slot.)\n\nFormat: “Poster session”\n\nEach team will set up a digital display of their work for about 30 minutes and talk to people who come by. We’ll do 3 rounds of 30 minutes with 3-4 teams presenting per round.\nWhy this format? Because we have 10 teams, it would feel too fast-paced to do sequential presentations. I hope that this format feels more low key and celebratory.\nWe’ll have breakfast snacks to celebrate!"
+  },
+  {
+    "objectID": "project.html#final-submission",
+    "href": "project.html#final-submission",
+    "title": "Project",
+    "section": "Final submission",
+    "text": "Final submission\nBy the end of the day on Wednesday, May 1:\n\nIf your artifact has Shiny components (is a standalone Shiny app or hs a blog post with Shiny features), you have the following options:\n\nPublish your app on shinyapps.io using the instructions here and share the link on Moodle.\nSubmit on Moodle all files needed for me to view your Shiny app on my computer. This will include the app.R file and any associated data files.\n\nIf your artifact is a blog post (without Shiny components):\n\nSubmit all files needed for me to view your post on Moodle. Double check my downloading your Moodle upload that all images are contained in the post.\nShare on Moodle a link to your final blog post in your team GitHub repository.\n\n\nAll groups should make sure that the final codebase is pushed to your team’s GitHub repository."
   }
 ]
